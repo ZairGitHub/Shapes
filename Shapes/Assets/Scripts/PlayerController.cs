@@ -8,15 +8,17 @@ public class PlayerController : MonoBehaviour
     private Vector3 movement;
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
+        rb.useGravity = false;
         Reset();
     }
 
     private void Reset()
     {
-        rb = GetComponent<Rigidbody>();
+        gameObject.SetActive(true);
         rb.velocity = Vector3.zero;
         rb.MovePosition(Vector3.up);
-        rb.freezeRotation = true;
     }
 
     private void FixedUpdate()
@@ -27,9 +29,18 @@ public class PlayerController : MonoBehaviour
         rb.velocity = movement * speed + new Vector3(0.0f, rb.velocity.y, 0.0f);
     }
 
-    private void OnCollisionExit(Collision other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.CompareTag("Floor"))
+        if (collision.gameObject.CompareTag("Cube"))
+        {
+            gameObject.SetActive(false);
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        // Create other collidable objects
+
+        if (collision.gameObject.CompareTag("Boundary"))
         {
             Reset();
         }
