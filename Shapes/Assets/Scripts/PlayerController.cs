@@ -25,6 +25,25 @@ public class PlayerController : MonoBehaviour
     {
         float horizontalAxis = Input.GetAxis("Horizontal");
         float verticalAxis = Input.GetAxis("Vertical");
+
+        if (rb.position.x < -20)
+        {
+            rb.MovePosition(new Vector3(-20.0f, rb.position.y, rb.position.z));
+        }
+        else if (rb.position.x > 20)
+        {
+            rb.MovePosition(new Vector3(20.0f, rb.position.y, rb.position.z));
+        }
+
+        if (rb.position.z < -10)
+        {
+            rb.MovePosition(new Vector3(rb.position.x, rb.position.y, -10.0f));
+        }
+        else if (rb.position.z > 10)
+        {
+            rb.MovePosition(new Vector3(rb.position.x, rb.position.y, 10.0f));
+        }
+
         movement = new Vector3(horizontalAxis, 0.0f, verticalAxis);
         rb.velocity = movement * speed + new Vector3(0.0f, rb.velocity.y, 0.0f);
     }
@@ -42,7 +61,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Boundary"))
         {
-            Reset();
+            //Reset();
         }
     }
 }

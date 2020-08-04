@@ -44,6 +44,7 @@ public class CubeHandler : MonoBehaviour
             RecalculateVelocity();
         }
     }
+
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("Boundary"))
