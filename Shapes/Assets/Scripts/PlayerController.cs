@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
     private Vector3 movement;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -18,50 +19,34 @@ public class PlayerController : MonoBehaviour
     {
         gameObject.SetActive(true);
         rb.velocity = Vector3.zero;
-        rb.MovePosition(Vector3.up);
+        SetPosition();
+    }
+
+    private void SetPosition()
+    {
+        // Different spawn positions for different players (GameController)
+        Vector3 topLeft = new Vector3(-10.0f, 0.0f, 5.0f);
+        Vector3 topRight = new Vector3(10.0f, 0.0f, 5.0f);
+        Vector3 bottomLeft = new Vector3(-10.0f, 0.0f, -5.0f);
+        Vector3 bottomRight = new Vector3(10.0f, 0.0f, -5.0f);
+
+        rb.MovePosition(Vector3.up + topLeft);
     }
 
     private void FixedUpdate()
     {
         float horizontalAxis = Input.GetAxis("Horizontal");
         float verticalAxis = Input.GetAxis("Vertical");
-
-        if (rb.position.x < -20)
-        {
-            rb.MovePosition(new Vector3(-20.0f, rb.position.y, rb.position.z));
-        }
-        else if (rb.position.x > 20)
-        {
-            rb.MovePosition(new Vector3(20.0f, rb.position.y, rb.position.z));
-        }
-
-        if (rb.position.z < -10)
-        {
-            rb.MovePosition(new Vector3(rb.position.x, rb.position.y, -10.0f));
-        }
-        else if (rb.position.z > 10)
-        {
-            rb.MovePosition(new Vector3(rb.position.x, rb.position.y, 10.0f));
-        }
-
         movement = new Vector3(horizontalAxis, 0.0f, verticalAxis);
-        rb.velocity = movement * speed + new Vector3(0.0f, rb.velocity.y, 0.0f);
+        rb.velocity = movement * speed;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Cube"))
-        {
-            gameObject.SetActive(false);
-        }
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        // Create other collidable objects
-
-        if (collision.gameObject.CompareTag("Boundary"))
+        if (collision.gameObject.CompareTag("Cube") || collision.gameObject.CompareTag("Sphere"))
         {
             //Reset();
+            gameObject.SetActive(false);
         }
     }
 }

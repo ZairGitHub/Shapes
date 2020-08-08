@@ -5,7 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Cube
-  - Boundary
+  - BoundaryNorth
+  - BoundarySouth
+  - BoundaryEast
+  - BoundaryWest
+  - Sphere
   layers:
   - Default
   - TransparentFX
