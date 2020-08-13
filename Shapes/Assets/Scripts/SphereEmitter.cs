@@ -8,14 +8,14 @@ public class SphereEmitter : MonoBehaviour
     private void Start()
     {
         sphere = GameObject.FindGameObjectWithTag("Sphere");
-        //StartCoroutine(EmitSpheres());
+        StartCoroutine(EmitSpheres());
     }
 
     private IEnumerator EmitSpheres()
     {
         while (true)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(3);
             Instantiate(sphere, Vector3.up, Quaternion.identity);
         }
     }
