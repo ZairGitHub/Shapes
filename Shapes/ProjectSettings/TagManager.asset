@@ -11,6 +11,7 @@ TagManager:
   - BoundaryWest
   - Sphere
   - TimeController
+  - TextController
   layers:
   - Default
   - TransparentFX
