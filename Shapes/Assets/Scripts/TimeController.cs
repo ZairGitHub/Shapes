@@ -2,9 +2,9 @@
 
 public class TimeController : MonoBehaviour
 {
-    public float minTime;
-    public float maxTime;
-
+    private float minTime;
+    private float maxTime;
+    
     private float savedTime;
     private float timeFactor;
 
@@ -15,6 +15,16 @@ public class TimeController : MonoBehaviour
 
         savedTime = Time.deltaTime;
         timeFactor = 0.05f;
+    }
+
+    public float getMinTime()
+    {
+        return minTime;
+    }
+
+    public float getMaxTime()
+    {
+        return maxTime;
     }
 
     public void TogglePause()
