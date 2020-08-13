@@ -16,14 +16,9 @@ public class GameController : MonoBehaviour
             timeController.TogglePause();
         }
         
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            timeController.PauseTime();
-        }
-        
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            timeController.ResumeTime();
+            timeController.ResetTime();
         }
 
         if (Input.GetKey(KeyCode.Alpha1))
@@ -34,6 +29,16 @@ public class GameController : MonoBehaviour
         if (Input.GetKey(KeyCode.Alpha2))
         {
             timeController.SpeedUpTime();
+        }
+
+        if (Input.GetKeyDown("-"))
+        {
+            timeController.SetTime(timeController.minTime);
+        }
+
+        if (Input.GetKeyDown("="))
+        {
+            timeController.SetTime(timeController.maxTime);
         }
     }
 }

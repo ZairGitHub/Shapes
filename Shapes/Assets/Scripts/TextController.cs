@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class TextController : MonoBehaviour
 {
-    TMP_Text textDebugTime;
+    private TMP_Text textDebugTime;
+    private TMP_Text textDebugSavedTime;
 
     private void Start()
     {
