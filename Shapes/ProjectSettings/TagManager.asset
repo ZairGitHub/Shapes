@@ -12,6 +12,7 @@ TagManager:
   - Sphere
   - TimeController
   - TextController
+  - TextDebugTime
   layers:
   - Default
   - TransparentFX
