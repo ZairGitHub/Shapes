@@ -13,16 +13,16 @@ public class TimeController : MonoBehaviour
         minTime = 0.05f;
         maxTime = 10.0f;
 
-        savedTime = Time.deltaTime;
+        savedTime = Time.timeScale;
         timeFactor = 0.05f;
     }
 
-    public float getMinTime()
+    public float GetMinTime()
     {
         return minTime;
     }
 
-    public float getMaxTime()
+    public float GetMaxTime()
     {
         return maxTime;
     }
@@ -35,6 +35,7 @@ public class TimeController : MonoBehaviour
     public void ResetTime()
     {
         Time.timeScale = 1.0f;
+        savedTime = Time.timeScale;
     }
 
     public void SlowDownTime()

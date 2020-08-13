@@ -20,13 +20,18 @@ public class CubeHandler : MonoBehaviour
         constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
 
         rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezePositionY;
         rb.freezeRotation = true;
         rb.useGravity = false;
-        rb.MovePosition(Vector3.up);
 
-        RecalculateDirection();
         speed = constants.boundaryWidth / 2;
         boundaryWrapDistance = GetComponent<Collider>().bounds.size.x * 1.1f;
+    }
+
+    public void SetDirection(int x, int z)
+    {
+        horizontal = (x > 0) ? Random.Range(0.0f, 1.0f) : Random.Range(-1.0f, 0.0f);
+        vertical = (z > 0) ? Random.Range(0.0f, 1.0f) : Random.Range(-1.0f, 0.0f);
     }
 
     private void RecalculateDirection()

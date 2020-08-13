@@ -33,12 +33,12 @@ public class GameController : MonoBehaviour
 
         if (Input.GetKeyDown("-"))
         {
-            timeController.SetTime(timeController.getMinTime());
+            timeController.SetTime(timeController.GetMinTime());
         }
 
         if (Input.GetKeyDown("="))
         {
-            timeController.SetTime(timeController.getMaxTime());
+            timeController.SetTime(timeController.GetMaxTime());
         }
     }
 }

@@ -18,6 +18,7 @@ public class SphereHandler : MonoBehaviour
         constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
 
         rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezePositionY;
         rb.freezeRotation = true;
         rb.useGravity = false;
 
