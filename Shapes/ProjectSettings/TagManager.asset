@@ -13,6 +13,7 @@ TagManager:
   - TimeController
   - TextController
   - TextDebugTime
+  - Constants
   layers:
   - Default
   - TransparentFX

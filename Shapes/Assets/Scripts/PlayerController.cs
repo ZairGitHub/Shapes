@@ -2,35 +2,70 @@
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 10.0f;
+    public float speed;
+
+    private Constants constants;
 
     private Rigidbody rb;
     private Vector3 movement;
 
+    private float spawnHeight;
+    private float spawnWidth;
+
+    private Vector3 topLeftSpawn;
+    private Vector3 topRightSpawn;
+    private Vector3 bottomLeftSpawn;
+    private Vector3 bottomRightSpawn;
+
     private void Start()
     {
+        constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
+
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         rb.useGravity = false;
+
+        spawnHeight = constants.boundaryHeight / 2;
+        spawnWidth = constants.boundaryWidth / 2;
+
+        // Different spawn positions for different players
+        topLeftSpawn = new Vector3(-spawnHeight, 0.0f, spawnWidth);
+        topRightSpawn = new Vector3(spawnHeight, 0.0f, spawnWidth);
+        bottomLeftSpawn = new Vector3(-spawnHeight, 0.0f, -spawnWidth);
+        bottomRightSpawn = new Vector3(spawnHeight, 0.0f, -spawnWidth);
+
         Reset();
+        speed = 10.0f;
     }
 
     private void Reset()
     {
         gameObject.SetActive(true);
         rb.velocity = Vector3.zero;
-        SetPosition();
+        SetSpawnPosition();
     }
 
-    private void SetPosition()
+    private void SetSpawnPosition()
     {
-        // Different spawn positions for different players (GameController)
-        Vector3 topLeft = new Vector3(-10.0f, 0.0f, 5.0f);
-        Vector3 topRight = new Vector3(10.0f, 0.0f, 5.0f);
-        Vector3 bottomLeft = new Vector3(-10.0f, 0.0f, -5.0f);
-        Vector3 bottomRight = new Vector3(10.0f, 0.0f, -5.0f);
+        // Currently randomised until multiplayer is implemented
+        int RNG = Random.Range(1, 101);
+        if (RNG < 25)
+        {
+            rb.MovePosition(Vector3.up + topLeftSpawn);
+        }
+        else if (RNG < 50)
+        {
+            rb.MovePosition(Vector3.up + topRightSpawn);
+        }
+        else if (RNG < 75)
+        {
+            rb.MovePosition(Vector3.up + bottomLeftSpawn);
+        }
+        else
+        {
+            rb.MovePosition(Vector3.up + bottomRightSpawn);
+        }
 
-        rb.MovePosition(Vector3.up + topLeft);
     }
 
     private void FixedUpdate()
@@ -45,8 +80,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Cube") || collision.gameObject.CompareTag("Sphere"))
         {
-            //Reset();
-            gameObject.SetActive(false);
+            Reset();
+            //gameObject.SetActive(false);
         }
     }
 }
