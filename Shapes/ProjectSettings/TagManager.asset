@@ -10,6 +10,7 @@ TagManager:
   - BoundaryEast
   - BoundaryWest
   - Sphere
+  - TimeController
   layers:
   - Default
   - TransparentFX
