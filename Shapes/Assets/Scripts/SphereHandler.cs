@@ -20,7 +20,6 @@ public class SphereHandler : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         rb.useGravity = false;
-        rb.MovePosition(Vector3.up);
 
         RecalculateDirection();
         speed = constants.boundaryWidth * 2;
