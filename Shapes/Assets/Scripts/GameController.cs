@@ -26,12 +26,12 @@ public class GameController : MonoBehaviour
             timeController.ResumeTime();
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKey(KeyCode.Alpha1))
         {
             timeController.SlowDownTime();
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKey(KeyCode.Alpha2))
         {
             timeController.SpeedUpTime();
         }

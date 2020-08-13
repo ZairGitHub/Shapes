@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         bottomRightSpawn = new Vector3(spawnHeight, 0.0f, -spawnWidth);
 
         Reset();
-        speed = 10.0f;
+        speed = constants.boundaryWidth;
     }
 
     private void Reset()

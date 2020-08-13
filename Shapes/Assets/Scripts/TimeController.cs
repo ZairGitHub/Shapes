@@ -6,7 +6,7 @@ public class TimeController : MonoBehaviour
 
     private void Start()
     {
-        timeFactor = 0.1f;
+        timeFactor = 0.05f;
     }
 
     public void TogglePause()
@@ -31,7 +31,7 @@ public class TimeController : MonoBehaviour
 
     public void SpeedUpTime()
     {
-        Time.timeScale = (Time.timeScale + timeFactor < 1) ? Time.timeScale += timeFactor : 1;
+        Time.timeScale = (Time.timeScale + timeFactor < 10) ? Time.timeScale += timeFactor : 10;
     }
 
     public void SetTime(float timeModifier)

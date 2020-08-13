@@ -4,6 +4,8 @@ public class SphereHandler : MonoBehaviour
 {
     public float speed;
 
+    private Constants constants;
+
     private Rigidbody rb;
     private Vector3 direction;
 
@@ -13,13 +15,15 @@ public class SphereHandler : MonoBehaviour
 
     private void Start()
     {
+        constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
+
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         rb.useGravity = false;
         rb.MovePosition(Vector3.up);
 
         RecalculateDirection();
-        speed = 20.0f;
+        speed = constants.boundaryWidth * 2;
     }
 
     private void RecalculateDirection()

@@ -1227,8 +1227,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 587000760c3b09444b093da1ecc321fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boundaryHeight: 20
   boundaryWidth: 10
+  boundaryHeight: 20
 --- !u!4 &1395718780
 Transform:
   m_ObjectHideFlags: 0

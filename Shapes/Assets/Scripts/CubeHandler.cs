@@ -4,22 +4,29 @@ public class CubeHandler : MonoBehaviour
 {
     public float speed;
 
+    private Constants constants;
+
     private Rigidbody rb;
     private Vector3 direction;
 
     // public for testing purposes
     public float horizontal;
     public float vertical;
+
+    private float boundaryWrapDistance;
     
     private void Start()
     {
+        constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
+
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         rb.useGravity = false;
-        rb.MovePosition((Vector3.up) + new Vector3(-18,0,-8));
+        rb.MovePosition(Vector3.up);
 
         RecalculateDirection();
-        speed = 5.0f;
+        speed = constants.boundaryWidth / 2;
+        boundaryWrapDistance = GetComponent<Collider>().bounds.size.x * 1.1f;
     }
 
     private void RecalculateDirection()
@@ -38,22 +45,22 @@ public class CubeHandler : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("BoundaryNorth"))
         {
-            rb.MovePosition(new Vector3(rb.position.x, rb.position.y, -8.0f));
+            rb.MovePosition(new Vector3(rb.position.x, rb.position.y, -constants.boundaryWidth + boundaryWrapDistance));
         }
 
-        if (collision.gameObject.CompareTag("BoundaryEast"))
+        else if (collision.gameObject.CompareTag("BoundaryEast"))
         {
-            rb.MovePosition(new Vector3(18.0f, rb.position.y, rb.position.z));
+            rb.MovePosition(new Vector3(constants.boundaryHeight - boundaryWrapDistance, rb.position.y, rb.position.z));
         }
 
-        if (collision.gameObject.CompareTag("BoundarySouth"))
+        else if (collision.gameObject.CompareTag("BoundarySouth"))
         {
-            rb.MovePosition(new Vector3(rb.position.x, rb.position.y, 8.0f));
+            rb.MovePosition(new Vector3(rb.position.x, rb.position.y, constants.boundaryWidth - boundaryWrapDistance));
         }
 
-        if (collision.gameObject.CompareTag("BoundaryWest"))
+        else if (collision.gameObject.CompareTag("BoundaryWest"))
         {
-            rb.MovePosition(new Vector3(-18.0f, rb.position.y, rb.position.z));
+            rb.MovePosition(new Vector3(-constants.boundaryHeight + boundaryWrapDistance, rb.position.y, rb.position.z));
         }
 
         if (collision.gameObject.CompareTag("Cube"))
