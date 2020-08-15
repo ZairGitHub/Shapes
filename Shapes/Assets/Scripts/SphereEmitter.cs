@@ -8,7 +8,7 @@ public class SphereEmitter : MonoBehaviour
     private void Start()
     {
         sphere = GameObject.FindGameObjectWithTag("Sphere");
-        StartCoroutine(EmitSpheres());
+        //StartCoroutine(EmitSpheres());
     }
 
     private IEnumerator EmitSpheres()

@@ -7,6 +7,8 @@ public class CubeEmitter : MonoBehaviour
     private GameObject cube;
     private GameObject[] cubeEmitters;
 
+    private EmitterDirection emitterDirection;
+
     private void Start()
     {
         cube = GameObject.FindGameObjectWithTag("Cube");
@@ -18,29 +20,16 @@ public class CubeEmitter : MonoBehaviour
     {
         while (true)
         {
-            int RNG = Random.Range(1, 101);
+            int RNG = Random.Range(0, 8);
+            cubeEmitters[RNG].GetComponent<Renderer>().material.color = Color.blue;
             yield return new WaitForSeconds(1);
 
-            if (RNG < 25)
-            {
-                CubeHandler cubeObject = Instantiate(cube, cubeEmitters[0].transform.position + Vector3.up, Quaternion.identity).GetComponent<CubeHandler>();
-                cubeObject.SetDirection(1, -1);
-            }
-            else if (RNG < 50)
-            {
-                CubeHandler cubeObject = Instantiate(cube, cubeEmitters[1].transform.position + Vector3.up, Quaternion.identity).GetComponent<CubeHandler>();
-                cubeObject.SetDirection(-1, -1);
-            }
-            else if (RNG < 75)
-            {
-                CubeHandler cubeObject = Instantiate(cube, cubeEmitters[2].transform.position + Vector3.up, Quaternion.identity).GetComponent<CubeHandler>();
-                cubeObject.SetDirection(1, 1);
-            }
-            else
-            {
-                CubeHandler cubeObject = Instantiate(cube, cubeEmitters[3].transform.position + Vector3.up, Quaternion.identity).GetComponent<CubeHandler>();
-                cubeObject.SetDirection(-1, 1);
-            }
+
+            CubeHandler cubeObject = Instantiate(cube, cubeEmitters[RNG].transform.position + Vector3.up, Quaternion.identity).GetComponent<CubeHandler>();
+            emitterDirection = cubeEmitters[RNG].GetComponent<EmitterDirection>();
+            cubeObject.SetDirection(emitterDirection.GetXDirection(), emitterDirection.GetZDirection());
+
+            cubeEmitters[RNG].GetComponent<Renderer>().material.color = Color.yellow;
         }
     }
 }
