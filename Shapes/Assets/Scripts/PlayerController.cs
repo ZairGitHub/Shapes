@@ -25,17 +25,17 @@ public class PlayerController : MonoBehaviour
         rb.freezeRotation = true;
         rb.useGravity = false;
 
-        spawnHeight = constants.boundaryHeight / 2;
-        spawnWidth = constants.boundaryWidth / 2;
+        spawnWidth = constants.GetBoundaryWidth() / 2;
+        spawnHeight = constants.GetBoundaryHeight() / 2;
 
         // Different spawn positions for different players
-        topLeftSpawn = new Vector3(-spawnHeight, 0.0f, spawnWidth);
-        topRightSpawn = new Vector3(spawnHeight, 0.0f, spawnWidth);
-        bottomLeftSpawn = new Vector3(-spawnHeight, 0.0f, -spawnWidth);
-        bottomRightSpawn = new Vector3(spawnHeight, 0.0f, -spawnWidth);
+        topLeftSpawn = new Vector3(-spawnWidth, 0.0f, spawnHeight);
+        topRightSpawn = new Vector3(spawnWidth, 0.0f, spawnHeight);
+        bottomLeftSpawn = new Vector3(-spawnWidth, 0.0f, -spawnHeight);
+        bottomRightSpawn = new Vector3(spawnWidth, 0.0f, -spawnHeight);
 
         Reset();
-        speed = constants.boundaryWidth * 2;
+        speed = constants.GetBoundaryWidth();
     }
 
     private void Reset()
@@ -48,24 +48,22 @@ public class PlayerController : MonoBehaviour
     private void SetSpawnPosition()
     {
         // Currently randomised until multiplayer is implemented
-        int RNG = Random.Range(1, 101);
-        if (RNG < 25)
+        int RNG = Random.Range(1, 5);
+        switch (RNG)
         {
-            rb.MovePosition(Vector3.up + topLeftSpawn);
+            case 1:
+                rb.MovePosition(Vector3.up + topLeftSpawn);
+                break;
+            case 2:
+                rb.MovePosition(Vector3.up + topRightSpawn);
+                break;
+            case 3:
+                rb.MovePosition(Vector3.up + bottomLeftSpawn);
+                break;
+            case 4:
+                rb.MovePosition(Vector3.up + bottomRightSpawn);
+                break;
         }
-        else if (RNG < 50)
-        {
-            rb.MovePosition(Vector3.up + topRightSpawn);
-        }
-        else if (RNG < 75)
-        {
-            rb.MovePosition(Vector3.up + bottomLeftSpawn);
-        }
-        else
-        {
-            rb.MovePosition(Vector3.up + bottomRightSpawn);
-        }
-
     }
 
     private void FixedUpdate()

@@ -2,12 +2,22 @@
 
 public class Constants : MonoBehaviour
 {
-    public float boundaryWidth;
-    public float boundaryHeight;
+    private float boundaryWidth;
+    private float boundaryHeight;
 
-    private void Start()
+    private void Awake()
     {
         boundaryWidth = 20.0f;
         boundaryHeight = 10.0f;
+    }
+
+    public float GetBoundaryWidth()
+    {
+        return boundaryWidth;
+    }
+
+    public float GetBoundaryHeight()
+    {
+        return boundaryHeight;
     }
 }
