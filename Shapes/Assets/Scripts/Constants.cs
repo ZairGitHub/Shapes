@@ -2,6 +2,12 @@
 
 public class Constants : MonoBehaviour
 {
-    public float boundaryWidth = 10.0f;
-    public float boundaryHeight = 20.0f;
+    public float boundaryWidth;
+    public float boundaryHeight;
+
+    private void Start()
+    {
+        boundaryWidth = 20.0f;
+        boundaryHeight = 10.0f;
+    }
 }
