@@ -30,10 +30,10 @@ public class EmitterPosition : MonoBehaviour
                 }
                 break;
 
-            case string name when name.Contains("MiddleLeft"):
+            case string name when name.Contains("CentreLeft"):
                 xPosition = -constants.GetBoundaryWidth() + boundaryOffset;
                 break;
-            case string name when name.Contains("MiddleRight"):
+            case string name when name.Contains("CentreRight"):
                 xPosition = constants.GetBoundaryWidth() - boundaryOffset;
                 break;
 
