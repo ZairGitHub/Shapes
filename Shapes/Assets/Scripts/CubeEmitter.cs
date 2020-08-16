@@ -13,6 +13,12 @@ public class CubeEmitter : MonoBehaviour
     {
         cube = GameObject.FindGameObjectWithTag("Cube");
         cubeEmitters = GameObject.FindGameObjectsWithTag("CubeEmitter").OrderBy(gameObject => gameObject.name).ToArray();
+
+        foreach (GameObject cubeEmitter in cubeEmitters)
+        {
+            cubeEmitter.transform.position = cubeEmitter.GetComponent<EmitterPosition>().SetPosition();
+        }
+
         StartCoroutine(EmitCubes());
     }
 
