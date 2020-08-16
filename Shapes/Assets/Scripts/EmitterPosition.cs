@@ -18,32 +18,32 @@ public class EmitterPosition : MonoBehaviour
     {
         switch (name)
         {
-            case string a when a.Contains("Top"):
+            case string name when name.Contains("Top"):
                 zPosition = constants.GetBoundaryHeight() - boundaryOffset;
-                if (a.Contains("Left"))
+                if (name.Contains("Left"))
                 {
                     xPosition = -constants.GetBoundaryWidth() + boundaryOffset;
                 }
-                else if (a.Contains("Right"))
+                else if (name.Contains("Right"))
                 {
                     xPosition = constants.GetBoundaryWidth() - boundaryOffset;
                 }
                 break;
 
-            case string a when a.Contains("MiddleLeft"):
+            case string name when name.Contains("MiddleLeft"):
                 xPosition = -constants.GetBoundaryWidth() + boundaryOffset;
                 break;
-            case string a when a.Contains("MiddleRight"):
+            case string name when name.Contains("MiddleRight"):
                 xPosition = constants.GetBoundaryWidth() - boundaryOffset;
                 break;
 
-            case string a when a.Contains("Bottom"):
+            case string name when name.Contains("Bottom"):
                 zPosition = -constants.GetBoundaryHeight() + boundaryOffset;
-                if (a.Contains("Left"))
+                if (name.Contains("Left"))
                 {
                     xPosition = -constants.GetBoundaryWidth() + boundaryOffset;
                 }
-                else if (a.Contains("Right"))
+                else if (name.Contains("Right"))
                 {
                     xPosition = constants.GetBoundaryWidth() - boundaryOffset;
                 }
