@@ -45,7 +45,7 @@ public class SphereHandler : MonoBehaviour
             horizontal = -horizontal;
         }
 
-        if (collision.gameObject.CompareTag("BoundaryNorth") || collision.gameObject.CompareTag("BoundarySouth"))
+        else if (collision.gameObject.CompareTag("BoundaryNorth") || collision.gameObject.CompareTag("BoundarySouth"))
         {
             vertical = -vertical;
         }
