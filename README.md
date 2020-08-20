@@ -1,2 +1,2 @@
 # Shapes
-Recreation of Java shapes game using Unity
+Unity recreation and revision of my first Java game: Shapes.
