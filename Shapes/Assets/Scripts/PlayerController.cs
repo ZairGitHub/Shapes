@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
         constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
 
         rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezePositionZ;
         rb.freezeRotation = true;
         rb.useGravity = false;
 
@@ -29,10 +30,10 @@ public class PlayerController : MonoBehaviour
         spawnHeight = constants.GetBoundaryHeight() / 2;
 
         // Different spawn positions for different players
-        topLeftSpawn = new Vector3(-spawnWidth, 0.0f, spawnHeight);
-        topRightSpawn = new Vector3(spawnWidth, 0.0f, spawnHeight);
-        bottomLeftSpawn = new Vector3(-spawnWidth, 0.0f, -spawnHeight);
-        bottomRightSpawn = new Vector3(spawnWidth, 0.0f, -spawnHeight);
+        topLeftSpawn = new Vector3(-spawnWidth, spawnHeight, 0.0f);
+        topRightSpawn = new Vector3(spawnWidth, spawnHeight, 0.0f);
+        bottomLeftSpawn = new Vector3(-spawnWidth, -spawnHeight, 0.0f);
+        bottomRightSpawn = new Vector3(spawnWidth, -spawnHeight, 0.0f);
 
         Reset();
         speed = constants.GetBoundaryWidth();
@@ -52,16 +53,16 @@ public class PlayerController : MonoBehaviour
         switch (RNG)
         {
             case 1:
-                rb.MovePosition(Vector3.up + topLeftSpawn);
+                rb.MovePosition(topLeftSpawn);
                 break;
             case 2:
-                rb.MovePosition(Vector3.up + topRightSpawn);
+                rb.MovePosition(topRightSpawn);
                 break;
             case 3:
-                rb.MovePosition(Vector3.up + bottomLeftSpawn);
+                rb.MovePosition(bottomLeftSpawn);
                 break;
             case 4:
-                rb.MovePosition(Vector3.up + bottomRightSpawn);
+                rb.MovePosition(bottomRightSpawn);
                 break;
         }
     }
@@ -70,7 +71,7 @@ public class PlayerController : MonoBehaviour
     {
         float horizontalAxis = Input.GetAxis("Horizontal");
         float verticalAxis = Input.GetAxis("Vertical");
-        movement = new Vector3(horizontalAxis, 0.0f, verticalAxis);
+        movement = new Vector3(horizontalAxis, verticalAxis, 0.0f);
         rb.velocity = movement * speed;
     }
 
