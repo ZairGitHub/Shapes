@@ -3,12 +3,16 @@
 public class GameController : MonoBehaviour
 {
     private TimeController timeController;
+    private ScoreController scoreController;
     private bool isRunning;
 
     private void Start()
     {
         timeController = GameObject.FindGameObjectWithTag("TimeController").GetComponent<TimeController>();
+        scoreController = GameObject.FindGameObjectWithTag("ScoreController").GetComponent<ScoreController>();
+        
         isRunning = true;
+        StartCoroutine(scoreController.GiveSurvivalBonus());
     }
 
     public void Reset()

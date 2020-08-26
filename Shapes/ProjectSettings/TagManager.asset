@@ -16,6 +16,7 @@ TagManager:
   - Constants
   - CubeEmitter
   - TextScore
+  - ScoreController
   layers:
   - Default
   - TransparentFX

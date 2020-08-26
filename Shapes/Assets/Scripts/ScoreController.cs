@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class ScoreController : MonoBehaviour
@@ -12,6 +13,8 @@ public class ScoreController : MonoBehaviour
     {
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         textScore = GameObject.FindGameObjectWithTag("TextScore").GetComponent<TMP_Text>();
+        
+        Reset();
     }
 
     public void Reset()
@@ -19,24 +22,37 @@ public class ScoreController : MonoBehaviour
         score = 0;
     }
 
-    private void FixedUpdate()
+    private void UpdateScoreText(int bonus)
     {
-        if (gameController.IsRunning())
+        textScore.text = "Score: " + (score += bonus);
+    }
+
+    public IEnumerator GiveSurvivalBonus()
+    {
+        while (gameController.IsRunning())
         {
-            score += 1;
-                //+ GameObject.FindGameObjectsWithTag("Cube").Length
-                //+ GameObject.FindGameObjectsWithTag("Sphere").Length * 2;
-            textScore.text = "Score: " + score;
+            UpdateScoreText(GameObject.FindGameObjectsWithTag("Cube").Length + GameObject.FindGameObjectsWithTag("Sphere").Length);
+            yield return new WaitForSeconds(3);
         }
     }
 
-    public void GrantCubeBonus()
+    public void GiveCubeBonus()
     {
-        score += 10;
+        UpdateScoreText(10);
     }
 
-    public void GrantSphereBonus()
+    public void GiveSphereBonus()
     {
-        score += 30;
+        UpdateScoreText(30);
+    }
+
+    public void GiveBounceBonus(string tag)
+    {
+        UpdateScoreText((tag.Equals("Cube")) ? 1 : 2);
+    }
+
+    public void GiveRedirectionBonus()
+    {
+        UpdateScoreText(1);
     }
 }

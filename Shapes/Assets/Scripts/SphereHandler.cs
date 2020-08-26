@@ -5,6 +5,7 @@ public class SphereHandler : MonoBehaviour
     public float speed;
 
     private Constants constants;
+    private ScoreController scoreController;
 
     private Rigidbody rb;
     private Vector3 direction;
@@ -16,6 +17,7 @@ public class SphereHandler : MonoBehaviour
     private void Start()
     {
         constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
+        scoreController = GameObject.FindGameObjectWithTag("ScoreController").GetComponent<ScoreController>();
 
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezePositionZ;
@@ -54,6 +56,11 @@ public class SphereHandler : MonoBehaviour
         {
             horizontal = -horizontal;
             vertical = -vertical;
+
+            if (collision.gameObject.GetInstanceID() > GetInstanceID())
+            {
+                scoreController.GiveBounceBonus(collision.gameObject.tag);
+            }
         }
     }
 
@@ -62,6 +69,11 @@ public class SphereHandler : MonoBehaviour
         if (collision.gameObject.CompareTag("Cube"))
         {
             RecalculateDirection();
+            
+            if (collision.gameObject.GetInstanceID() > GetInstanceID())
+            {
+                scoreController.GiveRedirectionBonus();
+            }
         }
     }
 }
