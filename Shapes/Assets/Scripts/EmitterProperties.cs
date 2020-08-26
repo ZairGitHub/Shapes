@@ -5,11 +5,11 @@ public class EmitterProperties : MonoBehaviour
     private Constants constants;
 
     private int xDirection;
-    private int zDirection;
+    private int yDirection;
 
     private float boundaryOffset;
     private float xPosition;
-    private float zPosition;
+    private float yPosition;
 
     private void Start()
     {
@@ -34,21 +34,21 @@ public class EmitterProperties : MonoBehaviour
         return xDirection;
     }
 
-    public int GetZDirection()
+    public int GetYDirection()
     {
         if (name.Contains("Top"))
         {
-            zDirection = -1;
+            yDirection = -1;
         }
         else if (name.Contains("Bottom"))
         {
-            zDirection = 1;
+            yDirection = 1;
         }
         else
         {
-            zDirection = Random.Range(-1, 2);
+            yDirection = Random.Range(-1, 2);
         }
-        return zDirection;
+        return yDirection;
     }
 
     public Vector3 SetPosition()
@@ -56,7 +56,7 @@ public class EmitterProperties : MonoBehaviour
         switch (name)
         {
             case string name when name.Contains("Top"):
-                zPosition = constants.GetBoundaryHeight() - boundaryOffset;
+                yPosition = constants.GetBoundaryHeight() - boundaryOffset;
                 if (name.Contains("Left"))
                 {
                     xPosition = -constants.GetBoundaryWidth() + boundaryOffset;
@@ -75,7 +75,7 @@ public class EmitterProperties : MonoBehaviour
                 break;
 
             case string name when name.Contains("Bottom"):
-                zPosition = -constants.GetBoundaryHeight() + boundaryOffset;
+                yPosition = -constants.GetBoundaryHeight() + boundaryOffset;
                 if (name.Contains("Left"))
                 {
                     xPosition = -constants.GetBoundaryWidth() + boundaryOffset;
@@ -86,6 +86,6 @@ public class EmitterProperties : MonoBehaviour
                 }
                 break;
         }
-        return new Vector3(xPosition, 0.0f, zPosition);
+        return new Vector3(xPosition, yPosition, 0.0f);
     }
 }
