@@ -31,7 +31,7 @@ public class CubeEmitter : MonoBehaviour
 
             yield return new WaitForSeconds(1);
             
-            CubeHandler cubeObject = Instantiate(cube, cubeEmitters[RNG].transform.position + Vector3.up, Quaternion.identity).GetComponent<CubeHandler>();
+            CubeHandler cubeObject = Instantiate(cube, cubeEmitters[RNG].transform.position, Quaternion.identity).GetComponent<CubeHandler>();
             cubeObject.SetDirection(emitterProperties.GetXDirection(), emitterProperties.GetYDirection());
 
             cubeEmitters[RNG].GetComponent<Renderer>().material.color = Color.yellow;

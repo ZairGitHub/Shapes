@@ -20,7 +20,7 @@ public class CubeHandler : MonoBehaviour
         constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
 
         rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezePositionY;
+        rb.constraints = RigidbodyConstraints.FreezePositionZ;
         rb.freezeRotation = true;
         rb.useGravity = false;
 
@@ -28,10 +28,10 @@ public class CubeHandler : MonoBehaviour
         boundaryWrapDistance = GetComponent<Collider>().bounds.size.x * 1.1f;
     }
 
-    public void SetDirection(int x, int z)
+    public void SetDirection(int x, int y)
     {
         horizontal = (x > 0) ? Random.Range(0.0f, 1.0f) : Random.Range(-1.0f, 0.0f);
-        vertical = (z > 0) ? Random.Range(0.0f, 1.0f) : Random.Range(-1.0f, 0.0f);
+        vertical = (y > 0) ? Random.Range(0.0f, 1.0f) : Random.Range(-1.0f, 0.0f);
     }
 
     private void RecalculateDirection()
@@ -42,7 +42,7 @@ public class CubeHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        direction = new Vector3(horizontal, 0.0f, vertical).normalized;
+        direction = new Vector3(horizontal, vertical, 0.0f).normalized;
         rb.velocity = direction * speed;
     }
 
@@ -50,7 +50,7 @@ public class CubeHandler : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("BoundaryNorth"))
         {
-            rb.MovePosition(new Vector3(rb.position.x, rb.position.y, -constants.GetBoundaryHeight() + boundaryWrapDistance));
+            rb.MovePosition(new Vector3(rb.position.x, -constants.GetBoundaryHeight() + boundaryWrapDistance, rb.position.z));
         }
 
         else if (collision.gameObject.CompareTag("BoundaryEast"))
@@ -60,7 +60,7 @@ public class CubeHandler : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("BoundarySouth"))
         {
-            rb.MovePosition(new Vector3(rb.position.x, rb.position.y, constants.GetBoundaryHeight() - boundaryWrapDistance));
+            rb.MovePosition(new Vector3(rb.position.x, constants.GetBoundaryHeight() - boundaryWrapDistance, rb.position.z));
         }
 
         else if (collision.gameObject.CompareTag("BoundaryWest"))
