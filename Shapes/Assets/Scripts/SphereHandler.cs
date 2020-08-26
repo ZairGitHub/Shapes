@@ -18,7 +18,7 @@ public class SphereHandler : MonoBehaviour
         constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
 
         rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezePositionY;
+        rb.constraints = RigidbodyConstraints.FreezePositionZ;
         rb.freezeRotation = true;
         rb.useGravity = false;
 
@@ -34,7 +34,7 @@ public class SphereHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        direction = new Vector3(horizontal, 0.0f, vertical).normalized;
+        direction = new Vector3(horizontal, vertical, 0.0f).normalized;
         rb.velocity = direction * speed;
     }
 
