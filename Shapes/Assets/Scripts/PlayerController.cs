@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
 
     private Constants constants;
+    private GameController gameController;
 
     private Rigidbody rb;
     private Vector3 movement;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 
         rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezePositionZ;
@@ -79,8 +81,9 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Cube") || collision.gameObject.CompareTag("Sphere"))
         {
-            Reset();
-            //gameObject.SetActive(false);
+            //Reset();
+            gameController.Reset();
+            gameObject.SetActive(false);
         }
     }
 }

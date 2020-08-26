@@ -17,6 +17,11 @@ public class TimeController : MonoBehaviour
         timeFactor = 0.05f;
     }
 
+    public void Reset()
+    {
+        Time.timeScale = 0;
+    }
+
     public float GetMinTime()
     {
         return minTime;

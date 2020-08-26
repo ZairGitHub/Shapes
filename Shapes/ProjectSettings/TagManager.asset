@@ -15,6 +15,7 @@ TagManager:
   - TextDebugTime
   - Constants
   - CubeEmitter
+  - TextScore
   layers:
   - Default
   - TransparentFX
