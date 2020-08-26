@@ -6,9 +6,7 @@ public class CameraController : MonoBehaviour
     
     private void Start()
     {
-        offset = new Vector3(0.0f, 20.0f, 0.0f);
-        transform.rotation = Quaternion.Euler(90.0f, 0.0f, 0.0f);
-
+        offset = new Vector3(0.0f, 0.0f, -10.0f);
         transform.position = offset;
     }
 }
