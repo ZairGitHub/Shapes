@@ -17,7 +17,8 @@ TagManager:
   - CubeEmitter
   - TextScore
   - ScoreController
-  - TextBonus
+  - TextSurvivalBonus
+  - TextCollisionBonus
   layers:
   - Default
   - TransparentFX

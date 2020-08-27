@@ -7,14 +7,21 @@ public class ScoreController : MonoBehaviour
     private GameController gameController;
 
     private TMP_Text textScore;
-    private TMP_Text textBonus;
+    private TMP_Text textSurvivalBonus;
+    private TMP_Text textCollisionBonus;
     private int score;
+    private int survivalBonus;
+    private int collisionBonus;
     
     private void Start()
     {
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         textScore = GameObject.FindGameObjectWithTag("TextScore").GetComponent<TMP_Text>();
-        textBonus = GameObject.FindGameObjectWithTag("TextBonus").GetComponent<TMP_Text>();
+        textSurvivalBonus = GameObject.FindGameObjectWithTag("TextSurvivalBonus").GetComponent<TMP_Text>();
+        textCollisionBonus = GameObject.FindGameObjectWithTag("TextCollisionBonus").GetComponent<TMP_Text>();
+
+        textSurvivalBonus.color = Color.red;
+        textCollisionBonus.color = Color.magenta;
 
         Reset();
     }
@@ -24,43 +31,32 @@ public class ScoreController : MonoBehaviour
         score = 0;
     }
 
-    private void UpdateScoreText(int bonus)
-    {
-        textScore.text = "Score: " + (score += bonus);
-    }
-
-    private void UpdateScoreBonus(int cubeBonus, int sphereBonus)
-    {
-        textBonus.text = "+" + cubeBonus + ", +" + sphereBonus + " [+" + (cubeBonus + sphereBonus) + "]";
-    }
-
     public IEnumerator GiveSurvivalBonus()
     {
         while (gameController.IsRunning())
         {
             yield return new WaitForSeconds(3);
-            UpdateScoreText(GameObject.FindGameObjectsWithTag("Cube").Length + GameObject.FindGameObjectsWithTag("Sphere").Length);
-            UpdateScoreBonus(GameObject.FindGameObjectsWithTag("Cube").Length, GameObject.FindGameObjectsWithTag("Sphere").Length);
+            GiveSurvivalBonus(GameObject.FindGameObjectsWithTag("Cube").Length + GameObject.FindGameObjectsWithTag("Sphere").Length);
         }
     }
 
-    public void GiveCubeBonus()
+    private void GiveSurvivalBonus(int bonus)
     {
-        UpdateScoreText(10);
+        UpdateScoreText(bonus);
+        survivalBonus += bonus;
+        textSurvivalBonus.text = "+" + survivalBonus;
     }
 
-    public void GiveSphereBonus()
+    private void UpdateScoreText(int bonus)
     {
-        UpdateScoreText(30);
+        score += bonus;
+        textScore.text = "Score: " + score;
     }
 
-    public void GiveBounceBonus(string tag)
-    {
-        UpdateScoreText((tag.Equals("Cube")) ? 1 : 2);
-    }
-
-    public void GiveRedirectionBonus()
+    public void GiveCollisionBonus()
     {
         UpdateScoreText(1);
+        collisionBonus++;
+        textCollisionBonus.text = "++" + collisionBonus;
     }
 }

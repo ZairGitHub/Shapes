@@ -59,7 +59,7 @@ public class SphereHandler : MonoBehaviour
 
             if (collision.gameObject.GetInstanceID() > GetInstanceID())
             {
-                scoreController.GiveBounceBonus(collision.gameObject.tag);
+                scoreController.GiveCollisionBonus();
             }
         }
     }
@@ -72,7 +72,7 @@ public class SphereHandler : MonoBehaviour
             
             if (collision.gameObject.GetInstanceID() > GetInstanceID())
             {
-                scoreController.GiveRedirectionBonus();
+                scoreController.GiveCollisionBonus();
             }
         }
     }
