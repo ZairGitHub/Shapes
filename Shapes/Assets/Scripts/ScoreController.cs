@@ -37,30 +37,36 @@ public class ScoreController : MonoBehaviour
         {
             yield return new WaitForSeconds(3);
 
-            if (gameController.IsRunning())
-            {
-                GiveSurvivalBonus(GameObject.FindGameObjectsWithTag("Cube").Length + GameObject.FindGameObjectsWithTag("Sphere").Length);
-            }
+            GiveSurvivalBonus(GameObject.FindGameObjectsWithTag("Cube").Length + GameObject.FindGameObjectsWithTag("Sphere").Length);
         }
     }
 
     private void GiveSurvivalBonus(int bonus)
     {
-        UpdateScoreText(bonus);
-        survivalBonus += bonus;
-        textSurvivalBonus.text = "+" + survivalBonus;
+        if (gameController.IsRunning())
+        {
+            UpdateScoreText(bonus);
+            survivalBonus += bonus;
+            textSurvivalBonus.text = "+" + survivalBonus;
+        }
     }
 
     private void UpdateScoreText(int bonus)
     {
-        score += bonus;
-        textScore.text = "Score: " + score;
+        if (gameController.IsRunning())
+        {
+            score += bonus;
+            textScore.text = "Score: " + score;
+        }
     }
 
     public void GiveCollisionBonus()
     {
-        UpdateScoreText(1);
-        collisionBonus++;
-        textCollisionBonus.text = "++" + collisionBonus;
+        if (gameController.IsRunning())
+        {
+            UpdateScoreText(1);
+            collisionBonus++;
+            textCollisionBonus.text = "++" + collisionBonus;
+        }
     }
 }
