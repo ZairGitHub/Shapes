@@ -23,11 +23,6 @@ public class TimeController : MonoBehaviour
         savedTime = Time.timeScale;
     }
 
-    public void StopTime()
-    {
-        Time.timeScale = 0;
-    }
-
     public float GetMinTime()
     {
         return minTime;

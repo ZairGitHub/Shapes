@@ -36,7 +36,11 @@ public class ScoreController : MonoBehaviour
         while (gameController.IsRunning())
         {
             yield return new WaitForSeconds(3);
-            GiveSurvivalBonus(GameObject.FindGameObjectsWithTag("Cube").Length + GameObject.FindGameObjectsWithTag("Sphere").Length);
+
+            if (gameController.IsRunning())
+            {
+                GiveSurvivalBonus(GameObject.FindGameObjectsWithTag("Cube").Length + GameObject.FindGameObjectsWithTag("Sphere").Length);
+            }
         }
     }
 

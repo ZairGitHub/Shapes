@@ -19,7 +19,6 @@ public class GameController : MonoBehaviour
     public void Reset()
     {
         isRunning = false;
-        timeController.StopTime();
     }
 
     public bool IsRunning()

@@ -5,6 +5,7 @@ public class CubeHandler : MonoBehaviour
     public float speed;
 
     private Constants constants;
+    private GameController gameController;
     private ScoreController scoreController;
 
     private Rigidbody rb;
@@ -19,6 +20,7 @@ public class CubeHandler : MonoBehaviour
     private void Start()
     {
         constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         scoreController = GameObject.FindGameObjectWithTag("ScoreController").GetComponent<ScoreController>();
 
         rb = GetComponent<Rigidbody>();
@@ -44,8 +46,15 @@ public class CubeHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        direction = new Vector3(horizontal, vertical, 0.0f).normalized;
-        rb.velocity = direction * speed;
+        if (gameController.IsRunning())
+        {
+            direction = new Vector3(horizontal, vertical, 0.0f).normalized;
+            rb.velocity = direction * speed;
+        }
+        else
+        {
+            rb.velocity = Vector3.zero;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
