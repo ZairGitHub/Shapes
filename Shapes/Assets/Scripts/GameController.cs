@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class GameController : MonoBehaviour
     public void Reset()
     {
         isRunning = false;
-        timeController.Reset();
+        timeController.StopTime();
     }
 
     public bool IsRunning()
@@ -37,7 +38,7 @@ public class GameController : MonoBehaviour
 
             else if (Input.GetKeyDown(KeyCode.Alpha0))
             {
-                timeController.ResetTime();
+                timeController.Reset();
             }
 
             else if (Input.GetKey(KeyCode.Alpha1))
@@ -60,5 +61,17 @@ public class GameController : MonoBehaviour
                 timeController.SetTime(timeController.GetMaxTime());
             }
         }
+        else
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                RestartGame();
+            }
+        }
+    }
+
+    private void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

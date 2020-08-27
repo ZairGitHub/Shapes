@@ -12,12 +12,18 @@ public class TimeController : MonoBehaviour
     {
         minTime = 0.05f;
         maxTime = 10.0f;
-
-        savedTime = Time.timeScale;
         timeFactor = 0.05f;
+
+        Reset();
     }
 
     public void Reset()
+    {
+        Time.timeScale = 1.0f;
+        savedTime = Time.timeScale;
+    }
+
+    public void StopTime()
     {
         Time.timeScale = 0;
     }
@@ -35,12 +41,6 @@ public class TimeController : MonoBehaviour
     public void TogglePause()
     {
         Time.timeScale = (Time.timeScale == savedTime) ? 0.0f : savedTime;
-    }
-
-    public void ResetTime()
-    {
-        Time.timeScale = 1.0f;
-        savedTime = Time.timeScale;
     }
 
     public void SlowDownTime()

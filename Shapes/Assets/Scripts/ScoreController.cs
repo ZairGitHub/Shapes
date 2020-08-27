@@ -7,13 +7,15 @@ public class ScoreController : MonoBehaviour
     private GameController gameController;
 
     private TMP_Text textScore;
+    private TMP_Text textBonus;
     private int score;
     
     private void Start()
     {
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         textScore = GameObject.FindGameObjectWithTag("TextScore").GetComponent<TMP_Text>();
-        
+        textBonus = GameObject.FindGameObjectWithTag("TextBonus").GetComponent<TMP_Text>();
+
         Reset();
     }
 
@@ -27,12 +29,18 @@ public class ScoreController : MonoBehaviour
         textScore.text = "Score: " + (score += bonus);
     }
 
+    private void UpdateScoreBonus(int cubeBonus, int sphereBonus)
+    {
+        textBonus.text = "+" + cubeBonus + ", +" + sphereBonus + " [+" + (cubeBonus + sphereBonus) + "]";
+    }
+
     public IEnumerator GiveSurvivalBonus()
     {
         while (gameController.IsRunning())
         {
-            UpdateScoreText(GameObject.FindGameObjectsWithTag("Cube").Length + GameObject.FindGameObjectsWithTag("Sphere").Length);
             yield return new WaitForSeconds(3);
+            UpdateScoreText(GameObject.FindGameObjectsWithTag("Cube").Length + GameObject.FindGameObjectsWithTag("Sphere").Length);
+            UpdateScoreBonus(GameObject.FindGameObjectsWithTag("Cube").Length, GameObject.FindGameObjectsWithTag("Sphere").Length);
         }
     }
 
