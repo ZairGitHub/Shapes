@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
         {
             //Reset();
             gameController.Reset();
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
     }
 }

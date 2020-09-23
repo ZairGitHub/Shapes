@@ -2,11 +2,10 @@
 
 public class CameraController : MonoBehaviour
 {
-    private Vector3 offset;
+    private readonly Vector3 _offset = new Vector3(0.0f, 0.0f, -10.0f);
     
     private void Start()
     {
-        offset = new Vector3(0.0f, 0.0f, -10.0f);
-        transform.position = offset;
+        transform.position = _offset;
     }
 }
