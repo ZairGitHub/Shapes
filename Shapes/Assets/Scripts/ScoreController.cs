@@ -4,36 +4,37 @@ using UnityEngine;
 
 public class ScoreController : MonoBehaviour
 {
-    private GameController gameController;
+    private GameController _gameController;
 
-    private TMP_Text textScore;
-    private TMP_Text textSurvivalBonus;
-    private TMP_Text textCollisionBonus;
-    private int score;
-    private int survivalBonus;
-    private int collisionBonus;
+    private TMP_Text _textScore;
+    private TMP_Text _textSurvivalBonus;
+    private TMP_Text _textCollisionBonus;
+
+    private int _score;
+    private int _survivalBonus;
+    private int _collisionBonus;
     
     private void Start()
     {
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-        textScore = GameObject.FindGameObjectWithTag("TextScore").GetComponent<TMP_Text>();
-        textSurvivalBonus = GameObject.FindGameObjectWithTag("TextSurvivalBonus").GetComponent<TMP_Text>();
-        textCollisionBonus = GameObject.FindGameObjectWithTag("TextCollisionBonus").GetComponent<TMP_Text>();
+        _gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        _textScore = GameObject.FindGameObjectWithTag("TextScore").GetComponent<TMP_Text>();
+        _textSurvivalBonus = GameObject.FindGameObjectWithTag("TextSurvivalBonus").GetComponent<TMP_Text>();
+        _textCollisionBonus = GameObject.FindGameObjectWithTag("TextCollisionBonus").GetComponent<TMP_Text>();
 
-        textSurvivalBonus.color = Color.red;
-        textCollisionBonus.color = Color.magenta;
+        _textSurvivalBonus.color = Color.red;
+        _textCollisionBonus.color = Color.magenta;
 
         Reset();
     }
 
     public void Reset()
     {
-        score = 0;
+        _score = 0;
     }
 
     public IEnumerator GiveSurvivalBonus()
     {
-        while (gameController.IsRunning)
+        while (_gameController.IsRunning)
         {
             yield return new WaitForSeconds(3);
 
@@ -43,30 +44,30 @@ public class ScoreController : MonoBehaviour
 
     private void GiveSurvivalBonus(int bonus)
     {
-        if (gameController.IsRunning)
+        if (_gameController.IsRunning)
         {
             UpdateScoreText(bonus);
-            survivalBonus += bonus;
-            textSurvivalBonus.text = "+" + survivalBonus;
+            _survivalBonus += bonus;
+            _textSurvivalBonus.text = "+" + _survivalBonus;
         }
     }
 
     private void UpdateScoreText(int bonus)
     {
-        if (gameController.IsRunning)
+        if (_gameController.IsRunning)
         {
-            score += bonus;
-            textScore.text = "Score: " + score;
+            _score += bonus;
+            _textScore.text = "Score: " + _score;
         }
     }
 
     public void GiveCollisionBonus()
     {
-        if (gameController.IsRunning)
+        if (_gameController.IsRunning)
         {
             UpdateScoreText(1);
-            collisionBonus++;
-            textCollisionBonus.text = "++" + collisionBonus;
+            _collisionBonus++;
+            _textCollisionBonus.text = "++" + _collisionBonus;
         }
     }
 }
