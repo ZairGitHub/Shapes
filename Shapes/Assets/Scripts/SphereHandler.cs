@@ -27,7 +27,7 @@ public class SphereHandler : MonoBehaviour
         rb.useGravity = false;
 
         RecalculateDirection();
-        speed = constants.GetBoundaryWidth();
+        speed = constants.BoundaryWidth;
     }
 
     private void RecalculateDirection()

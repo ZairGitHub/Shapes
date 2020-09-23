@@ -56,33 +56,33 @@ public class EmitterProperties : MonoBehaviour
         switch (name)
         {
             case string name when name.Contains("Top"):
-                yPosition = constants.GetBoundaryHeight() - boundaryOffset;
+                yPosition = constants.BoundaryHeight - boundaryOffset;
                 if (name.Contains("Left"))
                 {
-                    xPosition = -constants.GetBoundaryWidth() + boundaryOffset;
+                    xPosition = -constants.BoundaryWidth + boundaryOffset;
                 }
                 else if (name.Contains("Right"))
                 {
-                    xPosition = constants.GetBoundaryWidth() - boundaryOffset;
+                    xPosition = constants.BoundaryWidth - boundaryOffset;
                 }
                 break;
 
             case string name when name.Contains("CentreLeft"):
-                xPosition = -constants.GetBoundaryWidth() + boundaryOffset;
+                xPosition = -constants.BoundaryWidth + boundaryOffset;
                 break;
             case string name when name.Contains("CentreRight"):
-                xPosition = constants.GetBoundaryWidth() - boundaryOffset;
+                xPosition = constants.BoundaryWidth - boundaryOffset;
                 break;
 
             case string name when name.Contains("Bottom"):
-                yPosition = -constants.GetBoundaryHeight() + boundaryOffset;
+                yPosition = -constants.BoundaryHeight + boundaryOffset;
                 if (name.Contains("Left"))
                 {
-                    xPosition = -constants.GetBoundaryWidth() + boundaryOffset;
+                    xPosition = -constants.BoundaryWidth + boundaryOffset;
                 }
                 else if (name.Contains("Right"))
                 {
-                    xPosition = constants.GetBoundaryWidth() - boundaryOffset;
+                    xPosition = constants.BoundaryWidth - boundaryOffset;
                 }
                 break;
         }

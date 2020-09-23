@@ -2,24 +2,14 @@
 
 public class Constants : MonoBehaviour
 {
-    private float boundaryWidth;
-    private float boundaryHeight;
+    public float BoundaryWidth { get; private set; }
+    public float BoundaryHeight { get; private set; }
 
     private void Awake()
     {        
-        boundaryWidth = (GameObject.FindGameObjectWithTag("BoundaryWest").transform.position.x
+        BoundaryWidth = (GameObject.FindGameObjectWithTag("BoundaryWest").transform.position.x
             - GameObject.FindGameObjectWithTag("BoundaryEast").transform.position.x) / 2;
-        boundaryHeight = (GameObject.FindGameObjectWithTag("BoundaryNorth").transform.position.y
+        BoundaryHeight = (GameObject.FindGameObjectWithTag("BoundaryNorth").transform.position.y
             - GameObject.FindGameObjectWithTag("BoundarySouth").transform.position.y) / 2;
-    }
-
-    public float GetBoundaryWidth()
-    {
-        return boundaryWidth;
-    }
-
-    public float GetBoundaryHeight()
-    {
-        return boundaryHeight;
     }
 }

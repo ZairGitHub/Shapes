@@ -28,7 +28,7 @@ public class CubeHandler : MonoBehaviour
         rb.freezeRotation = true;
         rb.useGravity = false;
 
-        speed = constants.GetBoundaryWidth() / 4;
+        speed = constants.BoundaryWidth / 4;
         boundaryWrapDistance = GetComponent<Collider>().bounds.size.x * 1.1f;
     }
 
@@ -61,22 +61,22 @@ public class CubeHandler : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("BoundaryNorth"))
         {
-            rb.MovePosition(new Vector3(rb.position.x, -constants.GetBoundaryHeight() + boundaryWrapDistance, rb.position.z));
+            rb.MovePosition(new Vector3(rb.position.x, -constants.BoundaryHeight + boundaryWrapDistance, rb.position.z));
         }
 
         else if (collision.gameObject.CompareTag("BoundaryEast"))
         {
-            rb.MovePosition(new Vector3(constants.GetBoundaryWidth() - boundaryWrapDistance, rb.position.y, rb.position.z));
+            rb.MovePosition(new Vector3(constants.BoundaryWidth - boundaryWrapDistance, rb.position.y, rb.position.z));
         }
 
         else if (collision.gameObject.CompareTag("BoundarySouth"))
         {
-            rb.MovePosition(new Vector3(rb.position.x, constants.GetBoundaryHeight() - boundaryWrapDistance, rb.position.z));
+            rb.MovePosition(new Vector3(rb.position.x, constants.BoundaryHeight - boundaryWrapDistance, rb.position.z));
         }
 
         else if (collision.gameObject.CompareTag("BoundaryWest"))
         {
-            rb.MovePosition(new Vector3(-constants.GetBoundaryWidth() + boundaryWrapDistance, rb.position.y, rb.position.z));
+            rb.MovePosition(new Vector3(-constants.BoundaryWidth + boundaryWrapDistance, rb.position.y, rb.position.z));
         }
 
         if (collision.gameObject.CompareTag("Cube"))

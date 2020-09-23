@@ -29,8 +29,8 @@ public class PlayerController : MonoBehaviour
         _rb.freezeRotation = true;
         _rb.useGravity = false;
 
-        _spawnWidth = _constants.GetBoundaryWidth() / 2;
-        _spawnHeight = _constants.GetBoundaryHeight() / 2;
+        _spawnWidth = _constants.BoundaryWidth / 2;
+        _spawnHeight = _constants.BoundaryHeight / 2;
 
         // Different spawn positions for different players
         _topLeftSpawn = new Vector3(-_spawnWidth, _spawnHeight, 0.0f);
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         _bottomRightSpawn = new Vector3(_spawnWidth, -_spawnHeight, 0.0f);
 
         Reset();
-        Speed = _constants.GetBoundaryWidth();
+        Speed = _constants.BoundaryWidth;
     }
 
     private void Reset()
@@ -88,9 +88,9 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                _gameController.Reset();
                 gameObject.SetActive(false);
             }
-            _gameController.Reset();
         }
     }
 }
