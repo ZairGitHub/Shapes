@@ -2,9 +2,9 @@
 
 public class TimeController : MonoBehaviour
 {
-    public float MinTime { private set; get; }
-    public float MaxTime { private set; get; }
-    
+    public float MinTime { get; private set; }
+    public float MaxTime { get; private set; }
+
     private float _timeFactor;
     private float _savedTime;
 
