@@ -3,16 +3,15 @@ using UnityEngine;
 
 public class TextController : MonoBehaviour
 {
-    private TMP_Text textDebugTime;
-    private TMP_Text textDebugSavedTime;
+    private TMP_Text _textDebugTime;
 
     private void Start()
     {
-        textDebugTime = GameObject.FindGameObjectWithTag("TextDebugTime").GetComponent<TMP_Text>();
+        _textDebugTime = GameObject.FindGameObjectWithTag("TextDebugTime").GetComponent<TMP_Text>();
     }
 
     private void Update()
     {
-        textDebugTime.text = "Time: " + Time.timeScale.ToString("0.00");
+        _textDebugTime.text = "Time: " + Time.timeScale.ToString("0.00");
     }
 }
