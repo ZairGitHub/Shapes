@@ -52,12 +52,12 @@ public class GameController : MonoBehaviour
 
             else if (Input.GetKeyDown("-"))
             {
-                timeController.SetTime(timeController.GetMinTime());
+                timeController.SetTime(timeController.MinTime);
             }
 
             else if (Input.GetKeyDown("="))
             {
-                timeController.SetTime(timeController.GetMaxTime());
+                timeController.SetTime(timeController.MaxTime);
             }
         }
         else
