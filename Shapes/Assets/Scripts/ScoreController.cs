@@ -33,7 +33,7 @@ public class ScoreController : MonoBehaviour
 
     public IEnumerator GiveSurvivalBonus()
     {
-        while (gameController.IsRunning())
+        while (gameController.IsRunning)
         {
             yield return new WaitForSeconds(3);
 
@@ -43,7 +43,7 @@ public class ScoreController : MonoBehaviour
 
     private void GiveSurvivalBonus(int bonus)
     {
-        if (gameController.IsRunning())
+        if (gameController.IsRunning)
         {
             UpdateScoreText(bonus);
             survivalBonus += bonus;
@@ -53,7 +53,7 @@ public class ScoreController : MonoBehaviour
 
     private void UpdateScoreText(int bonus)
     {
-        if (gameController.IsRunning())
+        if (gameController.IsRunning)
         {
             score += bonus;
             textScore.text = "Score: " + score;
@@ -62,7 +62,7 @@ public class ScoreController : MonoBehaviour
 
     public void GiveCollisionBonus()
     {
-        if (gameController.IsRunning())
+        if (gameController.IsRunning)
         {
             UpdateScoreText(1);
             collisionBonus++;

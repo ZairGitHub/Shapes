@@ -83,7 +83,12 @@ public class PlayerController : MonoBehaviour
         {
             //Reset();
             gameController.Reset();
-            //gameObject.SetActive(false);
+
+            if (!gameController.DebugMode)
+            {
+                gameObject.SetActive(false);
+            }
+            
         }
     }
 }

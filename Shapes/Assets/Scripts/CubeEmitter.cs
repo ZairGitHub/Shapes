@@ -25,7 +25,7 @@ public class CubeEmitter : MonoBehaviour
 
     private IEnumerator EmitCubes()
     {
-        while (gameController.IsRunning())
+        while (gameController.IsRunning)
         {
             int RNG = Random.Range(0, cubeEmitters.Length);
             cubeEmitters[RNG].GetComponent<Renderer>().material.color = Color.blue;
@@ -33,7 +33,7 @@ public class CubeEmitter : MonoBehaviour
 
             yield return new WaitForSeconds(1);
 
-            if (gameController.IsRunning())
+            if (gameController.IsRunning)
             {
                 CubeHandler cubeObject = Instantiate(cube, cubeEmitters[RNG].transform.position, Quaternion.identity).GetComponent<CubeHandler>();
                 cubeObject.SetDirection(emitterProperties.GetXDirection(), emitterProperties.GetYDirection());

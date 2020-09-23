@@ -46,7 +46,7 @@ public class CubeHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (gameController.IsRunning())
+        if (gameController.IsRunning)
         {
             direction = new Vector3(horizontal, vertical, 0.0f).normalized;
             rb.velocity = direction * speed;

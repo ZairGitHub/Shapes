@@ -15,11 +15,11 @@ public class SphereEmitter : MonoBehaviour
 
     private IEnumerator EmitSpheres()
     {
-        while (gameController.IsRunning())
+        while (gameController.IsRunning)
         {
             yield return new WaitForSeconds(3);
 
-            if (gameController.IsRunning())
+            if (gameController.IsRunning)
             {
                 Instantiate(sphere, Vector3.up, Quaternion.identity);
             }
