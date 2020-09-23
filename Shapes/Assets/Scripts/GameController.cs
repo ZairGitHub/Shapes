@@ -8,8 +8,8 @@ public class GameController : MonoBehaviour
     private TimeController _timeController;
     private ScoreController _scoreController;
 
-    // Manually set to control activation of player destruction logic
-    public bool DebugMode { get; private set; } = false;
+    // Manually set to control activation of PlayerController destruction logic
+    public bool IsInDebugMode { get; private set; } = false;
 
     private void Start()
     {
