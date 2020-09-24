@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
     private ScoreController _scoreController;
 
     // Manually set to control activation of PlayerController destruction logic
-    public bool IsInDebugMode { get; private set; } = false;
+    public bool IsInDebugMode = false;
 
     private void Start()
     {
