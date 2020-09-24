@@ -2,49 +2,50 @@
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed;
+    // public for testing, otherwise private
+    public float Speed;
 
-    private Constants constants;
-    private GameController gameController;
+    private Constants _constants;
+    private GameController _gameController;
 
-    private Rigidbody rb;
-    private Vector3 movement;
+    private Rigidbody _rb;
+    private Vector3 _movement;
 
-    private float spawnHeight;
-    private float spawnWidth;
+    private float _spawnHeight;
+    private float _spawnWidth;
 
-    private Vector3 topLeftSpawn;
-    private Vector3 topRightSpawn;
-    private Vector3 bottomLeftSpawn;
-    private Vector3 bottomRightSpawn;
+    private Vector3 _topLeftSpawn;
+    private Vector3 _topRightSpawn;
+    private Vector3 _bottomLeftSpawn;
+    private Vector3 _bottomRightSpawn;
 
     private void Start()
     {
-        constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        _constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
+        _gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 
-        rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezePositionZ;
-        rb.freezeRotation = true;
-        rb.useGravity = false;
+        _rb = GetComponent<Rigidbody>();
+        _rb.constraints = RigidbodyConstraints.FreezePositionZ;
+        _rb.freezeRotation = true;
+        _rb.useGravity = false;
 
-        spawnWidth = constants.GetBoundaryWidth() / 2;
-        spawnHeight = constants.GetBoundaryHeight() / 2;
+        _spawnWidth = _constants.BoundaryWidth / 2;
+        _spawnHeight = _constants.BoundaryHeight / 2;
 
         // Different spawn positions for different players
-        topLeftSpawn = new Vector3(-spawnWidth, spawnHeight, 0.0f);
-        topRightSpawn = new Vector3(spawnWidth, spawnHeight, 0.0f);
-        bottomLeftSpawn = new Vector3(-spawnWidth, -spawnHeight, 0.0f);
-        bottomRightSpawn = new Vector3(spawnWidth, -spawnHeight, 0.0f);
+        _topLeftSpawn = new Vector3(-_spawnWidth, _spawnHeight, 0.0f);
+        _topRightSpawn = new Vector3(_spawnWidth, _spawnHeight, 0.0f);
+        _bottomLeftSpawn = new Vector3(-_spawnWidth, -_spawnHeight, 0.0f);
+        _bottomRightSpawn = new Vector3(_spawnWidth, -_spawnHeight, 0.0f);
 
         Reset();
-        speed = constants.GetBoundaryWidth();
+        Speed = _constants.BoundaryWidth;
     }
 
     private void Reset()
     {
         gameObject.SetActive(true);
-        rb.velocity = Vector3.zero;
+        _rb.velocity = Vector3.zero;
         SetSpawnPosition();
     }
 
@@ -55,16 +56,16 @@ public class PlayerController : MonoBehaviour
         switch (RNG)
         {
             case 1:
-                rb.MovePosition(topLeftSpawn);
+                _rb.MovePosition(_topLeftSpawn);
                 break;
             case 2:
-                rb.MovePosition(topRightSpawn);
+                _rb.MovePosition(_topRightSpawn);
                 break;
             case 3:
-                rb.MovePosition(bottomLeftSpawn);
+                _rb.MovePosition(_bottomLeftSpawn);
                 break;
             case 4:
-                rb.MovePosition(bottomRightSpawn);
+                _rb.MovePosition(_bottomRightSpawn);
                 break;
         }
     }
@@ -73,17 +74,23 @@ public class PlayerController : MonoBehaviour
     {
         float horizontalAxis = Input.GetAxis("Horizontal");
         float verticalAxis = Input.GetAxis("Vertical");
-        movement = new Vector3(horizontalAxis, verticalAxis, 0.0f);
-        rb.velocity = movement * speed;
+        _movement = new Vector3(horizontalAxis, verticalAxis, 0.0f);
+        _rb.velocity = _movement * Speed;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Cube") || collision.gameObject.CompareTag("Sphere"))
         {
-            //Reset();
-            gameController.Reset();
-            gameObject.SetActive(false);
+            if (_gameController.IsInDebugMode)
+            {
+                Reset();
+            }
+            else
+            {
+                _gameController.Reset();
+                gameObject.SetActive(false);
+            }
         }
     }
 }

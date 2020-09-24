@@ -2,90 +2,83 @@
 
 public class EmitterProperties : MonoBehaviour
 {
-    private Constants constants;
+    private Constants _constants;
 
-    private int xDirection;
-    private int yDirection;
+    private int _xDirection;
+    private int _yDirection;
 
-    private float boundaryOffset;
-    private float xPosition;
-    private float yPosition;
+    private float _boundaryOffset;
+    private float _xPosition;
+    private float _yPosition;
 
     private void Start()
     {
-        constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
-        boundaryOffset = GetComponent<Renderer>().bounds.size.x * 2;
+        _constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
+        _boundaryOffset = GetComponent<Renderer>().bounds.size.x * 2;
     }
 
-    public int GetXDirection()
+    public int SetAndGetXDirection()
     {
         if (name.Contains("Left"))
         {
-            xDirection = 1;
+            _xDirection = 1;
         }
         else if (name.Contains("Right"))
         {
-            xDirection = -1;
+            _xDirection = -1;
         }
         else
         {
-            xDirection = Random.Range(-1, 2);
+            _xDirection = Random.Range(-1, 2);
         }
-        return xDirection;
+        return _xDirection;
     }
 
-    public int GetYDirection()
+    public int SetAndGetYDirection()
     {
         if (name.Contains("Top"))
         {
-            yDirection = -1;
+            _yDirection = -1;
         }
         else if (name.Contains("Bottom"))
         {
-            yDirection = 1;
+            _yDirection = 1;
         }
         else
         {
-            yDirection = Random.Range(-1, 2);
+            _yDirection = Random.Range(-1, 2);
         }
-        return yDirection;
+        return _yDirection;
     }
 
-    public Vector3 SetPosition()
+    public Vector3 SetAndGetPosition()
     {
-        switch (name)
+        return new Vector3(SetXPosition(), SetYPosition(), 0.0f);
+    }
+
+    private float SetXPosition()
+    {
+        if (name.Contains("Left"))
         {
-            case string name when name.Contains("Top"):
-                yPosition = constants.GetBoundaryHeight() - boundaryOffset;
-                if (name.Contains("Left"))
-                {
-                    xPosition = -constants.GetBoundaryWidth() + boundaryOffset;
-                }
-                else if (name.Contains("Right"))
-                {
-                    xPosition = constants.GetBoundaryWidth() - boundaryOffset;
-                }
-                break;
-
-            case string name when name.Contains("CentreLeft"):
-                xPosition = -constants.GetBoundaryWidth() + boundaryOffset;
-                break;
-            case string name when name.Contains("CentreRight"):
-                xPosition = constants.GetBoundaryWidth() - boundaryOffset;
-                break;
-
-            case string name when name.Contains("Bottom"):
-                yPosition = -constants.GetBoundaryHeight() + boundaryOffset;
-                if (name.Contains("Left"))
-                {
-                    xPosition = -constants.GetBoundaryWidth() + boundaryOffset;
-                }
-                else if (name.Contains("Right"))
-                {
-                    xPosition = constants.GetBoundaryWidth() - boundaryOffset;
-                }
-                break;
+            _xPosition = -_constants.BoundaryWidth + _boundaryOffset;
         }
-        return new Vector3(xPosition, yPosition, 0.0f);
+        else if (name.Contains("Right"))
+        {
+            _xPosition = _constants.BoundaryWidth - _boundaryOffset;
+        }
+        return _xPosition;
+    }
+
+    private float SetYPosition()
+    {
+        if (name.Contains("Top"))
+        {
+            _yPosition = _constants.BoundaryHeight - _boundaryOffset;
+        }
+        else if (name.Contains("Bottom"))
+        {
+            _yPosition = -_constants.BoundaryHeight + _boundaryOffset;
+        }
+        return _yPosition;
     }
 }

@@ -2,58 +2,59 @@
 
 public class CubeHandler : MonoBehaviour
 {
-    public float speed;
+    // public for testing, otherwise private
+    public float Speed;
 
-    private Constants constants;
-    private GameController gameController;
-    private ScoreController scoreController;
+    private Constants _constants;
+    private GameController _gameController;
+    private ScoreController _scoreController;
 
-    private Rigidbody rb;
-    private Vector3 direction;
+    private Rigidbody _rb;
+    private Vector3 _direction;
 
-    // public for testing purposes
-    public float horizontal;
-    public float vertical;
+    // public for testing, otherwise private
+    public float Horizontal;
+    public float Vertical;
 
-    private float boundaryWrapDistance;
+    private float _boundaryWrapDistance;
     
     private void Start()
     {
-        constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-        scoreController = GameObject.FindGameObjectWithTag("ScoreController").GetComponent<ScoreController>();
+        _constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
+        _gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        _scoreController = GameObject.FindGameObjectWithTag("ScoreController").GetComponent<ScoreController>();
 
-        rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezePositionZ;
-        rb.freezeRotation = true;
-        rb.useGravity = false;
+        _rb = GetComponent<Rigidbody>();
+        _rb.constraints = RigidbodyConstraints.FreezePositionZ;
+        _rb.freezeRotation = true;
+        _rb.useGravity = false;
 
-        speed = constants.GetBoundaryWidth() / 4;
-        boundaryWrapDistance = GetComponent<Collider>().bounds.size.x * 1.1f;
+        Speed = _constants.BoundaryWidth / 4;
+        _boundaryWrapDistance = GetComponent<Collider>().bounds.size.x * 1.1f;
     }
 
     public void SetDirection(int x, int y)
     {
-        horizontal = (x > 0) ? Random.Range(0.0f, 1.0f) : Random.Range(-1.0f, 0.0f);
-        vertical = (y > 0) ? Random.Range(0.0f, 1.0f) : Random.Range(-1.0f, 0.0f);
+        Horizontal = (x > 0) ? Random.Range(0.0f, 1.0f) : Random.Range(-1.0f, 0.0f);
+        Vertical = (y > 0) ? Random.Range(0.0f, 1.0f) : Random.Range(-1.0f, 0.0f);
     }
 
     private void RecalculateDirection()
     {
-        horizontal = (Random.Range(-1.0f, 1.0f));
-        vertical = (Random.Range(-1.0f, 1.0f));
+        Horizontal = (Random.Range(-1.0f, 1.0f));
+        Vertical = (Random.Range(-1.0f, 1.0f));
     }
 
     private void FixedUpdate()
     {
-        if (gameController.IsRunning())
+        if (_gameController.IsRunning)
         {
-            direction = new Vector3(horizontal, vertical, 0.0f).normalized;
-            rb.velocity = direction * speed;
+            _direction = new Vector3(Horizontal, Vertical, 0.0f).normalized;
+            _rb.velocity = _direction * Speed;
         }
         else
         {
-            rb.velocity = Vector3.zero;
+            _rb.velocity = Vector3.zero;
         }
     }
 
@@ -61,32 +62,32 @@ public class CubeHandler : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("BoundaryNorth"))
         {
-            rb.MovePosition(new Vector3(rb.position.x, -constants.GetBoundaryHeight() + boundaryWrapDistance, rb.position.z));
+            _rb.MovePosition(new Vector3(_rb.position.x, -_constants.BoundaryHeight + _boundaryWrapDistance, _rb.position.z));
         }
 
         else if (collision.gameObject.CompareTag("BoundaryEast"))
         {
-            rb.MovePosition(new Vector3(constants.GetBoundaryWidth() - boundaryWrapDistance, rb.position.y, rb.position.z));
+            _rb.MovePosition(new Vector3(_constants.BoundaryWidth - _boundaryWrapDistance, _rb.position.y, _rb.position.z));
         }
 
         else if (collision.gameObject.CompareTag("BoundarySouth"))
         {
-            rb.MovePosition(new Vector3(rb.position.x, constants.GetBoundaryHeight() - boundaryWrapDistance, rb.position.z));
+            _rb.MovePosition(new Vector3(_rb.position.x, _constants.BoundaryHeight - _boundaryWrapDistance, _rb.position.z));
         }
 
         else if (collision.gameObject.CompareTag("BoundaryWest"))
         {
-            rb.MovePosition(new Vector3(-constants.GetBoundaryWidth() + boundaryWrapDistance, rb.position.y, rb.position.z));
+            _rb.MovePosition(new Vector3(-_constants.BoundaryWidth + _boundaryWrapDistance, _rb.position.y, _rb.position.z));
         }
 
         if (collision.gameObject.CompareTag("Cube"))
         {
-            horizontal = -horizontal;
-            vertical = -vertical;
+            Horizontal = -Horizontal;
+            Vertical = -Vertical;
 
             if (collision.gameObject.GetInstanceID() > GetInstanceID())
             {
-                scoreController.GiveCollisionBonus();
+                _scoreController.GiveCollisionBonus();
             }
         }
     }
@@ -99,7 +100,7 @@ public class CubeHandler : MonoBehaviour
             
             if (collision.gameObject.GetInstanceID() > GetInstanceID())
             {
-                scoreController.GiveCollisionBonus();
+                _scoreController.GiveCollisionBonus();
             }
         }
     }

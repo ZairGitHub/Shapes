@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class CubeEmitter : MonoBehaviour
 {
-    private GameObject cube;
-    private GameObject[] cubeEmitters;
-    private GameController gameController;
-    private EmitterProperties emitterProperties;
+    private GameObject _cube;
+    private GameObject[] _cubeEmitters;
+    private GameController _gameController;
+    private EmitterProperties _emitterProperties;
 
     private void Start()
     {
-        cube = GameObject.FindGameObjectWithTag("Cube");
-        cubeEmitters = GameObject.FindGameObjectsWithTag("CubeEmitter").OrderBy(gameObject => gameObject.name).ToArray();
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        _cube = GameObject.FindGameObjectWithTag("Cube");
+        _cubeEmitters = GameObject.FindGameObjectsWithTag("CubeEmitter").OrderBy(gameObject => gameObject.name).ToArray();
+        _gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 
-        foreach (GameObject cubeEmitter in cubeEmitters)
+        foreach (GameObject cubeEmitter in _cubeEmitters)
         {
-            cubeEmitter.transform.position = cubeEmitter.GetComponent<EmitterProperties>().SetPosition();
+            cubeEmitter.transform.position = cubeEmitter.GetComponent<EmitterProperties>().SetAndGetPosition();
         }
 
         StartCoroutine(EmitCubes());
@@ -25,20 +25,20 @@ public class CubeEmitter : MonoBehaviour
 
     private IEnumerator EmitCubes()
     {
-        while (gameController.IsRunning())
+        while (_gameController.IsRunning)
         {
-            int RNG = Random.Range(0, cubeEmitters.Length);
-            cubeEmitters[RNG].GetComponent<Renderer>().material.color = Color.blue;
-            emitterProperties = cubeEmitters[RNG].GetComponent<EmitterProperties>();
+            int RNG = Random.Range(0, _cubeEmitters.Length);
+            _cubeEmitters[RNG].GetComponent<Renderer>().material.color = Color.blue;
+            _emitterProperties = _cubeEmitters[RNG].GetComponent<EmitterProperties>();
 
             yield return new WaitForSeconds(1);
 
-            if (gameController.IsRunning())
+            if (_gameController.IsRunning)
             {
-                CubeHandler cubeObject = Instantiate(cube, cubeEmitters[RNG].transform.position, Quaternion.identity).GetComponent<CubeHandler>();
-                cubeObject.SetDirection(emitterProperties.GetXDirection(), emitterProperties.GetYDirection());
+                CubeHandler cubeObject = Instantiate(_cube, _cubeEmitters[RNG].transform.position, Quaternion.identity).GetComponent<CubeHandler>();
+                cubeObject.SetDirection(_emitterProperties.SetAndGetXDirection(), _emitterProperties.SetAndGetYDirection());
 
-                cubeEmitters[RNG].GetComponent<Renderer>().material.color = Color.yellow;
+                _cubeEmitters[RNG].GetComponent<Renderer>().material.color = Color.yellow;
             }
         }
     }

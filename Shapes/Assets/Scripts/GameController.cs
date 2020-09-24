@@ -3,61 +3,61 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    private TimeController timeController;
-    private ScoreController scoreController;
-    private bool isRunning;
+    public bool IsRunning { get; private set; }
+
+    private TimeController _timeController;
+    private ScoreController _scoreController;
+
+    // Manually set to control activation of PlayerController destruction logic
+    public bool IsInDebugMode = false;
 
     private void Start()
     {
-        timeController = GameObject.FindGameObjectWithTag("TimeController").GetComponent<TimeController>();
-        scoreController = GameObject.FindGameObjectWithTag("ScoreController").GetComponent<ScoreController>();
-        
-        isRunning = true;
-        StartCoroutine(scoreController.GiveSurvivalBonus());
+        IsRunning = true;
+
+        _timeController = GameObject.FindGameObjectWithTag("TimeController").GetComponent<TimeController>();
+        _scoreController = GameObject.FindGameObjectWithTag("ScoreController").GetComponent<ScoreController>();
+
+        StartCoroutine(_scoreController.GiveSurvivalBonus());
     }
 
     public void Reset()
     {
-        isRunning = false;
-    }
-
-    public bool IsRunning()
-    {
-        return isRunning;
+        IsRunning = false;
     }
 
     private void Update()
     {
-        if (isRunning)
+        if (IsRunning)
         {
             if (Input.GetButtonDown("Jump"))
             {
-                timeController.TogglePause();
+                _timeController.TogglePause();
             }
 
             else if (Input.GetKeyDown(KeyCode.Alpha0))
             {
-                timeController.Reset();
+                _timeController.Reset();
             }
 
             else if (Input.GetKey(KeyCode.Alpha1))
             {
-                timeController.SlowDownTime();
+                _timeController.SlowDownTime();
             }
 
             else if (Input.GetKey(KeyCode.Alpha2))
             {
-                timeController.SpeedUpTime();
+                _timeController.SpeedUpTime();
             }
 
             else if (Input.GetKeyDown("-"))
             {
-                timeController.SetTime(timeController.GetMinTime());
+                _timeController.SetTime(_timeController.MinTime);
             }
 
             else if (Input.GetKeyDown("="))
             {
-                timeController.SetTime(timeController.GetMaxTime());
+                _timeController.SetTime(_timeController.MaxTime);
             }
         }
         else
