@@ -2,7 +2,7 @@
 
 public class PlayerController : MonoBehaviour
 {
-    // Public for testing, otherwise private
+    // public for testing, otherwise private
     public float Speed;
 
     private Constants _constants;
