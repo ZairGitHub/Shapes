@@ -17,7 +17,7 @@ public class CubeEmitter : MonoBehaviour
 
         foreach (GameObject cubeEmitter in cubeEmitters)
         {
-            cubeEmitter.transform.position = cubeEmitter.GetComponent<EmitterProperties>().SetPosition();
+            cubeEmitter.transform.position = cubeEmitter.GetComponent<EmitterProperties>().SetAndGetPosition();
         }
 
         StartCoroutine(EmitCubes());
@@ -36,7 +36,7 @@ public class CubeEmitter : MonoBehaviour
             if (gameController.IsRunning)
             {
                 CubeHandler cubeObject = Instantiate(cube, cubeEmitters[RNG].transform.position, Quaternion.identity).GetComponent<CubeHandler>();
-                cubeObject.SetDirection(emitterProperties.GetXDirection(), emitterProperties.GetYDirection());
+                cubeObject.SetDirection(emitterProperties.SetAndGetXDirection(), emitterProperties.SetAndGetYDirection());
 
                 cubeEmitters[RNG].GetComponent<Renderer>().material.color = Color.yellow;
             }
