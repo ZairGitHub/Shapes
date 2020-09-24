@@ -1848,6 +1848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 990b7ddba0aa26546a77b6bd0a30705b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsInDebugMode: 0
 --- !u!4 &1132538364
 Transform:
   m_ObjectHideFlags: 0
@@ -2550,7 +2551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed336aee9695ca4b96944ae89f2c069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  Speed: 20
 --- !u!65 &1336241148
 BoxCollider:
   m_ObjectHideFlags: 0
