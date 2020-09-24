@@ -51,6 +51,11 @@ public class EmitterProperties : MonoBehaviour
         return _yDirection;
     }
 
+    public Vector3 SetAndGetPosition()
+    {
+        return new Vector3(SetXPosition(), SetYPosition(), 0.0f);
+    }
+
     private float SetXPosition()
     {
         if (name.Contains("Left"))
@@ -75,10 +80,5 @@ public class EmitterProperties : MonoBehaviour
             _yPosition = -_constants.BoundaryHeight + _boundaryOffset;
         }
         return _yPosition;
-    }
-
-    public Vector3 SetAndGetPosition()
-    {
-        return new Vector3(SetXPosition(), SetYPosition(), 0.0f);
     }
 }
