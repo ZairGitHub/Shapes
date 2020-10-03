@@ -3,13 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    // Exposed in editor to manipulate the PlayerController.cs destruction logic
+    public bool IsInDebugMode = false;
+
     public bool IsRunning { get; private set; }
 
     private TimeController _timeController;
     private ScoreController _scoreController;
-
-    // Manually set to control activation of PlayerController destruction logic
-    public bool IsInDebugMode = false;
 
     private void Start()
     {
