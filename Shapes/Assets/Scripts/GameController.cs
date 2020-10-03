@@ -3,9 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    // Exposed in editor to manipulate the PlayerController.cs destruction logic
-    public bool IsInDebugMode = false;
-
+    public bool IsInDebugMode { get; private set; }
     public bool IsRunning { get; private set; }
 
     private TimeController _timeController;
@@ -30,9 +28,10 @@ public class GameController : MonoBehaviour
     {
         if (IsRunning)
         {
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.P))
             {
                 IsInDebugMode = !IsInDebugMode;
+                Debug.Log("DEBUG MODE: " + IsInDebugMode.ToString().ToUpper());
             }
 
             if (Input.GetButtonDown("Jump"))
