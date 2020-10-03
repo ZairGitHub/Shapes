@@ -8,9 +8,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _rb;
     private Vector3 _movement;
 
-    private float _spawnHeight;
-    private float _spawnWidth;
-
     private Vector3 _topLeftSpawn;
     private Vector3 _topRightSpawn;
     private Vector3 _bottomLeftSpawn;
@@ -30,14 +27,14 @@ public class PlayerController : MonoBehaviour
         _rb.velocity = Vector3.zero;
 
         // Potentially move spawn logic to a new script
-        _spawnWidth = _constants.BoundaryWidth / 2;
-        _spawnHeight = _constants.BoundaryHeight / 2;
+        float spawnWidth = _constants.BoundaryWidth / 2;
+        float spawnHeight = _constants.BoundaryHeight / 2;
 
         // Different spawn positions for different players
-        _topLeftSpawn = new Vector3(-_spawnWidth, _spawnHeight, 0.0f);
-        _topRightSpawn = new Vector3(_spawnWidth, _spawnHeight, 0.0f);
-        _bottomLeftSpawn = new Vector3(-_spawnWidth, -_spawnHeight, 0.0f);
-        _bottomRightSpawn = new Vector3(_spawnWidth, -_spawnHeight, 0.0f);
+        _topLeftSpawn = new Vector3(-spawnWidth, spawnHeight, 0.0f);
+        _topRightSpawn = new Vector3(spawnWidth, spawnHeight, 0.0f);
+        _bottomLeftSpawn = new Vector3(-spawnWidth, -spawnHeight, 0.0f);
+        _bottomRightSpawn = new Vector3(spawnWidth, -spawnHeight, 0.0f);
 
         SetSpawnPosition();
         _speed = _constants.BoundaryWidth;

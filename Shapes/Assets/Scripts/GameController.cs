@@ -30,6 +30,11 @@ public class GameController : MonoBehaviour
     {
         if (IsRunning)
         {
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                IsInDebugMode = !IsInDebugMode;
+            }
+
             if (Input.GetButtonDown("Jump"))
             {
                 _timeController.TogglePause();
