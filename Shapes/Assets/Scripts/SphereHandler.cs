@@ -2,9 +2,6 @@
 
 public class SphereHandler : MonoBehaviour
 {
-    // public for testing, otherwise private
-    public float Speed;
-
     private Constants _constants;
     private GameController _gameController;
     private ScoreController _scoreController;
@@ -12,9 +9,9 @@ public class SphereHandler : MonoBehaviour
     private Rigidbody _rb;
     private Vector3 _direction;
 
-    // public for testing, otherwise private
-    public float Horizontal;
-    public float Vertical;
+    private float _speed;
+    private float _horizontal;
+    private float _vertical;
 
     private void Start()
     {
@@ -27,50 +24,57 @@ public class SphereHandler : MonoBehaviour
         _rb.freezeRotation = true;
         _rb.useGravity = false;
 
+        _speed = _constants.BoundaryWidth;
+
         RecalculateDirection();
-        Speed = _constants.BoundaryWidth;
     }
 
     private void RecalculateDirection()
     {
-        Horizontal = (Random.Range(-1.0f, 1.0f));
-        Vertical = (Random.Range(-1.0f, 1.0f));
+        _horizontal = (Random.Range(-1.0f, 1.0f));
+        _vertical = (Random.Range(-1.0f, 1.0f));
+        
+        UpdateDirectionVector();
+    }
+
+    private void UpdateDirectionVector()
+    {
+        _direction = new Vector3(_horizontal, _vertical, 0.0f).normalized;
     }
 
     private void FixedUpdate()
     {
-        if (_gameController.IsRunning)
-        {
-            _direction = new Vector3(Horizontal, Vertical, 0.0f).normalized;
-            _rb.velocity = _direction * Speed;
-        }
-        else
-        {
-            _rb.velocity = Vector3.zero;
-        }
+        _rb.velocity = _gameController.IsRunning ? _direction * _speed : _rb.velocity = Vector3.zero;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        Vector3 direction = new Vector3(_horizontal, _vertical, 0.0f);
+        
         if (collision.gameObject.CompareTag("BoundaryEast") || collision.gameObject.CompareTag("BoundaryWest"))
         {
-            Horizontal = -Horizontal;
+            _horizontal = -_horizontal;
         }
 
         else if (collision.gameObject.CompareTag("BoundaryNorth") || collision.gameObject.CompareTag("BoundarySouth"))
         {
-            Vertical = -Vertical;
+            _vertical = -_vertical;
         }
 
         if (collision.gameObject.CompareTag("Sphere"))
         {
-            Horizontal = -Horizontal;
-            Vertical = -Vertical;
+            _horizontal = -_horizontal;
+            _vertical = -_vertical;
 
             if (collision.gameObject.GetInstanceID() > GetInstanceID())
             {
                 _scoreController.GiveCollisionBonus();
             }
+        }
+
+        if (direction != _direction)
+        {
+            UpdateDirectionVector();
         }
     }
 
