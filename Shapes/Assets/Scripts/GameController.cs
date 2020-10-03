@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour
 
             else if (Input.GetKeyDown(KeyCode.Alpha0))
             {
-                _timeController.Reset();
+                _timeController.ResetTime();
             }
 
             else if (Input.GetKey(KeyCode.Alpha1))
