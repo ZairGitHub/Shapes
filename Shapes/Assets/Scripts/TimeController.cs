@@ -2,23 +2,19 @@
 
 public class TimeController : MonoBehaviour
 {
-    public float MinTime { get; private set; }
-    public float MaxTime { get; private set; }
+    public float MinTime { get; private set; } = 0.05f;
+    public float MaxTime { get; private set; } = 10.0f;
+    
+    private readonly float _timeFactor = 0.05f;
 
-    private float _timeFactor;
     private float _savedTime;
 
     private void Start()
     {
-        MinTime = 0.05f;
-        MaxTime = 10.0f;
-
-        _timeFactor = 0.05f;
-
-        Reset();
+        ResetTime();
     }
 
-    public void Reset()
+    public void ResetTime()
     {
         Time.timeScale = 1.0f;
         _savedTime = Time.timeScale;

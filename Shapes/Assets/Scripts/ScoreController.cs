@@ -23,13 +23,6 @@ public class ScoreController : MonoBehaviour
 
         _textSurvivalBonus.color = Color.red;
         _textCollisionBonus.color = Color.magenta;
-
-        Reset();
-    }
-
-    public void Reset()
-    {
-        _score = 0;
     }
 
     public IEnumerator GiveSurvivalBonus()

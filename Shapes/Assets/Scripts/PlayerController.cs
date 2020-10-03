@@ -2,22 +2,18 @@
 
 public class PlayerController : MonoBehaviour
 {
-    // public for testing, otherwise private
-    public float Speed;
-
     private Constants _constants;
     private GameController _gameController;
 
     private Rigidbody _rb;
     private Vector3 _movement;
 
-    private float _spawnHeight;
-    private float _spawnWidth;
-
     private Vector3 _topLeftSpawn;
     private Vector3 _topRightSpawn;
     private Vector3 _bottomLeftSpawn;
     private Vector3 _bottomRightSpawn;
+
+    private float _speed;
 
     private void Start()
     {
@@ -26,27 +22,22 @@ public class PlayerController : MonoBehaviour
 
         _rb = GetComponent<Rigidbody>();
         _rb.constraints = RigidbodyConstraints.FreezePositionZ;
-        _rb.freezeRotation = true;
+        _rb.freezeRotation = true;        
         _rb.useGravity = false;
+        _rb.velocity = Vector3.zero;
 
-        _spawnWidth = _constants.BoundaryWidth / 2;
-        _spawnHeight = _constants.BoundaryHeight / 2;
+        // Potentially move spawn logic to a new script
+        float spawnWidth = _constants.BoundaryWidth / 2;
+        float spawnHeight = _constants.BoundaryHeight / 2;
 
         // Different spawn positions for different players
-        _topLeftSpawn = new Vector3(-_spawnWidth, _spawnHeight, 0.0f);
-        _topRightSpawn = new Vector3(_spawnWidth, _spawnHeight, 0.0f);
-        _bottomLeftSpawn = new Vector3(-_spawnWidth, -_spawnHeight, 0.0f);
-        _bottomRightSpawn = new Vector3(_spawnWidth, -_spawnHeight, 0.0f);
+        _topLeftSpawn = new Vector3(-spawnWidth, spawnHeight, 0.0f);
+        _topRightSpawn = new Vector3(spawnWidth, spawnHeight, 0.0f);
+        _bottomLeftSpawn = new Vector3(-spawnWidth, -spawnHeight, 0.0f);
+        _bottomRightSpawn = new Vector3(spawnWidth, -spawnHeight, 0.0f);
 
-        Reset();
-        Speed = _constants.BoundaryWidth;
-    }
-
-    private void Reset()
-    {
-        gameObject.SetActive(true);
-        _rb.velocity = Vector3.zero;
         SetSpawnPosition();
+        _speed = _constants.BoundaryWidth;
     }
 
     private void SetSpawnPosition()
@@ -75,7 +66,7 @@ public class PlayerController : MonoBehaviour
         float horizontalAxis = Input.GetAxis("Horizontal");
         float verticalAxis = Input.GetAxis("Vertical");
         _movement = new Vector3(horizontalAxis, verticalAxis, 0.0f);
-        _rb.velocity = _movement * Speed;
+        _rb.velocity = _movement * _speed;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -84,7 +75,7 @@ public class PlayerController : MonoBehaviour
         {
             if (_gameController.IsInDebugMode)
             {
-                Reset();
+                Debug();
             }
             else
             {
@@ -92,5 +83,11 @@ public class PlayerController : MonoBehaviour
                 gameObject.SetActive(false);
             }
         }
+    }
+
+    private void Debug()
+    {
+        _rb.velocity = Vector3.zero;
+        SetSpawnPosition();
     }
 }

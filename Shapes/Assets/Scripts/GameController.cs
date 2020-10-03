@@ -3,13 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    public bool IsInDebugMode { get; private set; }
     public bool IsRunning { get; private set; }
 
     private TimeController _timeController;
     private ScoreController _scoreController;
-
-    // Manually set to control activation of PlayerController destruction logic
-    public bool IsInDebugMode = false;
 
     private void Start()
     {
@@ -30,6 +28,12 @@ public class GameController : MonoBehaviour
     {
         if (IsRunning)
         {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                IsInDebugMode = !IsInDebugMode;
+                Debug.Log("DEBUG MODE: " + IsInDebugMode.ToString().ToUpper());
+            }
+
             if (Input.GetButtonDown("Jump"))
             {
                 _timeController.TogglePause();
@@ -37,7 +41,7 @@ public class GameController : MonoBehaviour
 
             else if (Input.GetKeyDown(KeyCode.Alpha0))
             {
-                _timeController.Reset();
+                _timeController.ResetTime();
             }
 
             else if (Input.GetKey(KeyCode.Alpha1))
