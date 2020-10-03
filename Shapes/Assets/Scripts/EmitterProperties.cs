@@ -2,83 +2,97 @@
 
 public class EmitterProperties : MonoBehaviour
 {
+    private const float _negative = -1.0f;
+    private const float _positive = 1.0f;
+
     private Constants _constants;
 
-    private int _xDirection;
-    private int _yDirection;
-
     private float _boundaryOffset;
-    private float _xPosition;
-    private float _yPosition;
 
     private void Start()
     {
         _constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
-        _boundaryOffset = GetComponent<Renderer>().bounds.size.x * 2;
+        _boundaryOffset = GetComponent<Renderer>().bounds.size.x * 2.0f;
     }
 
-    public int SetAndGetXDirection()
+    public float GetXDirection()
     {
+        float xDirection;
+
         if (name.Contains("Left"))
         {
-            _xDirection = 1;
+            xDirection = _positive;
         }
         else if (name.Contains("Right"))
         {
-            _xDirection = -1;
+            xDirection = _negative;
         }
         else
         {
-            _xDirection = Random.Range(-1, 2);
+            xDirection = Random.Range(_negative, _positive);
         }
-        return _xDirection;
+        return xDirection;
     }
 
-    public int SetAndGetYDirection()
+    public float GetYDirection()
     {
+        float yDirection;
+
         if (name.Contains("Top"))
         {
-            _yDirection = -1;
+            yDirection = _negative;
         }
         else if (name.Contains("Bottom"))
         {
-            _yDirection = 1;
+            yDirection = _positive;
         }
         else
         {
-            _yDirection = Random.Range(-1, 2);
+            yDirection = Random.Range(_negative, _positive);
         }
-        return _yDirection;
+        return yDirection;
     }
 
-    public Vector3 SetAndGetPosition()
+    public Vector3 GetPosition()
     {
         return new Vector3(SetXPosition(), SetYPosition(), 0.0f);
     }
 
     private float SetXPosition()
     {
+        float xPosition;
+
         if (name.Contains("Left"))
         {
-            _xPosition = -_constants.BoundaryWidth + _boundaryOffset;
+            xPosition = -_constants.BoundaryWidth + _boundaryOffset;
         }
         else if (name.Contains("Right"))
         {
-            _xPosition = _constants.BoundaryWidth - _boundaryOffset;
+            xPosition = _constants.BoundaryWidth - _boundaryOffset;
         }
-        return _xPosition;
+        else
+        {
+            xPosition = default;
+        }
+        return xPosition;
     }
 
     private float SetYPosition()
     {
+        float yPosition;
+
         if (name.Contains("Top"))
         {
-            _yPosition = _constants.BoundaryHeight - _boundaryOffset;
+            yPosition = _constants.BoundaryHeight - _boundaryOffset;
         }
         else if (name.Contains("Bottom"))
         {
-            _yPosition = -_constants.BoundaryHeight + _boundaryOffset;
+            yPosition = -_constants.BoundaryHeight + _boundaryOffset;
         }
-        return _yPosition;
+        else
+        {
+            yPosition = default;
+        }
+        return yPosition;
     }
 }
