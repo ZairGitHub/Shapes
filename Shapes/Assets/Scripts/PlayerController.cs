@@ -27,8 +27,8 @@ public class PlayerController : MonoBehaviour
         _rb.velocity = Vector3.zero;
 
         // Potentially move spawn logic to a new script
-        float spawnWidth = _constants.BoundaryWidth / 2;
-        float spawnHeight = _constants.BoundaryHeight / 2;
+        float spawnWidth = _constants.BoundaryWidth / 2.0f;
+        float spawnHeight = _constants.BoundaryHeight / 2.0f;
 
         // Different spawn positions for different players
         _topLeftSpawn = new Vector3(-spawnWidth, spawnHeight, 0.0f);
