@@ -72,7 +72,7 @@ public class EmitterProperties : MonoBehaviour
         }
         else
         {
-            xPosition = default;
+            xPosition = 0.0f;
         }
         return xPosition;
     }
@@ -91,7 +91,7 @@ public class EmitterProperties : MonoBehaviour
         }
         else
         {
-            yPosition = default;
+            yPosition = 0.0f;
         }
         return yPosition;
     }
