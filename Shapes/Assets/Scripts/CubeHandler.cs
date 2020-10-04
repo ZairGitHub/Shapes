@@ -26,7 +26,7 @@ public class CubeHandler : MonoBehaviour
         _rb.freezeRotation = true;
         _rb.useGravity = false;
 
-        _speed = _constants.BoundaryWidth / 4;
+        _speed = _constants.BoundaryWidth / 4.0f;
         _boundaryWrapDistance = GetComponent<Collider>().bounds.size.x * 1.1f;
     }
 
