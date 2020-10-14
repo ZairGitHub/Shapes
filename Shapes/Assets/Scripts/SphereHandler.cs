@@ -2,6 +2,9 @@
 
 public class SphereHandler : MonoBehaviour
 {
+    private const float _negative = -1.0f;
+    private const float _positive = 1.0f;
+
     private Constants _constants;
     private GameController _gameController;
     private ScoreController _scoreController;
@@ -31,8 +34,8 @@ public class SphereHandler : MonoBehaviour
 
     private void RecalculateDirection()
     {
-        _horizontal = (Random.Range(_constants.NegativeDirection, _constants.PositiveDirection));
-        _vertical = (Random.Range(_constants.NegativeDirection, _constants.PositiveDirection));
+        _horizontal = (Random.Range(_negative, _positive));
+        _vertical = (Random.Range(_negative, _positive));
         
         UpdateDirectionVector();
     }
