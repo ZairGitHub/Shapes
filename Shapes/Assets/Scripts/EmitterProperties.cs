@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 
 public class EmitterProperties : MonoBehaviour
-{    
+{
+    private const float _negative = -1.0f;
+    private const float _positive = 1.0f;
+
     private Constants _constants;
 
     private float _boundaryOffset;
@@ -18,15 +21,15 @@ public class EmitterProperties : MonoBehaviour
 
         if (name.Contains("Left"))
         {
-            xDirection = _constants.PositiveDirection;
+            xDirection = _positive;
         }
         else if (name.Contains("Right"))
         {
-            xDirection = _constants.NegativeDirection;
+            xDirection = _negative;
         }
         else
         {
-            xDirection = Random.Range(_constants.NegativeDirection, _constants.PositiveDirection);
+            xDirection = Random.Range(_negative, _positive);
         }
         return xDirection;
     }
@@ -37,15 +40,15 @@ public class EmitterProperties : MonoBehaviour
 
         if (name.Contains("Top"))
         {
-            yDirection = _constants.NegativeDirection;
+            yDirection = _negative;
         }
         else if (name.Contains("Bottom"))
         {
-            yDirection = _constants.PositiveDirection;
+            yDirection = _positive;
         }
         else
         {
-            yDirection = Random.Range(_constants.NegativeDirection, _constants.PositiveDirection);
+            yDirection = Random.Range(_negative, _positive);
         }
         return yDirection;
     }
