@@ -2,6 +2,9 @@
 
 public class CubeHandler : MonoBehaviour
 {
+    private const float _negative = -1.0f;
+    private const float _positive = 1.0f;
+
     private Constants _constants;
     private GameController _gameController;
     private ScoreController _scoreController;
@@ -32,14 +35,14 @@ public class CubeHandler : MonoBehaviour
 
     public void SetDirection(float x, float y)
     {
-        _horizontal = (x > 0.0f) ? Random.Range(0.0f, _constants.PositiveDirection) : Random.Range(_constants.NegativeDirection, 0.0f);
-        _vertical = (y > 0.0f) ? Random.Range(0.0f, _constants.PositiveDirection) : Random.Range(_constants.NegativeDirection, 0.0f);
+        _horizontal = (x > 0.0f) ? Random.Range(0.0f, _positive) : Random.Range(_negative, 0.0f);
+        _vertical = (y > 0.0f) ? Random.Range(0.0f, _positive) : Random.Range(_negative, 0.0f);
     }
 
     private void RecalculateDirection()
     {
-        _horizontal = (Random.Range(_constants.NegativeDirection, _constants.PositiveDirection));
-        _vertical = (Random.Range(_constants.NegativeDirection, _constants.PositiveDirection));
+        _horizontal = (Random.Range(_negative, _positive));
+        _vertical = (Random.Range(_negative, _positive));
     }
 
     private void FixedUpdate()
