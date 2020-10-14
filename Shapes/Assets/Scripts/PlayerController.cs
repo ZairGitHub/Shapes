@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
         float spawnHeight = _constants.BoundaryHeight / 2.0f;
 
         // Different spawn positions for different players
+        // ALWAYS USE BRANCHES
         _topLeftSpawn = new Vector3(-spawnWidth, spawnHeight, 0.0f);
         _topRightSpawn = new Vector3(spawnWidth, spawnHeight, 0.0f);
         _bottomLeftSpawn = new Vector3(-spawnWidth, -spawnHeight, 0.0f);
