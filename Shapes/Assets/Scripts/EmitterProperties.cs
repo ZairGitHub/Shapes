@@ -53,10 +53,7 @@ public class EmitterProperties : MonoBehaviour
         return yDirection;
     }
 
-    public Vector3 GetPosition()
-    {
-        return new Vector3(SetXPosition(), SetYPosition(), 0.0f);
-    }
+    public Vector3 GetPosition() => new Vector3(SetXPosition(), SetYPosition(), 0.0f);
 
     private float SetXPosition()
     {
