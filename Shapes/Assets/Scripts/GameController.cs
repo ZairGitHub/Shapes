@@ -19,10 +19,7 @@ public class GameController : MonoBehaviour
         StartCoroutine(_scoreController.GiveSurvivalBonus());
     }
 
-    public void Reset()
-    {
-        IsRunning = false;
-    }
+    public void Reset() => IsRunning = false;
 
     private void Update()
     {
@@ -73,8 +70,5 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+    private void RestartGame() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 }
