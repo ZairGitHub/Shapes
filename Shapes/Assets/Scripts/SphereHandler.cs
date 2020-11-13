@@ -37,9 +37,15 @@ public class SphereHandler : MonoBehaviour
         UpdateDirectionVector();
     }
 
-    private void UpdateDirectionVector() => _direction = new Vector3(_horizontal, _vertical, 0.0f).normalized;
-   
-    private void FixedUpdate() => _rb.velocity = _gameController.IsRunning ? _direction * _speed : _rb.velocity = Vector3.zero;
+    private void UpdateDirectionVector()
+    {
+        _direction = new Vector3(_horizontal, _vertical, 0.0f).normalized;
+    }
+
+    private void FixedUpdate()
+    {
+        _rb.velocity = _gameController.IsRunning ? _direction * _speed : _rb.velocity = Vector3.zero;
+    }
     
     private void OnCollisionEnter(Collision collision)
     {
