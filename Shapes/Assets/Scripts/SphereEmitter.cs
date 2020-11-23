@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class SphereEmitter : MonoBehaviour
 {
+    private const float _emitterDelay = 3.0f;
+
     private GameObject _sphere;
     private GameController _gameController;
     
@@ -18,7 +20,7 @@ public class SphereEmitter : MonoBehaviour
     {
         while (_gameController.IsRunning)
         {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(_emitterDelay);
 
             if (_gameController.IsRunning)
             {

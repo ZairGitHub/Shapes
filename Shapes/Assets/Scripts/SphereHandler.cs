@@ -31,8 +31,8 @@ public class SphereHandler : MonoBehaviour
 
     private void RecalculateDirection()
     {
-        _horizontal = (Random.Range(-1.0f, 1.0f));
-        _vertical = (Random.Range(-1.0f, 1.0f));
+        _horizontal = Random.Range(-1.0f, 1.0f);
+        _vertical = Random.Range(-1.0f, 1.0f);
         
         UpdateDirectionVector();
     }
@@ -44,7 +44,7 @@ public class SphereHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.velocity = _gameController.IsRunning ? _direction * _speed : _rb.velocity = Vector3.zero;
+        _rb.velocity = _gameController.IsRunning ? _direction * _speed : Vector3.zero;
     }
     
     private void OnCollisionEnter(Collision collision)

@@ -9,6 +9,7 @@ public class Constants : MonoBehaviour
     {
         BoundaryWidth = (GameObject.FindGameObjectWithTag("BoundaryWest").transform.position.x
             - GameObject.FindGameObjectWithTag("BoundaryEast").transform.position.x) / 2.0f;
+
         BoundaryHeight = (GameObject.FindGameObjectWithTag("BoundaryNorth").transform.position.y
             - GameObject.FindGameObjectWithTag("BoundarySouth").transform.position.y) / 2.0f;
     }

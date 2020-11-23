@@ -12,7 +12,7 @@ public class CubeEmitter : MonoBehaviour
     private void Start()
     {
         _cube = GameObject.FindGameObjectWithTag("Cube");
-        _cubeEmitters = GameObject.FindGameObjectsWithTag("CubeEmitter").OrderBy(gameObject => gameObject.name).ToArray();
+        _cubeEmitters = GameObject.FindGameObjectsWithTag("CubeEmitter").OrderBy(c => c.name).ToArray();
         _gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
 
         foreach (GameObject cubeEmitter in _cubeEmitters)

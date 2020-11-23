@@ -32,14 +32,14 @@ public class CubeHandler : MonoBehaviour
 
     public void SetDirection(float x, float y)
     {
-        _horizontal = (x > 0.0f) ? Random.Range(0.0f, 1.0f) : Random.Range(-1.0f, 0.0f);
-        _vertical = (y > 0.0f) ? Random.Range(0.0f, 1.0f) : Random.Range(-1.0f, 0.0f);
+        _horizontal = x > 0.0f ? Random.Range(0.0f, 1.0f) : Random.Range(-1.0f, 0.0f);
+        _vertical = y > 0.0f ? Random.Range(0.0f, 1.0f) : Random.Range(-1.0f, 0.0f);
     }
 
     private void RecalculateDirection()
     {
-        _horizontal = (Random.Range(-1.0f, 1.0f));
-        _vertical = (Random.Range(-1.0f, 1.0f));
+        _horizontal = Random.Range(-1.0f, 1.0f);
+        _vertical = Random.Range(-1.0f, 1.0f);
     }
 
     private void FixedUpdate()
