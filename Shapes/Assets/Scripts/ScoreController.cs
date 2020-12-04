@@ -5,7 +5,6 @@ using UnityEngine;
 public class ScoreController : MonoBehaviour
 {
     private GameController _gameController;
-
     private TMP_Text _textScore;
     private TMP_Text _textSurvivalBonus;
     private TMP_Text _textCollisionBonus;
@@ -16,10 +15,17 @@ public class ScoreController : MonoBehaviour
     
     private void Start()
     {
-        _gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-        _textScore = GameObject.FindGameObjectWithTag("TextScore").GetComponent<TMP_Text>();
-        _textSurvivalBonus = GameObject.FindGameObjectWithTag("TextSurvivalBonus").GetComponent<TMP_Text>();
-        _textCollisionBonus = GameObject.FindGameObjectWithTag("TextCollisionBonus").GetComponent<TMP_Text>();
+        _gameController = GameObject.FindGameObjectWithTag("GameController")
+            .GetComponent<GameController>();
+
+        _textScore = GameObject.FindGameObjectWithTag("TextScore")
+            .GetComponent<TMP_Text>();
+
+        _textSurvivalBonus = GameObject.FindGameObjectWithTag("TextSurvivalBonus")
+            .GetComponent<TMP_Text>();
+
+        _textCollisionBonus = GameObject.FindGameObjectWithTag("TextCollisionBonus")
+            .GetComponent<TMP_Text>();
 
         _textSurvivalBonus.color = Color.red;
         _textCollisionBonus.color = Color.magenta;
@@ -31,7 +37,8 @@ public class ScoreController : MonoBehaviour
         {
             yield return new WaitForSeconds(3);
 
-            GiveSurvivalBonus(GameObject.FindGameObjectsWithTag("Cube").Length + GameObject.FindGameObjectsWithTag("Sphere").Length);
+            GiveSurvivalBonus(GameObject.FindGameObjectsWithTag("Cube").Length
+                + GameObject.FindGameObjectsWithTag("Sphere").Length);
         }
     }
 

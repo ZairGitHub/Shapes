@@ -7,7 +7,8 @@ public class TextController : MonoBehaviour
 
     private void Start()
     {
-        _textDebugTime = GameObject.FindGameObjectWithTag("TextDebugTime").GetComponent<TMP_Text>();
+        _textDebugTime = GameObject.FindGameObjectWithTag("TextDebugTime")
+            .GetComponent<TMP_Text>();
     }
 
     private void Update()

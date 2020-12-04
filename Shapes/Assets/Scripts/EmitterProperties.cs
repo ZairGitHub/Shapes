@@ -2,6 +2,7 @@
 
 public class EmitterProperties : MonoBehaviour
 {
+    private const float _collisionScale = 2.0f;
     private const float _negative = -1.0f;
     private const float _positive = 1.0f;
 
@@ -11,19 +12,23 @@ public class EmitterProperties : MonoBehaviour
 
     private void Start()
     {
-        _constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
-        _boundaryOffset = GetComponent<Renderer>().bounds.size.x * 2.0f;
+        _constants = GameObject.FindGameObjectWithTag("Constants")
+            .GetComponent<Constants>();
+
+        _boundaryOffset
+            = GetComponent<Renderer>().bounds.size.x * _collisionScale;
+
+        name = name.ToLower();
     }
 
     public float GetXDirection()
     {
         float xDirection;
-
-        if (name.Contains("Left"))
+        if (name.Contains("left"))
         {
             xDirection = _positive;
         }
-        else if (name.Contains("Right"))
+        else if (name.Contains("right"))
         {
             xDirection = _negative;
         }
@@ -37,12 +42,11 @@ public class EmitterProperties : MonoBehaviour
     public float GetYDirection()
     {
         float yDirection;
-
-        if (name.Contains("Top"))
+        if (name.Contains("top"))
         {
             yDirection = _negative;
         }
-        else if (name.Contains("Bottom"))
+        else if (name.Contains("bottom"))
         {
             yDirection = _positive;
         }
@@ -53,17 +57,19 @@ public class EmitterProperties : MonoBehaviour
         return yDirection;
     }
 
-    public Vector3 GetPosition() => new Vector3(SetXPosition(), SetYPosition(), 0.0f);
+    public Vector3 GetPosition()
+    {
+        return new Vector3(SetXPosition(), SetYPosition(), 0.0f);
+    }
 
     private float SetXPosition()
     {
         float xPosition;
-
-        if (name.Contains("Left"))
+        if (name.Contains("left"))
         {
             xPosition = -_constants.BoundaryWidth + _boundaryOffset;
         }
-        else if (name.Contains("Right"))
+        else if (name.Contains("right"))
         {
             xPosition = _constants.BoundaryWidth - _boundaryOffset;
         }
@@ -77,12 +83,11 @@ public class EmitterProperties : MonoBehaviour
     private float SetYPosition()
     {
         float yPosition;
-
-        if (name.Contains("Top"))
+        if (name.Contains("top"))
         {
             yPosition = _constants.BoundaryHeight - _boundaryOffset;
         }
-        else if (name.Contains("Bottom"))
+        else if (name.Contains("bottom"))
         {
             yPosition = -_constants.BoundaryHeight + _boundaryOffset;
         }

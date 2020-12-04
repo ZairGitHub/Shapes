@@ -5,8 +5,8 @@ public class SphereHandler : MonoBehaviour
     private Constants _constants;
     private GameController _gameController;
     private ScoreController _scoreController;
-
     private Rigidbody _rb;
+
     private Vector3 _direction;
 
     private float _speed;
@@ -15,9 +15,14 @@ public class SphereHandler : MonoBehaviour
 
     private void Start()
     {
-        _constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
-        _gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-        _scoreController = GameObject.FindGameObjectWithTag("ScoreController").GetComponent<ScoreController>();
+        _constants = GameObject.FindGameObjectWithTag("Constants")
+            .GetComponent<Constants>();
+
+        _gameController = GameObject.FindGameObjectWithTag("GameController")
+            .GetComponent<GameController>();
+
+        _scoreController = GameObject.FindGameObjectWithTag("ScoreController")
+            .GetComponent<ScoreController>();
 
         _rb = GetComponent<Rigidbody>();
         _rb.constraints = RigidbodyConstraints.FreezePositionZ;
@@ -44,19 +49,22 @@ public class SphereHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.velocity = _gameController.IsRunning ? _direction * _speed : Vector3.zero;
+        _rb.velocity =
+            _gameController.IsRunning ? _direction * _speed : Vector3.zero;
     }
     
     private void OnCollisionEnter(Collision collision)
     {
         Vector3 direction = new Vector3(_horizontal, _vertical, 0.0f);
         
-        if (collision.gameObject.CompareTag("BoundaryEast") || collision.gameObject.CompareTag("BoundaryWest"))
+        if (collision.gameObject.CompareTag("BoundaryEast")
+            || collision.gameObject.CompareTag("BoundaryWest"))
         {
             _horizontal = -_horizontal;
         }
 
-        else if (collision.gameObject.CompareTag("BoundaryNorth") || collision.gameObject.CompareTag("BoundarySouth"))
+        else if (collision.gameObject.CompareTag("BoundaryNorth")
+            || collision.gameObject.CompareTag("BoundarySouth"))
         {
             _vertical = -_vertical;
         }

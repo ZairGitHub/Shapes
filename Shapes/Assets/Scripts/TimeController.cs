@@ -2,10 +2,10 @@
 
 public class TimeController : MonoBehaviour
 {
+    private const float _timeFactor = 0.05f;
+    
     public float MinTime { get; private set; } = 0.05f;
     public float MaxTime { get; private set; } = 10.0f;
-
-    private readonly float _timeFactor = 0.05f;
 
     private float _savedTime;
 
@@ -24,13 +24,17 @@ public class TimeController : MonoBehaviour
     
     public void SlowDownTime()
     {
-        Time.timeScale = Time.timeScale - _timeFactor > MinTime ? Time.timeScale -= _timeFactor : MinTime;
+        Time.timeScale = Time.timeScale - _timeFactor > MinTime ?
+            Time.timeScale -= _timeFactor : MinTime;
+
         _savedTime = Time.timeScale;
     }
 
     public void SpeedUpTime()
     {
-        Time.timeScale = Time.timeScale + _timeFactor < MaxTime ? Time.timeScale += _timeFactor : MaxTime;
+        Time.timeScale = Time.timeScale + _timeFactor < MaxTime ?
+            Time.timeScale += _timeFactor : MaxTime;
+
         _savedTime = Time.timeScale;
     }
 

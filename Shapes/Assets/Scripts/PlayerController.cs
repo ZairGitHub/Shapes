@@ -17,14 +17,16 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        _constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
-        _gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        _constants = GameObject.FindGameObjectWithTag("Constants")
+            .GetComponent<Constants>();
+
+        _gameController = GameObject.FindGameObjectWithTag("GameController")
+            .GetComponent<GameController>();
 
         _rb = GetComponent<Rigidbody>();
         _rb.constraints = RigidbodyConstraints.FreezePositionZ;
         _rb.freezeRotation = true;        
         _rb.useGravity = false;
-        _rb.velocity = Vector3.zero;
 
         // Move spawn logic to a new script
         float spawnWidth = _constants.BoundaryWidth / 2.0f;
@@ -59,6 +61,7 @@ public class PlayerController : MonoBehaviour
                 _rb.MovePosition(_bottomRightSpawn);
                 break;
         }
+        _rb.velocity = Vector3.zero;
     }
 
     private void FixedUpdate()
@@ -72,7 +75,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Cube") || collision.gameObject.CompareTag("Sphere"))
+        if (collision.gameObject.CompareTag("Cube")
+            || collision.gameObject.CompareTag("Sphere"))
         {
             if (_gameController.IsInDebugMode)
             {
@@ -88,7 +92,6 @@ public class PlayerController : MonoBehaviour
 
     private void Debug()
     {
-        _rb.velocity = Vector3.zero;
         SetSpawnPosition();
     }
 }

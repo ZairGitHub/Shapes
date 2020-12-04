@@ -2,24 +2,30 @@
 
 public class CubeHandler : MonoBehaviour
 {
+    private const float _collisionScale = 1.1f;
+
     private Constants _constants;
     private GameController _gameController;
     private ScoreController _scoreController;
-
     private Rigidbody _rb;
+
     private Vector3 _direction;
 
     private float _speed;
     private float _boundaryWrapDistance;
-
     private float _horizontal;
     private float _vertical;
     
     private void Start()
     {
-        _constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
-        _gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-        _scoreController = GameObject.FindGameObjectWithTag("ScoreController").GetComponent<ScoreController>();
+        _constants = GameObject.FindGameObjectWithTag("Constants")
+            .GetComponent<Constants>();
+
+        _gameController = GameObject.FindGameObjectWithTag("GameController")
+            .GetComponent<GameController>();
+
+        _scoreController = GameObject.FindGameObjectWithTag("ScoreController")
+            .GetComponent<ScoreController>();
 
         _rb = GetComponent<Rigidbody>();
         _rb.constraints = RigidbodyConstraints.FreezePositionZ;
@@ -27,7 +33,8 @@ public class CubeHandler : MonoBehaviour
         _rb.useGravity = false;
 
         _speed = _constants.BoundaryWidth / 4.0f;
-        _boundaryWrapDistance = GetComponent<Collider>().bounds.size.x * 1.1f;
+        _boundaryWrapDistance =
+            GetComponent<Collider>().bounds.size.x * _collisionScale;
     }
 
     public void SetDirection(float x, float y)
@@ -59,22 +66,26 @@ public class CubeHandler : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("BoundaryNorth"))
         {
-            _rb.MovePosition(new Vector3(_rb.position.x, -_constants.BoundaryHeight + _boundaryWrapDistance, _rb.position.z));
+            _rb.MovePosition(new Vector3(_rb.position.x,
+                -_constants.BoundaryHeight + _boundaryWrapDistance, _rb.position.z));
         }
 
         else if (collision.gameObject.CompareTag("BoundaryEast"))
         {
-            _rb.MovePosition(new Vector3(_constants.BoundaryWidth - _boundaryWrapDistance, _rb.position.y, _rb.position.z));
+            _rb.MovePosition(new Vector3(_constants.BoundaryWidth - _boundaryWrapDistance,
+                _rb.position.y, _rb.position.z));
         }
 
         else if (collision.gameObject.CompareTag("BoundarySouth"))
         {
-            _rb.MovePosition(new Vector3(_rb.position.x, _constants.BoundaryHeight - _boundaryWrapDistance, _rb.position.z));
+            _rb.MovePosition(new Vector3(_rb.position.x,
+                _constants.BoundaryHeight - _boundaryWrapDistance, _rb.position.z));
         }
 
         else if (collision.gameObject.CompareTag("BoundaryWest"))
         {
-            _rb.MovePosition(new Vector3(-_constants.BoundaryWidth + _boundaryWrapDistance, _rb.position.y, _rb.position.z));
+            _rb.MovePosition(new Vector3(-_constants.BoundaryWidth + _boundaryWrapDistance,
+                _rb.position.y, _rb.position.z));
         }
 
         if (collision.gameObject.CompareTag("Cube"))

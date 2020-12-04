@@ -4,15 +4,13 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     public bool IsInDebugMode { get; private set; }
-    public bool IsRunning { get; private set; }
+    public bool IsRunning { get; private set; } = true;
 
     private TimeController _timeController;
     private ScoreController _scoreController;
 
     private void Start()
     {
-        IsRunning = true;
-
         _timeController = GameObject.FindGameObjectWithTag("TimeController").GetComponent<TimeController>();
         _scoreController = GameObject.FindGameObjectWithTag("ScoreController").GetComponent<ScoreController>();
 
@@ -70,5 +68,8 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private void RestartGame() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    private void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
