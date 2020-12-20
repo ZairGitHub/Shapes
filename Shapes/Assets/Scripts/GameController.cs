@@ -9,14 +9,17 @@ public class GameController : MonoBehaviour
     private TimeController _timeController;
     private ScoreController _scoreController;
 
-    private void Start()
+    private void Awake()
     {
         _timeController = GameObject.FindGameObjectWithTag("TimeController")
             .GetComponent<TimeController>();
 
         _scoreController = GameObject.FindGameObjectWithTag("ScoreController")
             .GetComponent<ScoreController>();
+    }
 
+    private void Start()
+    {
         StartCoroutine(_scoreController.GiveSurvivalBonus());
     }
 
