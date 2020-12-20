@@ -15,8 +15,8 @@ public class CubeHandler : MonoBehaviour
     private float _boundaryWrapDistance;
     private float _horizontal;
     private float _vertical;
-    
-    private void Start()
+
+    private void Awake()
     {
         _constants = GameObject.FindGameObjectWithTag("Constants")
             .GetComponent<Constants>();
@@ -28,13 +28,18 @@ public class CubeHandler : MonoBehaviour
             .GetComponent<ScoreController>();
 
         _rb = GetComponent<Rigidbody>();
+
+        _boundaryWrapDistance =
+            GetComponent<Collider>().bounds.size.x * _collisionScale;
+    }
+
+    private void Start()
+    {
         _rb.constraints = RigidbodyConstraints.FreezePositionZ;
         _rb.freezeRotation = true;
         _rb.useGravity = false;
 
         _speed = _constants.BoundaryWidth / 4.0f;
-        _boundaryWrapDistance =
-            GetComponent<Collider>().bounds.size.x * _collisionScale;
     }
 
     public void SetDirection(float x, float y)
