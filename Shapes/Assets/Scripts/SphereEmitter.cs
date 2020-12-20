@@ -26,10 +26,15 @@ public class SphereEmitter : MonoBehaviour
         {
             yield return new WaitForSeconds(_emitterDelay);
 
-            if (_gameController.IsRunning)
-            {
-                Instantiate(_sphere, Vector3.up, Quaternion.identity);
-            }
+            EmitSphere();
+        }
+    }
+
+    private void EmitSphere()
+    {
+        if (_gameController.IsRunning)
+        {
+            Instantiate(_sphere, Vector3.up, Quaternion.identity);
         }
     }
 }
