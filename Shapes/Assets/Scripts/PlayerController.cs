@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     private float _speed;
 
-    private void Start()
+    private void Awake()
     {
         _constants = GameObject.FindGameObjectWithTag("Constants")
             .GetComponent<Constants>();
@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
             .GetComponent<GameController>();
 
         _rb = GetComponent<Rigidbody>();
+    }
+    private void Start()
+    {
         _rb.constraints = RigidbodyConstraints.FreezePositionZ;
         _rb.freezeRotation = true;        
         _rb.useGravity = false;
