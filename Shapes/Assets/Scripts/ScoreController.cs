@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ScoreController : MonoBehaviour
 {
+    private const float survivalBonusDelay = 3.0f;
+
     private GameController _gameController;
     private TMP_Text _textScore;
     private TMP_Text _textSurvivalBonus;
@@ -38,7 +40,7 @@ public class ScoreController : MonoBehaviour
     {
         while (_gameController.IsRunning)
         {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(survivalBonusDelay);
 
             GiveSurvivalBonus(GameObject.FindGameObjectsWithTag("Cube").Length
                 + GameObject.FindGameObjectsWithTag("Sphere").Length);
@@ -50,6 +52,7 @@ public class ScoreController : MonoBehaviour
         if (_gameController.IsRunning)
         {
             UpdateScoreText(bonus);
+
             _survivalBonus += bonus;
             _textSurvivalBonus.text = "+" + _survivalBonus;
         }
@@ -57,11 +60,8 @@ public class ScoreController : MonoBehaviour
 
     private void UpdateScoreText(int bonus)
     {
-        if (_gameController.IsRunning)
-        {
-            _score += bonus;
-            _textScore.text = "Score: " + _score;
-        }
+        _score += bonus;
+        _textScore.text = "Score: " + _score;   
     }
 
     public void GiveCollisionBonus()
@@ -69,6 +69,7 @@ public class ScoreController : MonoBehaviour
         if (_gameController.IsRunning)
         {
             UpdateScoreText(1);
+
             _collisionBonus++;
             _textCollisionBonus.text = "++" + _collisionBonus;
         }
