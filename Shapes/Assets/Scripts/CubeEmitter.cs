@@ -24,10 +24,10 @@ public class CubeEmitter : MonoBehaviour
 
     private void Start()
     {
-        foreach (GameObject emitter in _cubeEmitters)
+        foreach (GameObject cubeEmitter in _cubeEmitters)
         {
-            emitter.transform.position =
-                emitter.GetComponent<EmitterProperties>().GetPosition();
+            cubeEmitter.transform.position =
+                cubeEmitter.GetComponent<EmitterProperties>().GetPosition();
         }
         StartCoroutine(EmitCubes());
     }
