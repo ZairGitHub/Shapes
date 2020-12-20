@@ -69,28 +69,27 @@ public class CubeHandler : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("BoundaryNorth"))
+        if (collision.gameObject.tag.Contains("Boundary"))
         {
-            _rb.MovePosition(new Vector3(_rb.position.x,
-                -_constants.BoundaryHeight + _boundaryWrapDistance, _rb.position.z));
-        }
-
-        else if (collision.gameObject.CompareTag("BoundaryEast"))
-        {
-            _rb.MovePosition(new Vector3(_constants.BoundaryWidth - _boundaryWrapDistance,
-                _rb.position.y, _rb.position.z));
-        }
-
-        else if (collision.gameObject.CompareTag("BoundarySouth"))
-        {
-            _rb.MovePosition(new Vector3(_rb.position.x,
-                _constants.BoundaryHeight - _boundaryWrapDistance, _rb.position.z));
-        }
-
-        else if (collision.gameObject.CompareTag("BoundaryWest"))
-        {
-            _rb.MovePosition(new Vector3(-_constants.BoundaryWidth + _boundaryWrapDistance,
-                _rb.position.y, _rb.position.z));
+            switch (collision.gameObject.tag)
+            {
+                case "BoundaryNorth":
+                    _rb.MovePosition(new Vector3(_rb.position.x,
+                    -_constants.BoundaryHeight + _boundaryWrapDistance, _rb.position.z));
+                    break;
+                case "BoundaryEast":
+                    _rb.MovePosition(new Vector3(_constants.BoundaryWidth - _boundaryWrapDistance,
+                    _rb.position.y, _rb.position.z));
+                    break;
+                case "BoundarySouth":
+                    _rb.MovePosition(new Vector3(_rb.position.x,
+                    _constants.BoundaryHeight - _boundaryWrapDistance, _rb.position.z));
+                    break;
+                case "BoundaryWest":
+                    _rb.MovePosition(new Vector3(-_constants.BoundaryWidth + _boundaryWrapDistance,
+                    _rb.position.y, _rb.position.z));
+                    break;
+            }
         }
 
         if (collision.gameObject.CompareTag("Cube"))
@@ -98,10 +97,7 @@ public class CubeHandler : MonoBehaviour
             _horizontal = -_horizontal;
             _vertical = -_vertical;
 
-            if (collision.gameObject.GetInstanceID() > GetInstanceID())
-            {
-                _scoreController.GiveCollisionBonus();
-            }
+            GiveCollisionBonus(collision.gameObject);
         }
     }
 
@@ -110,11 +106,15 @@ public class CubeHandler : MonoBehaviour
         if (collision.gameObject.CompareTag("Sphere"))
         {
             RecalculateDirection();
-            
-            if (collision.gameObject.GetInstanceID() > GetInstanceID())
-            {
-                _scoreController.GiveCollisionBonus();
-            }
+            GiveCollisionBonus(collision.gameObject);
+        }
+    }
+
+    private void GiveCollisionBonus(GameObject other)
+    {
+        if (other.GetInstanceID() > GetInstanceID())
+        {
+            _scoreController.GiveCollisionBonus();
         }
     }
 }
