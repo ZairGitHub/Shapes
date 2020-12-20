@@ -14,7 +14,6 @@ public class CubeEmitter : MonoBehaviour
     private void Awake()
     {
         _cube = GameObject.FindGameObjectWithTag("Cube");
-
         _cubeEmitters = GameObject.FindGameObjectsWithTag("CubeEmitter")
             .OrderBy(g => g.name).ToArray();
 

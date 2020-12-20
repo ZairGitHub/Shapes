@@ -7,13 +7,16 @@ public class SphereEmitter : MonoBehaviour
 
     private GameObject _sphere;
     private GameController _gameController;
-    
-    private void Start()
+
+    private void Awake()
     {
         _sphere = GameObject.FindGameObjectWithTag("Sphere");
         _gameController = GameObject.FindGameObjectWithTag("GameController")
             .GetComponent<GameController>();
+    }
 
+    private void Start()
+    {
         StartCoroutine(EmitSpheres());
     }
 

@@ -28,7 +28,6 @@ public class CubeHandler : MonoBehaviour
             .GetComponent<ScoreController>();
 
         _rb = GetComponent<Rigidbody>();
-
         _boundaryWrapDistance =
             GetComponent<Collider>().bounds.size.x * _collisionScale;
     }
