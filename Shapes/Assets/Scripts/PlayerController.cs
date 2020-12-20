@@ -41,8 +41,8 @@ public class PlayerController : MonoBehaviour
         _bottomLeftSpawn = new Vector3(-spawnWidth, -spawnHeight, 0.0f);
         _bottomRightSpawn = new Vector3(spawnWidth, -spawnHeight, 0.0f);
 
-        SetSpawnPosition();
         _speed = _constants.BoundaryWidth;
+        SetSpawnPosition();
     }
 
     private void SetSpawnPosition()
@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
         {
             if (_gameController.IsInDebugMode)
             {
-                Debug();
+                DebugModeCommand();
             }
             else
             {
@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Debug()
+    private void DebugModeCommand()
     {
         SetSpawnPosition();
     }
