@@ -6,10 +6,10 @@ public class CubeEmitter : MonoBehaviour
 {
     private const float _emitterDelay = 1.0f;
 
+    private EmitterProperties _emitterProperties;
     private GameObject _cube;
     private GameObject[] _cubeEmitters;
     private GameController _gameController;
-    private EmitterProperties _emitterProperties;
 
     private void Awake()
     {
