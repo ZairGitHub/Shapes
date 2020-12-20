@@ -19,10 +19,7 @@ public class EmitterProperties : MonoBehaviour
             = GetComponent<Renderer>().bounds.size.x * _collisionScale;
     }
 
-    private void Start()
-    {
-        name = name.ToLower();
-    }
+    private void Start() => name = name.ToLower();
 
     public float GetXDirection()
     {
