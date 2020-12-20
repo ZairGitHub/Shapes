@@ -10,14 +10,17 @@ public class EmitterProperties : MonoBehaviour
 
     private float _boundaryOffset;
 
-    private void Start()
+    private void Awake()
     {
         _constants = GameObject.FindGameObjectWithTag("Constants")
             .GetComponent<Constants>();
 
         _boundaryOffset
             = GetComponent<Renderer>().bounds.size.x * _collisionScale;
+    }
 
+    private void Start()
+    {
         name = name.ToLower();
     }
 
