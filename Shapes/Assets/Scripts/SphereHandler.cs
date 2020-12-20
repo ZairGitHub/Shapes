@@ -43,10 +43,10 @@ public class SphereHandler : MonoBehaviour
         _horizontal = Random.Range(-1.0f, 1.0f);
         _vertical = Random.Range(-1.0f, 1.0f);
         
-        UpdateDirectionVector();
+        RedirectDirectionVector();
     }
 
-    private void UpdateDirectionVector()
+    private void RedirectDirectionVector()
     {
         _direction = new Vector3(_horizontal, _vertical, 0.0f).normalized;
     }
@@ -59,18 +59,19 @@ public class SphereHandler : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-        Vector3 direction = new Vector3(_horizontal, _vertical, 0.0f);
-        
-        if (collision.gameObject.CompareTag("BoundaryEast")
-            || collision.gameObject.CompareTag("BoundaryWest"))
+        if (collision.gameObject.tag.Contains("Boundary"))
         {
-            _horizontal = -_horizontal;
-        }
-
-        else if (collision.gameObject.CompareTag("BoundaryNorth")
-            || collision.gameObject.CompareTag("BoundarySouth"))
-        {
-            _vertical = -_vertical;
+            switch (collision.gameObject.tag)
+            {
+                case "BoundaryEast":
+                case "BoundaryWest":
+                    _horizontal = -_horizontal;
+                    break;
+                case "BoundaryNorth":
+                case "BoundarySouth":
+                    _vertical = -_vertical;
+                    break;
+            }
         }
 
         if (collision.gameObject.CompareTag("Sphere"))
@@ -78,15 +79,13 @@ public class SphereHandler : MonoBehaviour
             _horizontal = -_horizontal;
             _vertical = -_vertical;
 
-            if (collision.gameObject.GetInstanceID() > GetInstanceID())
-            {
-                _scoreController.GiveCollisionBonus();
-            }
+            GiveCollisionBonus(collision.gameObject);
         }
-
+        
+        Vector3 direction = new Vector3(_horizontal, _vertical, 0.0f);
         if (direction != _direction)
         {
-            UpdateDirectionVector();
+            RedirectDirectionVector();
         }
     }
 
@@ -95,11 +94,15 @@ public class SphereHandler : MonoBehaviour
         if (collision.gameObject.CompareTag("Cube"))
         {
             RecalculateDirection();
-            
-            if (collision.gameObject.GetInstanceID() > GetInstanceID())
-            {
-                _scoreController.GiveCollisionBonus();
-            }
+            GiveCollisionBonus(collision.gameObject);
+        }
+    }
+
+    private void GiveCollisionBonus(GameObject other)
+    {
+        if (other.GetInstanceID() > GetInstanceID())
+        {
+            _scoreController.GiveCollisionBonus();
         }
     }
 }
