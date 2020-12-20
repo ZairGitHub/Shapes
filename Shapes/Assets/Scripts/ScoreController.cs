@@ -51,14 +51,14 @@ public class ScoreController : MonoBehaviour
     {
         if (_gameController.IsRunning)
         {
-            UpdateScoreText(bonus);
+            AddBonusToScoreText(bonus);
 
             _survivalBonus += bonus;
             _textSurvivalBonus.text = "+" + _survivalBonus;
         }
     }
 
-    private void UpdateScoreText(int bonus)
+    private void AddBonusToScoreText(int bonus)
     {
         _score += bonus;
         _textScore.text = "Score: " + _score;   
@@ -68,7 +68,7 @@ public class ScoreController : MonoBehaviour
     {
         if (_gameController.IsRunning)
         {
-            UpdateScoreText(1);
+            AddBonusToScoreText(1);
 
             _collisionBonus++;
             _textCollisionBonus.text = "++" + _collisionBonus;
