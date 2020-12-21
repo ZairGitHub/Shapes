@@ -1,26 +1,30 @@
-﻿using NUnit.Framework;
+﻿using System.Collections;
+using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.TestTools;
 
 namespace Tests
 {
     public class EmitterPropertiesTests
     {
-        [Test]
-        public void GetXDirection_NameContainsleft_ReturnsPositiveOne()
+        [UnityTest]
+        public IEnumerable GetXDirection_NameToLowerContainsLeft_ReturnsPositiveOne()
         {
             var sut = new GameObject().AddComponent<EmitterProperties>();
-            sut.name += "left";
+            sut.name += "LEFT";
+            yield return null;
 
             var result = sut.GetXDirection();
 
             Assert.That(result, Is.EqualTo(1.0f));
         }
 
-        [Test]
-        public void GetXDirection_NameContainsright_ReturnsNegativeOne()
+        [UnityTest]
+        public IEnumerable GetXDirection_NameToLowerContainsRight_ReturnsNegativeOne()
         {
             var sut = new GameObject().AddComponent<EmitterProperties>();
-            sut.name += "right";
+            sut.name += "RIGHT";
+            yield return null;
 
             var result = sut.GetXDirection();
 
@@ -28,7 +32,7 @@ namespace Tests
         }
 
         [Test]
-        public void GetXDirection_NameDoesNotConatainleftOrright_ReturnsRandomBetweenNegativeAndPositiveOne()
+        public void GetXDirection_NameToLowerDoesNotConatainLeftOrRight_ReturnsRandomBetweenNegativeAndPositiveOne()
         {
             var sut = new GameObject().AddComponent<EmitterProperties>();
 
@@ -37,22 +41,24 @@ namespace Tests
             Assert.That(result, Is.InRange(-1.0f, 1.0f));
         }
 
-        [Test]
-        public void GetYDirection_NameContainstop_ReturnsNegativeOne()
+        [UnityTest]
+        public IEnumerable GetYDirection_NameToLowerContainsTop_ReturnsNegativeOne()
         {
             var sut = new GameObject().AddComponent<EmitterProperties>();
-            sut.name += "top";
+            sut.name += "TOP";
+            yield return null;
 
             var result = sut.GetYDirection();
 
             Assert.That(result, Is.EqualTo(-1.0f));
         }
 
-        [Test]
-        public void GetYDirection_NameContainsbottom_ReturnsNegativeOne()
+        [UnityTest]
+        public IEnumerable GetYDirection_NameToLowerContainsBottom_ReturnsNegativeOne()
         {
             var sut = new GameObject().AddComponent<EmitterProperties>();
-            sut.name += "bottom";
+            sut.name += "BOTTOM";
+            yield return null;
 
             var result = sut.GetYDirection();
 
@@ -60,10 +66,10 @@ namespace Tests
         }
 
         [Test]
-        public void GetYDirection_NameDoesNotConataintopOrbottom_ReturnsRandomBetweenNegativeAndPositiveOne()
+        public void GetYDirection_NameToLowerDoesNotConatainTopOrBottom_ReturnsRandomBetweenNegativeAndPositiveOne()
         {
             var sut = new GameObject().AddComponent<EmitterProperties>();
-
+            
             var result = sut.GetYDirection();
 
             Assert.That(result, Is.InRange(-1.0f, 1.0f));
