@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour
 {
@@ -36,6 +34,7 @@ public class PlayerSpawner : MonoBehaviour
         SetSpawnPosition();
     }
 
+    //Convert to private after removing Debug command from PlayerController.cs
     public void SetSpawnPosition()
     {
         // Currently randomised until multiplayer is implemented
