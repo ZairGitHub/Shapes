@@ -1,26 +1,28 @@
 ﻿using NUnit.Framework;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.TestTools;
 
 namespace Tests
 {
     public class ConstantsTests
     {
-        [Test]
-        public void Awake_SetsBoundaryWidthToCorrectValue()
+        [UnityTest]
+        public IEnumerable Awake_SetsBoundaryWidthToCorrectValue()
         {
             var sut = new GameObject().AddComponent<Constants>();
-            sut.runInEditMode = true;
+            yield return null;
 
             var result = sut.BoundaryWidth;
 
             Assert.That(result, Is.EqualTo(20.0f));
         }
 
-        [Test]
-        public void Awake_SetsBoundaryHeightToCorrectValue()
+        [UnityTest]
+        public IEnumerable Awake_SetsBoundaryHeightToCorrectValue()
         {
             var sut = new GameObject().AddComponent<Constants>();
-            sut.runInEditMode = true;
+            yield return null;
 
             var result = sut.BoundaryHeight;
 
