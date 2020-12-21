@@ -36,5 +36,37 @@ namespace Tests
 
             Assert.That(result, Is.InRange(-1.0f, 1.0f));
         }
+
+        [Test]
+        public void GetYDirection_NameContainstop_ReturnsNegativeOne()
+        {
+            var sut = new GameObject().AddComponent<EmitterProperties>();
+            sut.name += "top";
+
+            var result = sut.GetYDirection();
+
+            Assert.That(result, Is.EqualTo(-1.0f));
+        }
+
+        [Test]
+        public void GetYDirection_NameContainsbottom_ReturnsNegativeOne()
+        {
+            var sut = new GameObject().AddComponent<EmitterProperties>();
+            sut.name += "bottom";
+
+            var result = sut.GetYDirection();
+
+            Assert.That(result, Is.EqualTo(1.0f));
+        }
+
+        [Test]
+        public void GetYDirection_NameDoesNotConataintopOrbottom_ReturnsRandomBetweenNegativeAndPositiveOne()
+        {
+            var sut = new GameObject().AddComponent<EmitterProperties>();
+
+            var result = sut.GetYDirection();
+
+            Assert.That(result, Is.InRange(-1.0f, 1.0f));
+        }
     }
 }
