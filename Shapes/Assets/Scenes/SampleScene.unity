@@ -673,9 +673,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa68c902fd34a54b802c9ab38f63d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0
-  Horizontal: 0
-  Vertical: 0
 --- !u!4 &170452778
 Transform:
   m_ObjectHideFlags: 0
@@ -1816,9 +1813,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd3ba0cc320ad34fa128580ce27ebc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0
-  Horizontal: 0
-  Vertical: 0
 --- !u!1 &1132538362
 GameObject:
   m_ObjectHideFlags: 0
@@ -1848,7 +1842,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 990b7ddba0aa26546a77b6bd0a30705b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsInDebugMode: 0
 --- !u!4 &1132538364
 Transform:
   m_ObjectHideFlags: 0
@@ -2512,6 +2505,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1336241151}
   - component: {fileID: 1336241147}
+  - component: {fileID: 1336241152}
   - component: {fileID: 1336241150}
   - component: {fileID: 1336241149}
   - component: {fileID: 1336241148}
@@ -2551,7 +2545,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed336aee9695ca4b96944ae89f2c069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0
 --- !u!65 &1336241148
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2626,6 +2619,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1336241152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336241145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c362bcece68a4004dbfde7f42a41b527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1391021710
 GameObject:
   m_ObjectHideFlags: 0

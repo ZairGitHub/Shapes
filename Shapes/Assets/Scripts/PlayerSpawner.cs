@@ -1,37 +1,30 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerSpawner : MonoBehaviour
 {
+    private const int maxPlayers = 4;
+
     private Constants _constants;
-    private GameController _gameController;
 
     private Rigidbody _rb;
-    private Vector3 _movement;
 
     private Vector3 _topLeftSpawn;
     private Vector3 _topRightSpawn;
     private Vector3 _bottomLeftSpawn;
     private Vector3 _bottomRightSpawn;
 
-    private float _speed;
-
     private void Awake()
     {
         _constants = GameObject.FindGameObjectWithTag("Constants")
             .GetComponent<Constants>();
-
-        _gameController = GameObject.FindGameObjectWithTag("GameController")
-            .GetComponent<GameController>();
 
         _rb = GetComponent<Rigidbody>();
     }
 
     private void Start()
     {
-        _rb.constraints = RigidbodyConstraints.FreezePositionZ;
-        _rb.freezeRotation = true;        
-        _rb.useGravity = false;
-
         // Move spawn logic to a new script
         float spawnWidth = _constants.BoundaryWidth / 2.0f;
         float spawnHeight = _constants.BoundaryHeight / 2.0f;
@@ -42,14 +35,14 @@ public class PlayerController : MonoBehaviour
         _bottomLeftSpawn = new Vector3(-spawnWidth, -spawnHeight, 0.0f);
         _bottomRightSpawn = new Vector3(spawnWidth, -spawnHeight, 0.0f);
 
-        _speed = _constants.BoundaryWidth;
-        //SetSpawnPosition();
+        SetSpawnPosition();
+
     }
 
     private void SetSpawnPosition()
     {
         // Currently randomised until multiplayer is implemented
-        int RNG = Random.Range(1, 5);
+        int RNG = Random.Range(1, maxPlayers + 1);
         switch (RNG)
         {
             case 1:
@@ -66,36 +59,5 @@ public class PlayerController : MonoBehaviour
                 break;
         }
         _rb.velocity = Vector3.zero;
-    }
-
-    private void FixedUpdate()
-    {
-        float horizontalAxis = Input.GetAxis("Horizontal");
-        float verticalAxis = Input.GetAxis("Vertical");
-
-        _movement = new Vector3(horizontalAxis, verticalAxis, 0.0f);
-        _rb.velocity = _movement * _speed;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Cube")
-            || collision.gameObject.CompareTag("Sphere"))
-        {
-            if (_gameController.IsInDebugMode)
-            {
-                DebugModeCommand();
-            }
-            else
-            {
-                _gameController.Reset();
-                gameObject.SetActive(false);
-            }
-        }
-    }
-
-    private void DebugModeCommand()
-    {
-        SetSpawnPosition();
     }
 }
