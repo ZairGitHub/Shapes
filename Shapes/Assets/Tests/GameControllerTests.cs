@@ -8,7 +8,7 @@ namespace Tests
     public class GameControllerTests
     {
         [UnityTest]
-        public IEnumerable IsRunnningProperty_HasDefaultValueOfTrue()
+        public IEnumerable IsRunnningProperty_HasInitialValueOfTrue()
         {
             var sut = new GameObject().AddComponent<GameController>();
             yield return null;
@@ -22,8 +22,8 @@ namespace Tests
         public void Reset_SetsIsRunnningToFalse()
         {
             var sut = new GameObject().AddComponent<GameController>();
+            
             sut.Reset();
-
             var result = sut.IsRunning;
 
             Assert.That(result, Is.False);
