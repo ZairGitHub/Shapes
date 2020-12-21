@@ -47,6 +47,17 @@ public class ScoreController : MonoBehaviour
         }
     }
 
+    public void GiveCollisionBonus()
+    {
+        if (_gameController.IsRunning)
+        {
+            AddBonusToScoreText(1);
+
+            _collisionBonus++;
+            _textCollisionBonus.text = "++" + _collisionBonus;
+        }
+    }
+
     private void GiveSurvivalBonus(int bonus)
     {
         if (_gameController.IsRunning)
@@ -62,16 +73,5 @@ public class ScoreController : MonoBehaviour
     {
         _score += bonus;
         _textScore.text = "Score: " + _score;   
-    }
-
-    public void GiveCollisionBonus()
-    {
-        if (_gameController.IsRunning)
-        {
-            AddBonusToScoreText(1);
-
-            _collisionBonus++;
-            _textCollisionBonus.text = "++" + _collisionBonus;
-        }
     }
 }
