@@ -8,7 +8,19 @@ namespace Tests
     public class EmitterPropertiesTests
     {
         [UnityTest]
-        public IEnumerable GetXDirection_NameToLowerContainsLeft_ReturnsPositiveOne()
+        public IEnumerable Start_SetsNameToLowercase()
+        {
+            var sut = new GameObject().AddComponent<EmitterProperties>();
+            sut.name = "GameObject";
+            yield return null;
+
+            var result = sut.name;
+
+            Assert.That(result, Is.EqualTo("gameobject"));
+        }
+
+        [UnityTest]
+        public IEnumerable GetXDirection_NameContainsLeft_ReturnsPositiveOne()
         {
             var sut = new GameObject().AddComponent<EmitterProperties>();
             sut.name += "LEFT";
@@ -20,7 +32,7 @@ namespace Tests
         }
 
         [UnityTest]
-        public IEnumerable GetXDirection_NameToLowerContainsRight_ReturnsNegativeOne()
+        public IEnumerable GetXDirection_NameContainsRight_ReturnsNegativeOne()
         {
             var sut = new GameObject().AddComponent<EmitterProperties>();
             sut.name += "RIGHT";
@@ -32,7 +44,7 @@ namespace Tests
         }
 
         [Test]
-        public void GetXDirection_NameToLowerDoesNotConatainLeftOrRight_ReturnsRandomBetweenNegativeAndPositiveOne()
+        public void GetXDirection_NameDoesNotContainLeftOrRight_ReturnsRandomBetweenNegativeAndPositiveOne()
         {
             var sut = new GameObject().AddComponent<EmitterProperties>();
 
@@ -42,7 +54,7 @@ namespace Tests
         }
 
         [UnityTest]
-        public IEnumerable GetYDirection_NameToLowerContainsTop_ReturnsNegativeOne()
+        public IEnumerable GetYDirection_NameContainsTop_ReturnsNegativeOne()
         {
             var sut = new GameObject().AddComponent<EmitterProperties>();
             sut.name += "TOP";
@@ -54,7 +66,7 @@ namespace Tests
         }
 
         [UnityTest]
-        public IEnumerable GetYDirection_NameToLowerContainsBottom_ReturnsNegativeOne()
+        public IEnumerable GetYDirection_NameContainsBottom_ReturnsNegativeOne()
         {
             var sut = new GameObject().AddComponent<EmitterProperties>();
             sut.name += "BOTTOM";
@@ -66,7 +78,7 @@ namespace Tests
         }
 
         [Test]
-        public void GetYDirection_NameToLowerDoesNotConatainTopOrBottom_ReturnsRandomBetweenNegativeAndPositiveOne()
+        public void GetYDirection_NameDoesNotContainTopOrBottom_ReturnsRandomBetweenNegativeAndPositiveOne()
         {
             var sut = new GameObject().AddComponent<EmitterProperties>();
             
