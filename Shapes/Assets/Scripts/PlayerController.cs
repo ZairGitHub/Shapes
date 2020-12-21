@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
         _rb = GetComponent<Rigidbody>();
     }
+
     private void Start()
     {
         _rb.constraints = RigidbodyConstraints.FreezePositionZ;
