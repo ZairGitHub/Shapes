@@ -120,5 +120,39 @@ namespace Tests
 
             Assert.That(result, Is.Zero);
         }
+
+        [UnityTest]
+        public IEnumerable GetPosition_NameContainsTop_ReturnsPositiveYValue()
+        {
+            var sut = new GameObject().AddComponent<EmitterProperties>();
+            sut.name += "TOP";
+            yield return null;
+
+            var result = sut.GetPosition().y;
+
+            Assert.That(result, Is.Negative);
+        }
+
+        [UnityTest]
+        public IEnumerable GetPosition_NameContainsBottom_ReturnsNegativeYValue()
+        {
+            var sut = new GameObject().AddComponent<EmitterProperties>();
+            sut.name += "BOTTOM";
+            yield return null;
+
+            var result = sut.GetPosition().y;
+
+            Assert.That(result, Is.Positive);
+        }
+
+        [Test]
+        public void GetPosition_NameDoesNotContainTopOrBottom_ReturnsZeroYValue()
+        {
+            var sut = new GameObject().AddComponent<EmitterProperties>();
+
+            var result = sut.GetPosition().y;
+
+            Assert.That(result, Is.Zero);
+        }
     }
 }
