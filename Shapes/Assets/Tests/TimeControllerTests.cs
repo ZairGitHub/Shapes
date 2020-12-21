@@ -49,7 +49,7 @@ namespace Tests
         public void SpeedUpTime_TimeScalePlusTimeFactorIsLessThanMaxTime_AddsTimeFactorToTimeScale()
         {
             var sut = new GameObject().AddComponent<TimeController>();
-            Debug.Log(Time.timeScale);
+            
             sut.SpeedUpTime();
             var result = Time.timeScale;
 
