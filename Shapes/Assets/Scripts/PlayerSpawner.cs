@@ -25,21 +25,18 @@ public class PlayerSpawner : MonoBehaviour
 
     private void Start()
     {
-        // Move spawn logic to a new script
         float spawnWidth = _constants.BoundaryWidth / 2.0f;
         float spawnHeight = _constants.BoundaryHeight / 2.0f;
 
-        // Different spawn positions for different players
         _topLeftSpawn = new Vector3(-spawnWidth, spawnHeight, 0.0f);
         _topRightSpawn = new Vector3(spawnWidth, spawnHeight, 0.0f);
         _bottomLeftSpawn = new Vector3(-spawnWidth, -spawnHeight, 0.0f);
         _bottomRightSpawn = new Vector3(spawnWidth, -spawnHeight, 0.0f);
 
         SetSpawnPosition();
-
     }
 
-    private void SetSpawnPosition()
+    public void SetSpawnPosition()
     {
         // Currently randomised until multiplayer is implemented
         int RNG = Random.Range(1, maxPlayers + 1);
