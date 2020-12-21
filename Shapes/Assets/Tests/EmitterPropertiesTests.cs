@@ -66,7 +66,7 @@ namespace Tests
         }
 
         [UnityTest]
-        public IEnumerable GetYDirection_NameContainsBottom_ReturnsNegativeOne()
+        public IEnumerable GetYDirection_NameContainsBottom_ReturnsPositiveOne()
         {
             var sut = new GameObject().AddComponent<EmitterProperties>();
             sut.name += "BOTTOM";
@@ -88,7 +88,7 @@ namespace Tests
         }
 
         [UnityTest]
-        public IEnumerable GetPosition_NameContainsLeft_ReturnsNegativeXValue()
+        public IEnumerable GetPosition_NameContainsLeft_ReturnsNegativeVector3XValue()
         {
             var sut = new GameObject().AddComponent<EmitterProperties>();
             sut.name += "LEFT";
@@ -100,7 +100,7 @@ namespace Tests
         }
 
         [UnityTest]
-        public IEnumerable GetPosition_NameContainsRight_ReturnsPositiveXValue()
+        public IEnumerable GetPosition_NameContainsRight_ReturnsPositiveVector3XValue()
         {
             var sut = new GameObject().AddComponent<EmitterProperties>();
             sut.name += "RIGHT";
@@ -112,7 +112,7 @@ namespace Tests
         }
 
         [Test]
-        public void GetPosition_NameDoesNotContainLeftOrRight_ReturnsZeroXValue()
+        public void GetPosition_NameDoesNotContainLeftOrRight_ReturnsZeroVector3XValue()
         {
             var sut = new GameObject().AddComponent<EmitterProperties>();
             
@@ -122,7 +122,7 @@ namespace Tests
         }
 
         [UnityTest]
-        public IEnumerable GetPosition_NameContainsTop_ReturnsPositiveYValue()
+        public IEnumerable GetPosition_NameContainsTop_ReturnsPositiveVector3YValue()
         {
             var sut = new GameObject().AddComponent<EmitterProperties>();
             sut.name += "TOP";
@@ -130,11 +130,11 @@ namespace Tests
 
             var result = sut.GetPosition().y;
 
-            Assert.That(result, Is.Negative);
+            Assert.That(result, Is.Positive);
         }
 
         [UnityTest]
-        public IEnumerable GetPosition_NameContainsBottom_ReturnsNegativeYValue()
+        public IEnumerable GetPosition_NameContainsBottom_ReturnsNegativeVector3YValue()
         {
             var sut = new GameObject().AddComponent<EmitterProperties>();
             sut.name += "BOTTOM";
@@ -142,11 +142,11 @@ namespace Tests
 
             var result = sut.GetPosition().y;
 
-            Assert.That(result, Is.Positive);
+            Assert.That(result, Is.Negative);
         }
 
         [Test]
-        public void GetPosition_NameDoesNotContainTopOrBottom_ReturnsZeroYValue()
+        public void GetPosition_NameDoesNotContainTopOrBottom_ReturnsZeroVector3YValue()
         {
             var sut = new GameObject().AddComponent<EmitterProperties>();
 
