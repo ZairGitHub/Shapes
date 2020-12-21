@@ -86,5 +86,39 @@ namespace Tests
 
             Assert.That(result, Is.InRange(-1.0f, 1.0f));
         }
+
+        [UnityTest]
+        public IEnumerable GetPosition_NameContainsLeft_ReturnsNegativeXValue()
+        {
+            var sut = new GameObject().AddComponent<EmitterProperties>();
+            sut.name += "LEFT";
+            yield return null;
+
+            var result = sut.GetPosition().x;
+
+            Assert.That(result, Is.Negative);
+        }
+
+        [UnityTest]
+        public IEnumerable GetPosition_NameContainsRight_ReturnsPositiveXValue()
+        {
+            var sut = new GameObject().AddComponent<EmitterProperties>();
+            sut.name += "RIGHT";
+            yield return null;
+
+            var result = sut.GetPosition().x;
+
+            Assert.That(result, Is.Positive);
+        }
+
+        [Test]
+        public void GetPosition_NameDoesNotContainLeftOrRight_ReturnsZeroXValue()
+        {
+            var sut = new GameObject().AddComponent<EmitterProperties>();
+            
+            var result = sut.GetPosition().x;
+
+            Assert.That(result, Is.Zero);
+        }
     }
 }
