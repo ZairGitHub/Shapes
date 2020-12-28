@@ -2,10 +2,10 @@
 
 public class TimeController : MonoBehaviour
 {
-    private const float _timeFactor = 0.05f;
-    
     public float MinTime { get; private set; } = 0.05f;
     public float MaxTime { get; private set; } = 10.0f;
+
+    private const float _timeFactor = 0.05f;
 
     private float _savedTime;
 
