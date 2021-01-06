@@ -3,11 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    public bool IsInDebugMode { get; private set; }
-    public bool IsRunning { get; private set; } = true;
-
     private ScoreController _scoreController;
     private TimeController _timeController;
+
+    public bool IsInDebugMode { get; private set; }
+    public bool IsRunning { get; private set; } = true;
 
     private void Awake()
     {
