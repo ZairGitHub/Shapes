@@ -53,7 +53,6 @@ public class CubeEmitter : MonoBehaviour
                 _cube, _cubeEmitters[RNG].transform.position, Quaternion.identity)
                 .GetComponent<CubeHandler>();
 
-            cube.SetSpeed();
             cube.SetDirection(
                 _emitterProperties.GetXDirection(), _emitterProperties.GetYDirection());
 

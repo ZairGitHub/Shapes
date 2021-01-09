@@ -39,14 +39,13 @@ public class CubeHandler : MonoBehaviour
         _rb.useGravity = false;
     }
 
-    public void SetSpeed() => _speed = _constants.BoundaryWidth / 4.0f;
-
     public bool HasSpeed() => _speed > 0.0f;
 
     public void SetDirection(float x, float y)
     {
         _horizontal = x > 0.0f ? Random.Range(0.0f, 1.0f) : Random.Range(-1.0f, 0.0f);
         _vertical = y > 0.0f ? Random.Range(0.0f, 1.0f) : Random.Range(-1.0f, 0.0f);
+        _speed = _constants.BoundaryWidth / 4.0f;
     }
 
     private void RecalculateDirection()
