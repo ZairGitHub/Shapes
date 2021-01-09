@@ -25,20 +25,25 @@ public class GameController : MonoBehaviour
 
     public void Reset() => IsRunning = false;
 
+    private void DestroyCubes()
+    {
+        GameObject[] cubes = GameObject.FindGameObjectsWithTag("Cube");
+        foreach (GameObject cube in cubes)
+        {
+            if (cube.GetComponent<CubeHandler>().HasSpeed())
+            {
+                Destroy(cube);
+            }
+        }
+    }
+
     private void Update()
     {
         if (IsRunning)
         {
             if (Input.GetKeyDown(KeyCode.C))
             {
-                GameObject[] cubes = GameObject.FindGameObjectsWithTag("Cube");
-                foreach (GameObject cube in cubes)
-                {
-                    if (cube.GetComponent<CubeHandler>().HasSpeed())
-                    {
-                        Destroy(cube);
-                    }
-                }
+                DestroyCubes();
             }
 
             if (Input.GetButtonDown("Jump"))
