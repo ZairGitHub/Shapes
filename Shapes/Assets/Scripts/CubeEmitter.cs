@@ -49,12 +49,12 @@ public class CubeEmitter : MonoBehaviour
     {
         if (_gameController.IsRunning)
         {
-            CubeHandler cubeObject = Instantiate(
+            CubeHandler cube = Instantiate(
                 _cube, _cubeEmitters[RNG].transform.position, Quaternion.identity)
                 .GetComponent<CubeHandler>();
 
-            cubeObject.SetSpeed();
-            cubeObject.SetDirection(
+            cube.SetSpeed();
+            cube.SetDirection(
                 _emitterProperties.GetXDirection(), _emitterProperties.GetYDirection());
 
             _cubeEmitters[RNG].GetComponent<Renderer>().material.color = Color.yellow;
