@@ -8,7 +8,18 @@ namespace Tests
     public class GameControllerTests
     {
         [UnityTest]
-        public IEnumerable IsRunnningProperty_HasInitialValueOfTrue()
+        public IEnumerable IsInDebugMode_DefaultValue_IsFalse()
+        {
+            var sut = new GameObject().AddComponent<GameController>();
+            yield return null;
+
+            var result = sut.IsInDebugMode;
+
+            Assert.That(result, Is.False);
+        }
+
+        [UnityTest]
+        public IEnumerable IsRunnning_DefaultValue_IsTrue()
         {
             var sut = new GameObject().AddComponent<GameController>();
             yield return null;

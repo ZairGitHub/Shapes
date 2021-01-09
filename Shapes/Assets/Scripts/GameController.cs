@@ -6,7 +6,7 @@ public class GameController : MonoBehaviour
     private ScoreController _scoreController;
     private TimeController _timeController;
 
-    public bool IsInDebugMode { get; private set; }
+    public bool IsInDebugMode { get; private set; } = true;
     public bool IsRunning { get; private set; } = true;
 
     private void Awake()
@@ -25,10 +25,27 @@ public class GameController : MonoBehaviour
 
     public void Reset() => IsRunning = false;
 
+    private void DestroyCubes()
+    {
+        GameObject[] cubes = GameObject.FindGameObjectsWithTag("Cube");
+        foreach (GameObject cube in cubes)
+        {
+            if (cube.GetComponent<CubeHandler>().HasSpeed())
+            {
+                Destroy(cube);
+            }
+        }
+    }
+
     private void Update()
     {
         if (IsRunning)
         {
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                DestroyCubes();
+            }
+
             if (Input.GetButtonDown("Jump"))
             {
                 _timeController.TogglePause();
