@@ -29,6 +29,18 @@ public class GameController : MonoBehaviour
     {
         if (IsRunning)
         {
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                GameObject[] cubes = GameObject.FindGameObjectsWithTag("Cube");
+                foreach (GameObject cube in cubes)
+                {
+                    if (cube.GetComponent<CubeHandler>().HasSpeed())
+                    {
+                        Destroy(cube);
+                    }
+                }
+            }
+
             if (Input.GetButtonDown("Jump"))
             {
                 _timeController.TogglePause();
