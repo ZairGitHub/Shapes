@@ -3,6 +3,9 @@
 public class CubeHandler : MonoBehaviour
 {
     private const float _collisionScale = 1.1f;
+    private const float _minSpeed = 0.1f;
+    private const float _maxSpeed = 0.2f;
+    private const float _speedMultiplier = 0.02f;
 
     private Constants _constants;
     private GameController _gameController;
@@ -45,7 +48,8 @@ public class CubeHandler : MonoBehaviour
     {
         _horizontal = x > 0.0f ? Random.Range(0.0f, 1.0f) : Random.Range(-1.0f, 0.0f);
         _vertical = y > 0.0f ? Random.Range(0.0f, 1.0f) : Random.Range(-1.0f, 0.0f);
-        _speed = _constants.BoundaryWidth / 4.0f;
+
+        _speed = _constants.BoundaryWidth * _minSpeed;
     }
 
     private void RecalculateDirection()
