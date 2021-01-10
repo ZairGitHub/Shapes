@@ -59,25 +59,23 @@ public class GameController : MonoBehaviour
                 Debug.Log("DEBUG MODE: " + IsInDebugMode.ToString().ToUpper());
             }
 
+            if (Input.GetButtonDown("Jump"))
+            {
+                _timeController.TogglePause();
+            }
+
             if (Input.GetKeyDown(KeyCode.C))
             {
                 DestroyCubes();
             }
-
-            if (Input.GetKeyDown(KeyCode.V))
+            else if (Input.GetKeyDown(KeyCode.V))
             {
                 DestroyCubes();
                 DestroySpheres();
             }
-
-            if (Input.GetKeyDown(KeyCode.B))
+            else if (Input.GetKeyDown(KeyCode.B))
             {
                 DestroySpheres();
-            }
-
-            if (Input.GetButtonDown("Jump"))
-            {
-                _timeController.TogglePause();
             }
 
             else if (Input.GetKeyDown(KeyCode.Alpha0))
