@@ -7,11 +7,10 @@ namespace Tests
 {
     public class GameControllerTests
     {
-        [UnityTest]
-        public IEnumerable IsInDebugMode_DefaultValue_IsFalse()
+        [Test]
+        public void IsInDebugMode_DefaultValue_IsFalse()
         {
             var sut = new GameObject().AddComponent<GameController>();
-            yield return null;
 
             var result = sut.IsInDebugMode;
 
