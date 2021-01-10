@@ -37,13 +37,36 @@ public class GameController : MonoBehaviour
         }
     }
 
+    private void DestroySpheres()
+    {
+        GameObject[] spheres = GameObject.FindGameObjectsWithTag("Sphere");
+        foreach (GameObject sphere in spheres)
+        {
+            if (sphere.GetComponent<SphereHandler>().HasSpeed())
+            {
+                Destroy(sphere);
+            }
+        }
+    }
+
     private void Update()
     {
         if (IsRunning)
         {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                IsInDebugMode = !IsInDebugMode;
+                Debug.Log("DEBUG MODE: " + IsInDebugMode.ToString().ToUpper());
+            }
+
             if (Input.GetKeyDown(KeyCode.C))
             {
                 DestroyCubes();
+            }
+
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                DestroySpheres();
             }
 
             if (Input.GetButtonDown("Jump"))
@@ -51,27 +74,10 @@ public class GameController : MonoBehaviour
                 _timeController.TogglePause();
             }
 
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                IsInDebugMode = !IsInDebugMode;
-                Debug.Log("DEBUG MODE: " + IsInDebugMode.ToString().ToUpper());
-            }
-
             else if (Input.GetKeyDown(KeyCode.Alpha0))
             {
                 _timeController.ResetTime();
             }
-
-            else if (Input.GetKeyDown("-"))
-            {
-                _timeController.SetTime(_timeController.MinTime);
-            }
-
-            else if (Input.GetKeyDown("="))
-            {
-                _timeController.SetTime(_timeController.MaxTime);
-            }
-
             else if (Input.GetKey(KeyCode.Alpha1))
             {
                 _timeController.SlowDownTime();
@@ -80,6 +86,15 @@ public class GameController : MonoBehaviour
             else if (Input.GetKey(KeyCode.Alpha2))
             {
                 _timeController.SpeedUpTime();
+            }
+            else if (Input.GetKeyDown("-"))
+            {
+                _timeController.SetTime(_timeController.MinTime);
+            }
+
+            else if (Input.GetKeyDown("="))
+            {
+                _timeController.SetTime(_timeController.MaxTime);
             }
         }
         else
