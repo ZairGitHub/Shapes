@@ -53,17 +53,19 @@ public class GameController : MonoBehaviour
     {
         if (IsRunning)
         {
+            if (Input.GetButtonDown("Jump"))
+            {
+                _timeController.TogglePause();
+            }
+
+            // Toggle IsInDebugMode Command
             if (Input.GetKeyDown(KeyCode.P))
             {
                 IsInDebugMode = !IsInDebugMode;
                 Debug.Log("DEBUG MODE: " + IsInDebugMode.ToString().ToUpper());
             }
 
-            if (Input.GetButtonDown("Jump"))
-            {
-                _timeController.TogglePause();
-            }
-
+            // Destroy shape GameObject Commands
             if (Input.GetKeyDown(KeyCode.C))
             {
                 DestroyCubes();
@@ -78,6 +80,7 @@ public class GameController : MonoBehaviour
                 DestroySpheres();
             }
 
+            // Debug TimeController Commands
             else if (Input.GetKeyDown(KeyCode.Alpha0))
             {
                 _timeController.ResetTime();
