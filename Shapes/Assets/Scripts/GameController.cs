@@ -64,6 +64,12 @@ public class GameController : MonoBehaviour
                 DestroyCubes();
             }
 
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                DestroyCubes();
+                DestroySpheres();
+            }
+
             if (Input.GetKeyDown(KeyCode.B))
             {
                 DestroySpheres();
