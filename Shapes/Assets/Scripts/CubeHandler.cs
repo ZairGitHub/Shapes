@@ -4,7 +4,7 @@ public class CubeHandler : MonoBehaviour
 {
     private const float _collisionScale = 1.1f;
     private const float _minSpeed = 0.1f;
-    private const float _maxSpeed = 0.2f;
+    private const float _maxSpeed = 0.4f;
     private const float _speedMultiplier = 0.02f;
 
     private Constants _constants;
