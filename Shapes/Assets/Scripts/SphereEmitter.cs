@@ -34,7 +34,11 @@ public class SphereEmitter : MonoBehaviour
     {
         if (_gameController.IsRunning)
         {
-            Instantiate(_sphere, Vector3.up, Quaternion.identity);
+            SphereHandler sphere = Instantiate(
+                _sphere, Vector3.up, Quaternion.identity)
+                .GetComponent<SphereHandler>();
+
+            sphere.SetDirection();
         }
     }
 }
