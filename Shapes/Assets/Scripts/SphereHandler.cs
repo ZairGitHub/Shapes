@@ -32,13 +32,16 @@ public class SphereHandler : MonoBehaviour
         _rb.constraints = RigidbodyConstraints.FreezePositionZ;
         _rb.freezeRotation = true;
         _rb.useGravity = false;
-
-        _speed = _constants.BoundaryWidth;
-
-        RecalculateDirection();
     }
 
     public bool HasSpeed() => _speed > 0.0f;
+
+    public void SetDirection()
+    {
+        RecalculateDirection();
+
+        _speed = _constants.BoundaryWidth;
+    }
 
     private void RecalculateDirection()
     {
