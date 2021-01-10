@@ -38,6 +38,8 @@ public class SphereHandler : MonoBehaviour
         RecalculateDirection();
     }
 
+    public bool HasSpeed() => _speed > 0.0f;
+
     private void RecalculateDirection()
     {
         _horizontal = Random.Range(-1.0f, 1.0f);
