@@ -11,7 +11,7 @@ namespace Tests
         }
 
         [TearDown]
-        public void Setup() => Time.timeScale = 1.0f;
+        public void TearDown() => Time.timeScale = 1.0f;
 
         [Test]
         public void ResetTime_SetsTimeScaleToPositiveOne()
