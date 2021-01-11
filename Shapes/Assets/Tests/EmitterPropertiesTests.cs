@@ -157,12 +157,13 @@ namespace Tests
             Assert.That(result, Is.Negative);
         }
 
-        [Test]
-        public void GetPosition_NameDoesNotContainTopOrBottom_ReturnsZeroVector3YValue()
+        [UnityTest]
+        public IEnumerator GetPosition_NameDoesNotContainTopOrBottom_ReturnsZeroVector3YValue()
         {
-            var sut = new GameObject().AddComponent<EmitterProperties>();
+            var sut = CreateEmitterPropertiesWithRunInEditMode();
+            yield return null;
 
-            var result = sut.GetPosition().y;
+            var result = sut.AddComponent<EmitterProperties>().GetPosition().y;
 
             Assert.That(result, Is.Zero);
         }
