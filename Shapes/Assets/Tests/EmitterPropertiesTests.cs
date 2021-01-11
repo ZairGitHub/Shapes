@@ -134,19 +134,19 @@ namespace Tests
         }
 
         [UnityTest]
-        public IEnumerable GetPosition_NameContainsTop_ReturnsPositiveVector3YValue()
+        public IEnumerator GetPosition_NameContainsTop_ReturnsPositiveVector3YValue()
         {
-            var sut = new GameObject().AddComponent<EmitterProperties>();
+            var sut = CreateEmitterPropertiesWithRunInEditMode();
             sut.name += "TOP";
             yield return null;
 
-            var result = sut.GetPosition().y;
+            var result = sut.AddComponent<EmitterProperties>().GetPosition().y;
 
             Assert.That(result, Is.Positive);
         }
 
         [UnityTest]
-        public IEnumerable GetPosition_NameContainsBottom_ReturnsNegativeVector3YValue()
+        public IEnumerator GetPosition_NameContainsBottom_ReturnsNegativeVector3YValue()
         {
             var sut = new GameObject().AddComponent<EmitterProperties>();
             sut.name += "BOTTOM";
