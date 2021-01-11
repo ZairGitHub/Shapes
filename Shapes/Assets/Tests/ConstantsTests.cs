@@ -7,6 +7,11 @@ namespace Tests
 {
     public class ConstantsTests
     {
+        private const string eastTag = "BoundaryEast";
+        private const string westTag = "BoundaryWest";
+        private const string northTag = "BoundaryNorth";
+        private const string southTag = "BoundarySouth";
+
         [UnityTest]
         public IEnumerable Awake_SetsBoundaryWidthToCorrectValue()
         {
