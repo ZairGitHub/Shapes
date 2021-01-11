@@ -49,10 +49,12 @@ namespace Tests
             Assert.That(result, Is.EqualTo(1.0f));
         }
 
-        [Test]
-        public void TogglePause_SetsTimeScaleToZero()
+        [UnityTest]
+        public IEnumerator TogglePause_SetsTimeScaleToZero()
         {
             var sut = CreateDefaultTimeController();
+            sut.runInEditMode = true;
+            yield return null;
 
             sut.TogglePause();
             var result = Time.timeScale;
