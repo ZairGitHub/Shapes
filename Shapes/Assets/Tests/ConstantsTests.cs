@@ -12,20 +12,16 @@ namespace Tests
         private const string northTag = "BoundaryNorth";
         private const string southTag = "BoundarySouth";
 
-        private GameObject GetBoundaryEast()
+        private float GetBoundaryEastX()
         {
-            return new GameObject()
-            {
-                tag = eastTag
-            };
+            return GameObject.FindGameObjectWithTag("BoundaryEast")
+                .transform.position.x;
         }
 
-        private GameObject GetBoundaryWest()
+        private float GetBoundaryWestX()
         {
-            return new GameObject()
-            {
-                tag = westTag
-            };
+            return GameObject.FindGameObjectWithTag("BoundaryWest")
+                .transform.position.x;
         }
 
         [Test]
@@ -36,7 +32,7 @@ namespace Tests
 
             var result = sut.BoundaryWidth;
 
-            Assert.That(result, Is.EqualTo(20.0f));
+            Assert.That(result, Is.EqualTo(GetBoundaryEastX()));
         }
 
         [UnityTest]
