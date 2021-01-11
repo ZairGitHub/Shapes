@@ -58,7 +58,7 @@ namespace Tests
             var sut = CreateEmitterPropertiesWithRunInEditMode();
             yield return null;
 
-            var result = sut.AddComponent<EmitterProperties>().GetXDirection();
+            var result = sut.GetComponent<EmitterProperties>().GetXDirection();
 
             Assert.That(result, Is.InRange(-1.0f, 1.0f));
         }
@@ -70,7 +70,7 @@ namespace Tests
             sut.name += "TOP";
             yield return null;
 
-            var result = sut.AddComponent<EmitterProperties>().GetYDirection();
+            var result = sut.GetComponent<EmitterProperties>().GetYDirection();
 
             Assert.That(result, Is.EqualTo(-1.0f));
         }
@@ -82,7 +82,7 @@ namespace Tests
             sut.name += "BOTTOM";
             yield return null;
 
-            var result = sut.AddComponent<EmitterProperties>().GetYDirection();
+            var result = sut.GetComponent<EmitterProperties>().GetYDirection();
 
             Assert.That(result, Is.EqualTo(1.0f));
         }
@@ -93,7 +93,7 @@ namespace Tests
             var sut = CreateEmitterPropertiesWithRunInEditMode();
             yield return null;
             
-            var result = sut.AddComponent<EmitterProperties>().GetYDirection();
+            var result = sut.GetComponent<EmitterProperties>().GetYDirection();
 
             Assert.That(result, Is.InRange(-1.0f, 1.0f));
         }
@@ -105,7 +105,7 @@ namespace Tests
             sut.name += "LEFT";
             yield return null;
 
-            var result = sut.AddComponent<EmitterProperties>().GetPosition().x;
+            var result = sut.GetComponent<EmitterProperties>().GetPosition().x;
 
             Assert.That(result, Is.Negative);
         }
@@ -117,7 +117,7 @@ namespace Tests
             sut.name += "RIGHT";
             yield return null;
 
-            var result = sut.AddComponent<EmitterProperties>().GetPosition().x;
+            var result = sut.GetComponent<EmitterProperties>().GetPosition().x;
 
             Assert.That(result, Is.Positive);
         }
@@ -128,7 +128,7 @@ namespace Tests
             var sut = CreateEmitterPropertiesWithRunInEditMode();
             yield return null;
             
-            var result = sut.AddComponent<EmitterProperties>().GetPosition().x;
+            var result = sut.GetComponent<EmitterProperties>().GetPosition().x;
 
             Assert.That(result, Is.Zero);
         }
@@ -140,7 +140,7 @@ namespace Tests
             sut.name += "TOP";
             yield return null;
 
-            var result = sut.AddComponent<EmitterProperties>().GetPosition().y;
+            var result = sut.GetComponent<EmitterProperties>().GetPosition().y;
 
             Assert.That(result, Is.Positive);
         }
@@ -152,7 +152,7 @@ namespace Tests
             sut.name += "BOTTOM";
             yield return null;
 
-            var result = sut.GetPosition().y;
+            var result = sut.GetComponent<EmitterProperties>().GetPosition().y;
 
             Assert.That(result, Is.Negative);
         }
@@ -163,7 +163,7 @@ namespace Tests
             var sut = CreateEmitterPropertiesWithRunInEditMode();
             yield return null;
 
-            var result = sut.AddComponent<EmitterProperties>().GetPosition().y;
+            var result = sut.GetComponent<EmitterProperties>().GetPosition().y;
 
             Assert.That(result, Is.Zero);
         }
