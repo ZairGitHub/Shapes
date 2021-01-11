@@ -17,11 +17,10 @@ namespace Tests
             Assert.That(result, Is.False);
         }
 
-        [UnityTest]
-        public IEnumerable IsRunnning_DefaultValue_IsTrue()
+        [Test]
+        public void IsRunnning_DefaultValue_IsTrue()
         {
             var sut = new GameObject().AddComponent<GameController>();
-            yield return null;
 
             var result = sut.IsRunning;
 
@@ -33,7 +32,7 @@ namespace Tests
         {
             var sut = new GameObject().AddComponent<GameController>();
             
-            sut.Reset();
+            sut.Stop();
             var result = sut.IsRunning;
 
             Assert.That(result, Is.False);
