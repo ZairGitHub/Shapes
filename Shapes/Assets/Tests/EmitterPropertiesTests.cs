@@ -13,21 +13,16 @@ namespace Tests
             gameObject.AddComponent<EmitterProperties>();
             gameObject.AddComponent<MeshRenderer>();
             gameObject.GetComponent<EmitterProperties>().runInEditMode = true;
-
             return gameObject;
         }
 
         [UnityTest]
         public IEnumerator Start_SetsNameToLowercase()
         {
-            var sut = new GameObject();
+            var sut = CreateEmitterPropertiesWithRunInEditMode();
             sut.name = "GameObject";
-            
-            sut.AddComponent<EmitterProperties>();
-            sut.AddComponent<MeshRenderer>();
-            sut.GetComponent<EmitterProperties>().runInEditMode = true;
             yield return null;
-
+            
             var result = sut.name;
 
             Assert.That(result, Is.EqualTo("gameobject"));
