@@ -38,12 +38,12 @@ public class TimeController : MonoBehaviour
         _savedTime = Time.timeScale;
     }
 
-    public void SetTime(float timeModifier)
+    public void SetTime(float timeScale)
     {
-        if (timeModifier >= MinTime && timeModifier <= MaxTime)
+        if (timeScale >= MinTime && timeScale <= MaxTime)
         {
-            Time.timeScale = timeModifier;
-            _savedTime = timeModifier;
+            Time.timeScale = timeScale;
+            _savedTime = timeScale;
         }
     }
 }
