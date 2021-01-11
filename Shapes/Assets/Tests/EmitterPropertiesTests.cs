@@ -87,7 +87,7 @@ namespace Tests
             Assert.That(result, Is.EqualTo(1.0f));
         }
 
-        [UnityTearDown]
+        [UnityTest]
         public IEnumerator GetYDirection_NameDoesNotContainTopOrBottom_ReturnsRandomBetweenNegativeAndPositiveOne()
         {
             var sut = CreateEmitterPropertiesWithRunInEditMode();
