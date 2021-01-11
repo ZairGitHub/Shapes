@@ -24,18 +24,18 @@ namespace Tests
             yield return null;
             
             var result = sut.name;
-
+            
             Assert.That(result, Is.EqualTo("gameobject"));
         }
 
         [UnityTest]
-        public IEnumerable GetXDirection_NameContainsLeft_ReturnsPositiveOne()
+        public IEnumerator GetXDirection_NameContainsLeft_ReturnsPositiveOne()
         {
-            var sut = new GameObject().AddComponent<EmitterProperties>();
+            var sut = CreateEmitterPropertiesWithRunInEditMode();
             sut.name += "LEFT";
             yield return null;
 
-            var result = sut.GetXDirection();
+            var result = sut.GetComponent<EmitterProperties>().GetXDirection();
 
             Assert.That(result, Is.EqualTo(1.0f));
         }
