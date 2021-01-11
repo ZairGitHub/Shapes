@@ -5,6 +5,9 @@ namespace Tests
 {
     public class TimeControllerTests
     {
+        private const float _minTimeValue = 0.05f;
+        private const float _maxTimeValue = 10.0f;
+
         private TimeController CreateDefaultTimeController()
         {
             return new GameObject().AddComponent<TimeController>();
@@ -12,6 +15,26 @@ namespace Tests
 
         [TearDown]
         public void TearDown() => Time.timeScale = 1.0f;
+
+        [Test]
+        public void MinTime_DefaultValue_IsCorrectValue()
+        {
+            var sut = CreateDefaultTimeController();
+
+            var result = sut.MinTime;
+
+            Assert.That(result, Is.EqualTo(_minTimeValue));
+        }
+
+        [Test]
+        public void MaxTime_DefaultValue_IsCorrectValue()
+        {
+            var sut = CreateDefaultTimeController();
+
+            var result = sut.MaxTime;
+
+            Assert.That(result, Is.EqualTo(_maxTimeValue));
+        }
 
         [Test]
         public void ResetTime_SetsTimeScaleToPositiveOne()
