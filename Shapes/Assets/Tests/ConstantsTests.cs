@@ -18,10 +18,10 @@ namespace Tests
                 .transform.position.x;
         }
 
-        private float GetBoundaryWestX()
+        private float GetBoundaryNorthY()
         {
-            return GameObject.FindGameObjectWithTag("BoundaryWest")
-                .transform.position.x;
+            return GameObject.FindGameObjectWithTag("BoundaryNorth")
+                .transform.position.y;
         }
 
         [Test]
@@ -35,15 +35,15 @@ namespace Tests
             Assert.That(result, Is.EqualTo(GetBoundaryEastX()));
         }
 
-        [UnityTest]
-        public IEnumerable Awake_SetsBoundaryHeightToCorrectValue()
+        [Test]
+        public void Awake_SetsBoundaryHeightToCorrectValue()
         {
             var sut = new GameObject().AddComponent<Constants>();
-            yield return null;
+            sut.runInEditMode = true;
 
             var result = sut.BoundaryHeight;
 
-            Assert.That(result, Is.EqualTo(10.0f));
+            Assert.That(result, Is.EqualTo(GetBoundaryNorthY()));
         }
     }
 }
