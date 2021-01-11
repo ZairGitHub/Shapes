@@ -5,7 +5,7 @@ namespace Tests
 {
     public class GameControllerTests
     {
-        private GameController CreateGameController()
+        private GameController CreateDefaultGameController()
         {
             return new GameObject().AddComponent<GameController>();
         }
@@ -13,7 +13,7 @@ namespace Tests
         [Test]
         public void IsInDebugMode_DefaultValue_IsFalse()
         {
-            var sut = CreateGameController();
+            var sut = CreateDefaultGameController();
 
             var result = sut.IsInDebugMode;
 
@@ -23,7 +23,7 @@ namespace Tests
         [Test]
         public void IsRunnning_DefaultValue_IsTrue()
         {
-            var sut = CreateGameController();
+            var sut = CreateDefaultGameController();
 
             var result = sut.IsRunning;
 
@@ -33,7 +33,7 @@ namespace Tests
         [Test]
         public void Stop_SetsIsRunnningToFalse()
         {
-            var sut = CreateGameController();
+            var sut = CreateDefaultGameController();
             
             sut.Stop();
             var result = sut.IsRunning;
