@@ -12,6 +12,22 @@ namespace Tests
         private const string northTag = "BoundaryNorth";
         private const string southTag = "BoundarySouth";
 
+        private GameObject GetBoundaryEast()
+        {
+            return new GameObject()
+            {
+                tag = eastTag
+            };
+        }
+
+        private GameObject GetBoundaryWest()
+        {
+            return new GameObject()
+            {
+                tag = westTag
+            };
+        }
+
         [UnityTest]
         public IEnumerable Awake_SetsBoundaryWidthToCorrectValue()
         {
