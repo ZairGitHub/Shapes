@@ -64,25 +64,25 @@ namespace Tests
         }
 
         [UnityTest]
-        public IEnumerable GetYDirection_NameContainsTop_ReturnsNegativeOne()
+        public IEnumerator GetYDirection_NameContainsTop_ReturnsNegativeOne()
         {
-            var sut = new GameObject().AddComponent<EmitterProperties>();
+            var sut = CreateEmitterPropertiesWithRunInEditMode();
             sut.name += "TOP";
             yield return null;
 
-            var result = sut.GetYDirection();
+            var result = sut.AddComponent<EmitterProperties>().GetYDirection();
 
             Assert.That(result, Is.EqualTo(-1.0f));
         }
 
         [UnityTest]
-        public IEnumerable GetYDirection_NameContainsBottom_ReturnsPositiveOne()
+        public IEnumerator GetYDirection_NameContainsBottom_ReturnsPositiveOne()
         {
-            var sut = new GameObject().AddComponent<EmitterProperties>();
+            var sut = CreateEmitterPropertiesWithRunInEditMode();
             sut.name += "BOTTOM";
             yield return null;
 
-            var result = sut.GetYDirection();
+            var result = sut.AddComponent<EmitterProperties>().GetYDirection();
 
             Assert.That(result, Is.EqualTo(1.0f));
         }
