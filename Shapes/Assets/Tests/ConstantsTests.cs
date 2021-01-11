@@ -28,11 +28,11 @@ namespace Tests
             };
         }
 
-        [UnityTest]
-        public IEnumerable Awake_SetsBoundaryWidthToCorrectValue()
+        [Test]
+        public void Awake_SetsBoundaryWidthToCorrectValue()
         {
             var sut = new GameObject().AddComponent<Constants>();
-            yield return null;
+            sut.runInEditMode = true;
 
             var result = sut.BoundaryWidth;
 
