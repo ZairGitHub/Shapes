@@ -5,8 +5,10 @@ namespace Tests
 {
     public class TimeControllerTests
     {
+        private const float _defaultTime = 1.0f;
         private const float _minTimeValue = 0.05f;
         private const float _maxTimeValue = 10.0f;
+        private const float _timeFactor = 0.05f;
 
         private TimeController CreateDefaultTimeController()
         {
@@ -14,10 +16,10 @@ namespace Tests
         }
 
         [TearDown]
-        public void TearDown() => Time.timeScale = 1.0f;
+        public void TearDown() => Time.timeScale = _defaultTime;
 
         [Test]
-        public void MinTime_DefaultValue_IsCorrectValue()
+        public void MinTime_DefaultValue_IsCorrect()
         {
             var sut = CreateDefaultTimeController();
 
@@ -27,7 +29,7 @@ namespace Tests
         }
 
         [Test]
-        public void MaxTime_DefaultValue_IsCorrectValue()
+        public void MaxTime_DefaultValue_IsCorrect()
         {
             var sut = CreateDefaultTimeController();
 
@@ -55,7 +57,7 @@ namespace Tests
             sut.SlowDownTime();
             var result = Time.timeScale;
 
-            Assert.That(result, Is.EqualTo(0.95f));
+            Assert.That(result, Is.EqualTo(_defaultTime - _timeFactor));
         }
 
         [Test]
@@ -67,7 +69,7 @@ namespace Tests
             sut.SlowDownTime();
             var result = Time.timeScale;
 
-            Assert.That(result, Is.EqualTo(0.05f));
+            Assert.That(result, Is.EqualTo(_minTimeValue));
         }
 
         [Test]
@@ -78,7 +80,7 @@ namespace Tests
             sut.SpeedUpTime();
             var result = Time.timeScale;
 
-            Assert.That(result, Is.EqualTo(1.05f));
+            Assert.That(result, Is.EqualTo(_defaultTime + _timeFactor));
         }
 
         [Test]
@@ -90,7 +92,7 @@ namespace Tests
             sut.SpeedUpTime();
             var result = Time.timeScale;
 
-            Assert.That(result, Is.EqualTo(10.0f));
+            Assert.That(result, Is.EqualTo(_maxTimeValue));
         }
     }
 }
