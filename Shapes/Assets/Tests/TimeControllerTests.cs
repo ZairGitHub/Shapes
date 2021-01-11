@@ -122,7 +122,7 @@ namespace Tests
 
         [TestCase(-float.Epsilon)]
         [TestCase(100.00001f)]
-        public void SetTime_InvalidTimeScale_DoesNotSetTimeScaleToArgument(float timeScale)
+        public void SetTime_OutsideTimeScaleRange_DoesNotSetTimeScaleToArgument(float timeScale)
         {
             LogAssert.ignoreFailingMessages = true;
             var sut = CreateDefaultTimeController();
@@ -131,6 +131,18 @@ namespace Tests
             var result = Time.timeScale;
 
             Assert.That(result, Is.EqualTo(_defaultTime));
+        }
+
+        [TestCase(0.0f)]
+        [TestCase(100.0f)]
+        public void SetTime_InsideTimeScaleRange_SetsTimeScaleToArgument(float timeScale)
+        {
+            var sut = CreateDefaultTimeController();
+
+            sut.SetTime(timeScale);
+            var result = Time.timeScale;
+
+            Assert.That(result, Is.EqualTo(timeScale));
         }
     }
 }
