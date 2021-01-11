@@ -12,11 +12,11 @@ namespace Tests
 
         [TearDown]
         public void Setup() => Time.timeScale = 1.0f;
-        
+
         [Test]
         public void ResetTime_SetsTimeScaleToPositiveOne()
         {
-            var sut = new GameObject().AddComponent<TimeController>();
+            var sut = CreateDefaultTimeController();
 
             sut.ResetTime();
             var result = Time.timeScale;
@@ -27,8 +27,8 @@ namespace Tests
         [Test]
         public void SlowDownTime_TimeScaleMinusTimeFactorIsGreaterThanMinTime_RemovesTimeFactorFromTimeScale()
         {
-            var sut = new GameObject().AddComponent<TimeController>();
-            
+            var sut = CreateDefaultTimeController();
+
             sut.SlowDownTime();
             var result = Time.timeScale;
 
@@ -38,7 +38,7 @@ namespace Tests
         [Test]
         public void SlowDownTime_TimeScaleMinusTimeFactorIsLessThanMinTime_SetsTimeScaleToMinTime()
         {
-            var sut = new GameObject().AddComponent<TimeController>();
+            var sut = CreateDefaultTimeController();
             Time.timeScale = 0.0f;
 
             sut.SlowDownTime();
@@ -50,8 +50,8 @@ namespace Tests
         [Test]
         public void SpeedUpTime_TimeScalePlusTimeFactorIsLessThanMaxTime_AddsTimeFactorToTimeScale()
         {
-            var sut = new GameObject().AddComponent<TimeController>();
-            
+            var sut = CreateDefaultTimeController();
+
             sut.SpeedUpTime();
             var result = Time.timeScale;
 
@@ -61,7 +61,7 @@ namespace Tests
         [Test]
         public void SpeedUpTime_TimeScalePlusTimeFactorIsGreaterThanMaxTime_SetsTimeScaleToMaxTime()
         {
-            var sut = new GameObject().AddComponent<TimeController>();
+            var sut = CreateDefaultTimeController();
             Time.timeScale = 10.0f;
 
             sut.SpeedUpTime();
