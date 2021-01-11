@@ -87,12 +87,13 @@ namespace Tests
             Assert.That(result, Is.EqualTo(1.0f));
         }
 
-        [Test]
-        public void GetYDirection_NameDoesNotContainTopOrBottom_ReturnsRandomBetweenNegativeAndPositiveOne()
+        [UnityTearDown]
+        public IEnumerator GetYDirection_NameDoesNotContainTopOrBottom_ReturnsRandomBetweenNegativeAndPositiveOne()
         {
-            var sut = new GameObject().AddComponent<EmitterProperties>();
+            var sut = CreateEmitterPropertiesWithRunInEditMode();
+            yield return null;
             
-            var result = sut.GetYDirection();
+            var result = sut.AddComponent<EmitterProperties>().GetYDirection();
 
             Assert.That(result, Is.InRange(-1.0f, 1.0f));
         }
