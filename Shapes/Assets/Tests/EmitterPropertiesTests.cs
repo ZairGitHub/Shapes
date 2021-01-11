@@ -99,25 +99,25 @@ namespace Tests
         }
 
         [UnityTest]
-        public IEnumerable GetPosition_NameContainsLeft_ReturnsNegativeVector3XValue()
+        public IEnumerator GetPosition_NameContainsLeft_ReturnsNegativeVector3XValue()
         {
-            var sut = new GameObject().AddComponent<EmitterProperties>();
+            var sut = CreateEmitterPropertiesWithRunInEditMode();
             sut.name += "LEFT";
             yield return null;
 
-            var result = sut.GetPosition().x;
+            var result = sut.AddComponent<EmitterProperties>().GetPosition().x;
 
             Assert.That(result, Is.Negative);
         }
 
         [UnityTest]
-        public IEnumerable GetPosition_NameContainsRight_ReturnsPositiveVector3XValue()
+        public IEnumerator GetPosition_NameContainsRight_ReturnsPositiveVector3XValue()
         {
-            var sut = new GameObject().AddComponent<EmitterProperties>();
+            var sut = CreateEmitterPropertiesWithRunInEditMode();
             sut.name += "RIGHT";
             yield return null;
 
-            var result = sut.GetPosition().x;
+            var result = sut.AddComponent<EmitterProperties>().GetPosition().x;
 
             Assert.That(result, Is.Positive);
         }
