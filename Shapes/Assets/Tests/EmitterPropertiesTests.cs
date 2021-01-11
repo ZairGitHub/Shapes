@@ -52,12 +52,13 @@ namespace Tests
             Assert.That(result, Is.EqualTo(-1.0f));
         }
 
-        [Test]
-        public void GetXDirection_NameDoesNotContainLeftOrRight_ReturnsRandomBetweenNegativeAndPositiveOne()
+        [UnityTest]
+        public IEnumerator GetXDirection_NameDoesNotContainLeftOrRight_ReturnsRandomBetweenNegativeAndPositiveOne()
         {
-            var sut = new GameObject().AddComponent<EmitterProperties>();
+            var sut = CreateEmitterPropertiesWithRunInEditMode();
+            yield return null;
 
-            var result = sut.GetXDirection();
+            var result = sut.AddComponent<EmitterProperties>().GetXDirection();
 
             Assert.That(result, Is.InRange(-1.0f, 1.0f));
         }
