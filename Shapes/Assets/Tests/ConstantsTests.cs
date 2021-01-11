@@ -23,10 +23,10 @@ namespace Tests
             var sut = new GameObject().AddComponent<Constants>();
             sut.runInEditMode = true;
 
-            var boundaryHeight = GameObject.FindGameObjectWithTag("BoundaryNorth");
+            var boundaryNorth = GameObject.FindGameObjectWithTag("BoundaryNorth");
             var result = sut.BoundaryHeight;
 
-            Assert.That(result, Is.EqualTo(boundaryHeight.transform.position.y));
+            Assert.That(result, Is.EqualTo(boundaryNorth.transform.position.y));
         }
 
         [Test]
@@ -41,7 +41,7 @@ namespace Tests
         }
 
         [Test]
-        public void Awake_SetsGameWidthToBoundaryHeightMultipliedBy2()
+        public void Awake_SetsGameHeightToBoundaryHeightMultipliedBy2()
         {
             var sut = new GameObject().AddComponent<Constants>();
             sut.runInEditMode = true;
