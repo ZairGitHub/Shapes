@@ -40,5 +40,16 @@ namespace Tests
 
             Assert.That(result, Is.EqualTo(GetBoundaryNorthY()));
         }
+
+        [Test]
+        public void GameWidthCorrectValue()
+        {
+            var sut = new GameObject().AddComponent<Constants>();
+            sut.runInEditMode = true;
+
+            var result = sut.GameWidth;
+
+            Assert.That(result, Is.EqualTo(GetBoundaryEastX() * 2.0f));
+        }
     }
 }
