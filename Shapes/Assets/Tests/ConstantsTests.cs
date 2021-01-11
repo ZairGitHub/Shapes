@@ -51,5 +51,16 @@ namespace Tests
 
             Assert.That(result, Is.EqualTo(GetBoundaryEastX() * 2.0f));
         }
+
+        [Test]
+        public void GameHeightCorrectValue()
+        {
+            var sut = new GameObject().AddComponent<Constants>();
+            sut.runInEditMode = true;
+
+            var result = sut.GameHeight;
+
+            Assert.That(result, Is.EqualTo(GetBoundaryNorthY() * 2.0f));
+        }
     }
 }
