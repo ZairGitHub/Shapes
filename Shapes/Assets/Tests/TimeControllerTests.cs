@@ -48,6 +48,17 @@ namespace Tests
         }
 
         [Test]
+        public void TogglePause_SetsTimeScaleToZero()
+        {
+            var sut = CreateDefaultTimeController();
+
+            sut.TogglePause();
+            var result = Time.timeScale;
+
+            Assert.That(result, Is.Zero);
+        }
+
+        [Test]
         public void SlowDownTime_TimeScaleMinusTimeFactorIsGreaterThanMinTime_RemovesTimeFactorFromTimeScale()
         {
             var sut = CreateDefaultTimeController();
