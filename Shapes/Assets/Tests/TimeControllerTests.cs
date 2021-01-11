@@ -6,11 +6,8 @@ namespace Tests
     public class TimeControllerTests
     {
         [TearDown]
-        public void Setup()
-        {
-            Time.timeScale = 1.0f;
-        }
-
+        public void Setup() => Time.timeScale = 1.0f;
+        
         [Test]
         public void ResetTime_SetsTimeScaleToPositiveOne()
         {
