@@ -12,11 +12,9 @@ namespace Tests
 
         private TimeController CreateDefaultTimeController()
         {
+            Time.timeScale = _defaultTime;
             return new GameObject().AddComponent<TimeController>();
         }
-
-        [TearDown]
-        public void TearDown() => Time.timeScale = _defaultTime;
 
         [Test]
         public void MinTime_DefaultValue_IsCorrect()
