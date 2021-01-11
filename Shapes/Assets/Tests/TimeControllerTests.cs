@@ -1,5 +1,7 @@
-﻿using NUnit.Framework;
+﻿using System.Collections;
+using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.TestTools;
 
 namespace Tests
 {
@@ -56,6 +58,20 @@ namespace Tests
             var result = Time.timeScale;
 
             Assert.That(result, Is.Zero);
+        }
+
+        [UnityTest]
+        public IEnumerator TogglePause_GameIsPaused_SetsTimeScaleToValueBeforePause()
+        {
+            var sut = CreateDefaultTimeController();
+            sut.runInEditMode = true;
+            yield return null;
+            sut.TogglePause();
+
+            sut.TogglePause();
+            var result = Time.timeScale;
+
+            Assert.That(result, Is.EqualTo(_defaultTime));
         }
 
         [Test]
