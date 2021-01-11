@@ -122,12 +122,13 @@ namespace Tests
             Assert.That(result, Is.Positive);
         }
 
-        [Test]
-        public void GetPosition_NameDoesNotContainLeftOrRight_ReturnsZeroVector3XValue()
+        [UnityTest]
+        public IEnumerator GetPosition_NameDoesNotContainLeftOrRight_ReturnsZeroVector3XValue()
         {
-            var sut = new GameObject().AddComponent<EmitterProperties>();
+            var sut = CreateEmitterPropertiesWithRunInEditMode();
+            yield return null;
             
-            var result = sut.GetPosition().x;
+            var result = sut.AddComponent<EmitterProperties>().GetPosition().x;
 
             Assert.That(result, Is.Zero);
         }
