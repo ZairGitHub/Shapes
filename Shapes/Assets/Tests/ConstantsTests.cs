@@ -7,27 +7,16 @@ namespace Tests
 {
     public class ConstantsTests
     {
-        private float GetBoundaryEastX()
-        {
-            return GameObject.FindGameObjectWithTag("BoundaryEast")
-                .transform.position.x;
-        }
-
-        private float GetBoundaryNorthY()
-        {
-            return GameObject.FindGameObjectWithTag("BoundaryNorth")
-                .transform.position.y;
-        }
-
         [Test]
         public void Awake_SetsBoundaryWidthToBoundaryEastX()
         {
             var sut = new GameObject().AddComponent<Constants>();
             sut.runInEditMode = true;
 
+            var boundaryEast = GameObject.FindGameObjectWithTag("BoundaryEast");
             var result = sut.BoundaryWidth;
 
-            Assert.That(result, Is.EqualTo(GetBoundaryEastX()));
+            Assert.That(result, Is.EqualTo(boundaryEast.transform.position.x));
         }
 
         [Test]
@@ -36,9 +25,10 @@ namespace Tests
             var sut = new GameObject().AddComponent<Constants>();
             sut.runInEditMode = true;
 
+            var boundaryHeight = GameObject.FindGameObjectWithTag("BoundaryNorth");
             var result = sut.BoundaryHeight;
 
-            Assert.That(result, Is.EqualTo(GetBoundaryNorthY()));
+            Assert.That(result, Is.EqualTo(boundaryHeight.transform.position.y));
         }
 
         [Test]
