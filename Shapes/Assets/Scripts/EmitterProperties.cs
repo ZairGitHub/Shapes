@@ -3,8 +3,8 @@
 public class EmitterProperties : MonoBehaviour
 {
     private const float _collisionScale = 2.0f;
-    private const float _negative = -1.0f;
-    private const float _positive = 1.0f;
+    private const float _negativeOne = -1.0f;
+    private const float _positiveOne = 1.0f;
 
     private Constants _constants;
 
@@ -26,15 +26,15 @@ public class EmitterProperties : MonoBehaviour
         float xDirection;
         if (name.Contains("left"))
         {
-            xDirection = _positive;
+            xDirection = _positiveOne;
         }
         else if (name.Contains("right"))
         {
-            xDirection = _negative;
+            xDirection = _negativeOne;
         }
         else
         {
-            xDirection = Random.Range(_negative, _positive);
+            xDirection = Random.Range(_negativeOne, _positiveOne);
         }
         return xDirection;
     }
@@ -44,15 +44,15 @@ public class EmitterProperties : MonoBehaviour
         float yDirection;
         if (name.Contains("top"))
         {
-            yDirection = _negative;
+            yDirection = _negativeOne;
         }
         else if (name.Contains("bottom"))
         {
-            yDirection = _positive;
+            yDirection = _positiveOne;
         }
         else
         {
-            yDirection = Random.Range(_negative, _positive);
+            yDirection = Random.Range(_negativeOne, _positiveOne);
         }
         return yDirection;
     }
