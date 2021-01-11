@@ -28,7 +28,7 @@ namespace Tests
         }
 
         [Test]
-        public void Reset_SetsIsRunnningToFalse()
+        public void Stop_SetsIsRunnningToFalse()
         {
             var sut = new GameObject().AddComponent<GameController>();
             
