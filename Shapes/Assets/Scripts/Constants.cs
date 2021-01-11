@@ -8,8 +8,8 @@ public class Constants : MonoBehaviour
     private void Awake()
     {
         BoundaryWidth =
-            (GameObject.FindGameObjectWithTag("BoundaryWest").transform.position.x
-            - GameObject.FindGameObjectWithTag("BoundaryEast").transform.position.x)
+            (GameObject.FindGameObjectWithTag("BoundaryEast").transform.position.x
+            - GameObject.FindGameObjectWithTag("BoundaryWest").transform.position.x)
             / 2.0f;
 
         BoundaryHeight =
