@@ -5,6 +5,11 @@ namespace Tests
 {
     public class TimeControllerTests
     {
+        private TimeController CreateDefaultTimeController()
+        {
+            return new GameObject().AddComponent<TimeController>();
+        }
+
         [TearDown]
         public void Setup() => Time.timeScale = 1.0f;
         
