@@ -120,8 +120,8 @@ namespace Tests
             Assert.That(result, Is.EqualTo(_maxTimeValue));
         }
 
-        [TestCase(-float.Epsilon)]
-        [TestCase(100.00001f)]
+        [TestCase(_minTimeValue - 0.000001f)]
+        [TestCase(_maxTimeValue + 0.000001f)]
         public void SetTime_OutsideTimeScaleRange_DoesNotSetTimeScaleToArgument(float timeScale)
         {
             LogAssert.ignoreFailingMessages = true;
@@ -133,8 +133,8 @@ namespace Tests
             Assert.That(result, Is.EqualTo(_defaultTime));
         }
 
-        [TestCase(0.0f)]
-        [TestCase(100.0f)]
+        [TestCase(_minTimeValue)]
+        [TestCase(_maxTimeValue)]
         public void SetTime_InsideTimeScaleRange_SetsTimeScaleToArgument(float timeScale)
         {
             var sut = CreateDefaultTimeController();

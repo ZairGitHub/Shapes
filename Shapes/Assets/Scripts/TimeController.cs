@@ -40,7 +40,10 @@ public class TimeController : MonoBehaviour
 
     public void SetTime(float timeModifier)
     {
-        Time.timeScale = timeModifier;
-        _savedTime = timeModifier;
+        if (timeModifier >= MinTime && timeModifier <= MaxTime)
+        {
+            Time.timeScale = timeModifier;
+            _savedTime = timeModifier;
+        }
     }
 }
