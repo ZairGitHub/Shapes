@@ -41,13 +41,13 @@ namespace Tests
         }
 
         [UnityTest]
-        public IEnumerable GetXDirection_NameContainsRight_ReturnsNegativeOne()
+        public IEnumerator GetXDirection_NameContainsRight_ReturnsNegativeOne()
         {
-            var sut = new GameObject().AddComponent<EmitterProperties>();
+            var sut = CreateEmitterPropertiesWithRunInEditMode();
             sut.name += "RIGHT";
             yield return null;
 
-            var result = sut.GetXDirection();
+            var result = sut.GetComponent<EmitterProperties>().GetXDirection();
 
             Assert.That(result, Is.EqualTo(-1.0f));
         }
