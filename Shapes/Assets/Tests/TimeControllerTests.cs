@@ -62,7 +62,7 @@ namespace Tests
         public void SlowDownTime_TimeScaleMinusTimeFactorIsLessThanMinTime_SetsTimeScaleToMinTime()
         {
             var sut = CreateDefaultTimeController();
-            Time.timeScale = 0.0f;
+            Time.timeScale = _minTimeValue;
 
             sut.SlowDownTime();
             var result = Time.timeScale;
@@ -85,7 +85,7 @@ namespace Tests
         public void SpeedUpTime_TimeScalePlusTimeFactorIsGreaterThanMaxTime_SetsTimeScaleToMaxTime()
         {
             var sut = CreateDefaultTimeController();
-            Time.timeScale = 10.0f;
+            Time.timeScale = _maxTimeValue;
 
             sut.SpeedUpTime();
             var result = Time.timeScale;
