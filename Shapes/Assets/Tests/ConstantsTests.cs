@@ -20,7 +20,7 @@ namespace Tests
         }
 
         [Test]
-        public void Awake_SetsBoundaryWidthToCorrectValue()
+        public void Awake_SetsBoundaryWidthToBoundaryEastX()
         {
             var sut = new GameObject().AddComponent<Constants>();
             sut.runInEditMode = true;
@@ -31,7 +31,7 @@ namespace Tests
         }
 
         [Test]
-        public void Awake_SetsBoundaryHeightToCorrectValue()
+        public void Awake_SetsBoundaryHeightToBoundaryNorthY()
         {
             var sut = new GameObject().AddComponent<Constants>();
             sut.runInEditMode = true;
@@ -42,25 +42,25 @@ namespace Tests
         }
 
         [Test]
-        public void GameWidthCorrectValue()
+        public void Awake_SetsGameWidthToBoundaryWidthMultipliedBy2()
         {
             var sut = new GameObject().AddComponent<Constants>();
             sut.runInEditMode = true;
 
             var result = sut.GameWidth;
 
-            Assert.That(result, Is.EqualTo(GetBoundaryEastX() * 2.0f));
+            Assert.That(result, Is.EqualTo(sut.BoundaryWidth * 2.0f));
         }
 
         [Test]
-        public void GameHeightCorrectValue()
+        public void Awake_SetsGameWidthToBoundaryHeightMultipliedBy2()
         {
             var sut = new GameObject().AddComponent<Constants>();
             sut.runInEditMode = true;
 
             var result = sut.GameHeight;
 
-            Assert.That(result, Is.EqualTo(GetBoundaryNorthY() * 2.0f));
+            Assert.That(result, Is.EqualTo(sut.BoundaryHeight * 2.0f));
         }
     }
 }
