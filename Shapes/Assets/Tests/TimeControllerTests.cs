@@ -119,5 +119,18 @@ namespace Tests
 
             Assert.That(result, Is.EqualTo(_maxTimeValue));
         }
+
+        [TestCase(-float.Epsilon)]
+        [TestCase(100.00001f)]
+        public void SetTime_InvalidTimeScale_DoesNotSetTimeScaleToArgument(float timeScale)
+        {
+            LogAssert.ignoreFailingMessages = true;
+            var sut = CreateDefaultTimeController();
+
+            sut.SetTime(timeScale);
+            var result = Time.timeScale;
+
+            Assert.That(result, Is.EqualTo(_defaultTime));
+        }
     }
 }
