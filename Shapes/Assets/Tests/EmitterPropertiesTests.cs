@@ -7,11 +7,25 @@ namespace Tests
 {
     public class EmitterPropertiesTests
     {
-        [UnityTest]
-        public IEnumerable Start_SetsNameToLowercase()
+        private GameObject CreateEmitterPropertiesWithRunInEditMode()
         {
-            var sut = new GameObject().AddComponent<EmitterProperties>();
+            var gameObject = new GameObject();
+            gameObject.AddComponent<EmitterProperties>();
+            gameObject.AddComponent<MeshRenderer>();
+            gameObject.GetComponent<EmitterProperties>().runInEditMode = true;
+
+            return gameObject;
+        }
+
+        [UnityTest]
+        public IEnumerator Start_SetsNameToLowercase()
+        {
+            var sut = new GameObject();
             sut.name = "GameObject";
+            
+            sut.AddComponent<EmitterProperties>();
+            sut.AddComponent<MeshRenderer>();
+            sut.GetComponent<EmitterProperties>().runInEditMode = true;
             yield return null;
 
             var result = sut.name;
