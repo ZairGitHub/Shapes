@@ -2,16 +2,16 @@
 
 public class SphereHandler : MonoBehaviour
 {
-    private Constants _constants;
-    private GameController _gameController;
-    private ScoreController _scoreController;
-    private Rigidbody _rb;
-
-    private Vector3 _direction;
-
     private float _speed;
     private float _horizontal;
     private float _vertical;
+
+    private Vector3 _direction;
+
+    private Rigidbody _rb;
+    private Constants _constants;
+    private GameController _gameController;
+    private ScoreController _scoreController;
 
     private void Awake() => _rb = GetComponent<Rigidbody>();
 
