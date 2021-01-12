@@ -36,12 +36,12 @@ namespace Tests
             Assert.That(result, Is.EqualTo("gameobject"));
         }
 
-        [UnityTest]
-        public IEnumerator GetXDirection_NameContainsLeft_ReturnsPositiveOne()
+        [Test]
+        public void GetXDirection_NameContainsLeft_ReturnsPositiveOne()
         {
-            var sut = CreateEmitterPropertiesWithRunInEditMode();
+            var sut = CreateEmitterPropertiesWithRenderer();
             sut.name += "LEFT";
-            yield return null;
+            sut.GetComponent<EmitterProperties>().runInEditMode = true;
 
             var result = sut.GetComponent<EmitterProperties>().GetXDirection();
 
