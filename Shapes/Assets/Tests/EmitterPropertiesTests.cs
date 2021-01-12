@@ -48,12 +48,12 @@ namespace Tests
             Assert.That(result, Is.EqualTo(1.0f));
         }
 
-        [UnityTest]
-        public IEnumerator GetXDirection_NameContainsRight_ReturnsNegativeOne()
+        [Test]
+        public void GetXDirection_NameContainsRight_ReturnsNegativeOne()
         {
-            var sut = CreateEmitterPropertiesWithRunInEditMode();
+            var sut = CreateEmitterPropertiesWithRenderer();
             sut.name += "RIGHT";
-            yield return null;
+            sut.GetComponent<EmitterProperties>().runInEditMode = true;
 
             var result = sut.GetComponent<EmitterProperties>().GetXDirection();
 
