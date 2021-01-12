@@ -11,7 +11,7 @@ public class CubeEmitter : MonoBehaviour
     private GameController _gameController;
     private EmitterProperties _emitterProperties;
 
-    private void Awake()
+    private void Start()
     {
         _cube = GameObject.FindGameObjectWithTag("Cube");
         _cubeEmitters = GameObject.FindGameObjectsWithTag("CubeEmitter")
@@ -19,10 +19,7 @@ public class CubeEmitter : MonoBehaviour
 
         _gameController = GameObject.FindGameObjectWithTag("GameController")
             .GetComponent<GameController>();
-    }
 
-    private void Start()
-    {
         foreach (GameObject cubeEmitter in _cubeEmitters)
         {
             cubeEmitter.transform.position =
