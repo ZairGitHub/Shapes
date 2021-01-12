@@ -35,7 +35,7 @@ namespace Tests
         }
 
         [Test]
-        public void Awake_SetsGameWidthToBoundaryWidthMultipliedBy2()
+        public void Awake_SetsGameWidthToBoundaryWidthMultipliedByTwo()
         {
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
@@ -46,7 +46,7 @@ namespace Tests
         }
 
         [Test]
-        public void Awake_SetsGameHeightToBoundaryHeightMultipliedBy2()
+        public void Awake_SetsGameHeightToBoundaryHeightMultipliedByTwo()
         {
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
