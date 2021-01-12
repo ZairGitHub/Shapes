@@ -6,9 +6,9 @@ public class EmitterProperties : MonoBehaviour
     private const float _negativeOne = -1.0f;
     private const float _positiveOne = 1.0f;
 
-    private Constants _constants;
-
     private float _boundaryOffset;
+
+    private Constants _constants;
 
     private void Awake()
     {
