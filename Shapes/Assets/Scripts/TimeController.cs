@@ -24,7 +24,7 @@ public class TimeController : MonoBehaviour
     
     public void SlowDownTime()
     {
-        Time.timeScale = Time.timeScale - _timeFactor > MinTime ?
+        Time.timeScale = (Time.timeScale - _timeFactor > MinTime) ?
             Time.timeScale -= _timeFactor : MinTime;
 
         _savedTime = Time.timeScale;
@@ -32,7 +32,7 @@ public class TimeController : MonoBehaviour
 
     public void SpeedUpTime()
     {
-        Time.timeScale = Time.timeScale + _timeFactor < MaxTime ?
+        Time.timeScale = (Time.timeScale + _timeFactor < MaxTime) ?
             Time.timeScale += _timeFactor : MaxTime;
 
         _savedTime = Time.timeScale;
