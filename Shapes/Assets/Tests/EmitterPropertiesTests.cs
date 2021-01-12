@@ -1,12 +1,15 @@
-﻿using System.Collections;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
 
 namespace Tests
 {
     public class EmitterPropertiesTests
     {
+        private GameObject CreateDefaultEmitterProperties()
+        {
+            return new GameObject().AddComponent<EmitterProperties>();
+        }
+
         private GameObject CreateEmitterPropertiesWithRenderer()
         {
             var gameObject = new GameObject();
