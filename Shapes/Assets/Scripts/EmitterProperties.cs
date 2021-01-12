@@ -6,20 +6,20 @@ public class EmitterProperties : MonoBehaviour
     private const float _negativeOne = -1.0f;
     private const float _positiveOne = 1.0f;
 
-    private Constants _constants;
-
     private float _boundaryOffset;
 
-    private void Awake()
+    private Constants _constants;
+
+    private void Awake() => name = name.ToLower();
+    
+    private void Start()
     {
+        _boundaryOffset = GameObject.FindGameObjectWithTag("Cube")
+            .GetComponent<Collider>().bounds.size.x * _collisionScale;
+
         _constants = GameObject.FindGameObjectWithTag("Constants")
             .GetComponent<Constants>();
-
-        _boundaryOffset
-            = GetComponent<Renderer>().bounds.size.x * _collisionScale;
     }
-
-    private void Start() => name = name.ToLower();
 
     public float GetXDirection()
     {
@@ -42,13 +42,13 @@ public class EmitterProperties : MonoBehaviour
     public float GetYDirection()
     {
         float yDirection;
-        if (name.Contains("top"))
-        {
-            yDirection = _negativeOne;
-        }
-        else if (name.Contains("bottom"))
+        if (name.Contains("bottom"))
         {
             yDirection = _positiveOne;
+        }
+        else if (name.Contains("top"))
+        {
+            yDirection = _negativeOne;
         }
         else
         {
@@ -83,13 +83,13 @@ public class EmitterProperties : MonoBehaviour
     private float SetYPosition()
     {
         float yPosition;
-        if (name.Contains("top"))
-        {
-            yPosition = _constants.BoundaryHeight - _boundaryOffset;
-        }
-        else if (name.Contains("bottom"))
+        if (name.Contains("bottom"))
         {
             yPosition = -_constants.BoundaryHeight + _boundaryOffset;
+        }
+        else if (name.Contains("top"))
+        {
+            yPosition = _constants.BoundaryHeight - _boundaryOffset;
         }
         else
         {

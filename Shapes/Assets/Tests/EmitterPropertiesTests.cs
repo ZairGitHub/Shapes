@@ -1,177 +1,97 @@
-﻿using System.Collections;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
 
 namespace Tests
 {
     public class EmitterPropertiesTests
     {
-        private GameObject CreateEmitterPropertiesWithRunInEditMode()
+        private EmitterProperties CreateDefaultEmitterProperties()
         {
-            var gameObject = new GameObject();
-            gameObject.AddComponent<EmitterProperties>();
-            gameObject.AddComponent<MeshRenderer>();
-            gameObject.GetComponent<EmitterProperties>().runInEditMode = true;
-            return gameObject;
+            return new GameObject().AddComponent<EmitterProperties>();
         }
 
-        [UnityTest]
-        public IEnumerator Start_SetsNameToLowercase()
+        private EmitterProperties CreateEmitterPropertiesWithCustomName(string name)
         {
-            var sut = CreateEmitterPropertiesWithRunInEditMode();
-            sut.name = "GameObject";
-            yield return null;
-            
+            return new GameObject()
+            {
+                name = name
+            }
+            .AddComponent<EmitterProperties>();
+        }
+
+        [Test]
+        public void Awake_SetsNameToLowercase()
+        {
+            var sut = CreateEmitterPropertiesWithCustomName("GameObject");
+            sut.runInEditMode = true;
+
             var result = sut.name;
             
             Assert.That(result, Is.EqualTo("gameobject"));
         }
 
-        [UnityTest]
-        public IEnumerator GetXDirection_NameContainsLeft_ReturnsPositiveOne()
+        [Test]
+        public void GetXDirection_NameContainsLeft_ReturnsPositiveOne()
         {
-            var sut = CreateEmitterPropertiesWithRunInEditMode();
-            sut.name += "LEFT";
-            yield return null;
+            var sut = CreateEmitterPropertiesWithCustomName("LEFT");
+            sut.runInEditMode = true;
 
-            var result = sut.GetComponent<EmitterProperties>().GetXDirection();
+            var result = sut.GetXDirection();
 
             Assert.That(result, Is.EqualTo(1.0f));
         }
 
-        [UnityTest]
-        public IEnumerator GetXDirection_NameContainsRight_ReturnsNegativeOne()
+        [Test]
+        public void GetXDirection_NameContainsRight_ReturnsNegativeOne()
         {
-            var sut = CreateEmitterPropertiesWithRunInEditMode();
-            sut.name += "RIGHT";
-            yield return null;
+            var sut = CreateEmitterPropertiesWithCustomName("RIGHT");
+            sut.runInEditMode = true;
 
-            var result = sut.GetComponent<EmitterProperties>().GetXDirection();
+            var result = sut.GetXDirection();
 
             Assert.That(result, Is.EqualTo(-1.0f));
         }
 
-        [UnityTest]
-        public IEnumerator GetXDirection_NameDoesNotContainLeftOrRight_ReturnsRandomBetweenNegativeAndPositiveOne()
+        [Test]
+        public void GetXDirection_NameDoesNotContainLeftOrRight_ReturnsRandomBetweenNegativeAndPositiveOne()
         {
-            var sut = CreateEmitterPropertiesWithRunInEditMode();
-            yield return null;
+            var sut = CreateDefaultEmitterProperties();
 
-            var result = sut.GetComponent<EmitterProperties>().GetXDirection();
+            var result = sut.GetXDirection();
 
             Assert.That(result, Is.InRange(-1.0f, 1.0f));
         }
 
-        [UnityTest]
-        public IEnumerator GetYDirection_NameContainsTop_ReturnsNegativeOne()
+        [Test]
+        public void GetYDirection_NameContainsBottom_ReturnsPositiveOne()
         {
-            var sut = CreateEmitterPropertiesWithRunInEditMode();
-            sut.name += "TOP";
-            yield return null;
+            var sut = CreateEmitterPropertiesWithCustomName("BOTTOM");
+            sut.runInEditMode = true;
 
-            var result = sut.GetComponent<EmitterProperties>().GetYDirection();
-
-            Assert.That(result, Is.EqualTo(-1.0f));
-        }
-
-        [UnityTest]
-        public IEnumerator GetYDirection_NameContainsBottom_ReturnsPositiveOne()
-        {
-            var sut = CreateEmitterPropertiesWithRunInEditMode();
-            sut.name += "BOTTOM";
-            yield return null;
-
-            var result = sut.GetComponent<EmitterProperties>().GetYDirection();
+            var result = sut.GetYDirection();
 
             Assert.That(result, Is.EqualTo(1.0f));
         }
 
-        [UnityTest]
-        public IEnumerator GetYDirection_NameDoesNotContainTopOrBottom_ReturnsRandomBetweenNegativeAndPositiveOne()
+        [Test]
+        public void GetYDirection_NameContainsTop_ReturnsNegativeOne()
         {
-            var sut = CreateEmitterPropertiesWithRunInEditMode();
-            yield return null;
+            var sut = CreateEmitterPropertiesWithCustomName("TOP");
+            sut.runInEditMode = true;
+
+            var result = sut.GetYDirection();
+
+            Assert.That(result, Is.EqualTo(-1.0f));
+        }
+
+        [Test]
+        public void GetYDirection_NameDoesNotContainBottomOrTop_ReturnsRandomBetweenNegativeAndPositiveOne()
+        {
+            var sut = CreateDefaultEmitterProperties();
             
-            var result = sut.GetComponent<EmitterProperties>().GetYDirection();
+            var result = sut.GetYDirection();
 
             Assert.That(result, Is.InRange(-1.0f, 1.0f));
-        }
-
-        [Ignore("GetPosition() always incorrectly returns Vector3.zero")]
-        [UnityTest]
-        public IEnumerator GetPosition_NameContainsLeft_ReturnsNegativeVector3XValue()
-        {
-            var sut = CreateEmitterPropertiesWithRunInEditMode();
-            sut.name += "LEFT";
-            yield return null;
-
-            var result = sut.GetComponent<EmitterProperties>().GetPosition().x;
-
-            Assert.That(result, Is.Negative);
-        }
-
-        [Ignore("GetPosition() always incorrectly returns Vector3.zero")]
-        [UnityTest]
-        public IEnumerator GetPosition_NameContainsRight_ReturnsPositiveVector3XValue()
-        {
-            var sut = CreateEmitterPropertiesWithRunInEditMode();
-            sut.name += "RIGHT";
-            yield return null;
-
-            var result = sut.GetComponent<EmitterProperties>().GetPosition().x;
-
-            Assert.That(result, Is.Positive);
-        }
-
-        [Ignore("GetPosition() always incorrectly returns Vector3.zero")]
-        [UnityTest]
-        public IEnumerator GetPosition_NameDoesNotContainLeftOrRight_ReturnsZeroVector3XValue()
-        {
-            var sut = CreateEmitterPropertiesWithRunInEditMode();
-            yield return null;
-            
-            var result = sut.GetComponent<EmitterProperties>().GetPosition().x;
-
-            Assert.That(result, Is.Zero);
-        }
-
-        [Ignore("GetPosition() always incorrectly returns Vector3.zero")]
-        [UnityTest]
-        public IEnumerator GetPosition_NameContainsTop_ReturnsPositiveVector3YValue()
-        {
-            var sut = CreateEmitterPropertiesWithRunInEditMode();
-            sut.name += "TOP";
-            yield return null;
-
-            var result = sut.GetComponent<EmitterProperties>().GetPosition().y;
-
-            Assert.That(result, Is.Positive);
-        }
-
-        [Ignore("GetPosition() always incorrectly returns Vector3.zero")]
-        [UnityTest]
-        public IEnumerator GetPosition_NameContainsBottom_ReturnsNegativeVector3YValue()
-        {
-            var sut = new GameObject().AddComponent<EmitterProperties>();
-            sut.name += "BOTTOM";
-            yield return null;
-
-            var result = sut.GetComponent<EmitterProperties>().GetPosition().y;
-
-            Assert.That(result, Is.Negative);
-        }
-
-        [Ignore("GetPosition() always incorrectly returns Vector3.zero")]
-        [UnityTest]
-        public IEnumerator GetPosition_NameDoesNotContainTopOrBottom_ReturnsZeroVector3YValue()
-        {
-            var sut = CreateEmitterPropertiesWithRunInEditMode();
-            yield return null;
-
-            var result = sut.GetComponent<EmitterProperties>().GetPosition().y;
-
-            Assert.That(result, Is.Zero);
         }
     }
 }

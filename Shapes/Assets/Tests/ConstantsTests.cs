@@ -5,10 +5,15 @@ namespace Tests
 {
     public class ConstantsTests
     {
+        private Constants CreateDefaultConstants()
+        {
+            return new GameObject().AddComponent<Constants>();
+        }
+
         [Test]
         public void Awake_SetsBoundaryWidthToBoundaryEastX()
         {
-            var sut = new GameObject().AddComponent<Constants>();
+            var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
             var boundaryEast = GameObject.FindGameObjectWithTag("BoundaryEast");
@@ -20,7 +25,7 @@ namespace Tests
         [Test]
         public void Awake_SetsBoundaryHeightToBoundaryNorthY()
         {
-            var sut = new GameObject().AddComponent<Constants>();
+            var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
             var boundaryNorth = GameObject.FindGameObjectWithTag("BoundaryNorth");
@@ -30,9 +35,9 @@ namespace Tests
         }
 
         [Test]
-        public void Awake_SetsGameWidthToBoundaryWidthMultipliedBy2()
+        public void Awake_SetsGameWidthToBoundaryWidthMultipliedByTwo()
         {
-            var sut = new GameObject().AddComponent<Constants>();
+            var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
             var result = sut.GameWidth;
@@ -41,9 +46,9 @@ namespace Tests
         }
 
         [Test]
-        public void Awake_SetsGameHeightToBoundaryHeightMultipliedBy2()
+        public void Awake_SetsGameHeightToBoundaryHeightMultipliedByTwo()
         {
-            var sut = new GameObject().AddComponent<Constants>();
+            var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
             var result = sut.GameHeight;
