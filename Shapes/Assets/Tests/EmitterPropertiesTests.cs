@@ -70,12 +70,12 @@ namespace Tests
             Assert.That(result, Is.InRange(-1.0f, 1.0f));
         }
 
-        [UnityTest]
-        public IEnumerator GetYDirection_NameContainsTop_ReturnsNegativeOne()
+        [Test]
+        public void GetYDirection_NameContainsTop_ReturnsNegativeOne()
         {
-            var sut = CreateEmitterPropertiesWithRunInEditMode();
+            var sut = CreateEmitterPropertiesWithRenderer();
             sut.name += "TOP";
-            yield return null;
+            sut.GetComponent<EmitterProperties>().runInEditMode = true;
 
             var result = sut.GetComponent<EmitterProperties>().GetYDirection();
 
