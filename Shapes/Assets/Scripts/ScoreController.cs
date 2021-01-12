@@ -15,7 +15,7 @@ public class ScoreController : MonoBehaviour
     private int _survivalBonus;
     private int _collisionBonus;
 
-    private void Awake()
+    private void Start()
     {
         _gameController = GameObject.FindGameObjectWithTag("GameController")
             .GetComponent<GameController>();
@@ -28,10 +28,7 @@ public class ScoreController : MonoBehaviour
 
         _textCollisionBonus = GameObject.FindGameObjectWithTag("TextCollisionBonus")
             .GetComponent<TMP_Text>();
-    }
 
-    private void Start()
-    {
         _textSurvivalBonus.color = Color.red;
         _textCollisionBonus.color = Color.magenta;
     }
