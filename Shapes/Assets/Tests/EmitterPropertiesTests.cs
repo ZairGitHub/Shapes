@@ -82,12 +82,12 @@ namespace Tests
             Assert.That(result, Is.EqualTo(-1.0f));
         }
 
-        [UnityTest]
-        public IEnumerator GetYDirection_NameContainsBottom_ReturnsPositiveOne()
+        [Test]
+        public void GetYDirection_NameContainsBottom_ReturnsPositiveOne()
         {
-            var sut = CreateEmitterPropertiesWithRunInEditMode();
+            var sut = CreateEmitterPropertiesWithRenderer();
             sut.name += "BOTTOM";
-            yield return null;
+            sut.GetComponent<EmitterProperties>().runInEditMode = true;
 
             var result = sut.GetComponent<EmitterProperties>().GetYDirection();
 
