@@ -13,16 +13,13 @@ public class PlayerSpawner : MonoBehaviour
     private Vector3 _bottomLeftSpawn;
     private Vector3 _bottomRightSpawn;
 
-    private void Awake()
+    private void Awake() => _rb = GetComponent<Rigidbody>();
+    
+    private void Start()
     {
         _constants = GameObject.FindGameObjectWithTag("Constants")
             .GetComponent<Constants>();
 
-        _rb = GetComponent<Rigidbody>();
-    }
-
-    private void Start()
-    {
         float spawnWidth = _constants.BoundaryWidth / 2.0f;
         float spawnHeight = _constants.BoundaryHeight / 2.0f;
 
