@@ -81,11 +81,10 @@ namespace Tests
         [Test]
         public void GetYDirection_NameContainsTop_ReturnsNegativeOne()
         {
-            var sut = CreateEmitterPropertiesWithRenderer();
-            sut.name += "TOP";
-            sut.GetComponent<EmitterProperties>().runInEditMode = true;
+            var sut = CreateEmitterPropertiesWithCustomName("TOP");
+            sut.runInEditMode = true;
 
-            var result = sut.GetComponent<EmitterProperties>().GetYDirection();
+            var result = sut.GetYDirection();
 
             Assert.That(result, Is.EqualTo(-1.0f));
         }
@@ -93,11 +92,10 @@ namespace Tests
         [Test]
         public void GetYDirection_NameContainsBottom_ReturnsPositiveOne()
         {
-            var sut = CreateEmitterPropertiesWithRenderer();
-            sut.name += "BOTTOM";
-            sut.GetComponent<EmitterProperties>().runInEditMode = true;
+            var sut = CreateEmitterPropertiesWithCustomName("BOTTOM");
+            sut.runInEditMode = true;
 
-            var result = sut.GetComponent<EmitterProperties>().GetYDirection();
+            var result = sut.GetYDirection();
 
             Assert.That(result, Is.EqualTo(1.0f));
         }
