@@ -9,8 +9,6 @@ public class EmitterProperties : MonoBehaviour
     private float _boundaryOffset;
 
     private Constants _constants;
-
-    private void Awake() => name = name.ToLower();
     
     private void Start()
     {
@@ -24,11 +22,11 @@ public class EmitterProperties : MonoBehaviour
     public float GetXDirection()
     {
         float xDirection;
-        if (name.Contains("left"))
+        if (transform.position.x < 0)
         {
             xDirection = _positiveOne;
         }
-        else if (name.Contains("right"))
+        else if (transform.position.x > 0)
         {
             xDirection = _negativeOne;
         }
@@ -42,11 +40,11 @@ public class EmitterProperties : MonoBehaviour
     public float GetYDirection()
     {
         float yDirection;
-        if (name.Contains("bottom"))
+        if (transform.position.y < 0)
         {
             yDirection = _positiveOne;
         }
-        else if (name.Contains("top"))
+        else if (transform.position.y > 0)
         {
             yDirection = _negativeOne;
         }
@@ -65,11 +63,11 @@ public class EmitterProperties : MonoBehaviour
     private float SetXPosition()
     {
         float xPosition;
-        if (name.Contains("left"))
+        if (transform.position.x < 0)
         {
             xPosition = -_constants.BoundaryWidth + _boundaryOffset;
         }
-        else if (name.Contains("right"))
+        else if (transform.position.x > 0)
         {
             xPosition = _constants.BoundaryWidth - _boundaryOffset;
         }
@@ -83,11 +81,11 @@ public class EmitterProperties : MonoBehaviour
     private float SetYPosition()
     {
         float yPosition;
-        if (name.Contains("bottom"))
+        if (transform.position.y < 0)
         {
             yPosition = -_constants.BoundaryHeight + _boundaryOffset;
         }
-        else if (name.Contains("top"))
+        else if (transform.position.y > 0)
         {
             yPosition = _constants.BoundaryHeight - _boundaryOffset;
         }
