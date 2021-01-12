@@ -13,8 +13,14 @@ public class SphereHandler : MonoBehaviour
     private float _horizontal;
     private float _vertical;
 
-    private void Awake()
+    private void Awake() => _rb = GetComponent<Rigidbody>();
+
+    private void Start()
     {
+        _rb.constraints = RigidbodyConstraints.FreezePositionZ;
+        _rb.freezeRotation = true;
+        _rb.useGravity = false;
+
         _constants = GameObject.FindGameObjectWithTag("Constants")
             .GetComponent<Constants>();
 
@@ -23,15 +29,6 @@ public class SphereHandler : MonoBehaviour
 
         _scoreController = GameObject.FindGameObjectWithTag("ScoreController")
             .GetComponent<ScoreController>();
-
-        _rb = GetComponent<Rigidbody>();
-    }
-
-    private void Start()
-    {
-        _rb.constraints = RigidbodyConstraints.FreezePositionZ;
-        _rb.freezeRotation = true;
-        _rb.useGravity = false;
     }
 
     public bool HasSpeed() => _speed > 0.0f;
