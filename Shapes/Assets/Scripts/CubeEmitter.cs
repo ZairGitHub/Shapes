@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CubeEmitter : MonoBehaviour
 {
-    private const float _emitterDelay = 1.0f;
+    private readonly WaitForSeconds _emitterDelay = new WaitForSeconds(1.0f);
 
     private GameObject _cube;
     private GameObject[] _cubeEmitters;
@@ -31,7 +31,7 @@ public class CubeEmitter : MonoBehaviour
             _cubeEmitters[RNG].GetComponent<Renderer>().material.color = Color.blue;
             _emitterProperties = _cubeEmitters[RNG].GetComponent<EmitterProperties>();
 
-            yield return new WaitForSeconds(_emitterDelay);
+            yield return _emitterDelay;
 
             if (_gameController.IsRunning)
             {
