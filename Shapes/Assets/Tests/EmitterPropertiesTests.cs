@@ -94,11 +94,10 @@ namespace Tests
             Assert.That(result, Is.EqualTo(1.0f));
         }
 
-        [UnityTest]
-        public IEnumerator GetYDirection_NameDoesNotContainTopOrBottom_ReturnsRandomBetweenNegativeAndPositiveOne()
+        [Test]
+        public void GetYDirection_NameDoesNotContainTopOrBottom_ReturnsRandomBetweenNegativeAndPositiveOne()
         {
             var sut = CreateEmitterPropertiesWithRunInEditMode();
-            yield return null;
             
             var result = sut.GetComponent<EmitterProperties>().GetYDirection();
 
