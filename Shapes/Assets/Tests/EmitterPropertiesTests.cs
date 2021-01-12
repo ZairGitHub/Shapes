@@ -63,17 +63,6 @@ namespace Tests
         }
 
         [Test]
-        public void GetYDirection_NameContainsTop_ReturnsNegativeOne()
-        {
-            var sut = CreateEmitterPropertiesWithCustomName("TOP");
-            sut.runInEditMode = true;
-
-            var result = sut.GetYDirection();
-
-            Assert.That(result, Is.EqualTo(-1.0f));
-        }
-
-        [Test]
         public void GetYDirection_NameContainsBottom_ReturnsPositiveOne()
         {
             var sut = CreateEmitterPropertiesWithCustomName("BOTTOM");
@@ -85,7 +74,18 @@ namespace Tests
         }
 
         [Test]
-        public void GetYDirection_NameDoesNotContainTopOrBottom_ReturnsRandomBetweenNegativeAndPositiveOne()
+        public void GetYDirection_NameContainsTop_ReturnsNegativeOne()
+        {
+            var sut = CreateEmitterPropertiesWithCustomName("TOP");
+            sut.runInEditMode = true;
+
+            var result = sut.GetYDirection();
+
+            Assert.That(result, Is.EqualTo(-1.0f));
+        }
+
+        [Test]
+        public void GetYDirection_NameDoesNotContainBottomOrTop_ReturnsRandomBetweenNegativeAndPositiveOne()
         {
             var sut = CreateDefaultEmitterProperties();
             
