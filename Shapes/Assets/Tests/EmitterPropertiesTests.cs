@@ -5,9 +5,17 @@ namespace Tests
 {
     public class EmitterPropertiesTests
     {
-        private GameObject CreateDefaultEmitterProperties()
+        private EmitterProperties CreateDefaultEmitterProperties()
         {
             return new GameObject().AddComponent<EmitterProperties>();
+        }
+
+        private EmitterProperties CreateEmitterPropertiesWithCustomName(string name)
+        {
+            return new GameObject()
+            {
+                name = name
+            }.AddComponent<EmitterProperties>();
         }
 
         private GameObject CreateEmitterPropertiesWithRenderer()
