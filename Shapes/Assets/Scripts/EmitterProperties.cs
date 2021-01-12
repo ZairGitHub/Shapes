@@ -24,11 +24,11 @@ public class EmitterProperties : MonoBehaviour
     public float GetXDirection()
     {
         float xDirection;
-        if (name.Contains("left"))
+        if (transform.position.x < 0)
         {
             xDirection = _positiveOne;
         }
-        else if (name.Contains("right"))
+        else if (transform.position.x > 0)
         {
             xDirection = _negativeOne;
         }
