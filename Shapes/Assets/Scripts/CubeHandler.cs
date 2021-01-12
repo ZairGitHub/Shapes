@@ -82,7 +82,7 @@ public class CubeHandler : MonoBehaviour
                     -_constants.BoundaryHeight + _boundaryWrapDistance, _rb.position.z));
                     break;
                 case "BoundaryEast":
-                    _rb.MovePosition(new Vector3(_constants.BoundaryWidth - _boundaryWrapDistance,
+                    _rb.MovePosition(new Vector3(-_constants.BoundaryWidth + _boundaryWrapDistance,
                     _rb.position.y, _rb.position.z));
                     break;
                 case "BoundarySouth":
@@ -90,7 +90,7 @@ public class CubeHandler : MonoBehaviour
                     _constants.BoundaryHeight - _boundaryWrapDistance, _rb.position.z));
                     break;
                 case "BoundaryWest":
-                    _rb.MovePosition(new Vector3(-_constants.BoundaryWidth + _boundaryWrapDistance,
+                    _rb.MovePosition(new Vector3(_constants.BoundaryWidth - _boundaryWrapDistance,
                     _rb.position.y, _rb.position.z));
                     break;
             }
