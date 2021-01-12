@@ -126,7 +126,6 @@ namespace Tests
         [TestCase(_maxTimeValue + 0.000001f)]
         public void SetTime_OutsideTimeScaleRange_DoesNotSetTimeScaleToArgument(float timeScale)
         {
-            LogAssert.ignoreFailingMessages = true;
             var sut = CreateDefaultTimeController();
 
             sut.SetTime(timeScale);
