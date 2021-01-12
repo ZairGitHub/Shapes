@@ -12,14 +12,17 @@ public class EmitterProperties : MonoBehaviour
 
     private void Awake()
     {
-        _constants = GameObject.FindGameObjectWithTag("Constants")
-            .GetComponent<Constants>();
+        name = name.ToLower();
 
         _boundaryOffset
             = GetComponent<Renderer>().bounds.size.x * _collisionScale;
     }
 
-    private void Start() => name = name.ToLower();
+    private void Start()
+    {
+        _constants = GameObject.FindGameObjectWithTag("Constants")
+            .GetComponent<Constants>();
+    }
 
     public float GetXDirection()
     {
