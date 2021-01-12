@@ -10,26 +10,6 @@ namespace Tests
             return new GameObject().AddComponent<EmitterProperties>();
         }
 
-        private EmitterProperties CreateEmitterPropertiesWithCustomName(string name)
-        {
-            return new GameObject()
-            {
-                name = name
-            }
-            .AddComponent<EmitterProperties>();
-        }
-
-        [Test]
-        public void Awake_SetsNameToLowercase()
-        {
-            var sut = CreateEmitterPropertiesWithCustomName("GameObject");
-            sut.runInEditMode = true;
-
-            var result = sut.name;
-            
-            Assert.That(result, Is.EqualTo("gameobject"));
-        }
-
         [Test]
         public void GetXDirection_TransformPositionXIsNegative_ReturnsPositiveOne()
         {
