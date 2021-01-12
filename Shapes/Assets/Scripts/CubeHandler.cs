@@ -21,6 +21,18 @@ public class CubeHandler : MonoBehaviour
 
     private void Awake()
     {
+        _boundaryWrapDistance =
+            GetComponent<Collider>().bounds.size.x * _collisionScale;
+
+        _rb = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        _rb.constraints = RigidbodyConstraints.FreezePositionZ;
+        _rb.freezeRotation = true;
+        _rb.useGravity = false;
+
         _constants = GameObject.FindGameObjectWithTag("Constants")
             .GetComponent<Constants>();
 
@@ -29,17 +41,6 @@ public class CubeHandler : MonoBehaviour
 
         _scoreController = GameObject.FindGameObjectWithTag("ScoreController")
             .GetComponent<ScoreController>();
-
-        _rb = GetComponent<Rigidbody>();
-        _boundaryWrapDistance =
-            GetComponent<Collider>().bounds.size.x * _collisionScale;
-    }
-
-    private void Start()
-    {
-        _rb.constraints = RigidbodyConstraints.FreezePositionZ;
-        _rb.freezeRotation = true;
-        _rb.useGravity = false;
     }
 
     public bool HasSpeed() => _speed > 0.0f;
