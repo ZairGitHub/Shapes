@@ -15,7 +15,8 @@ namespace Tests
             return new GameObject()
             {
                 name = name
-            }.AddComponent<EmitterProperties>();
+            }
+            .AddComponent<EmitterProperties>();
         }
 
         [Test]
