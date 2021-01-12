@@ -7,6 +7,14 @@ namespace Tests
 {
     public class EmitterPropertiesTests
     {
+        private GameObject CreateEmitterPropertiesWithRenderer()
+        {
+            var gameObject = new GameObject();
+            gameObject.AddComponent<EmitterProperties>();
+            gameObject.AddComponent<MeshRenderer>();
+            return gameObject;
+        }
+
         private GameObject CreateEmitterPropertiesWithRunInEditMode()
         {
             var gameObject = new GameObject();
@@ -16,13 +24,13 @@ namespace Tests
             return gameObject;
         }
 
-        [UnityTest]
-        public IEnumerator Start_SetsNameToLowercase()
+        [Test]
+        public void Awake_SetsNameToLowercase()
         {
-            var sut = CreateEmitterPropertiesWithRunInEditMode();
+            var sut = CreateEmitterPropertiesWithRenderer();
             sut.name = "GameObject";
-            yield return null;
-            
+            sut.GetComponent<EmitterProperties>().runInEditMode = true;
+
             var result = sut.name;
             
             Assert.That(result, Is.EqualTo("gameobject"));
