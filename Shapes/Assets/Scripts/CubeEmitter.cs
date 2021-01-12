@@ -11,7 +11,7 @@ public class CubeEmitter : MonoBehaviour
     private GameController _gameController;
     private EmitterProperties _emitterProperties;
 
-    private void Awake()
+    private void Start()
     {
         _cube = GameObject.FindGameObjectWithTag("Cube");
         _cubeEmitters = GameObject.FindGameObjectsWithTag("CubeEmitter")
@@ -19,10 +19,7 @@ public class CubeEmitter : MonoBehaviour
 
         _gameController = GameObject.FindGameObjectWithTag("GameController")
             .GetComponent<GameController>();
-    }
 
-    private void Start()
-    {
         foreach (GameObject cubeEmitter in _cubeEmitters)
         {
             cubeEmitter.transform.position =
@@ -41,22 +38,19 @@ public class CubeEmitter : MonoBehaviour
 
             yield return new WaitForSeconds(_emitterDelay);
 
-            EmitCube(RNG);
-        }
-    }
+            if (_gameController.IsRunning)
+            {
+                CubeHandler cube = Instantiate(
+                    _cube, _cubeEmitters[RNG].transform.position, Quaternion.identity)
+                    .GetComponent<CubeHandler>();
 
-    private void EmitCube(int RNG)
-    {
-        if (_gameController.IsRunning)
-        {
-            CubeHandler cube = Instantiate(
-                _cube, _cubeEmitters[RNG].transform.position, Quaternion.identity)
-                .GetComponent<CubeHandler>();
+                yield return null;
 
-            cube.SetDirection(
-                _emitterProperties.GetXDirection(), _emitterProperties.GetYDirection());
+                cube.SetDirection(
+                    _emitterProperties.GetXDirection(), _emitterProperties.GetYDirection());
 
-            _cubeEmitters[RNG].GetComponent<Renderer>().material.color = Color.yellow;
+                _cubeEmitters[RNG].GetComponent<Renderer>().material.color = Color.yellow;
+            }
         }
     }
 }

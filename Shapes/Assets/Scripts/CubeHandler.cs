@@ -7,20 +7,32 @@ public class CubeHandler : MonoBehaviour
     private const float _maxSpeed = 0.4f;
     private const float _speedMultiplier = 0.02f;
 
-    private Constants _constants;
-    private GameController _gameController;
-    private ScoreController _scoreController;
-    private Rigidbody _rb;
-
-    private Vector3 _direction;
-
-    private float _speed;
     private float _boundaryWrapDistance;
+    private float _speed;
     private float _horizontal;
     private float _vertical;
 
+    private Vector3 _direction;
+
+    private Rigidbody _rb;
+    private Constants _constants;
+    private GameController _gameController;
+    private ScoreController _scoreController;
+
     private void Awake()
     {
+        _boundaryWrapDistance =
+            GetComponent<Collider>().bounds.size.x * _collisionScale;
+
+        _rb = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        _rb.constraints = RigidbodyConstraints.FreezePositionZ;
+        _rb.freezeRotation = true;
+        _rb.useGravity = false;
+
         _constants = GameObject.FindGameObjectWithTag("Constants")
             .GetComponent<Constants>();
 
@@ -29,17 +41,6 @@ public class CubeHandler : MonoBehaviour
 
         _scoreController = GameObject.FindGameObjectWithTag("ScoreController")
             .GetComponent<ScoreController>();
-
-        _rb = GetComponent<Rigidbody>();
-        _boundaryWrapDistance =
-            GetComponent<Collider>().bounds.size.x * _collisionScale;
-    }
-
-    private void Start()
-    {
-        _rb.constraints = RigidbodyConstraints.FreezePositionZ;
-        _rb.freezeRotation = true;
-        _rb.useGravity = false;
     }
 
     public bool HasSpeed() => _speed > 0.0f;
