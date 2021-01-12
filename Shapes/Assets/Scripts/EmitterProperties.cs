@@ -63,11 +63,11 @@ public class EmitterProperties : MonoBehaviour
     private float SetXPosition()
     {
         float xPosition;
-        if (name.Contains("left"))
+        if (transform.position.x < 0)
         {
             xPosition = -_constants.BoundaryWidth + _boundaryOffset;
         }
-        else if (name.Contains("right"))
+        else if (transform.position.x > 0)
         {
             xPosition = _constants.BoundaryWidth - _boundaryOffset;
         }
@@ -81,11 +81,11 @@ public class EmitterProperties : MonoBehaviour
     private float SetYPosition()
     {
         float yPosition;
-        if (name.Contains("bottom"))
+        if (transform.position.y < 0)
         {
             yPosition = -_constants.BoundaryHeight + _boundaryOffset;
         }
-        else if (name.Contains("top"))
+        else if (transform.position.y > 0)
         {
             yPosition = _constants.BoundaryHeight - _boundaryOffset;
         }
