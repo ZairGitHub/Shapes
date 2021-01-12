@@ -38,9 +38,8 @@ namespace Tests
         [Test]
         public void Awake_SetsNameToLowercase()
         {
-            var sut = CreateEmitterPropertiesWithRenderer();
-            sut.name = "GameObject";
-            sut.GetComponent<EmitterProperties>().runInEditMode = true;
+            var sut = CreateEmitterPropertiesWithCustomName("GameObject");
+            sut.runInEditMode = true;
 
             var result = sut.name;
             
