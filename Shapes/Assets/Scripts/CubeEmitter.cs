@@ -38,19 +38,22 @@ public class CubeEmitter : MonoBehaviour
 
             yield return new WaitForSeconds(_emitterDelay);
 
-            if (_gameController.IsRunning)
-            {
-                CubeHandler cube = Instantiate(
-                    _cube, _cubeEmitters[RNG].transform.position, Quaternion.identity)
-                    .GetComponent<CubeHandler>();
+            EmitCube(RNG);
+        }
+    }
 
-                yield return null;
+    private void EmitCube(int RNG)
+    {
+        if (_gameController.IsRunning)
+        {
+            CubeHandler cube = Instantiate(
+                _cube, _cubeEmitters[RNG].transform.position, Quaternion.identity)
+                .GetComponent<CubeHandler>();
 
-                cube.SetDirection(
-                    _emitterProperties.GetXDirection(), _emitterProperties.GetYDirection());
+            cube.SetDirection(
+                _emitterProperties.GetXDirection(), _emitterProperties.GetYDirection());
 
-                _cubeEmitters[RNG].GetComponent<Renderer>().material.color = Color.yellow;
-            }
+            _cubeEmitters[RNG].GetComponent<Renderer>().material.color = Color.yellow;
         }
     }
 }
