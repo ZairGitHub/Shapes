@@ -98,7 +98,7 @@ namespace Tests
             Assert.That(result, Is.InRange(-1.0f, 1.0f));
         }
 
-        [Ignore("GetPosition always incorrectly returns Vector3.zero")]
+        [Ignore("GetPosition() always incorrectly returns Vector3.zero")]
         [UnityTest]
         public IEnumerator GetPosition_NameContainsLeft_ReturnsNegativeVector3XValue()
         {
@@ -111,7 +111,7 @@ namespace Tests
             Assert.That(result, Is.Negative);
         }
 
-        [Ignore("GetPosition always incorrectly returns Vector3.zero")]
+        [Ignore("GetPosition() always incorrectly returns Vector3.zero")]
         [UnityTest]
         public IEnumerator GetPosition_NameContainsRight_ReturnsPositiveVector3XValue()
         {
@@ -124,7 +124,7 @@ namespace Tests
             Assert.That(result, Is.Positive);
         }
 
-        [Ignore("GetPosition always incorrectly returns Vector3.zero")]
+        [Ignore("GetPosition() always incorrectly returns Vector3.zero")]
         [UnityTest]
         public IEnumerator GetPosition_NameDoesNotContainLeftOrRight_ReturnsZeroVector3XValue()
         {
@@ -136,7 +136,7 @@ namespace Tests
             Assert.That(result, Is.Zero);
         }
 
-        [Ignore("GetPosition always incorrectly returns Vector3.zero")]
+        [Ignore("GetPosition() always incorrectly returns Vector3.zero")]
         [UnityTest]
         public IEnumerator GetPosition_NameContainsTop_ReturnsPositiveVector3YValue()
         {
@@ -149,7 +149,7 @@ namespace Tests
             Assert.That(result, Is.Positive);
         }
 
-        [Ignore("GetPosition always incorrectly returns Vector3.zero")]
+        [Ignore("GetPosition() always incorrectly returns Vector3.zero")]
         [UnityTest]
         public IEnumerator GetPosition_NameContainsBottom_ReturnsNegativeVector3YValue()
         {
@@ -162,7 +162,7 @@ namespace Tests
             Assert.That(result, Is.Negative);
         }
 
-        [Ignore("GetPosition always incorrectly returns Vector3.zero")]
+        [Ignore("GetPosition() always incorrectly returns Vector3.zero")]
         [UnityTest]
         public IEnumerator GetPosition_NameDoesNotContainTopOrBottom_ReturnsZeroVector3YValue()
         {
