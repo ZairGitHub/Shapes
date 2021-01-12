@@ -2,14 +2,14 @@
 
 public class PlayerController : MonoBehaviour
 {
-    private Constants _constants;
-    private GameController _gameController;
-    private PlayerSpawner _playerSpawner;
+    private float _speed;
 
-    private Rigidbody _rb;
     private Vector3 _movement;
 
-    private float _speed;
+    private Rigidbody _rb;
+    private PlayerSpawner _playerSpawner;
+    private Constants _constants;
+    private GameController _gameController;
 
     private void Awake()
     {
