@@ -1,32 +1,54 @@
-﻿using System.Collections;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
 
 namespace Tests
 {
     public class ConstantsTests
     {
-        [UnityTest]
-        public IEnumerable Awake_SetsBoundaryWidthToCorrectValue()
+        [Test]
+        public void Awake_SetsBoundaryWidthToBoundaryEastX()
         {
             var sut = new GameObject().AddComponent<Constants>();
-            yield return null;
+            sut.runInEditMode = true;
 
+            var boundaryEast = GameObject.FindGameObjectWithTag("BoundaryEast");
             var result = sut.BoundaryWidth;
 
-            Assert.That(result, Is.EqualTo(20.0f));
+            Assert.That(result, Is.EqualTo(boundaryEast.transform.position.x));
         }
 
-        [UnityTest]
-        public IEnumerable Awake_SetsBoundaryHeightToCorrectValue()
+        [Test]
+        public void Awake_SetsBoundaryHeightToBoundaryNorthY()
         {
             var sut = new GameObject().AddComponent<Constants>();
-            yield return null;
+            sut.runInEditMode = true;
 
+            var boundaryNorth = GameObject.FindGameObjectWithTag("BoundaryNorth");
             var result = sut.BoundaryHeight;
 
-            Assert.That(result, Is.EqualTo(10.0f));
+            Assert.That(result, Is.EqualTo(boundaryNorth.transform.position.y));
+        }
+
+        [Test]
+        public void Awake_SetsGameWidthToBoundaryWidthMultipliedBy2()
+        {
+            var sut = new GameObject().AddComponent<Constants>();
+            sut.runInEditMode = true;
+
+            var result = sut.GameWidth;
+
+            Assert.That(result, Is.EqualTo(sut.BoundaryWidth * 2.0f));
+        }
+
+        [Test]
+        public void Awake_SetsGameHeightToBoundaryHeightMultipliedBy2()
+        {
+            var sut = new GameObject().AddComponent<Constants>();
+            sut.runInEditMode = true;
+
+            var result = sut.GameHeight;
+
+            Assert.That(result, Is.EqualTo(sut.BoundaryHeight * 2.0f));
         }
     }
 }

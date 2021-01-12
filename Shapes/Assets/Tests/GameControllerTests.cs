@@ -1,28 +1,29 @@
-﻿using System.Collections;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
 
 namespace Tests
 {
     public class GameControllerTests
     {
-        [UnityTest]
-        public IEnumerable IsInDebugMode_DefaultValue_IsFalse()
+        private GameController CreateDefaultGameController()
         {
-            var sut = new GameObject().AddComponent<GameController>();
-            yield return null;
+            return new GameObject().AddComponent<GameController>();
+        }
+
+        [Test]
+        public void IsInDebugMode_DefaultValue_IsFalse()
+        {
+            var sut = CreateDefaultGameController();
 
             var result = sut.IsInDebugMode;
 
             Assert.That(result, Is.False);
         }
 
-        [UnityTest]
-        public IEnumerable IsRunnning_DefaultValue_IsTrue()
+        [Test]
+        public void IsRunnning_DefaultValue_IsTrue()
         {
-            var sut = new GameObject().AddComponent<GameController>();
-            yield return null;
+            var sut = CreateDefaultGameController();
 
             var result = sut.IsRunning;
 
@@ -30,11 +31,11 @@ namespace Tests
         }
 
         [Test]
-        public void Reset_SetsIsRunnningToFalse()
+        public void Stop_SetsIsRunnningToFalse()
         {
-            var sut = new GameObject().AddComponent<GameController>();
+            var sut = CreateDefaultGameController();
             
-            sut.Reset();
+            sut.Stop();
             var result = sut.IsRunning;
 
             Assert.That(result, Is.False);
