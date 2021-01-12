@@ -60,11 +60,10 @@ namespace Tests
             Assert.That(result, Is.EqualTo(-1.0f));
         }
 
-        [UnityTest]
-        public IEnumerator GetXDirection_NameDoesNotContainLeftOrRight_ReturnsRandomBetweenNegativeAndPositiveOne()
+        [Test]
+        public void GetXDirection_NameDoesNotContainLeftOrRight_ReturnsRandomBetweenNegativeAndPositiveOne()
         {
             var sut = CreateEmitterPropertiesWithRunInEditMode();
-            yield return null;
 
             var result = sut.GetComponent<EmitterProperties>().GetXDirection();
 
