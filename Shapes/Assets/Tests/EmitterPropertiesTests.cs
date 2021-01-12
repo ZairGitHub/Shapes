@@ -60,11 +60,10 @@ namespace Tests
         [Test]
         public void GetXDirection_NameContainsRight_ReturnsNegativeOne()
         {
-            var sut = CreateEmitterPropertiesWithRenderer();
-            sut.name += "RIGHT";
-            sut.GetComponent<EmitterProperties>().runInEditMode = true;
+            var sut = CreateEmitterPropertiesWithCustomName("RIGHT");
+            sut.runInEditMode = true;
 
-            var result = sut.GetComponent<EmitterProperties>().GetXDirection();
+            var result = sut.GetXDirection();
 
             Assert.That(result, Is.EqualTo(-1.0f));
         }
