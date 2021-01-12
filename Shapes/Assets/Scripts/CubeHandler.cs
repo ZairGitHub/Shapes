@@ -7,17 +7,17 @@ public class CubeHandler : MonoBehaviour
     private const float _maxSpeed = 0.4f;
     private const float _speedMultiplier = 0.02f;
 
-    private Constants _constants;
-    private GameController _gameController;
-    private ScoreController _scoreController;
-    private Rigidbody _rb;
+    private float _boundaryWrapDistance;
+    private float _speed;
+    private float _horizontal;
+    private float _vertical;
 
     private Vector3 _direction;
 
-    private float _speed;
-    private float _boundaryWrapDistance;
-    private float _horizontal;
-    private float _vertical;
+    private Rigidbody _rb;
+    private Constants _constants;
+    private GameController _gameController;
+    private ScoreController _scoreController;
 
     private void Awake()
     {
