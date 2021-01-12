@@ -12,11 +12,10 @@ namespace Tests
 
         private EmitterProperties CreateEmitterPropertiesWithCustomName(string name)
         {
-            var g = new GameObject()
+            return new GameObject()
             {
                 name = name
             }.AddComponent<EmitterProperties>();
-            return g;
         }
 
         [Test]
