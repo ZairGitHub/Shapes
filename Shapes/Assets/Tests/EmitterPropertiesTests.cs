@@ -71,9 +71,9 @@ namespace Tests
         [Test]
         public void GetXDirection_NameDoesNotContainLeftOrRight_ReturnsRandomBetweenNegativeAndPositiveOne()
         {
-            var sut = CreateEmitterPropertiesWithRunInEditMode();
+            var sut = CreateDefaultEmitterProperties();
 
-            var result = sut.GetComponent<EmitterProperties>().GetXDirection();
+            var result = sut.GetXDirection();
 
             Assert.That(result, Is.InRange(-1.0f, 1.0f));
         }
