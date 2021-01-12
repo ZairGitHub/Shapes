@@ -17,47 +17,13 @@ public class EmitterProperties : MonoBehaviour
 
         _constants = GameObject.FindGameObjectWithTag("Constants")
             .GetComponent<Constants>();
+
+        SetPosition();
     }
 
-    public float GetXDirection()
+    private void SetPosition()
     {
-        float xDirection;
-        if (transform.position.x < 0)
-        {
-            xDirection = _positiveOne;
-        }
-        else if (transform.position.x > 0)
-        {
-            xDirection = _negativeOne;
-        }
-        else
-        {
-            xDirection = Random.Range(_negativeOne, _positiveOne);
-        }
-        return xDirection;
-    }
-
-    public float GetYDirection()
-    {
-        float yDirection;
-        if (transform.position.y < 0)
-        {
-            yDirection = _positiveOne;
-        }
-        else if (transform.position.y > 0)
-        {
-            yDirection = _negativeOne;
-        }
-        else
-        {
-            yDirection = Random.Range(_negativeOne, _positiveOne);
-        }
-        return yDirection;
-    }
-
-    public Vector3 GetPosition()
-    {
-        return new Vector3(SetXPosition(), SetYPosition(), 0.0f);
+        transform.position = new Vector3(SetXPosition(), SetYPosition(), 0.0f);
     }
 
     private float SetXPosition()
@@ -94,5 +60,41 @@ public class EmitterProperties : MonoBehaviour
             yPosition = 0.0f;
         }
         return yPosition;
+    }
+
+    public float GetXDirection()
+    {
+        float xDirection;
+        if (transform.position.x < 0)
+        {
+            xDirection = _positiveOne;
+        }
+        else if (transform.position.x > 0)
+        {
+            xDirection = _negativeOne;
+        }
+        else
+        {
+            xDirection = Random.Range(_negativeOne, _positiveOne);
+        }
+        return xDirection;
+    }
+
+    public float GetYDirection()
+    {
+        float yDirection;
+        if (transform.position.y < 0)
+        {
+            yDirection = _positiveOne;
+        }
+        else if (transform.position.y > 0)
+        {
+            yDirection = _negativeOne;
+        }
+        else
+        {
+            yDirection = Random.Range(_negativeOne, _positiveOne);
+        }
+        return yDirection;
     }
 }

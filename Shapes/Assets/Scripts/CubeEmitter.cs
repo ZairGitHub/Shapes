@@ -20,11 +20,6 @@ public class CubeEmitter : MonoBehaviour
         _gameController = GameObject.FindGameObjectWithTag("GameController")
             .GetComponent<GameController>();
 
-        foreach (GameObject cubeEmitter in _cubeEmitters)
-        {
-            cubeEmitter.transform.position =
-                cubeEmitter.GetComponent<EmitterProperties>().GetPosition();
-        }
         StartCoroutine(EmitCubes());
     }
 
