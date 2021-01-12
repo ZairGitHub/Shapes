@@ -5,6 +5,11 @@ namespace Tests
 {
     public class ConstantsTests
     {
+        private Constants CreateDefaultConstants()
+        {
+            return new GameObject().AddComponent<Constants>();
+        }
+
         [Test]
         public void Awake_SetsBoundaryWidthToBoundaryEastX()
         {
