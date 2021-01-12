@@ -1,15 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
 
 namespace Tests
 {
     public class CameraControllerTests
     {
         [Test]
-        public void CameraControllerTestsSimplePasses()
+        public void Awake_SetsTransformPositionToCorrectVector3()
         {
             var sut = new GameObject().AddComponent<CameraController>();
             sut.runInEditMode = true;
