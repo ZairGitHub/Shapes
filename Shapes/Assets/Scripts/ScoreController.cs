@@ -6,14 +6,14 @@ public class ScoreController : MonoBehaviour
 {
     private const float survivalBonusDelay = 3.0f;
 
+    private int _score;
+    private int _survivalBonus;
+    private int _collisionBonus;
+
     private GameController _gameController;
     private TMP_Text _textScore;
     private TMP_Text _textSurvivalBonus;
     private TMP_Text _textCollisionBonus;
-
-    private int _score;
-    private int _survivalBonus;
-    private int _collisionBonus;
 
     private void Start()
     {
