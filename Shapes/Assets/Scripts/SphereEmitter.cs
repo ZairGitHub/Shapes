@@ -23,19 +23,16 @@ public class SphereEmitter : MonoBehaviour
         {
             yield return new WaitForSeconds(_emitterDelay);
 
-            EmitSphere();
-        }
-    }
+            if (_gameController.IsRunning)
+            {
+                SphereHandler sphere = Instantiate(
+                    _sphere, Vector3.up, Quaternion.identity)
+                    .GetComponent<SphereHandler>();
 
-    private void EmitSphere()
-    {
-        if (_gameController.IsRunning)
-        {
-            SphereHandler sphere = Instantiate(
-                _sphere, Vector3.up, Quaternion.identity)
-                .GetComponent<SphereHandler>();
+                yield return null;
 
-            sphere.SetDirection();
+                sphere.SetDirection();
+            }
         }
     }
 }
