@@ -13,12 +13,6 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        _constants = GameObject.FindGameObjectWithTag("Constants")
-            .GetComponent<Constants>();
-
-        _gameController = GameObject.FindGameObjectWithTag("GameController")
-            .GetComponent<GameController>();
-
         _playerSpawner = GetComponent<PlayerSpawner>();
         _rb = GetComponent<Rigidbody>();
     }
@@ -28,6 +22,12 @@ public class PlayerController : MonoBehaviour
         _rb.constraints = RigidbodyConstraints.FreezePositionZ;
         _rb.freezeRotation = true;        
         _rb.useGravity = false;
+
+        _constants = GameObject.FindGameObjectWithTag("Constants")
+            .GetComponent<Constants>();
+
+        _gameController = GameObject.FindGameObjectWithTag("GameController")
+            .GetComponent<GameController>();
 
         _speed = _constants.BoundaryWidth;
     }
