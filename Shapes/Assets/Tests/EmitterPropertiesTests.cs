@@ -12,27 +12,11 @@ namespace Tests
 
         private EmitterProperties CreateEmitterPropertiesWithCustomName(string name)
         {
-            return new GameObject()
+            var g = new GameObject()
             {
                 name = name
             }.AddComponent<EmitterProperties>();
-        }
-
-        private GameObject CreateEmitterPropertiesWithRenderer()
-        {
-            var gameObject = new GameObject();
-            gameObject.AddComponent<EmitterProperties>();
-            gameObject.AddComponent<MeshRenderer>();
-            return gameObject;
-        }
-
-        private GameObject CreateEmitterPropertiesWithRunInEditMode()
-        {
-            var gameObject = new GameObject();
-            gameObject.AddComponent<EmitterProperties>();
-            gameObject.AddComponent<MeshRenderer>();
-            gameObject.GetComponent<EmitterProperties>().runInEditMode = true;
-            return gameObject;
+            return g;
         }
 
         [Test]
