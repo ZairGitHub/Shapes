@@ -9,17 +9,14 @@ public class GameController : MonoBehaviour
     public bool IsInDebugMode { get; private set; } = true;
     public bool IsRunning { get; private set; } = true;
 
-    private void Awake()
+    private void Start()
     {
         _scoreController = GameObject.FindGameObjectWithTag("ScoreController")
             .GetComponent<ScoreController>();
 
         _timeController = GameObject.FindGameObjectWithTag("TimeController")
             .GetComponent<TimeController>();
-    }
 
-    private void Start()
-    {
         StartCoroutine(_scoreController.GiveSurvivalBonus());
     }
 
