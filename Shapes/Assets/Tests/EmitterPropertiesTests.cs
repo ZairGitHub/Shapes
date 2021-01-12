@@ -31,29 +31,29 @@ namespace Tests
         }
 
         [Test]
-        public void GetXDirection_NameContainsLeft_ReturnsPositiveOne()
+        public void GetXDirection_TransformPositionXIsNegative_ReturnsPositiveOne()
         {
-            var sut = CreateEmitterPropertiesWithCustomName("LEFT");
-            sut.runInEditMode = true;
-
+            var sut = CreateDefaultEmitterProperties();
+            
+            sut.transform.position = Vector3.left;
             var result = sut.GetXDirection();
 
             Assert.That(result, Is.EqualTo(1.0f));
         }
 
         [Test]
-        public void GetXDirection_NameContainsRight_ReturnsNegativeOne()
+        public void GetXDirection_TransformPositionXIsPositive_ReturnsNegativeOne()
         {
-            var sut = CreateEmitterPropertiesWithCustomName("RIGHT");
-            sut.runInEditMode = true;
-
+            var sut = CreateDefaultEmitterProperties();
+            
+            sut.transform.position = Vector3.right;
             var result = sut.GetXDirection();
 
             Assert.That(result, Is.EqualTo(-1.0f));
         }
 
         [Test]
-        public void GetXDirection_NameDoesNotContainLeftOrRight_ReturnsRandomBetweenNegativeAndPositiveOne()
+        public void GetXDirection_TransformPositionXIsZero_ReturnsRandomBetweenNegativeAndPositiveOne()
         {
             var sut = CreateDefaultEmitterProperties();
 
