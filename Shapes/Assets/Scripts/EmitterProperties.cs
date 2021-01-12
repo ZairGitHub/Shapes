@@ -42,11 +42,11 @@ public class EmitterProperties : MonoBehaviour
     public float GetYDirection()
     {
         float yDirection;
-        if (name.Contains("bottom"))
+        if (transform.position.y < 0)
         {
             yDirection = _positiveOne;
         }
-        else if (name.Contains("top"))
+        else if (transform.position.y > 0)
         {
             yDirection = _negativeOne;
         }
