@@ -103,9 +103,9 @@ namespace Tests
         [Test]
         public void GetYDirection_NameDoesNotContainTopOrBottom_ReturnsRandomBetweenNegativeAndPositiveOne()
         {
-            var sut = CreateEmitterPropertiesWithRunInEditMode();
+            var sut = CreateDefaultEmitterProperties();
             
-            var result = sut.GetComponent<EmitterProperties>().GetYDirection();
+            var result = sut.GetYDirection();
 
             Assert.That(result, Is.InRange(-1.0f, 1.0f));
         }
