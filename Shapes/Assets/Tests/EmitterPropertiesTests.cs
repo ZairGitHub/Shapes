@@ -63,29 +63,29 @@ namespace Tests
         }
 
         [Test]
-        public void GetYDirection_NameContainsBottom_ReturnsPositiveOne()
+        public void GetYDirection_TransformPositionYIsNegative_ReturnsPositiveOne()
         {
-            var sut = CreateEmitterPropertiesWithCustomName("BOTTOM");
-            sut.runInEditMode = true;
+            var sut = CreateDefaultEmitterProperties();
 
+            sut.transform.position = Vector3.down;
             var result = sut.GetYDirection();
 
             Assert.That(result, Is.EqualTo(1.0f));
         }
 
         [Test]
-        public void GetYDirection_NameContainsTop_ReturnsNegativeOne()
+        public void GetYDirection_TransformPositionYIsPositive_ReturnsNegativeOne()
         {
-            var sut = CreateEmitterPropertiesWithCustomName("TOP");
-            sut.runInEditMode = true;
+            var sut = CreateDefaultEmitterProperties();
 
+            sut.transform.position = Vector3.up;
             var result = sut.GetYDirection();
 
             Assert.That(result, Is.EqualTo(-1.0f));
         }
 
         [Test]
-        public void GetYDirection_NameDoesNotContainBottomOrTop_ReturnsRandomBetweenNegativeAndPositiveOne()
+        public void GetYDirection_TransformPositionYIsZero_ReturnsRandomBetweenNegativeAndPositiveOne()
         {
             var sut = CreateDefaultEmitterProperties();
             
