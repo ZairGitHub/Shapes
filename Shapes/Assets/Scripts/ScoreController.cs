@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScoreController : MonoBehaviour
 {
-    private const float survivalBonusDelay = 3.0f;
+    private readonly WaitForSeconds _survivalBonusDelay = new WaitForSeconds(3.0f);
 
     private int _score;
     private int _survivalBonus;
@@ -37,7 +37,7 @@ public class ScoreController : MonoBehaviour
     {
         while (_gameController.IsRunning)
         {
-            yield return new WaitForSeconds(survivalBonusDelay);
+            yield return _survivalBonusDelay;
 
             GiveSurvivalBonus(GameObject.FindGameObjectsWithTag("Cube").Length
                 + GameObject.FindGameObjectsWithTag("Sphere").Length);
