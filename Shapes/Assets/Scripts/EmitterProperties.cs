@@ -9,8 +9,6 @@ public class EmitterProperties : MonoBehaviour
     private float _boundaryOffset;
 
     private Constants _constants;
-
-    private void Awake() => name = name.ToLower();
     
     private void Start()
     {
