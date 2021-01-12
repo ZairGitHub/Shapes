@@ -4,15 +4,14 @@ public class PlayerSpawner : MonoBehaviour
 {
     private const int maxPlayers = 4;
 
-    private Constants _constants;
-
-    private Rigidbody _rb;
-
     private Vector3 _topLeftSpawn;
     private Vector3 _topRightSpawn;
     private Vector3 _bottomLeftSpawn;
     private Vector3 _bottomRightSpawn;
 
+    private Rigidbody _rb;
+    private Constants _constants;
+    
     private void Awake() => _rb = GetComponent<Rigidbody>();
     
     private void Start()
