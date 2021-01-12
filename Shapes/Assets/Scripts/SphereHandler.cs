@@ -65,13 +65,13 @@ public class SphereHandler : MonoBehaviour
         {
             switch (collision.gameObject.tag)
             {
-                case "BoundaryEast":
-                case "BoundaryWest":
-                    _horizontal = -_horizontal;
-                    break;
                 case "BoundaryNorth":
                 case "BoundarySouth":
                     _vertical = -_vertical;
+                    break;
+                case "BoundaryEast":
+                case "BoundaryWest":
+                    _horizontal = -_horizontal;
                     break;
             }
         }
