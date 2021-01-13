@@ -5,6 +5,7 @@ using UnityEngine.TestTools;
 
 namespace Tests
 {
+    [TestFixture]
     public class TimeControllerTests
     {
         private const float _defaultTime = 1.0f;
