@@ -14,10 +14,10 @@ public class GameController : MonoBehaviour
         _scoreController = GameObject.FindGameObjectWithTag("ScoreController")
             .GetComponent<ScoreController>();
 
-        _timeController = GameObject.FindGameObjectWithTag("TimeController")
-            .GetComponent<TimeController>();
+        _timeController = new TimeController();
 
         StartCoroutine(_scoreController.GiveSurvivalBonus());
+        _timeController.ResetTime();
     }
 
     public void Stop() => IsRunning = false;
