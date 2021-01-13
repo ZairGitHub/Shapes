@@ -13,6 +13,13 @@ namespace Tests
             return new GameObject().AddComponent<EmitterProperties>();
         }
 
+        private EmitterProperties CreateEmitterPropertiesWithCustomPosition(Vector3 position)
+        {
+            var gameObject = CreateDefaultEmitterProperties();
+            gameObject.transform.position = position;
+            return gameObject;
+        }
+
         private void RunConstantsMonoBehaviours()
         {
             GameObject.FindGameObjectWithTag("Constants")
@@ -24,11 +31,10 @@ namespace Tests
         public IEnumerator Start_TransformPositionXIsNegative_SetsXToLowerNegative()
         {
             RunConstantsMonoBehaviours();
-            
-            var sut = CreateDefaultEmitterProperties();
-            sut.runInEditMode = true;
+
             var initialPosition = Vector3.left;
-            sut.transform.position = initialPosition;
+            var sut = CreateEmitterPropertiesWithCustomPosition(initialPosition);
+            sut.runInEditMode = true;
             yield return null;
 
             var result = sut.transform.position.x;
