@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                _gameController.Stop();
+                _gameController.StopRunning();
                 gameObject.SetActive(false);
             }
         }

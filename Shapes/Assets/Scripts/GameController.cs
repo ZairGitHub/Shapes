@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
         StartCoroutine(ScoreController.GiveSurvivalBonus());
     }
 
-    public void Stop() => IsRunning = false;
+    public void StopRunning() => IsRunning = false;
 
     private void DestroyCubes()
     {

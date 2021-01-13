@@ -32,11 +32,11 @@ namespace Tests
         }
 
         [Test]
-        public void Stop_SetsIsRunnningToFalse()
+        public void StopRunning_SetsIsRunnningToFalse()
         {
             var sut = CreateDefaultGameController();
             
-            sut.Stop();
+            sut.StopRunning();
             var result = sut.IsRunning;
 
             Assert.That(result, Is.False);
