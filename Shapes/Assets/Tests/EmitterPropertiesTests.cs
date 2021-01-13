@@ -69,6 +69,36 @@ namespace Tests
             Assert.That(result, Is.Zero);
         }
 
+        [UnityTest]
+        public IEnumerator Start_TransformPositionYIsNegative_SetsYToLowerNegative()
+        {
+            RunConstantsMonoBehaviours();
+
+            var initialPosition = Vector3.down;
+            var sut = CreateEmitterPropertiesWithCustomPosition(initialPosition);
+            sut.runInEditMode = true;
+            yield return null;
+
+            var result = sut.transform.position.y;
+
+            Assert.That(result, Is.LessThan(initialPosition.y));
+        }
+
+        [UnityTest]
+        public IEnumerator Start_TransformPositionYIsPositive_SetsYToHigherPositive()
+        {
+            RunConstantsMonoBehaviours();
+
+            var initialPosition = Vector3.up;
+            var sut = CreateEmitterPropertiesWithCustomPosition(initialPosition);
+            sut.runInEditMode = true;
+            yield return null;
+
+            var result = sut.transform.position.y;
+
+            Assert.That(result, Is.GreaterThan(initialPosition.y));
+        }
+
         [Test]
         public void GetXDirection_TransformPositionXIsNegative_ReturnsPositiveOne()
         {
