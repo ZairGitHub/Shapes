@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Constants : MonoBehaviour, IConstants
+public class Constants : MonoBehaviour
 {
     public float BoundaryWidth { get; private set; }
     public float BoundaryHeight { get; private set; }

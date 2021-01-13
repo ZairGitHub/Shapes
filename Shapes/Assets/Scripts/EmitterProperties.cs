@@ -8,7 +8,7 @@ public class EmitterProperties : MonoBehaviour
 
     private float _boundaryOffset;
 
-    private IConstants _constants;
+    private Constants _constants;
     
     private void Start()
     {
