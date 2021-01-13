@@ -1521,7 +1521,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1009485751}
-  - component: {fileID: 1009485750}
   m_Layer: 0
   m_Name: TimeController
   m_TagString: TimeController
@@ -1529,18 +1528,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1009485750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1009485749}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2e71b93a34ecea43a06222389eb2532, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1009485751
 Transform:
   m_ObjectHideFlags: 0
