@@ -29,11 +29,11 @@ public class EmitterProperties : MonoBehaviour
     private float SetXPosition()
     {
         float xPosition;
-        if (transform.position.x < 0)
+        if (transform.position.x < 0.0f)
         {
             xPosition = -_constants.BoundaryWidth + _boundaryOffset;
         }
-        else if (transform.position.x > 0)
+        else if (transform.position.x > 0.0f)
         {
             xPosition = _constants.BoundaryWidth - _boundaryOffset;
         }
@@ -47,11 +47,11 @@ public class EmitterProperties : MonoBehaviour
     private float SetYPosition()
     {
         float yPosition;
-        if (transform.position.y < 0)
+        if (transform.position.y < 0.0f)
         {
             yPosition = -_constants.BoundaryHeight + _boundaryOffset;
         }
-        else if (transform.position.y > 0)
+        else if (transform.position.y > 0.0f)
         {
             yPosition = _constants.BoundaryHeight - _boundaryOffset;
         }
@@ -65,11 +65,11 @@ public class EmitterProperties : MonoBehaviour
     public float GetXDirection()
     {
         float xDirection;
-        if (transform.position.x < 0)
+        if (transform.position.x < 0.0f)
         {
             xDirection = _positiveOne;
         }
-        else if (transform.position.x > 0)
+        else if (transform.position.x > 0.0f)
         {
             xDirection = _negativeOne;
         }
@@ -83,11 +83,11 @@ public class EmitterProperties : MonoBehaviour
     public float GetYDirection()
     {
         float yDirection;
-        if (transform.position.y < 0)
+        if (transform.position.y < 0.0f)
         {
             yDirection = _positiveOne;
         }
-        else if (transform.position.y > 0)
+        else if (transform.position.y > 0.0f)
         {
             yDirection = _negativeOne;
         }
