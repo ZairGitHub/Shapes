@@ -5,17 +5,17 @@ public class GameController : MonoBehaviour
 {
     private readonly TimeController _timeController = new TimeController();
 
-    public ScoreController ScoreController { get; } = new ScoreController();
-
     public bool IsInDebugMode { get; private set; } = true;
 
     public bool IsRunning { get; private set; } = true;
 
+    public ScoreController ScoreController { get; private set; }
+
     private void Start()
     {
         _timeController.ResetTime();
-        ScoreController.Initialise();
-        
+
+        ScoreController = new ScoreController();
         StartCoroutine(ScoreController.GiveSurvivalBonus());
     }
 
