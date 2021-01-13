@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-public class ScoreController : MonoBehaviour
+public class ScoreController
 {
     private readonly WaitForSeconds _survivalBonusDelay = new WaitForSeconds(3.0f);
 
@@ -15,7 +15,7 @@ public class ScoreController : MonoBehaviour
     private TMP_Text _textSurvivalBonus;
     private TMP_Text _textCollisionBonus;
 
-    private void Start()
+    public void Initialise()
     {
         _gameController = GameObject.FindGameObjectWithTag("GameController")
             .GetComponent<GameController>();
