@@ -26,13 +26,30 @@ namespace Tests
             RunConstantsMonoBehaviours();
             
             var sut = CreateDefaultEmitterProperties();
-            sut.transform.position = Vector3.left;
             sut.runInEditMode = true;
+            var initialPosition = Vector3.left;
+            sut.transform.position = initialPosition;
             yield return null;
 
             var result = sut.transform.position.x;
             
-            Assert.That(result, Is.LessThan(Vector3.left.x));
+            Assert.That(result, Is.LessThan(initialPosition.x));
+        }
+
+        [UnityTest]
+        public IEnumerator Start_TransformPositionXIsPositive_SetsXToHigherPositive()
+        {
+            RunConstantsMonoBehaviours();
+
+            var sut = CreateDefaultEmitterProperties();
+            sut.runInEditMode = true;
+            var initialPosition = Vector3.right;
+            sut.transform.position = initialPosition;
+            yield return null;
+
+            var result = sut.transform.position.x;
+
+            Assert.That(result, Is.GreaterThan(initialPosition.x));
         }
 
         [Test]
