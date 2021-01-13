@@ -5,17 +5,16 @@ using UnityEngine;
 public class ScoreController
 {
     private readonly WaitForSeconds _survivalBonusDelay = new WaitForSeconds(3.0f);
+    private readonly GameController _gameController;
+    private readonly TMP_Text _textScore;
+    private readonly TMP_Text _textSurvivalBonus;
+    private readonly TMP_Text _textCollisionBonus;
 
     private int _score;
     private int _survivalBonus;
     private int _collisionBonus;
 
-    private GameController _gameController;
-    private TMP_Text _textScore;
-    private TMP_Text _textSurvivalBonus;
-    private TMP_Text _textCollisionBonus;
-
-    public void Initialise()
+    public ScoreController()
     {
         _gameController = GameObject.FindGameObjectWithTag("GameController")
             .GetComponent<GameController>();
