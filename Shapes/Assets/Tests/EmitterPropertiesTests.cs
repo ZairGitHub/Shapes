@@ -99,6 +99,18 @@ namespace Tests
             Assert.That(result, Is.GreaterThan(initialPosition.y));
         }
 
+        [UnityTest]
+        public IEnumerator Start_TransformPositionYIsZero_SetsYToZero()
+        {
+            var sut = CreateDefaultEmitterProperties();
+            sut.runInEditMode = true;
+            yield return null;
+
+            var result = sut.transform.position.y;
+
+            Assert.That(result, Is.Zero);
+        }
+
         [Test]
         public void GetXDirection_TransformPositionXIsNegative_ReturnsPositiveOne()
         {
