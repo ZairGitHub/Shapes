@@ -27,8 +27,7 @@ public class SphereHandler : MonoBehaviour
         _gameController = GameObject.FindGameObjectWithTag("GameController")
             .GetComponent<GameController>();
 
-        _scoreController = GameObject.FindGameObjectWithTag("ScoreController")
-            .GetComponent<ScoreController>();
+        _scoreController = _gameController.ScoreController;
     }
 
     public bool HasSpeed() => _speed > 0.0f;
