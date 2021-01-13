@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using NSubstitute;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -28,7 +27,7 @@ namespace Tests
         }
 
         [UnityTest]
-        public IEnumerator Start_TransformPositionXIsNegative_SetsXToLowerNegative()
+        public IEnumerator Start_TransformPositionXIsNegative_SetsXToALowerValue()
         {
             RunConstantsMonoBehaviours();
 
@@ -43,7 +42,7 @@ namespace Tests
         }
 
         [UnityTest]
-        public IEnumerator Start_TransformPositionXIsPositive_SetsXToHigherPositive()
+        public IEnumerator Start_TransformPositionXIsPositive_SetsXToHigherValue()
         {
             RunConstantsMonoBehaviours();
 
@@ -70,7 +69,7 @@ namespace Tests
         }
 
         [UnityTest]
-        public IEnumerator Start_TransformPositionYIsNegative_SetsYToLowerNegative()
+        public IEnumerator Start_TransformPositionYIsNegative_SetsYToLowerValue()
         {
             RunConstantsMonoBehaviours();
 
@@ -85,7 +84,7 @@ namespace Tests
         }
 
         [UnityTest]
-        public IEnumerator Start_TransformPositionYIsPositive_SetsYToHigherPositive()
+        public IEnumerator Start_TransformPositionYIsPositive_SetsYToHigherValue()
         {
             RunConstantsMonoBehaviours();
 
