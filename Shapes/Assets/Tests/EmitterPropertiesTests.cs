@@ -47,10 +47,9 @@ namespace Tests
         {
             RunConstantsMonoBehaviours();
 
-            var sut = CreateDefaultEmitterProperties();
-            sut.runInEditMode = true;
             var initialPosition = Vector3.right;
-            sut.transform.position = initialPosition;
+            var sut = CreateEmitterPropertiesWithCustomPosition(initialPosition);
+            sut.runInEditMode = true;
             yield return null;
 
             var result = sut.transform.position.x;
