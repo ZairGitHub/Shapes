@@ -21,7 +21,7 @@ namespace Tests
         }
 
         [UnityTest]
-        public IEnumerator ATest()
+        public IEnumerator Start_TransformPositionXIsNegative_SetsXToLowerNegative()
         {
             RunConstantsMonoBehaviours();
             
@@ -32,7 +32,7 @@ namespace Tests
 
             var result = sut.transform.position.x;
             
-            Assert.That(result, Is.EqualTo("0f"));
+            Assert.That(result, Is.LessThan(Vector3.left.x));
         }
 
         [Test]
