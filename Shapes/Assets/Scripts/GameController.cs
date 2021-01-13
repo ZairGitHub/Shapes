@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
     private TimeController _timeController;
 
     public bool IsInDebugMode { get; private set; } = true;
+
     public bool IsRunning { get; private set; } = true;
 
     private void Start()
