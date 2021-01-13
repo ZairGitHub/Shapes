@@ -13,12 +13,17 @@ namespace Tests
             return new GameObject().AddComponent<EmitterProperties>();
         }
 
-        [UnityTest]
-        public IEnumerator ATest()
+        private void RunConstantsMonoBehaviours()
         {
             GameObject.FindGameObjectWithTag("Constants")
                 .GetComponent<Constants>()
                 .runInEditMode = true;
+        }
+
+        [UnityTest]
+        public IEnumerator ATest()
+        {
+            RunConstantsMonoBehaviours();
             
             var sut = CreateDefaultEmitterProperties();
             sut.transform.position = Vector3.left;
