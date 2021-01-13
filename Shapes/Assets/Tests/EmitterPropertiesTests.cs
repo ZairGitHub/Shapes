@@ -1,5 +1,8 @@
-﻿using NUnit.Framework;
+﻿using System.Collections;
+using NSubstitute;
+using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.TestTools;
 
 namespace Tests
 {
@@ -8,6 +11,23 @@ namespace Tests
         private EmitterProperties CreateDefaultEmitterProperties()
         {
             return new GameObject().AddComponent<EmitterProperties>();
+        }
+
+        [UnityTest]
+        public IEnumerator ATest()
+        {
+            GameObject.FindGameObjectWithTag("Constants")
+                .GetComponent<Constants>()
+                .runInEditMode = true;
+            
+            var sut = CreateDefaultEmitterProperties();
+            sut.transform.position = Vector3.left;
+            sut.runInEditMode = true;
+            yield return null;
+
+            var result = sut.transform.position.x;
+            
+            Assert.That(result, Is.EqualTo("0f"));
         }
 
         [Test]
