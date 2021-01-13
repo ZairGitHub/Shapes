@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
 
-public class TimeController : MonoBehaviour
+public class TimeController
 {
     private const float _timeFactor = 0.05f;
+    private const float _defaultTime = 1.0f;
 
-    private float _savedTime;
+    private float _savedTime = _defaultTime;
 
     public float MinTime { get; private set; } = 0.05f;
-    public float MaxTime { get; private set; } = 10.0f;
 
-    private void Start() => ResetTime();
+    public float MaxTime { get; private set; } = 10.0f;
 
     public void ResetTime()
     {
-        Time.timeScale = 1.0f;
+        Time.timeScale = _defaultTime;
         _savedTime = Time.timeScale;
     }
 

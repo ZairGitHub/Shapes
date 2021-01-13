@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
     private TimeController _timeController;
 
     public bool IsInDebugMode { get; private set; } = true;
+
     public bool IsRunning { get; private set; } = true;
 
     private void Start()
@@ -14,10 +15,10 @@ public class GameController : MonoBehaviour
         _scoreController = GameObject.FindGameObjectWithTag("ScoreController")
             .GetComponent<ScoreController>();
 
-        _timeController = GameObject.FindGameObjectWithTag("TimeController")
-            .GetComponent<TimeController>();
+        _timeController = new TimeController();
 
         StartCoroutine(_scoreController.GiveSurvivalBonus());
+        _timeController.ResetTime();
     }
 
     public void Stop() => IsRunning = false;

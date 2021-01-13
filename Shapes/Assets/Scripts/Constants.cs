@@ -3,8 +3,11 @@
 public class Constants : MonoBehaviour
 {
     public float BoundaryWidth { get; private set; }
+
     public float BoundaryHeight { get; private set; }
+
     public float GameWidth { get; private set; }
+
     public float GameHeight { get; private set; }
 
     private void Awake()
