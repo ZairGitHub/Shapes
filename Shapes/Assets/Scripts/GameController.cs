@@ -3,8 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    private ScoreController _scoreController;
-    private TimeController _timeController;
+    private readonly TimeController _timeController = new TimeController();
+
+    public ScoreController ScoreController { get; } = new ScoreController();
 
     public bool IsInDebugMode { get; private set; } = true;
 
@@ -12,13 +13,10 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        _scoreController = GameObject.FindGameObjectWithTag("ScoreController")
-            .GetComponent<ScoreController>();
-
-        _timeController = new TimeController();
-
-        StartCoroutine(_scoreController.GiveSurvivalBonus());
         _timeController.ResetTime();
+        ScoreController.Initialise();
+        
+        StartCoroutine(ScoreController.GiveSurvivalBonus());
     }
 
     public void Stop() => IsRunning = false;
