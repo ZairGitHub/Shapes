@@ -1,176 +1,114 @@
-﻿using System.Collections;
+﻿using NSubstitute;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
 
 namespace Tests
 {
     [TestFixture]
     public class EmitterPropertiesTests
     {
+        private const float _mockValue = 10.0f;
+        private const float _boundaryOffSet = 1.0f;
+
         private EmitterProperties CreateDefaultEmitterProperties()
         {
-            return new GameObject().AddComponent<EmitterProperties>();
+            return new EmitterProperties(Substitute.For<IConstants>());
         }
 
-        private EmitterProperties CreateEmitterPropertiesWithCustomPosition(Vector3 position)
+        private EmitterProperties CreateDefaultEmitterPropertiesWithMock()
         {
-            var gameObject = CreateDefaultEmitterProperties();
-            gameObject.transform.position = position;
-            return gameObject;
+            var mock = Substitute.For<IConstants>();
+            mock.BoundaryHeight.Returns(_mockValue);
+            mock.BoundaryWidth.Returns(_mockValue);
+            return new EmitterProperties(mock, _boundaryOffSet);
         }
 
-        private void RunConstantsMonoBehaviours()
+        [Test]
+        public void SetPosition_Vector3XIsNegative_SetsXToALowerValue()
         {
-            GameObject.FindGameObjectWithTag("Constants")
-                .GetComponent<Constants>()
-                .runInEditMode = true;
-        }
+            var sut = CreateDefaultEmitterPropertiesWithMock();
 
-        [UnityTest]
-        public IEnumerator Start_TransformPositionXIsNegative_SetsXToALowerValue()
-        {
-            RunConstantsMonoBehaviours();
-
-            var initialPosition = Vector3.left;
-            var sut = CreateEmitterPropertiesWithCustomPosition(initialPosition);
-            sut.runInEditMode = true;
-            yield return null;
-
-            var result = sut.transform.position.x;
+            var result = sut.SetPosition(Vector3.left).x;
             
-            Assert.That(result, Is.LessThan(initialPosition.x));
+            Assert.That(result, Is.EqualTo(-_mockValue + _boundaryOffSet));
         }
 
-        [UnityTest]
-        public IEnumerator Start_TransformPositionXIsPositive_SetsXToHigherValue()
+        [Test]
+        public void SetPosition_Vector3XIsPositive_SetsXToAHigherValue()
         {
-            RunConstantsMonoBehaviours();
+            var sut = CreateDefaultEmitterPropertiesWithMock();
 
-            var initialPosition = Vector3.right;
-            var sut = CreateEmitterPropertiesWithCustomPosition(initialPosition);
-            sut.runInEditMode = true;
-            yield return null;
+            var result = sut.SetPosition(Vector3.right).x;
 
-            var result = sut.transform.position.x;
-
-            Assert.That(result, Is.GreaterThan(initialPosition.x));
+            Assert.That(result, Is.EqualTo(_mockValue - _boundaryOffSet));
         }
 
-        [UnityTest]
-        public IEnumerator Start_TransformPositionXIsZero_SetsXToZero()
+        [Test]
+        public void SetPosition_Vector3XIsZero_SetsXToZero()
         {
-            var sut = CreateDefaultEmitterProperties();
-            sut.runInEditMode = true;
-            yield return null;
+            var sut = CreateDefaultEmitterPropertiesWithMock();
 
-            var result = sut.transform.position.x;
-
+            var result = sut.SetPosition(Vector3.zero).x;
+            
             Assert.That(result, Is.Zero);
         }
 
-        [UnityTest]
-        public IEnumerator Start_TransformPositionYIsNegative_SetsYToLowerValue()
+        [Test]
+        public void SetPosition_Vector3YIsNegative_SetsYToALowerValue()
         {
-            RunConstantsMonoBehaviours();
+            var sut = CreateDefaultEmitterPropertiesWithMock();
 
-            var initialPosition = Vector3.down;
-            var sut = CreateEmitterPropertiesWithCustomPosition(initialPosition);
-            sut.runInEditMode = true;
-            yield return null;
+            var result = sut.SetPosition(Vector3.down).y;
 
-            var result = sut.transform.position.y;
-
-            Assert.That(result, Is.LessThan(initialPosition.y));
+            Assert.That(result, Is.EqualTo(-_mockValue + _boundaryOffSet));
         }
 
-        [UnityTest]
-        public IEnumerator Start_TransformPositionYIsPositive_SetsYToHigherValue()
+        [Test]
+        public void SetPosition_Vector3YIsPositive_SetsYToAHigherValue()
         {
-            RunConstantsMonoBehaviours();
+            var sut = CreateDefaultEmitterPropertiesWithMock();
 
-            var initialPosition = Vector3.up;
-            var sut = CreateEmitterPropertiesWithCustomPosition(initialPosition);
-            sut.runInEditMode = true;
-            yield return null;
+            var result = sut.SetPosition(Vector3.up).y;
 
-            var result = sut.transform.position.y;
-
-            Assert.That(result, Is.GreaterThan(initialPosition.y));
+            Assert.That(result, Is.EqualTo(_mockValue - _boundaryOffSet));
         }
 
-        [UnityTest]
-        public IEnumerator Start_TransformPositionYIsZero_SetsYToZero()
+        [Test]
+        public void SetPosition_VectorYXIsZero_SetsYToZero()
         {
-            var sut = CreateDefaultEmitterProperties();
-            sut.runInEditMode = true;
-            yield return null;
+            var sut = CreateDefaultEmitterPropertiesWithMock();
 
-            var result = sut.transform.position.y;
+            var result = sut.SetPosition(Vector3.zero).y;
 
             Assert.That(result, Is.Zero);
         }
 
         [Test]
-        public void GetXDirection_TransformPositionXIsNegative_ReturnsPositiveOne()
+        public void GetDirection_NegativeFloat_ReturnsPositiveOne()
         {
             var sut = CreateDefaultEmitterProperties();
-            
-            sut.transform.position = Vector3.left;
-            var result = sut.GetXDirection();
+
+            var result = sut.GetDirection(-1.0f);
 
             Assert.That(result, Is.EqualTo(1.0f));
         }
 
         [Test]
-        public void GetXDirection_TransformPositionXIsPositive_ReturnsNegativeOne()
+        public void GetDirection_PositiveFloat_ReturnsNegativeOne()
         {
             var sut = CreateDefaultEmitterProperties();
-            
-            sut.transform.position = Vector3.right;
-            var result = sut.GetXDirection();
+
+            var result = sut.GetDirection(1.0f);
 
             Assert.That(result, Is.EqualTo(-1.0f));
         }
 
         [Test]
-        public void GetXDirection_TransformPositionXIsZero_ReturnsRandomBetweenNegativeAndPositiveOne()
+        public void GetDirection_FloatIsZero_ReturnsRandomBetweenNegativeAndPositiveOne()
         {
             var sut = CreateDefaultEmitterProperties();
 
-            var result = sut.GetXDirection();
-
-            Assert.That(result, Is.InRange(-1.0f, 1.0f));
-        }
-
-        [Test]
-        public void GetYDirection_TransformPositionYIsNegative_ReturnsPositiveOne()
-        {
-            var sut = CreateDefaultEmitterProperties();
-
-            sut.transform.position = Vector3.down;
-            var result = sut.GetYDirection();
-
-            Assert.That(result, Is.EqualTo(1.0f));
-        }
-
-        [Test]
-        public void GetYDirection_TransformPositionYIsPositive_ReturnsNegativeOne()
-        {
-            var sut = CreateDefaultEmitterProperties();
-
-            sut.transform.position = Vector3.up;
-            var result = sut.GetYDirection();
-
-            Assert.That(result, Is.EqualTo(-1.0f));
-        }
-
-        [Test]
-        public void GetYDirection_TransformPositionYIsZero_ReturnsRandomBetweenNegativeAndPositiveOne()
-        {
-            var sut = CreateDefaultEmitterProperties();
-            
-            var result = sut.GetYDirection();
+            var result = sut.GetDirection(0.0f);
 
             Assert.That(result, Is.InRange(-1.0f, 1.0f));
         }
