@@ -108,39 +108,5 @@ namespace Tests
 
             Assert.That(result, Is.InRange(-1.0f, 1.0f));
         }
-
-        /*
-        [Test]
-        public void GetYDirection_TransformPositionYIsNegative_ReturnsPositiveOne()
-        {
-            var sut = CreateDefaultEmitterPropertiesWithMocks();
-
-            sut.transform.position = Vector3.down;
-            var result = sut.GetYDirection();
-
-            Assert.That(result, Is.EqualTo(1.0f));
-        }
-
-        [Test]
-        public void GetYDirection_TransformPositionYIsPositive_ReturnsNegativeOne()
-        {
-            var sut = CreateDefaultEmitterPropertiesWithMocks();
-
-            sut.transform.position = Vector3.up;
-            var result = sut.GetDirection();
-
-            Assert.That(result, Is.EqualTo(-1.0f));
-        }
-
-        [Test]
-        public void GetYDirection_TransformPositionYIsZero_ReturnsRandomBetweenNegativeAndPositiveOne()
-        {
-            var sut = CreateDefaultEmitterPropertiesWithMocks();
-            
-            var result = sut.GetDirection();
-
-            Assert.That(result, Is.InRange(-1.0f, 1.0f));
-        }
-        */
     }
 }
