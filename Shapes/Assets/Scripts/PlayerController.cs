@@ -7,15 +7,11 @@ public class PlayerController : MonoBehaviour
     private Vector3 _movement;
 
     private Rigidbody _rb;
-    private PlayerSpawner _playerSpawner;
     private Constants _constants;
     private GameController _gameController;
+    private PlayerSpawner _playerSpawner;
 
-    private void Awake()
-    {
-        _playerSpawner = GetComponent<PlayerSpawner>();
-        _rb = GetComponent<Rigidbody>();
-    }
+    private void Awake() => _rb = GetComponent<Rigidbody>();
 
     private void Start()
     {
@@ -30,6 +26,9 @@ public class PlayerController : MonoBehaviour
             .GetComponent<GameController>();
 
         _speed = _constants.BoundaryWidth;
+
+        _playerSpawner = new PlayerSpawner(_constants);
+        _playerSpawner.SetSpawnPosition(_rb);
     }
 
     private void FixedUpdate()
@@ -48,7 +47,7 @@ public class PlayerController : MonoBehaviour
         {
             if (_gameController.IsInDebugMode)
             {
-                DebugModeCommand();
+                RunDebugModeCommand();
             }
             else
             {
@@ -59,8 +58,8 @@ public class PlayerController : MonoBehaviour
     }
 
     //Convert to SetSpawnPosition() to private after removing Debug command
-    private void DebugModeCommand()
+    private void RunDebugModeCommand()
     {
-        _playerSpawner.SetSpawnPosition();
+        _playerSpawner.SetSpawnPosition(_rb);
     }
 }
