@@ -99,17 +99,17 @@ namespace Tests
             Assert.That(result, Is.EqualTo(-1.0f));
         }
 
-        /*
         [Test]
-        public void GetXDirection_TransformPositionXIsZero_ReturnsRandomBetweenNegativeAndPositiveOne()
+        public void GetDirection_FloatIsZero_ReturnsRandomBetweenNegativeAndPositiveOne()
         {
-            var sut = CreateDefaultEmitterPropertiesWithMocks();
+            var sut = new EmitterProperties(Substitute.For<IConstants>());
 
-            var result = sut.GetDirection();
+            var result = sut.GetDirection(0.0f);
 
             Assert.That(result, Is.InRange(-1.0f, 1.0f));
         }
 
+        /*
         [Test]
         public void GetYDirection_TransformPositionYIsNegative_ReturnsPositiveOne()
         {
