@@ -69,19 +69,17 @@ namespace Tests
             Assert.That(result, Is.EqualTo(_mockValue));
         }
 
-        /*
-        [UnityTest]
-        public IEnumerator Start_TransformPositionYIsZero_SetsYToZero()
+        [Test]
+        public void SetPosition_VectorYXIsZero_SetsYToZero()
         {
-            var sut = CreateDefaultEmitterPropertiesWithMocks();
-            sut.runInEditMode = true;
-            yield return null;
+            var sut = CreateDefaultEmitterPropertiesWithMock();
 
-            var result = sut.transform.position.y;
+            var result = sut.SetPosition(Vector3.zero).y;
 
             Assert.That(result, Is.Zero);
         }
 
+        /*
         [Test]
         public void GetXDirection_TransformPositionXIsNegative_ReturnsPositiveOne()
         {
