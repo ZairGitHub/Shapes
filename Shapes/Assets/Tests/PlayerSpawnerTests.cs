@@ -8,17 +8,35 @@ namespace Tests
 {
     public class PlayerSpawnerTests
     {
-        [Test]
-        public void PlayerSpawnerTestsSimplePasses()
+        private Constants CreateDefaultConstants()
         {
-            var c = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
-            c.runInEditMode = true;
-            var sut = new PlayerSpawner(c);
+            return new GameObject().AddComponent<Constants>();
+        }
 
-            var rb = new GameObject().AddComponent<Rigidbody>();
-            sut.SetSpawnPosition(rb, 1);
+        [Test]
+        public void SetSpawnPosition_Player1_MovesPositionToTopLeftArea()
+        {
+            var constants = CreateDefaultConstants();
+            constants.runInEditMode = true;
+            var sut = new PlayerSpawner(constants);
+            
+            var rigidbody = new GameObject().AddComponent<Rigidbody>();
+            sut.SetSpawnPosition(rigidbody, 1);
 
-            Assert.That(rb.position, Is.EqualTo(new Vector3(-10f, 5f, 0f)));
+            Assert.That(rigidbody.position, Is.EqualTo(new Vector3(-10f, 5f, 0f)));
+        }
+
+        [Test]
+        public void SetSpawnPosition_Player2_MovesPositionToTopRightArea()
+        {
+            var constants = CreateDefaultConstants();
+            constants.runInEditMode = true;
+            var sut = new PlayerSpawner(constants);
+
+            var rigidbody = new GameObject().AddComponent<Rigidbody>();
+            sut.SetSpawnPosition(rigidbody, 2);
+
+            Assert.That(rigidbody.position, Is.EqualTo(new Vector3(10f, 5f, 0f)));
         }
     }
 }
