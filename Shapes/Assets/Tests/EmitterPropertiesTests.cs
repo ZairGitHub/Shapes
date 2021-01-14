@@ -9,18 +9,24 @@ namespace Tests
     [TestFixture]
     public class EmitterPropertiesTests
     {
+        private const float _mockValue = 10.0f;
+
+        private EmitterProperties CreateDefaultEmitterPropertiesWithMock()
+        {
+            var mock = Substitute.For<IConstants>();
+            mock.BoundaryHeight.Returns(_mockValue);
+            mock.BoundaryWidth.Returns(_mockValue);
+            return new EmitterProperties(mock);
+        }
         [Test]
         public void SetPosition_TransformPositionXIsNegative_SetsXToALowerValue()
         {
-            var mock = Substitute.For<IConstants>();
-            mock.BoundaryHeight.Returns(10.0f);
-            mock.BoundaryWidth.Returns(10.0f);
             var gameObject = new GameObject().transform.position = Vector3.left;
-            var sut = new EmitterProperties(mock);
+            var sut = CreateDefaultEmitterPropertiesWithMock();
 
             var result = sut.SetPosition(gameObject.x, gameObject.y).x;
             
-            Assert.That(result, Is.EqualTo(10.0f));
+            Assert.That(result, Is.EqualTo(-_mockValue));
         }
         /*
         [UnityTest]
