@@ -25,13 +25,14 @@ namespace Tests
             return new GameObject().AddComponent<Rigidbody>();
         }
 
-        [Test]
-        public void SetSpawnPosition_PlayerIDIsOutsideOfRange_DoesNotMovePosition()
+        [TestCase(0)]
+        [TestCase(5)]
+        public void SetSpawnPosition_PlayerIDIsOutsideOfRange_DoesNotMovePosition(int playerID)
         {
             var rigidbody = CreateDefaultRigidbody();
             var sut = CreateDefaultPlayerSpawner();
 
-            sut.SetSpawnPosition(rigidbody, -1);
+            sut.SetSpawnPosition(rigidbody, playerID);
             var result = rigidbody.position;
 
             Assert.That(result, Is.EqualTo(Vector3.zero));
