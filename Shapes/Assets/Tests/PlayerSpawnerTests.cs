@@ -10,15 +10,10 @@ namespace Tests
     {
         private PlayerSpawner CreateDefaultPlayerSpawner()
         {
-            var constants = CreateDefaultConstants();
+            var constants = new GameObject().AddComponent<Constants>();
             constants.runInEditMode = true;
 
             return new PlayerSpawner(constants);
-        }
-
-        private Constants CreateDefaultConstants()
-        {
-            return new GameObject().AddComponent<Constants>();
         }
 
         private Rigidbody CreateDefaultRigidbody()
@@ -27,26 +22,10 @@ namespace Tests
         }
 
         [Test]
-        public void SetSpawnPosition_SetsRigidbodyVelocityToVector3Zero()
-        {
-            //var constants = CreateDefaultConstants();
-            //constants.runInEditMode = true;
-            var rigidbody = CreateDefaultRigidbody();
-            var sut = CreateDefaultPlayerSpawner();
-
-            sut.SetSpawnPosition(rigidbody);
-            var result = rigidbody.velocity;
-
-            Assert.That(result, Is.EqualTo(Vector3.zero));
-        }
-
-        [Test]
         public void SetSpawnPosition_PlayerIDIsOutsideOfRange_DoesNotMovePosition()
         {
-            var constants = CreateDefaultConstants();
-            constants.runInEditMode = true;
             var rigidbody = CreateDefaultRigidbody();
-            var sut = new PlayerSpawner(constants);
+            var sut = CreateDefaultPlayerSpawner();
 
             sut.SetSpawnPosition(rigidbody, -1);
             var result = rigidbody.position;
@@ -57,10 +36,8 @@ namespace Tests
         [Test]
         public void SetSpawnPosition_Player1_MovesPositionToTopLeftArea()
         {
-            var constants = CreateDefaultConstants();
-            constants.runInEditMode = true;
             var rigidbody = CreateDefaultRigidbody();
-            var sut = new PlayerSpawner(constants);
+            var sut = CreateDefaultPlayerSpawner();
 
             sut.SetSpawnPosition(rigidbody, 1);
             var result = rigidbody.position;
@@ -71,10 +48,8 @@ namespace Tests
         [Test]
         public void SetSpawnPosition_Player2_MovesPositionToTopRightArea()
         {
-            var constants = CreateDefaultConstants();
-            constants.runInEditMode = true;
             var rigidbody = CreateDefaultRigidbody();
-            var sut = new PlayerSpawner(constants);
+            var sut = CreateDefaultPlayerSpawner();
 
             sut.SetSpawnPosition(rigidbody, 2);
             var result = rigidbody.position;
@@ -85,10 +60,8 @@ namespace Tests
         [Test]
         public void SetSpawnPosition_Player3_MovesPositionToBottomLeftArea()
         {
-            var constants = CreateDefaultConstants();
-            constants.runInEditMode = true;
             var rigidbody = CreateDefaultRigidbody();
-            var sut = new PlayerSpawner(constants);
+            var sut = CreateDefaultPlayerSpawner();
 
             sut.SetSpawnPosition(rigidbody, 3);
             var result = rigidbody.position;
@@ -99,15 +72,25 @@ namespace Tests
         [Test]
         public void SetSpawnPosition_Player4_MovesPositionToBottomRightArea()
         {
-            var constants = CreateDefaultConstants();
-            constants.runInEditMode = true;
             var rigidbody = CreateDefaultRigidbody();
-            var sut = new PlayerSpawner(constants);
+            var sut = CreateDefaultPlayerSpawner();
 
             sut.SetSpawnPosition(rigidbody, 4);
             var result = rigidbody.position;
 
             Assert.That(result, Is.EqualTo(new Vector3(10f, -5f, 0f)));
+        }
+
+        [Test]
+        public void SetSpawnPosition_SetsRigidbodyVelocityToVector3Zero()
+        {
+            var rigidbody = CreateDefaultRigidbody();
+            var sut = CreateDefaultPlayerSpawner();
+
+            sut.SetSpawnPosition(rigidbody);
+            var result = rigidbody.velocity;
+
+            Assert.That(result, Is.EqualTo(Vector3.zero));
         }
     }
 }
