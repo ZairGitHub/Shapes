@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
         _speed = _constants.BoundaryWidth;
 
         _playerSpawner = new PlayerSpawner(_constants);
+        _playerSpawner.SetSpawnPosition(_rb);
     }
 
     private void FixedUpdate()
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour
         {
             if (_gameController.IsInDebugMode)
             {
-                DebugModeCommand();
+                RunDebugModeCommand();
             }
             else
             {
@@ -60,7 +61,7 @@ public class PlayerController : MonoBehaviour
     }
 
     //Convert to SetSpawnPosition() to private after removing Debug command
-    private void DebugModeCommand()
+    private void RunDebugModeCommand()
     {
         _playerSpawner.SetSpawnPosition(_rb);
     }
