@@ -18,13 +18,13 @@ namespace Tests
             mock.BoundaryWidth.Returns(_mockValue);
             return new EmitterProperties(mock);
         }
+
         [Test]
-        public void SetPosition_TransformPositionXIsNegative_SetsXToALowerValue()
+        public void SetPosition_Vector3XIsNegative_SetsXToALowerValue()
         {
-            var gameObject = new GameObject().transform.position = Vector3.left;
             var sut = CreateDefaultEmitterPropertiesWithMock();
 
-            var result = sut.SetPosition(gameObject.x, gameObject.y).x;
+            var result = sut.SetPosition(Vector3.left).x;
             
             Assert.That(result, Is.EqualTo(-_mockValue));
         }
