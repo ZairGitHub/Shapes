@@ -14,7 +14,6 @@ namespace Tests
             var mock = Substitute.For<IConstants>();
             mock.BoundaryHeight.Returns(2.0f);
             mock.BoundaryWidth.Returns(2.0f);
-
             return new PlayerSpawner(mock);
         }
 
@@ -50,7 +49,7 @@ namespace Tests
         }
 
         [Test]
-        public void SetSpawnPosition_Player1_MovesPositionToTopLeftArea()
+        public void SetSpawnPosition_PlayerIDIs1_MovesPositionToTopLeftArea()
         {
             var rigidbody = CreateDefaultRigidbody();
             var sut = CreateDefaultPlayerSpawnerWithMock();
@@ -62,7 +61,7 @@ namespace Tests
         }
 
         [Test]
-        public void SetSpawnPosition_Player2_MovesPositionToTopRightArea()
+        public void SetSpawnPosition_PlayerIDIs2_MovesPositionToTopRightArea()
         {
             var rigidbody = CreateDefaultRigidbody();
             var sut = CreateDefaultPlayerSpawnerWithMock();
@@ -74,7 +73,7 @@ namespace Tests
         }
 
         [Test]
-        public void SetSpawnPosition_Player3_MovesPositionToBottomLeftArea()
+        public void SetSpawnPosition_PlayerIDIs3_MovesPositionToBottomLeftArea()
         {
             var rigidbody = CreateDefaultRigidbody();
             var sut = CreateDefaultPlayerSpawnerWithMock();
@@ -86,7 +85,7 @@ namespace Tests
         }
 
         [Test]
-        public void SetSpawnPosition_Player4_MovesPositionToBottomRightArea()
+        public void SetSpawnPosition_PlayerIDIs4_MovesPositionToBottomRightArea()
         {
             var rigidbody = CreateDefaultRigidbody();
             var sut = CreateDefaultPlayerSpawnerWithMock();
