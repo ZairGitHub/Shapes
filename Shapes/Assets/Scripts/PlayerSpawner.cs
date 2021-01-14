@@ -20,10 +20,9 @@ public class PlayerSpawner
         _bottomRightSpawn = new Vector3(spawnWidth, -spawnHeight, 0.0f);
     }
 
-    public void SetSpawnPosition(Rigidbody rb)
+    public void SetSpawnPosition(Rigidbody rb, int playerID = 0)
     {
-        // Currently randomised until multiplayer is implemented
-        int RNG = Random.Range(1, maxPlayers + 1);
+        int RNG = playerID == 0 ? Random.Range(1, maxPlayers + 1) : playerID;
         switch (RNG)
         {
             case 1:
