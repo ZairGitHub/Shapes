@@ -49,37 +49,27 @@ namespace Tests
             Assert.That(result, Is.Zero);
         }
 
+        [Test]
+        public void SetPosition_Vector3YIsNegative_SetsYToALowerValue()
+        {
+            var sut = CreateDefaultEmitterPropertiesWithMock();
+
+            var result = sut.SetPosition(Vector3.down).y;
+
+            Assert.That(result, Is.EqualTo(-_mockValue));
+        }
+
+        [Test]
+        public void SetPosition_Vector3YIsPositive_SetsYToAHigherValue()
+        {
+            var sut = CreateDefaultEmitterPropertiesWithMock();
+
+            var result = sut.SetPosition(Vector3.up).y;
+
+            Assert.That(result, Is.EqualTo(_mockValue));
+        }
+
         /*
-        [UnityTest]
-        public IEnumerator Start_TransformPositionYIsNegative_SetsYToLowerValue()
-        {
-            RunConstantsMonoBehaviours();
-
-            var initialPosition = Vector3.down;
-            var sut = CreateEmitterPropertiesWithCustomPosition(initialPosition);
-            sut.runInEditMode = true;
-            yield return null;
-
-            var result = sut.transform.position.y;
-
-            Assert.That(result, Is.LessThan(initialPosition.y));
-        }
-
-        [UnityTest]
-        public IEnumerator Start_TransformPositionYIsPositive_SetsYToHigherValue()
-        {
-            RunConstantsMonoBehaviours();
-
-            var initialPosition = Vector3.up;
-            var sut = CreateEmitterPropertiesWithCustomPosition(initialPosition);
-            sut.runInEditMode = true;
-            yield return null;
-
-            var result = sut.transform.position.y;
-
-            Assert.That(result, Is.GreaterThan(initialPosition.y));
-        }
-
         [UnityTest]
         public IEnumerator Start_TransformPositionYIsZero_SetsYToZero()
         {
