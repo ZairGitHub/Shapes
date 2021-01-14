@@ -11,6 +11,11 @@ namespace Tests
     {
         private const float _mockValue = 10.0f;
 
+        private EmitterProperties CreateDefaultEmitterProperties()
+        {
+            return new EmitterProperties(Substitute.For<IConstants>());
+        }
+
         private EmitterProperties CreateDefaultEmitterPropertiesWithMock()
         {
             var mock = Substitute.For<IConstants>();
@@ -82,7 +87,7 @@ namespace Tests
         [Test]
         public void GetDirection_NegativeFloat_ReturnsPositiveOne()
         {
-            var sut = new EmitterProperties(Substitute.For<IConstants>());
+            var sut = CreateDefaultEmitterProperties();
 
             var result = sut.GetDirection(-1.0f);
 
@@ -92,7 +97,7 @@ namespace Tests
         [Test]
         public void GetDirection_PositiveFloat_ReturnsNegativeOne()
         {
-            var sut = new EmitterProperties(Substitute.For<IConstants>());
+            var sut = CreateDefaultEmitterProperties();
 
             var result = sut.GetDirection(1.0f);
 
@@ -102,7 +107,7 @@ namespace Tests
         [Test]
         public void GetDirection_FloatIsZero_ReturnsRandomBetweenNegativeAndPositiveOne()
         {
-            var sut = new EmitterProperties(Substitute.For<IConstants>());
+            var sut = CreateDefaultEmitterProperties();
 
             var result = sut.GetDirection(0.0f);
 
