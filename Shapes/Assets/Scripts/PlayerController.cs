@@ -4,10 +4,11 @@ public class PlayerController : MonoBehaviour
 {
     private float _speed;
 
+    private IConstants _constants;
+
     private Vector3 _movement;
 
     private Rigidbody _rb;
-    private Constants _constants;
     private GameController _gameController;
     private PlayerSpawner _playerSpawner;
 

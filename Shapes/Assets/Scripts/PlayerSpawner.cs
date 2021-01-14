@@ -9,7 +9,7 @@ public class PlayerSpawner
     private readonly Vector3 _bottomLeftSpawn;
     private readonly Vector3 _bottomRightSpawn;
     
-    public PlayerSpawner(Constants constants)
+    public PlayerSpawner(IConstants constants)
     {
         float spawnWidth = constants.BoundaryWidth / 2.0f;
         float spawnHeight = constants.BoundaryHeight / 2.0f;
