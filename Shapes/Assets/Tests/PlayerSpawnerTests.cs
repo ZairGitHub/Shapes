@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using NSubstitute;
+using NUnit.Framework;
 using UnityEngine;
 
 namespace Tests
@@ -34,7 +35,10 @@ namespace Tests
         public void SetSpawnPosition_Player1_MovesPositionToTopLeftArea()
         {
             var rigidbody = CreateDefaultRigidbody();
-            var sut = CreateDefaultPlayerSpawner();
+            var mock = Substitute.For<IConstants>();
+            mock.BoundaryHeight.Returns(2.0f);
+            mock.BoundaryWidth.Returns(2.0f);
+            var sut = new PlayerSpawner(mock);
 
             sut.SetSpawnPosition(rigidbody, 1);
             var result = rigidbody.position;
