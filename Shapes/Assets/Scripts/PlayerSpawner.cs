@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerSpawner : MonoBehaviour
+public class PlayerSpawner
 {
     private const int maxPlayers = 4;
 
@@ -12,9 +12,9 @@ public class PlayerSpawner : MonoBehaviour
     private Rigidbody _rb;
     private Constants _constants;
     
-    private void Awake() => _rb = GetComponent<Rigidbody>();
+    //private void Awake() => _rb = GetComponent<Rigidbody>();
     
-    private void Start()
+    public PlayerSpawner()
     {
         _constants = GameObject.FindGameObjectWithTag("Constants")
             .GetComponent<Constants>();
@@ -31,25 +31,27 @@ public class PlayerSpawner : MonoBehaviour
     }
 
     //Convert to private after removing Debug command from PlayerController.cs
-    public void SetSpawnPosition()
+    public Vector3 SetSpawnPosition()
     {
         // Currently randomised until multiplayer is implemented
+        Vector3 spawnPosition = Vector3.zero;
         int RNG = Random.Range(1, maxPlayers + 1);
         switch (RNG)
         {
             case 1:
-                _rb.MovePosition(_topLeftSpawn);
+                spawnPosition = _topLeftSpawn;
                 break;
             case 2:
-                _rb.MovePosition(_topRightSpawn);
+                spawnPosition = _topRightSpawn;
                 break;
             case 3:
-                _rb.MovePosition(_bottomLeftSpawn);
+                spawnPosition = _bottomLeftSpawn;
                 break;
             case 4:
-                _rb.MovePosition(_bottomRightSpawn);
+                spawnPosition = _bottomRightSpawn;
                 break;
         }
-        _rb.velocity = Vector3.zero;
+        return spawnPosition;
+        //_rb.velocity = Vector3.zero;
     }
 }
