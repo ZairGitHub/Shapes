@@ -7,6 +7,7 @@ public class CubeEmitter : MonoBehaviour
     private readonly WaitForSeconds _emitterDelay = new WaitForSeconds(1.0f);
 
     private IConstants _constants;
+
     private GameObject _cube;
     private GameObject[] _cubeEmitters;
     private GameController _gameController;
@@ -60,8 +61,8 @@ public class CubeEmitter : MonoBehaviour
                 yield return null;
 
                 cube.SetDirection(
-                    _emitterProperties.GetXDirection(position.x),
-                    _emitterProperties.GetYDirection(position.y));
+                    _emitterProperties.GetDirection(position.x),
+                    _emitterProperties.GetDirection(position.y));
 
                 _cubeEmitters[RNG].GetComponent<Renderer>().material.color = Color.yellow;
             }

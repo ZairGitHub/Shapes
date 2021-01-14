@@ -55,37 +55,20 @@ public class EmitterProperties
         return y;
     }
 
-    public float GetXDirection(float x)
+    public float GetDirection(float axis)
     {
-        if (x < 0.0f)
+        if (axis < 0.0f)
         {
-            x = _positiveOne;
+            axis = _positiveOne;
         }
-        else if (x > 0.0f)
+        else if (axis > 0.0f)
         {
-            x = _negativeOne;
+            axis = _negativeOne;
         }
         else
         {
-            x = Random.Range(_negativeOne, _positiveOne);
+            axis = Random.Range(_negativeOne, _positiveOne);
         }
-        return x;
-    }
-
-    public float GetYDirection(float y)
-    {
-        if (y < 0.0f)
-        {
-            y = _positiveOne;
-        }
-        else if (y > 0.0f)
-        {
-            y = _negativeOne;
-        }
-        else
-        {
-            y = Random.Range(_negativeOne, _positiveOne);
-        }
-        return y;
+        return axis;
     }
 }
