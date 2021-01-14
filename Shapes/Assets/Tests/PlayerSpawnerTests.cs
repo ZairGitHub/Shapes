@@ -8,6 +8,14 @@ namespace Tests
 {
     public class PlayerSpawnerTests
     {
+        private PlayerSpawner CreateDefaultPlayerSpawner()
+        {
+            var constants = CreateDefaultConstants();
+            constants.runInEditMode = true;
+
+            return new PlayerSpawner(constants);
+        }
+
         private Constants CreateDefaultConstants()
         {
             return new GameObject().AddComponent<Constants>();
@@ -21,10 +29,10 @@ namespace Tests
         [Test]
         public void SetSpawnPosition_SetsRigidbodyVelocityToVector3Zero()
         {
-            var constants = CreateDefaultConstants();
-            constants.runInEditMode = true;
+            //var constants = CreateDefaultConstants();
+            //constants.runInEditMode = true;
             var rigidbody = CreateDefaultRigidbody();
-            var sut = new PlayerSpawner(constants);
+            var sut = CreateDefaultPlayerSpawner();
 
             sut.SetSpawnPosition(rigidbody);
             var result = rigidbody.velocity;
