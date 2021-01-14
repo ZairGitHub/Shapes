@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class CubeEmitter : MonoBehaviour
 {
+    private const float _collisionScale = 2.0f;
+
     private readonly WaitForSeconds _emitterDelay = new WaitForSeconds(1.0f);
+
+    private float _offset;
 
     private IConstants _constants;
 
@@ -25,7 +29,9 @@ public class CubeEmitter : MonoBehaviour
         _gameController = GameObject.FindGameObjectWithTag("GameController")
             .GetComponent<GameController>();
 
-        _emitterProperties = new EmitterProperties(_constants, _cube);
+        _offset = _cube.GetComponent<Collider>().bounds.size.x * _collisionScale;
+
+        _emitterProperties = new EmitterProperties(_constants, _offset);
 
         SetEmitterPositions();
 

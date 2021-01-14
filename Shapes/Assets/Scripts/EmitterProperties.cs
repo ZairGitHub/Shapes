@@ -4,16 +4,15 @@ public class EmitterProperties
 {
     private const float _negativeOne = -1.0f;
     private const float _positiveOne = 1.0f;
-    private const float _collisionScale = 2.0f;
 
     private readonly float _boundaryOffset;
 
     private readonly IConstants _constants;    
 
-    public EmitterProperties(IConstants constants, GameObject cube)
+    public EmitterProperties(IConstants constants, float offSet = 0.0f)
     {
         _constants = constants;
-        _boundaryOffset = cube.GetComponent<Collider>().bounds.size.x * _collisionScale;
+        _boundaryOffset = offSet;
     }
 
     public Vector3 SetPosition(float x, float y)
