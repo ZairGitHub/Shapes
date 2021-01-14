@@ -8,6 +8,7 @@ namespace Tests
     public class EmitterPropertiesTests
     {
         private const float _mockValue = 10.0f;
+        private const float _boundaryOffSet = 1.0f;
 
         private EmitterProperties CreateDefaultEmitterProperties()
         {
@@ -19,7 +20,7 @@ namespace Tests
             var mock = Substitute.For<IConstants>();
             mock.BoundaryHeight.Returns(_mockValue);
             mock.BoundaryWidth.Returns(_mockValue);
-            return new EmitterProperties(mock);
+            return new EmitterProperties(mock, _boundaryOffSet);
         }
 
         [Test]
@@ -29,7 +30,7 @@ namespace Tests
 
             var result = sut.SetPosition(Vector3.left).x;
             
-            Assert.That(result, Is.EqualTo(-_mockValue));
+            Assert.That(result, Is.EqualTo(-_mockValue + _boundaryOffSet));
         }
 
         [Test]
@@ -39,7 +40,7 @@ namespace Tests
 
             var result = sut.SetPosition(Vector3.right).x;
 
-            Assert.That(result, Is.EqualTo(_mockValue));
+            Assert.That(result, Is.EqualTo(_mockValue - _boundaryOffSet));
         }
 
         [Test]
@@ -59,7 +60,7 @@ namespace Tests
 
             var result = sut.SetPosition(Vector3.down).y;
 
-            Assert.That(result, Is.EqualTo(-_mockValue));
+            Assert.That(result, Is.EqualTo(-_mockValue + _boundaryOffSet));
         }
 
         [Test]
@@ -69,7 +70,7 @@ namespace Tests
 
             var result = sut.SetPosition(Vector3.up).y;
 
-            Assert.That(result, Is.EqualTo(_mockValue));
+            Assert.That(result, Is.EqualTo(_mockValue - _boundaryOffSet));
         }
 
         [Test]
