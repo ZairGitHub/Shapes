@@ -7,14 +7,11 @@ public class PlayerController : MonoBehaviour
     private Vector3 _movement;
 
     private Rigidbody _rb;
-    private PlayerSpawner _playerSpawner;
     private Constants _constants;
     private GameController _gameController;
+    private PlayerSpawner _playerSpawner;
 
-    private void Awake()
-    {
-        _rb = GetComponent<Rigidbody>();
-    }
+    private void Awake() => _rb = GetComponent<Rigidbody>();
 
     private void Start()
     {
