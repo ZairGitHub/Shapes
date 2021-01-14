@@ -9,10 +9,10 @@ public class EmitterProperties
 
     private readonly IConstants _constants;    
 
-    public EmitterProperties(IConstants constants, float offSet = 0.0f)
+    public EmitterProperties(IConstants constants, float boundaryOffset = 0.0f)
     {
         _constants = constants;
-        _boundaryOffset = offSet;
+        _boundaryOffset = boundaryOffset;
     }
 
     public Vector3 SetPosition(Vector3 position)
