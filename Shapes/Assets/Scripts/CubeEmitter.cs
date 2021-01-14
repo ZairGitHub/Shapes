@@ -6,6 +6,7 @@ public class CubeEmitter : MonoBehaviour
 {
     private readonly WaitForSeconds _emitterDelay = new WaitForSeconds(1.0f);
 
+    private Constants _constants;
     private GameObject _cube;
     private GameObject[] _cubeEmitters;
     private GameController _gameController;
@@ -13,6 +14,9 @@ public class CubeEmitter : MonoBehaviour
 
     private void Start()
     {
+        _constants = GameObject.FindGameObjectWithTag("Constants")
+            .GetComponent<Constants>();
+
         _cube = GameObject.FindGameObjectWithTag("Cube");
         _cubeEmitters = GameObject.FindGameObjectsWithTag("CubeEmitter")
             .OrderBy(g => g.name).ToArray();

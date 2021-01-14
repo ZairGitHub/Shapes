@@ -2,23 +2,21 @@
 
 public class EmitterProperties : MonoBehaviour
 {
-    private const float _collisionScale = 2.0f;
     private const float _negativeOne = -1.0f;
     private const float _positiveOne = 1.0f;
+    private const float _collisionScale = 2.0f;
 
     private float _boundaryOffset;
 
     private Constants _constants;
-    
+    private GameObject _cube;
+
+    //Initialise constructor with GameObject cube and Constants
+
     private void Start()
     {
-        _boundaryOffset = GameObject.FindGameObjectWithTag("Cube")
-            .GetComponent<Collider>().bounds.size.x * _collisionScale;
-
-        _constants = GameObject.FindGameObjectWithTag("Constants")
-            .GetComponent<Constants>();
-
-        SetPosition();
+        _boundaryOffset = _cube.GetComponent<Collider>().bounds.size.x * _collisionScale;
+        _constants = null;
     }
 
     private void SetPosition()
