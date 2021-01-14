@@ -6,6 +6,9 @@ namespace Tests
 {
     public class PlayerSpawnerTests
     {
+        private const int _minPlayerID = 0;
+        private const int _maxPlayerID = 4;
+
         private PlayerSpawner CreateDefaultPlayerSpawner()
         {
             return new PlayerSpawner(Substitute.For<IConstants>());
@@ -25,8 +28,8 @@ namespace Tests
             return new GameObject().AddComponent<Rigidbody>();
         }
 
-        [TestCase(-1)]
-        [TestCase(5)]
+        [TestCase(_minPlayerID - 1)]
+        [TestCase(_maxPlayerID + 1)]
         public void SetSpawnPosition_PlayerIDIsOutsideValidRange_DoesNotMovePosition(int playerID)
         {
             var rigidbody = CreateDefaultRigidbody();
@@ -40,7 +43,7 @@ namespace Tests
 
         [Test]
         public void SetSpawnPosition_PlayerIDIsInsideValidRange_MovesPosition(
-            [NUnit.Framework.Range(0, 4)] int playerID)
+            [NUnit.Framework.Range(_minPlayerID, _maxPlayerID)] int playerID)
         {
             var rigidbody = CreateDefaultRigidbody();
             var sut = CreateDefaultPlayerSpawnerWithMock();
