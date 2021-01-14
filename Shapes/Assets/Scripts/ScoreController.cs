@@ -14,10 +14,9 @@ public class ScoreController
     private int _survivalBonus;
     private int _collisionBonus;
 
-    public ScoreController()
+    public ScoreController(GameController gameController)
     {
-        _gameController = GameObject.FindGameObjectWithTag("GameController")
-            .GetComponent<GameController>();
+        _gameController = gameController;
 
         _textScore = GameObject.FindGameObjectWithTag("TextScore")
             .GetComponent<TMP_Text>();

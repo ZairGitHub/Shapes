@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour
     {
         _timeController.ResetTime();
 
-        ScoreController = new ScoreController();
+        ScoreController = new ScoreController(this);
         StartCoroutine(ScoreController.GiveSurvivalBonus());
     }
 
