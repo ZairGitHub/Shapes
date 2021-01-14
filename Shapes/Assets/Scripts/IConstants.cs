@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Assets.Scripts
+﻿public interface IConstants
 {
-    interface IConstants
-    {
-    }
+    public float BoundaryWidth { get; }
+
+    public float BoundaryHeight { get; }
+
+    public float GameWidth { get; }
+
+    public float GameHeight { get; }
 }
