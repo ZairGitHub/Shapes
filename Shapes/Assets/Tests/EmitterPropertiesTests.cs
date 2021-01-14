@@ -89,18 +89,17 @@ namespace Tests
             Assert.That(result, Is.EqualTo(1.0f));
         }
 
-        /*
         [Test]
-        public void GetXDirection_TransformPositionXIsPositive_ReturnsNegativeOne()
+        public void GetDirection_PositiveFloat_ReturnsNegativeOne()
         {
-            var sut = CreateDefaultEmitterPropertiesWithMocks();
-            
-            sut.transform.position = Vector3.right;
-            var result = sut.GetDirection();
+            var sut = new EmitterProperties(Substitute.For<IConstants>());
+
+            var result = sut.GetDirection(1.0f);
 
             Assert.That(result, Is.EqualTo(-1.0f));
         }
 
+        /*
         [Test]
         public void GetXDirection_TransformPositionXIsZero_ReturnsRandomBetweenNegativeAndPositiveOne()
         {
