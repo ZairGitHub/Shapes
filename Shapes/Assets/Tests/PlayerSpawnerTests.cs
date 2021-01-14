@@ -38,5 +38,31 @@ namespace Tests
 
             Assert.That(rigidbody.position, Is.EqualTo(new Vector3(10f, 5f, 0f)));
         }
+
+        [Test]
+        public void SetSpawnPosition_Player3_MovesPositionToBottomLeftArea()
+        {
+            var constants = CreateDefaultConstants();
+            constants.runInEditMode = true;
+            var sut = new PlayerSpawner(constants);
+
+            var rigidbody = new GameObject().AddComponent<Rigidbody>();
+            sut.SetSpawnPosition(rigidbody, 3);
+
+            Assert.That(rigidbody.position, Is.EqualTo(new Vector3(-10f, -5f, 0f)));
+        }
+
+        [Test]
+        public void SetSpawnPosition_Player4_MovesPositionToBottomRightArea()
+        {
+            var constants = CreateDefaultConstants();
+            constants.runInEditMode = true;
+            var sut = new PlayerSpawner(constants);
+
+            var rigidbody = new GameObject().AddComponent<Rigidbody>();
+            sut.SetSpawnPosition(rigidbody, 4);
+
+            Assert.That(rigidbody.position, Is.EqualTo(new Vector3(10f, -5f, 0f)));
+        }
     }
 }
