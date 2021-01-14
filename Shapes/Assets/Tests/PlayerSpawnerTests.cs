@@ -22,8 +22,9 @@ namespace Tests
 
             var rigidbody = new GameObject().AddComponent<Rigidbody>();
             sut.SetSpawnPosition(rigidbody);
+            var result = rigidbody.velocity;
 
-            Assert.That(rigidbody.velocity, Is.EqualTo(Vector3.zero));
+            Assert.That(result, Is.EqualTo(Vector3.zero));
         }
 
         [Test]
@@ -35,8 +36,9 @@ namespace Tests
 
             var rigidbody = new GameObject().AddComponent<Rigidbody>();
             sut.SetSpawnPosition(rigidbody, -1);
+            var result = rigidbody.position;
 
-            Assert.That(rigidbody.position, Is.EqualTo(Vector3.zero));
+            Assert.That(result, Is.EqualTo(Vector3.zero));
         }
 
         [Test]
@@ -48,8 +50,9 @@ namespace Tests
             
             var rigidbody = new GameObject().AddComponent<Rigidbody>();
             sut.SetSpawnPosition(rigidbody, 1);
+            var result = rigidbody.position;
 
-            Assert.That(rigidbody.position, Is.EqualTo(new Vector3(-10f, 5f, 0f)));
+            Assert.That(result, Is.EqualTo(new Vector3(-10f, 5f, 0f)));
         }
 
         [Test]
@@ -61,8 +64,9 @@ namespace Tests
 
             var rigidbody = new GameObject().AddComponent<Rigidbody>();
             sut.SetSpawnPosition(rigidbody, 2);
+            var result = rigidbody.position;
 
-            Assert.That(rigidbody.position, Is.EqualTo(new Vector3(10f, 5f, 0f)));
+            Assert.That(result, Is.EqualTo(new Vector3(10f, 5f, 0f)));
         }
 
         [Test]
@@ -74,8 +78,9 @@ namespace Tests
 
             var rigidbody = new GameObject().AddComponent<Rigidbody>();
             sut.SetSpawnPosition(rigidbody, 3);
+            var result = rigidbody.position;
 
-            Assert.That(rigidbody.position, Is.EqualTo(new Vector3(-10f, -5f, 0f)));
+            Assert.That(result, Is.EqualTo(new Vector3(-10f, -5f, 0f)));
         }
 
         [Test]
@@ -87,8 +92,9 @@ namespace Tests
 
             var rigidbody = new GameObject().AddComponent<Rigidbody>();
             sut.SetSpawnPosition(rigidbody, 4);
+            var result = rigidbody.position;
 
-            Assert.That(rigidbody.position, Is.EqualTo(new Vector3(10f, -5f, 0f)));
+            Assert.That(result, Is.EqualTo(new Vector3(10f, -5f, 0f)));
         }
     }
 }
