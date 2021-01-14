@@ -15,9 +15,9 @@ public class EmitterProperties
         _boundaryOffset = offSet;
     }
 
-    public Vector3 SetPosition(float x, float y)
+    public Vector3 SetPosition(Vector3 position)
     {
-        return new Vector3(SetXPosition(x), SetYPosition(y), 0.0f);
+        return new Vector3(SetXPosition(position.x), SetYPosition(position.y), 0.0f);
     }
 
     private float SetXPosition(float x)

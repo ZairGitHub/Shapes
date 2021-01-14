@@ -42,9 +42,8 @@ public class CubeEmitter : MonoBehaviour
     {
         foreach (GameObject cubeEmitter in _cubeEmitters)
         {
-            Vector3 position = cubeEmitter.transform.position;
             cubeEmitter.transform.position =
-                _emitterProperties.SetPosition(position.x, position.y);
+                _emitterProperties.SetPosition(cubeEmitter.transform.position);
         }
     }
 
