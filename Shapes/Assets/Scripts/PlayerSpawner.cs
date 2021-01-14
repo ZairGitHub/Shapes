@@ -9,7 +9,7 @@ public class PlayerSpawner
     private readonly Vector3 _bottomLeftSpawn;
     private readonly Vector3 _bottomRightSpawn;
     
-    public PlayerSpawner(Constants constants)
+    public PlayerSpawner(IConstants constants)
     {
         float spawnWidth = constants.BoundaryWidth / 2.0f;
         float spawnHeight = constants.BoundaryHeight / 2.0f;
@@ -22,8 +22,12 @@ public class PlayerSpawner
 
     public void SetSpawnPosition(Rigidbody rb, int playerID = 0)
     {
-        int RNG = playerID == 0 ? Random.Range(1, maxPlayers + 1) : playerID;
-        switch (RNG)
+        if (playerID == 0)
+        {
+            playerID = Random.Range(1, maxPlayers + 1);
+        }
+
+        switch (playerID)
         {
             case 1:
                 rb.MovePosition(_topLeftSpawn);
