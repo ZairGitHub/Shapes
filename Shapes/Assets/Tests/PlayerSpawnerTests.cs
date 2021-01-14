@@ -23,8 +23,8 @@ namespace Tests
         {
             var constants = CreateDefaultConstants();
             constants.runInEditMode = true;
-            var sut = new PlayerSpawner(constants);
             var rigidbody = CreateDefaultRigidbody();
+            var sut = new PlayerSpawner(constants);
 
             sut.SetSpawnPosition(rigidbody);
             var result = rigidbody.velocity;
@@ -37,8 +37,8 @@ namespace Tests
         {
             var constants = CreateDefaultConstants();
             constants.runInEditMode = true;
-            var sut = new PlayerSpawner(constants);
             var rigidbody = CreateDefaultRigidbody();
+            var sut = new PlayerSpawner(constants);
 
             sut.SetSpawnPosition(rigidbody, -1);
             var result = rigidbody.position;
@@ -51,8 +51,8 @@ namespace Tests
         {
             var constants = CreateDefaultConstants();
             constants.runInEditMode = true;
-            var sut = new PlayerSpawner(constants);
             var rigidbody = CreateDefaultRigidbody();
+            var sut = new PlayerSpawner(constants);
 
             sut.SetSpawnPosition(rigidbody, 1);
             var result = rigidbody.position;
@@ -65,8 +65,8 @@ namespace Tests
         {
             var constants = CreateDefaultConstants();
             constants.runInEditMode = true;
-            var sut = new PlayerSpawner(constants);
             var rigidbody = CreateDefaultRigidbody();
+            var sut = new PlayerSpawner(constants);
 
             sut.SetSpawnPosition(rigidbody, 2);
             var result = rigidbody.position;
@@ -79,8 +79,8 @@ namespace Tests
         {
             var constants = CreateDefaultConstants();
             constants.runInEditMode = true;
-            var sut = new PlayerSpawner(constants);
             var rigidbody = CreateDefaultRigidbody();
+            var sut = new PlayerSpawner(constants);
 
             sut.SetSpawnPosition(rigidbody, 3);
             var result = rigidbody.position;
@@ -93,8 +93,8 @@ namespace Tests
         {
             var constants = CreateDefaultConstants();
             constants.runInEditMode = true;
-            var sut = new PlayerSpawner(constants);
             var rigidbody = CreateDefaultRigidbody();
+            var sut = new PlayerSpawner(constants);
 
             sut.SetSpawnPosition(rigidbody, 4);
             var result = rigidbody.position;
