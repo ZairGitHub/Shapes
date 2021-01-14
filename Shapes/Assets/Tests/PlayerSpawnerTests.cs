@@ -13,13 +13,18 @@ namespace Tests
             return new GameObject().AddComponent<Constants>();
         }
 
+        private Rigidbody CreateDefaultRigidbody()
+        {
+            return new GameObject().AddComponent<Rigidbody>();
+        }
+
         [Test]
         public void SetSpawnPosition_SetsRigidbodyVelocityToVector3Zero()
         {
             var constants = CreateDefaultConstants();
             constants.runInEditMode = true;
             var sut = new PlayerSpawner(constants);
-            var rigidbody = new GameObject().AddComponent<Rigidbody>();
+            var rigidbody = CreateDefaultRigidbody();
 
             sut.SetSpawnPosition(rigidbody);
             var result = rigidbody.velocity;
@@ -33,7 +38,7 @@ namespace Tests
             var constants = CreateDefaultConstants();
             constants.runInEditMode = true;
             var sut = new PlayerSpawner(constants);
-            var rigidbody = new GameObject().AddComponent<Rigidbody>();
+            var rigidbody = CreateDefaultRigidbody();
 
             sut.SetSpawnPosition(rigidbody, -1);
             var result = rigidbody.position;
@@ -47,7 +52,7 @@ namespace Tests
             var constants = CreateDefaultConstants();
             constants.runInEditMode = true;
             var sut = new PlayerSpawner(constants);
-            var rigidbody = new GameObject().AddComponent<Rigidbody>();
+            var rigidbody = CreateDefaultRigidbody();
 
             sut.SetSpawnPosition(rigidbody, 1);
             var result = rigidbody.position;
@@ -61,7 +66,7 @@ namespace Tests
             var constants = CreateDefaultConstants();
             constants.runInEditMode = true;
             var sut = new PlayerSpawner(constants);
-            var rigidbody = new GameObject().AddComponent<Rigidbody>();
+            var rigidbody = CreateDefaultRigidbody();
 
             sut.SetSpawnPosition(rigidbody, 2);
             var result = rigidbody.position;
@@ -75,7 +80,7 @@ namespace Tests
             var constants = CreateDefaultConstants();
             constants.runInEditMode = true;
             var sut = new PlayerSpawner(constants);
-            var rigidbody = new GameObject().AddComponent<Rigidbody>();
+            var rigidbody = CreateDefaultRigidbody();
 
             sut.SetSpawnPosition(rigidbody, 3);
             var result = rigidbody.position;
@@ -89,7 +94,7 @@ namespace Tests
             var constants = CreateDefaultConstants();
             constants.runInEditMode = true;
             var sut = new PlayerSpawner(constants);
-            var rigidbody = new GameObject().AddComponent<Rigidbody>();
+            var rigidbody = CreateDefaultRigidbody();
 
             sut.SetSpawnPosition(rigidbody, 4);
             var result = rigidbody.position;
