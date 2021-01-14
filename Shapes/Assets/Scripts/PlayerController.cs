@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        _playerSpawner = GetComponent<PlayerSpawner>();
         _rb = GetComponent<Rigidbody>();
     }
 
@@ -30,6 +29,8 @@ public class PlayerController : MonoBehaviour
             .GetComponent<GameController>();
 
         _speed = _constants.BoundaryWidth;
+
+        _playerSpawner = new PlayerSpawner(_constants);
     }
 
     private void FixedUpdate()
@@ -61,6 +62,6 @@ public class PlayerController : MonoBehaviour
     //Convert to SetSpawnPosition() to private after removing Debug command
     private void DebugModeCommand()
     {
-        _playerSpawner.SetSpawnPosition();
+        _playerSpawner.SetSpawnPosition(_rb);
     }
 }
