@@ -56,36 +56,36 @@ namespace Tests
         public void SetSpawnPosition_Player2_MovesPositionToTopRightArea()
         {
             var rigidbody = CreateDefaultRigidbody();
-            var sut = CreateDefaultPlayerSpawner();
+            var sut = CreateDefaultPlayerSpawnerWithMock();
 
             sut.SetSpawnPosition(rigidbody, 2);
             var result = rigidbody.position;
-
-            Assert.That(result, Is.EqualTo(new Vector3(10f, 5f, 0f)));
+            
+            Assert.That(result, Is.EqualTo(new Vector3(1.0f, 1.0f, 0.0f)));
         }
 
         [Test]
         public void SetSpawnPosition_Player3_MovesPositionToBottomLeftArea()
         {
             var rigidbody = CreateDefaultRigidbody();
-            var sut = CreateDefaultPlayerSpawner();
+            var sut = CreateDefaultPlayerSpawnerWithMock();
 
             sut.SetSpawnPosition(rigidbody, 3);
             var result = rigidbody.position;
 
-            Assert.That(result, Is.EqualTo(new Vector3(-10f, -5f, 0f)));
+            Assert.That(result, Is.EqualTo(new Vector3(-1.0f, -1.0f, 0.0f)));
         }
 
         [Test]
         public void SetSpawnPosition_Player4_MovesPositionToBottomRightArea()
         {
             var rigidbody = CreateDefaultRigidbody();
-            var sut = CreateDefaultPlayerSpawner();
+            var sut = CreateDefaultPlayerSpawnerWithMock();
 
             sut.SetSpawnPosition(rigidbody, 4);
             var result = rigidbody.position;
 
-            Assert.That(result, Is.EqualTo(new Vector3(10f, -5f, 0f)));
+            Assert.That(result, Is.EqualTo(new Vector3(1.0f, -1.0f, 0.0f)));
         }
 
         [Test]
