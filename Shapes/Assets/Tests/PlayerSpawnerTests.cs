@@ -14,6 +14,15 @@ namespace Tests
             return new PlayerSpawner(constants);
         }
 
+        private PlayerSpawner CreateDefaultPlayerSpawnerWithMock()
+        {
+            var mock = Substitute.For<IConstants>();
+            mock.BoundaryHeight.Returns(2.0f);
+            mock.BoundaryWidth.Returns(2.0f);
+
+            return new PlayerSpawner(mock);
+        }
+
         private Rigidbody CreateDefaultRigidbody()
         {
             return new GameObject().AddComponent<Rigidbody>();
@@ -35,15 +44,12 @@ namespace Tests
         public void SetSpawnPosition_Player1_MovesPositionToTopLeftArea()
         {
             var rigidbody = CreateDefaultRigidbody();
-            var mock = Substitute.For<IConstants>();
-            mock.BoundaryHeight.Returns(2.0f);
-            mock.BoundaryWidth.Returns(2.0f);
-            var sut = new PlayerSpawner(mock);
+            var sut = CreateDefaultPlayerSpawnerWithMock();
 
             sut.SetSpawnPosition(rigidbody, 1);
             var result = rigidbody.position;
 
-            Assert.That(result, Is.EqualTo(new Vector3(-10f, 5f, 0f)));
+            Assert.That(result, Is.EqualTo(new Vector3(-1.0f, 1.0f, 0.0f)));
         }
 
         [Test]
