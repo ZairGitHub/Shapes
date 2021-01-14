@@ -6,12 +6,9 @@ public class EmitterProperties
     private const float _positiveOne = 1.0f;
     private const float _collisionScale = 2.0f;
 
-    private float _boundaryOffset;
+    private readonly float _boundaryOffset;
 
-    private IConstants _constants;
-
-    private GameObject _cube;
-    private Transform _transform;
+    private readonly IConstants _constants;    
 
     public EmitterProperties(IConstants constants, GameObject cube)
     {
@@ -60,14 +57,14 @@ public class EmitterProperties
         return yPosition;
     }
 
-    public float GetXDirection()
+    public float GetXDirection(float x)
     {
         float xDirection;
-        if (_transform.position.x < 0.0f)
+        if (x < 0.0f)
         {
             xDirection = _positiveOne;
         }
-        else if (_transform.position.x > 0.0f)
+        else if (x > 0.0f)
         {
             xDirection = _negativeOne;
         }
@@ -78,14 +75,14 @@ public class EmitterProperties
         return xDirection;
     }
 
-    public float GetYDirection()
+    public float GetYDirection(float y)
     {
         float yDirection;
-        if (_transform.position.y < 0.0f)
+        if (y < 0.0f)
         {
             yDirection = _positiveOne;
         }
-        else if (_transform.position.y > 0.0f)
+        else if (y > 0.0f)
         {
             yDirection = _negativeOne;
         }
