@@ -30,11 +30,9 @@ public class CubeEmitter : MonoBehaviour
             .GetComponent<GameController>();
 
         _offset = _cube.GetComponent<Collider>().bounds.size.x * _collisionScale;
-
         _emitterProperties = new EmitterProperties(_constants, _offset);
 
         SetEmitterPositions();
-
         StartCoroutine(EmitCubes());
     }
 
