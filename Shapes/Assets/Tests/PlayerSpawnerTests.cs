@@ -8,10 +8,7 @@ namespace Tests
     {
         private PlayerSpawner CreateDefaultPlayerSpawner()
         {
-            var constants = new GameObject().AddComponent<Constants>();
-            constants.runInEditMode = true;
-
-            return new PlayerSpawner(constants);
+            return new PlayerSpawner(Substitute.For<IConstants>());
         }
 
         private PlayerSpawner CreateDefaultPlayerSpawnerWithMock()
