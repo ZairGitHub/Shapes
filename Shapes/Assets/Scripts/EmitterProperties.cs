@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class EmitterProperties : MonoBehaviour
+public class EmitterProperties
 {
     private const float _negativeOne = -1.0f;
     private const float _positiveOne = 1.0f;
@@ -8,30 +8,30 @@ public class EmitterProperties : MonoBehaviour
 
     private float _boundaryOffset;
 
-    private Constants _constants;
+    private IConstants _constants;
+
     private GameObject _cube;
+    private Transform _transform;
 
-    //Initialise constructor with GameObject cube and Constants
-
-    private void Start()
+    public EmitterProperties(IConstants constants, GameObject cube)
     {
-        _boundaryOffset = _cube.GetComponent<Collider>().bounds.size.x * _collisionScale;
-        _constants = null;
+        _constants = constants;
+        _boundaryOffset = cube.GetComponent<Collider>().bounds.size.x * _collisionScale;
     }
 
-    private void SetPosition()
+    public Vector3 SetPosition(float x, float y)
     {
-        transform.position = new Vector3(SetXPosition(), SetYPosition(), 0.0f);
+        return new Vector3(SetXPosition(x), SetYPosition(y), 0.0f);
     }
 
-    private float SetXPosition()
+    private float SetXPosition(float x)
     {
         float xPosition;
-        if (transform.position.x < 0.0f)
+        if (x < 0.0f)
         {
             xPosition = -_constants.BoundaryWidth + _boundaryOffset;
         }
-        else if (transform.position.x > 0.0f)
+        else if (x > 0.0f)
         {
             xPosition = _constants.BoundaryWidth - _boundaryOffset;
         }
@@ -42,14 +42,14 @@ public class EmitterProperties : MonoBehaviour
         return xPosition;
     }
 
-    private float SetYPosition()
+    private float SetYPosition(float y)
     {
         float yPosition;
-        if (transform.position.y < 0.0f)
+        if (y < 0.0f)
         {
             yPosition = -_constants.BoundaryHeight + _boundaryOffset;
         }
-        else if (transform.position.y > 0.0f)
+        else if (y > 0.0f)
         {
             yPosition = _constants.BoundaryHeight - _boundaryOffset;
         }
@@ -63,11 +63,11 @@ public class EmitterProperties : MonoBehaviour
     public float GetXDirection()
     {
         float xDirection;
-        if (transform.position.x < 0.0f)
+        if (_transform.position.x < 0.0f)
         {
             xDirection = _positiveOne;
         }
-        else if (transform.position.x > 0.0f)
+        else if (_transform.position.x > 0.0f)
         {
             xDirection = _negativeOne;
         }
@@ -81,11 +81,11 @@ public class EmitterProperties : MonoBehaviour
     public float GetYDirection()
     {
         float yDirection;
-        if (transform.position.y < 0.0f)
+        if (_transform.position.y < 0.0f)
         {
             yDirection = _positiveOne;
         }
-        else if (transform.position.y > 0.0f)
+        else if (_transform.position.y > 0.0f)
         {
             yDirection = _negativeOne;
         }

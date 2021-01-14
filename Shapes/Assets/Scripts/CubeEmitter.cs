@@ -6,7 +6,7 @@ public class CubeEmitter : MonoBehaviour
 {
     private readonly WaitForSeconds _emitterDelay = new WaitForSeconds(1.0f);
 
-    private Constants _constants;
+    private IConstants _constants;
     private GameObject _cube;
     private GameObject[] _cubeEmitters;
     private GameController _gameController;
@@ -16,7 +16,7 @@ public class CubeEmitter : MonoBehaviour
     {
         _constants = GameObject.FindGameObjectWithTag("Constants")
             .GetComponent<Constants>();
-
+        
         _cube = GameObject.FindGameObjectWithTag("Cube");
         _cubeEmitters = GameObject.FindGameObjectsWithTag("CubeEmitter")
             .OrderBy(g => g.name).ToArray();
@@ -24,7 +24,21 @@ public class CubeEmitter : MonoBehaviour
         _gameController = GameObject.FindGameObjectWithTag("GameController")
             .GetComponent<GameController>();
 
+        _emitterProperties = new EmitterProperties(_constants, _cube);
+
+        SetEmitterPositions();
+
         StartCoroutine(EmitCubes());
+    }
+
+    private void SetEmitterPositions()
+    {
+        foreach (GameObject cubeEmitter in _cubeEmitters)
+        {
+            Vector3 position = cubeEmitter.transform.position;
+            cubeEmitter.transform.position =
+                _emitterProperties.SetPosition(position.x, position.y);
+        }
     }
 
     private IEnumerator EmitCubes()
