@@ -23,73 +23,69 @@ public class EmitterProperties
 
     private float SetXPosition(float x)
     {
-        float xPosition;
         if (x < 0.0f)
         {
-            xPosition = -_constants.BoundaryWidth + _boundaryOffset;
+            x = -_constants.BoundaryWidth + _boundaryOffset;
         }
         else if (x > 0.0f)
         {
-            xPosition = _constants.BoundaryWidth - _boundaryOffset;
+            x = _constants.BoundaryWidth - _boundaryOffset;
         }
         else
         {
-            xPosition = 0.0f;
+            x = 0.0f;
         }
-        return xPosition;
+        return x;
     }
 
     private float SetYPosition(float y)
     {
-        float yPosition;
         if (y < 0.0f)
         {
-            yPosition = -_constants.BoundaryHeight + _boundaryOffset;
+            y = -_constants.BoundaryHeight + _boundaryOffset;
         }
         else if (y > 0.0f)
         {
-            yPosition = _constants.BoundaryHeight - _boundaryOffset;
+            y = _constants.BoundaryHeight - _boundaryOffset;
         }
         else
         {
-            yPosition = 0.0f;
+            y = 0.0f;
         }
-        return yPosition;
+        return y;
     }
 
     public float GetXDirection(float x)
     {
-        float xDirection;
         if (x < 0.0f)
         {
-            xDirection = _positiveOne;
+            x = _positiveOne;
         }
         else if (x > 0.0f)
         {
-            xDirection = _negativeOne;
+            x = _negativeOne;
         }
         else
         {
-            xDirection = Random.Range(_negativeOne, _positiveOne);
+            x = Random.Range(_negativeOne, _positiveOne);
         }
-        return xDirection;
+        return x;
     }
 
     public float GetYDirection(float y)
     {
-        float yDirection;
         if (y < 0.0f)
         {
-            yDirection = _positiveOne;
+            y = _positiveOne;
         }
         else if (y > 0.0f)
         {
-            yDirection = _negativeOne;
+            y = _negativeOne;
         }
         else
         {
-            yDirection = Random.Range(_negativeOne, _positiveOne);
+            y = Random.Range(_negativeOne, _positiveOne);
         }
-        return yDirection;
+        return y;
     }
 }
