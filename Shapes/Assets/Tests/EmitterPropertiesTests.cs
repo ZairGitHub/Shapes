@@ -28,23 +28,18 @@ namespace Tests
             
             Assert.That(result, Is.EqualTo(-_mockValue));
         }
-        /*
-        [UnityTest]
-        public IEnumerator Start_TransformPositionXIsPositive_SetsXToHigherValue()
+
+        [Test]
+        public void SetPosition_Vector3XIsPositive_SetsXToAHigherValue()
         {
-            RunConstantsMonoBehaviours();
+            var sut = CreateDefaultEmitterPropertiesWithMock();
 
-            var initialPosition = Vector3.right;
-            var sut = CreateEmitterPropertiesWithCustomPosition(initialPosition);
-            sut.runInEditMode = true;
-            yield return null;
+            var result = sut.SetPosition(Vector3.right).x;
 
-            var result = sut.transform.position.x;
-
-            Assert.That(result, Is.GreaterThan(initialPosition.x));
+            Assert.That(result, Is.EqualTo(_mockValue));
         }
 
-        [UnityTest]
+        /*[UnityTest]
         public IEnumerator Start_TransformPositionXIsZero_SetsXToZero()
         {
             var sut = CreateDefaultEmitterPropertiesWithMocks();
