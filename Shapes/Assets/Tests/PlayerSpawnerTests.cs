@@ -8,21 +8,17 @@ namespace Tests
 {
     public class PlayerSpawnerTests
     {
-        // A Test behaves as an ordinary method
         [Test]
         public void PlayerSpawnerTestsSimplePasses()
         {
-            // Use the Assert class to test conditions
-        }
+            var c = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
+            c.runInEditMode = true;
+            var sut = new PlayerSpawner(c);
 
-        // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-        // `yield return null;` to skip a frame.
-        [UnityTest]
-        public IEnumerator PlayerSpawnerTestsWithEnumeratorPasses()
-        {
-            // Use the Assert class to test conditions.
-            // Use yield to skip a frame.
-            yield return null;
+            var rb = new GameObject().AddComponent<Rigidbody>();
+            sut.SetSpawnPosition(rb, 1);
+
+            Assert.That(rb.position, Is.EqualTo(new Vector3(-10f, 5f, 0f)));
         }
     }
 }
