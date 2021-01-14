@@ -9,11 +9,6 @@ namespace Tests
         private const int _minPlayerID = 0;
         private const int _maxPlayerID = 4;
 
-        private PlayerSpawner CreateDefaultPlayerSpawner()
-        {
-            return new PlayerSpawner(Substitute.For<IConstants>());
-        }
-
         private PlayerSpawner CreateDefaultPlayerSpawnerWithMock()
         {
             var mock = Substitute.For<IConstants>();
@@ -106,7 +101,7 @@ namespace Tests
         public void SetSpawnPosition_SetsRigidbodyVelocityToVector3Zero()
         {
             var rigidbody = CreateDefaultRigidbody();
-            var sut = CreateDefaultPlayerSpawner();
+            var sut = new PlayerSpawner(Substitute.For<IConstants>());
 
             sut.SetSpawnPosition(rigidbody);
             var result = rigidbody.velocity;
