@@ -4,10 +4,10 @@ public class PlayerSpawner
 {
     private const int maxPlayers = 4;
 
-    private Vector3 _topLeftSpawn;
-    private Vector3 _topRightSpawn;
-    private Vector3 _bottomLeftSpawn;
-    private Vector3 _bottomRightSpawn;
+    private readonly Vector3 _topLeftSpawn;
+    private readonly Vector3 _topRightSpawn;
+    private readonly Vector3 _bottomLeftSpawn;
+    private readonly Vector3 _bottomRightSpawn;
     
     public PlayerSpawner(Constants constants)
     {
@@ -20,7 +20,6 @@ public class PlayerSpawner
         _bottomRightSpawn = new Vector3(spawnWidth, -spawnHeight, 0.0f);
     }
 
-    //Convert to private after removing Debug command from PlayerController.cs
     public void SetSpawnPosition(Rigidbody rb)
     {
         // Currently randomised until multiplayer is implemented
