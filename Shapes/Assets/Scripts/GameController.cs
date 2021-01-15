@@ -7,15 +7,17 @@ public class GameController : MonoBehaviour, IGameController
 
     public bool IsInDebugMode { get; private set; } = true;
 
-    public bool IsRunning { get; private set; } = true;
+    public bool IsRunning { get; private set; } = false;
 
     public ScoreController ScoreController { get; private set; }
 
     private void Start()
     {
-        _timeController.ResetTime();
+        IsRunning = true;
 
+        _timeController.ResetTime();
         ScoreController = new ScoreController(this);
+
         StartCoroutine(ScoreController.GiveSurvivalBonus());
     }
 
