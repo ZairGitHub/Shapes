@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Linq;
 using UnityEngine;
 
 public class CubeEmitter : MonoBehaviour
@@ -23,9 +22,7 @@ public class CubeEmitter : MonoBehaviour
             .GetComponent<Constants>();
         
         _cube = GameObject.FindGameObjectWithTag("Cube");
-        _cubeEmitters = GameObject.FindGameObjectsWithTag("CubeEmitter")
-            .OrderBy(g => g.name).ToArray();
-
+        _cubeEmitters = GameObject.FindGameObjectsWithTag("CubeEmitter");
         _gameController = GameObject.FindGameObjectWithTag("GameController")
             .GetComponent<GameController>();
 
