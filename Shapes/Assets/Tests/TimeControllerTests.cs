@@ -13,7 +13,6 @@ namespace Tests
 
         private TimeController CreateDefaultTimeController()
         {
-            Time.timeScale = _defaultTime;
             return new TimeController();
         }
 
