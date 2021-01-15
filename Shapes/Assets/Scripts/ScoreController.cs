@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ScoreController
 {
+    private readonly IGameController _gameController;
+
     private readonly WaitForSeconds _survivalBonusDelay = new WaitForSeconds(3.0f);
-    private readonly GameController _gameController;
     private readonly TMP_Text _textScore;
     private readonly TMP_Text _textSurvivalBonus;
     private readonly TMP_Text _textCollisionBonus;
@@ -14,7 +15,7 @@ public class ScoreController
     private int _survivalBonus;
     private int _collisionBonus;
 
-    public ScoreController(GameController gameController)
+    public ScoreController(IGameController gameController)
     {
         _gameController = gameController;
 
