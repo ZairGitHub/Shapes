@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameController : MonoBehaviour
+public class GameController : MonoBehaviour, IGameController
 {
     private readonly TimeController _timeController = new TimeController();
 
