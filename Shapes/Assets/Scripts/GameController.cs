@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour, IGameController
 {
-    private readonly TimeController _timeController = new TimeController();
+    private TimeController _timeController;
 
     public bool IsInDebugMode { get; private set; } = true;
 
@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour, IGameController
     {
         IsRunning = true;
 
-        _timeController.ResetTime();
+        _timeController = new TimeController();
         ScoreController = new ScoreController(this);
 
         StartCoroutine(ScoreController.GiveSurvivalBonus());
