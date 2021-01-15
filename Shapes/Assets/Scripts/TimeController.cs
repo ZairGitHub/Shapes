@@ -11,6 +11,8 @@ public class TimeController
 
     public float MaxTime { get; private set; } = 10.0f;
 
+    public TimeController() => ResetTime();
+
     public void ResetTime()
     {
         Time.timeScale = _defaultTime;
