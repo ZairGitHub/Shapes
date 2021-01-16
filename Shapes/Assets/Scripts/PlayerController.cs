@@ -12,7 +12,20 @@ public class PlayerController : MonoBehaviour
     private GameController _gameController;
     private PlayerSpawner _playerSpawner;
 
-    private void Awake() => _rb = GetComponent<Rigidbody>();
+    private void Awake()
+    {
+        _rb = TryGetComponent(out Rigidbody rb) ?
+            rb : gameObject.AddComponent<Rigidbody>();
+
+        _rb = GetComponent<Rigidbody>();
+        if (_rb == null)
+        {
+            gameObject.AddComponent<Rigidbody>();
+        }
+
+        _rb = GetComponent<Rigidbody>();
+        _rb ??= gameObject.AddComponent<Rigidbody>();
+    }
 
     private void Start()
     {
