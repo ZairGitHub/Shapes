@@ -12,14 +12,6 @@ namespace Tests
             return new GameObject().AddComponent<PlayerController>();
         }
 
-        private GameObject CreatePlayerControllerWithComponentAndRunInEditMode<T>() where T : Component
-        {
-            var gameObject = new GameObject();
-            gameObject.AddComponent<T>();
-            gameObject.AddComponent<PlayerController>().runInEditMode = true;
-            return gameObject;
-        }
-
         [Test]
         public void Awake_AssignsRigidbodyComponent()
         {
