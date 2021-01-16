@@ -7,10 +7,15 @@ namespace Tests
 {
     public class PlayerControllerTests
     {
+        private PlayerController CreateDefaultPlayerController()
+        {
+            return new GameObject().AddComponent<PlayerController>();
+        }
+
         [Test]
         public void Awake_HasNoRigidbodyComponent_AssignsNewRigidbodyComponent()
         {
-            var sut = new GameObject().AddComponent<PlayerController>();
+            var sut = CreateDefaultPlayerController();
             sut.runInEditMode = true;
 
             var result = sut.GetComponent<Rigidbody>();
@@ -33,7 +38,7 @@ namespace Tests
         [UnityTest]
         public IEnumerator Start_HasNoConstantsComponent_AssignsNewConstantsComponent()
         {
-            var sut = new GameObject().AddComponent<PlayerController>();
+            var sut = CreateDefaultPlayerController();
             sut.runInEditMode = true;
             yield return null;
 
@@ -58,7 +63,7 @@ namespace Tests
         [UnityTest]
         public IEnumerator Start_HasNoGameControllerComponent_AssignsNewGameControllerComponent()
         {
-            var sut = new GameObject().AddComponent<PlayerController>();
+            var sut = CreateDefaultPlayerController();
             sut.runInEditMode = true;
             yield return null;
 
