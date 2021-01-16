@@ -21,7 +21,7 @@ namespace Tests
         }
 
         [Test]
-        public void Awake_HasNoRigidbodyComponent_AssignsNewRigidbodyComponent()
+        public void Awake_AssignsRigidbodyComponent()
         {
             var sut = CreateDefaultPlayerController();
             sut.runInEditMode = true;
@@ -31,18 +31,8 @@ namespace Tests
             Assert.That(result, Has.Exactly(1).TypeOf<Rigidbody>());
         }
 
-        [Test]
-        public void Awake_HasARigidbodyComponent_AssignsExistingRigidbodyComponent()
-        {
-            var sut = CreatePlayerControllerWithComponentAndRunInEditMode<Rigidbody>();
-
-            var result = sut.GetComponents<Rigidbody>();
-
-            Assert.That(result, Has.Exactly(1).TypeOf<Rigidbody>());
-        }
-
         [UnityTest]
-        public IEnumerator Start_HasNoConstantsComponent_AssignsNewConstantsComponent()
+        public IEnumerator Start_AssignsConstantsComponent()
         {
             var sut = CreateDefaultPlayerController();
             sut.runInEditMode = true;
@@ -54,32 +44,10 @@ namespace Tests
         }
 
         [UnityTest]
-        public IEnumerator Start_HasAConstantsComponent_AssignsExistingConstantsComponent()
-        {
-            var sut = CreatePlayerControllerWithComponentAndRunInEditMode<Constants>();
-            yield return null;
-
-            var result = sut.GetComponents<Constants>();
-
-            Assert.That(result, Has.Exactly(1).TypeOf<Constants>());
-        }
-
-        [UnityTest]
-        public IEnumerator Start_HasNoGameControllerComponent_AssignsNewGameControllerComponent()
+        public IEnumerator Start_AssignsGameControllerComponent()
         {
             var sut = CreateDefaultPlayerController();
             sut.runInEditMode = true;
-            yield return null;
-
-            var result = sut.GetComponents<GameController>();
-
-            Assert.That(result, Has.Exactly(1).TypeOf<GameController>());
-        }
-
-        [UnityTest]
-        public IEnumerator Start_HasAGameControllerComponent_AssignsExistingGameControllerComponent()
-        {
-            var sut = CreatePlayerControllerWithComponentAndRunInEditMode<GameController>();
             yield return null;
 
             var result = sut.GetComponents<GameController>();
