@@ -12,8 +12,7 @@ namespace Tests
         [Test]
         public void GetType_Nulls_Null()
         {
-            var result = (Component)NullComponentChecker
-                .TryGet<Transform>(null, null);
+            var result = NullComponentChecker.TryGet<Rigidbody>(null, null);
 
             Assert.That(result, Is.Null);
         }
@@ -21,8 +20,8 @@ namespace Tests
         [Test]
         public void GetType_NoGameObject_Null()
         {
-            var result = (Component)NullComponentChecker
-                .TryGet<Transform>(null, Arg.Any<Component>());
+            var result = NullComponentChecker
+                .TryGet<Rigidbody>(null, new GameObject().GetComponent<Rigidbody>());
 
             Assert.That(result, Is.Null);
         }
@@ -30,8 +29,8 @@ namespace Tests
         [Test]
         public void GetType_NoComponent_Null()
         {
-            var result = (Component)NullComponentChecker
-                .TryGet<Component>(new GameObject(), null);
+            var result = NullComponentChecker
+                .TryGet<Constants>(new GameObject(), null);
 
             Assert.That(result, Is.Null);
         }
