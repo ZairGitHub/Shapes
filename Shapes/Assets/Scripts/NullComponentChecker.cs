@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 public static class NullComponentChecker
 {
-    public static Component TryGet<T>(GameObject gameObject, Component c) where T : Component
+    public static Component TryGet<T>(
+        GameObject gameObject, Component component) where T : Component
     {
-        if (c == null)
-        {
-            return gameObject.AddComponent<T>();
-        }
-        return c;
+        return component == null ? gameObject.AddComponent<T>() : component;
     }
-
 }
