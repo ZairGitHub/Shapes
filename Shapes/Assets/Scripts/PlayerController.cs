@@ -25,10 +25,13 @@ public class PlayerController : MonoBehaviour
         _rb.useGravity = false;
 
         _constants = TryGetComponent(out Constants constants) ?
-            constants : gameObject.AddComponent<Constants>();
+          constants : gameObject.AddComponent<Constants>();
 
-        _gameController = TryGetComponent(out GameController gameController) ?
-            gameController : gameObject.AddComponent<GameController>();
+        _gameController = (GameController)NullComponentChecker
+            .TryGet<GameController>(gameObject, GetComponent<GameController>());
+
+        //_gameController = TryGetComponent(out GameController gameController) ?
+            //gameController : gameObject.AddComponent<GameController>();
 
         _speed = _constants.BoundaryWidth;
 
