@@ -54,5 +54,30 @@ namespace Tests
 
             Assert.That(result, Is.TypeOf<Constants>());
         }
+
+        [UnityTest]
+        public IEnumerator Start_HasNoGameControllerComponent_AssignsNewGameControllerComponent()
+        {
+            var sut = new GameObject().AddComponent<PlayerController>();
+            sut.runInEditMode = true;
+            yield return null;
+
+            var result = sut.GetComponent<GameController>();
+
+            Assert.That(result, Is.TypeOf<GameController>());
+        }
+
+        [UnityTest]
+        public IEnumerator Start_HasAGameControllerComponent_AssignsExistingGameControllerComponent()
+        {
+            var sut = new GameObject();
+            sut.AddComponent<Constants>();
+            sut.AddComponent<GameController>().runInEditMode = true;
+            yield return null;
+
+            var result = sut.GetComponent<GameController>();
+
+            Assert.That(result, Is.TypeOf<GameController>());
+        }
     }
 }

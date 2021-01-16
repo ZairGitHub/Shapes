@@ -24,11 +24,11 @@ public class PlayerController : MonoBehaviour
         _rb.freezeRotation = true;        
         _rb.useGravity = false;
 
-        _constants = TryGetComponent(out Constants component) ?
-            component : gameObject.AddComponent<Constants>();
+        _constants = TryGetComponent(out Constants constants) ?
+            constants : gameObject.AddComponent<Constants>();
 
-        _gameController = GameObject.FindGameObjectWithTag("GameController")
-            .GetComponent<GameController>();
+        _gameController = TryGetComponent(out GameController gameController) ?
+            gameController : gameObject.AddComponent<GameController>();
 
         _speed = _constants.BoundaryWidth;
 
