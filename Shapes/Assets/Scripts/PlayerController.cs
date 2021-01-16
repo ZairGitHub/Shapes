@@ -12,7 +12,11 @@ public class PlayerController : MonoBehaviour
     private GameController _gameController;
     private PlayerSpawner _playerSpawner;
 
-    private void Awake() => _rb = GetComponent<Rigidbody>();
+    private void Awake()
+    {
+        _rb = (Rigidbody)NullComponentChecker
+            .TryGet<Rigidbody>(gameObject, GetComponent<Rigidbody>());
+    }
 
     private void Start()
     {
@@ -20,11 +24,11 @@ public class PlayerController : MonoBehaviour
         _rb.freezeRotation = true;        
         _rb.useGravity = false;
 
-        _constants = GameObject.FindGameObjectWithTag("Constants")
-            .GetComponent<Constants>();
+        _constants = (Constants)NullComponentChecker
+            .TryGet<Constants>(gameObject, GetComponent<Constants>());
 
-        _gameController = GameObject.FindGameObjectWithTag("GameController")
-            .GetComponent<GameController>();
+        _gameController = (GameController)NullComponentChecker
+            .TryGet<GameController>(gameObject, GetComponent<GameController>());
 
         _speed = _constants.BoundaryWidth;
 
