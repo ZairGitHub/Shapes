@@ -26,9 +26,9 @@ namespace Tests
             var sut = CreateDefaultPlayerController();
             sut.runInEditMode = true;
 
-            var result = sut.GetComponent<Rigidbody>();
+            var result = sut.GetComponents<Rigidbody>();
 
-            Assert.That(result, Is.TypeOf<Rigidbody>());
+            Assert.That(result, Has.Exactly(1).TypeOf<Rigidbody>());
         }
 
         [Test]
@@ -48,9 +48,9 @@ namespace Tests
             sut.runInEditMode = true;
             yield return null;
 
-            var result = sut.GetComponent<Constants>();
+            var result = sut.GetComponents<Constants>();
 
-            Assert.That(result, Is.TypeOf<Constants>());
+            Assert.That(result, Has.Exactly(1).TypeOf<Constants>());
         }
 
         [UnityTest]
@@ -59,9 +59,9 @@ namespace Tests
             var sut = CreatePlayerControllerWithComponentAndRunInEditMode<Constants>();
             yield return null;
 
-            var result = sut.GetComponent<Constants>();
+            var result = sut.GetComponents<Constants>();
 
-            Assert.That(result, Is.TypeOf<Constants>());
+            Assert.That(result, Has.Exactly(1).TypeOf<Constants>());
         }
 
         [UnityTest]
@@ -71,22 +71,20 @@ namespace Tests
             sut.runInEditMode = true;
             yield return null;
 
-            var result = sut.GetComponent<GameController>();
+            var result = sut.GetComponents<GameController>();
 
-            Assert.That(result, Is.TypeOf<GameController>());
+            Assert.That(result, Has.Exactly(1).TypeOf<GameController>());
         }
 
         [UnityTest]
         public IEnumerator Start_HasAGameControllerComponent_AssignsExistingGameControllerComponent()
         {
-            var sut = new GameObject();
-            sut.AddComponent<Constants>();
-            sut.AddComponent<PlayerController>().runInEditMode = true;
+            var sut = CreatePlayerControllerWithComponentAndRunInEditMode<GameController>();
             yield return null;
 
-            var result = sut.GetComponent<GameController>();
+            var result = sut.GetComponents<GameController>();
 
-            Assert.That(result, Is.TypeOf<GameController>());
+            Assert.That(result, Has.Exactly(1).TypeOf<GameController>());
         }
     }
 }
