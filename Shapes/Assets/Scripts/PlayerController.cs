@@ -16,12 +16,6 @@ public class PlayerController : MonoBehaviour
     {
         _rb = TryGetComponent(out Rigidbody rb) ?
             rb : gameObject.AddComponent<Rigidbody>();
-
-        _rb = GetComponent<Rigidbody>();
-        if (_rb == null)
-        {
-            gameObject.AddComponent<Rigidbody>();
-        }
     }
 
     private void Start()
