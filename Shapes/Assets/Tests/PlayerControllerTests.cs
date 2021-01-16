@@ -12,6 +12,14 @@ namespace Tests
             return new GameObject().AddComponent<PlayerController>();
         }
 
+        private GameObject CreatePlayerControllerWithComponentAndRunInEditMode<T>() where T : Component
+        {
+            var gameObject = new GameObject();
+            gameObject.AddComponent<T>();
+            gameObject.AddComponent<PlayerController>().runInEditMode = true;
+            return gameObject;
+        }
+
         [Test]
         public void Awake_HasNoRigidbodyComponent_AssignsNewRigidbodyComponent()
         {
@@ -50,9 +58,7 @@ namespace Tests
         [UnityTest]
         public IEnumerator Start_HasAConstantsComponent_AssignsExistingConstantsComponent()
         {
-            var sut = new GameObject();
-            sut.AddComponent<Constants>();
-            sut.AddComponent<PlayerController>().runInEditMode = true;
+            var sut = CreatePlayerControllerWithComponentAndRunInEditMode<Constants>();
             yield return null;
 
             var result = sut.GetComponent<Constants>();
@@ -77,7 +83,7 @@ namespace Tests
         {
             var sut = new GameObject();
             sut.AddComponent<Constants>();
-            sut.AddComponent<GameController>().runInEditMode = true;
+            sut.AddComponent<PlayerController>().runInEditMode = true;
             yield return null;
 
             var result = sut.GetComponent<GameController>();
