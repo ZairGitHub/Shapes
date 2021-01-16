@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -16,7 +15,7 @@ namespace Tests
 
             var result = sut.GetComponent<Rigidbody>();
 
-            Assert.That(result, Is.Not.Null.And.TypeOf<Rigidbody>());
+            Assert.That(result, Is.TypeOf<Rigidbody>());
         }
 
         [Test]
@@ -28,7 +27,32 @@ namespace Tests
 
             var result = sut.GetComponent<Rigidbody>();
 
-            Assert.That(result, Is.Not.Null.And.TypeOf<Rigidbody>());
+            Assert.That(result, Is.TypeOf<Rigidbody>());
+        }
+
+        [UnityTest]
+        public IEnumerator Start_HasNoConstantsComponent_AssignsNewConstantsComponent()
+        {
+            var sut = new GameObject().AddComponent<PlayerController>();
+            sut.runInEditMode = true;
+            yield return null;
+
+            var result = sut.GetComponent<Constants>();
+
+            Assert.That(result, Is.TypeOf<Constants>());
+        }
+
+        [UnityTest]
+        public IEnumerator Start_HasAConstantsComponent_AssignsExistingConstantsComponent()
+        {
+            var sut = new GameObject();
+            sut.AddComponent<Constants>();
+            sut.AddComponent<PlayerController>().runInEditMode = true;
+            yield return null;
+
+            var result = sut.GetComponent<Constants>();
+
+            Assert.That(result, Is.TypeOf<Constants>());
         }
     }
 }
