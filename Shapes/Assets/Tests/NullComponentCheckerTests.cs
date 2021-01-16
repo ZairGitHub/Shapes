@@ -27,21 +27,21 @@ namespace Tests
         }
 
         [Test]
-        public void GetType_NoComponent_Null()
+        public void GetType_NoComponent_Component()
         {
             var result = NullComponentChecker
-                .TryGet<Constants>(new GameObject(), null);
+                .TryGet<Rigidbody>(new GameObject(), null);
 
-            Assert.That(result, Is.Null);
+            Assert.That(result, Is.InstanceOf<Component>().And.TypeOf<Rigidbody>());
         }
 
         [Test]
         public void GetType_Component_Component()
         {
-            var sut = new GameObject();
+            var gameObject = new GameObject();
 
             var result = NullComponentChecker
-                .TryGet<Rigidbody>(sut, sut.GetComponent<Rigidbody>());
+                .TryGet<Rigidbody>(gameObject, gameObject.GetComponent<Rigidbody>());
 
             Assert.That(result, Is.InstanceOf<Component>().And.TypeOf<Rigidbody>());
         }

@@ -7,7 +7,7 @@ public static class NullComponentChecker
     {
         if (gameObject == null)
         {
-            return component == null ? null : component;
+            return null;
         }
         return component == null ? gameObject.AddComponent<T>() : component;
     }
