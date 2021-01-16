@@ -22,9 +22,6 @@ public class PlayerController : MonoBehaviour
         {
             gameObject.AddComponent<Rigidbody>();
         }
-
-        _rb = GetComponent<Rigidbody>();
-        _rb ??= gameObject.AddComponent<Rigidbody>();
     }
 
     private void Start()
