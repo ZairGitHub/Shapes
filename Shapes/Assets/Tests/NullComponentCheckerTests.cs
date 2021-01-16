@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using NSubstitute;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -8,21 +9,42 @@ namespace Tests
 {
     public class NullComponentCheckerTests
     {
-        // A Test behaves as an ordinary method
         [Test]
-        public void NullComponentCheckerTestsSimplePasses()
+        public void GetType_Nulls_Null()
         {
-            // Use the Assert class to test conditions
+            var result = (Component)NullComponentChecker
+                .TryGet<Transform>(null, null);
+
+            Assert.That(result, Is.Null);
         }
 
-        // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-        // `yield return null;` to skip a frame.
-        [UnityTest]
-        public IEnumerator NullComponentCheckerTestsWithEnumeratorPasses()
+        [Test]
+        public void GetType_NoGameObject_Null()
         {
-            // Use the Assert class to test conditions.
-            // Use yield to skip a frame.
-            yield return null;
+            var result = (Component)NullComponentChecker
+                .TryGet<Transform>(null, Arg.Any<Component>());
+
+            Assert.That(result, Is.Null);
+        }
+
+        [Test]
+        public void GetType_NoComponent_Null()
+        {
+            var result = (Component)NullComponentChecker
+                .TryGet<Component>(new GameObject(), null);
+
+            Assert.That(result, Is.Null);
+        }
+
+        [Test]
+        public void GetType_Component_Component()
+        {
+            var sut = new GameObject();
+
+            var result = NullComponentChecker
+                .TryGet<Rigidbody>(sut, sut.GetComponent<Rigidbody>());
+
+            Assert.That(result, Is.InstanceOf<Component>().And.TypeOf<Rigidbody>());
         }
     }
 }
