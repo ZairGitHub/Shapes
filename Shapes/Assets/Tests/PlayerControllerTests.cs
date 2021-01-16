@@ -34,13 +34,11 @@ namespace Tests
         [Test]
         public void Awake_HasARigidbodyComponent_AssignsExistingRigidbodyComponent()
         {
-            var sut = new GameObject();
-            sut.AddComponent<Rigidbody>();
-            sut.AddComponent<PlayerController>().runInEditMode = true;
+            var sut = CreatePlayerControllerWithComponentAndRunInEditMode<Rigidbody>();
 
-            var result = sut.GetComponent<Rigidbody>();
+            var result = sut.GetComponents<Rigidbody>();
 
-            Assert.That(result, Is.TypeOf<Rigidbody>());
+            Assert.That(result, Has.Exactly(1).TypeOf<Rigidbody>());
         }
 
         [UnityTest]
