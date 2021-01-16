@@ -14,8 +14,8 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        _rb = TryGetComponent(out Rigidbody rb) ?
-            rb : gameObject.AddComponent<Rigidbody>();
+        _rb = (Rigidbody)NullComponentChecker
+            .TryGet<Rigidbody>(gameObject, GetComponent<Rigidbody>());
     }
 
     private void Start()
@@ -24,11 +24,11 @@ public class PlayerController : MonoBehaviour
         _rb.freezeRotation = true;        
         _rb.useGravity = false;
 
-        _constants = TryGetComponent(out Constants constants) ?
-          constants : gameObject.AddComponent<Constants>();
+        _constants = (Constants)NullComponentChecker
+            .TryGet<Constants>(gameObject, GetComponent<Constants>());
 
-        _gameController = TryGetComponent(out GameController gameController) ?
-            gameController : gameObject.AddComponent<GameController>();
+        _gameController = (GameController)NullComponentChecker
+            .TryGet<GameController>(gameObject, GetComponent<GameController>());
 
         _speed = _constants.BoundaryWidth;
 
