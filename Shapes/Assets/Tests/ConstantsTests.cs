@@ -26,7 +26,7 @@ namespace Tests
         }
 
         [Test]
-        public void Awake_SetsBoundaryWidthToBoundaryEastX()
+        public void Awake_BoundaryEastExists_SetsBoundaryWidthToBoundaryEastX()
         {
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
@@ -52,7 +52,7 @@ namespace Tests
         }
 
         [Test]
-        public void Awake_SetsBoundaryHeightToBoundaryNorthY()
+        public void Awake_BoundaryNorthExists_SetsBoundaryHeightToBoundaryNorthY()
         {
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
