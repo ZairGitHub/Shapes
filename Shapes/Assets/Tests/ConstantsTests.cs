@@ -12,6 +12,20 @@ namespace Tests
         }
 
         [Test]
+        public void Awake_NoBoundaryEast()
+        {
+            GameObject.FindGameObjectWithTag("BoundaryEast").tag = "Debug";
+            var sut = CreateDefaultConstants();
+            sut.runInEditMode = true;
+
+            var result = sut.BoundaryWidth;
+
+            Assert.That(result, Is.Zero);
+
+            GameObject.FindGameObjectWithTag("Debug").tag = "BoundaryEast";
+        }
+
+        [Test]
         public void Awake_SetsBoundaryWidthToBoundaryEastX()
         {
             var sut = CreateDefaultConstants();
