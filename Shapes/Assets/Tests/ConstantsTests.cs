@@ -38,6 +38,20 @@ namespace Tests
         }
 
         [Test]
+        public void Awake_NoBoundaryNorth()
+        {
+            GameObject.FindGameObjectWithTag("BoundaryNorth").tag = "Debug";
+            var sut = CreateDefaultConstants();
+            sut.runInEditMode = true;
+
+            var result = sut.BoundaryHeight;
+
+            Assert.That(result, Is.Zero);
+
+            GameObject.FindGameObjectWithTag("Debug").tag = "BoundaryNorth";
+        }
+
+        [Test]
         public void Awake_SetsBoundaryHeightToBoundaryNorthY()
         {
             var sut = CreateDefaultConstants();
