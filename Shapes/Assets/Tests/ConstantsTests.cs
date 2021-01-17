@@ -12,7 +12,7 @@ namespace Tests
         }
 
         [Test]
-        public void Awake_NoBoundaryEast()
+        public void Awake_BoundaryEastDoesNotExist_SetsBoundaryWidthToZero()
         {
             GameObject.FindGameObjectWithTag("BoundaryEast").tag = "Debug";
             var sut = CreateDefaultConstants();
@@ -38,7 +38,7 @@ namespace Tests
         }
 
         [Test]
-        public void Awake_NoBoundaryNorth()
+        public void Awake_BoundaryNorthDoesNotExist_SetsBoundaryHeightToZero()
         {
             GameObject.FindGameObjectWithTag("BoundaryNorth").tag = "Debug";
             var sut = CreateDefaultConstants();
