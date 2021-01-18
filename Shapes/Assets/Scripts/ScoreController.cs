@@ -19,13 +19,13 @@ public class ScoreController
     {
         _gameController = gameController;
 
-        _textScore = GameObject.FindGameObjectWithTag("TextScore")
+        _textScore = GameObject.FindWithTag("TextScore")
             .GetComponent<TMP_Text>();
 
-        _textSurvivalBonus = GameObject.FindGameObjectWithTag("TextSurvivalBonus")
+        _textSurvivalBonus = GameObject.FindWithTag("TextSurvivalBonus")
             .GetComponent<TMP_Text>();
 
-        _textCollisionBonus = GameObject.FindGameObjectWithTag("TextCollisionBonus")
+        _textCollisionBonus = GameObject.FindWithTag("TextCollisionBonus")
             .GetComponent<TMP_Text>();
 
         _textSurvivalBonus.color = Color.red;

@@ -21,10 +21,10 @@ public class SphereHandler : MonoBehaviour
         _rb.freezeRotation = true;
         _rb.useGravity = false;
 
-        _constants = GameObject.FindGameObjectWithTag("Constants")
+        _constants = GameObject.FindWithTag("Constants")
             .GetComponent<Constants>();
 
-        _gameController = GameObject.FindGameObjectWithTag("GameController")
+        _gameController = GameObject.FindWithTag("GameController")
             .GetComponent<GameController>();
 
         _scoreController = _gameController.ScoreController;

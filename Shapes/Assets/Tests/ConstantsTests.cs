@@ -14,7 +14,7 @@ namespace Tests
         [Test]
         public void Awake_BoundaryEastDoesNotExist_SetsBoundaryWidthToZero()
         {
-            GameObject.FindGameObjectWithTag("BoundaryEast").tag = "Debug";
+            GameObject.FindWithTag("BoundaryEast").tag = "Debug";
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
@@ -22,7 +22,7 @@ namespace Tests
 
             Assert.That(result, Is.Zero);
 
-            GameObject.FindGameObjectWithTag("Debug").tag = "BoundaryEast";
+            GameObject.FindWithTag("Debug").tag = "BoundaryEast";
         }
 
         [Test]
@@ -31,7 +31,7 @@ namespace Tests
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
-            var boundaryEast = GameObject.FindGameObjectWithTag("BoundaryEast");
+            var boundaryEast = GameObject.FindWithTag("BoundaryEast");
             var result = sut.BoundaryWidth;
 
             Assert.That(result, Is.EqualTo(boundaryEast.transform.position.x));
@@ -40,7 +40,7 @@ namespace Tests
         [Test]
         public void Awake_BoundaryNorthDoesNotExist_SetsBoundaryHeightToZero()
         {
-            GameObject.FindGameObjectWithTag("BoundaryNorth").tag = "Debug";
+            GameObject.FindWithTag("BoundaryNorth").tag = "Debug";
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
@@ -48,7 +48,7 @@ namespace Tests
 
             Assert.That(result, Is.Zero);
 
-            GameObject.FindGameObjectWithTag("Debug").tag = "BoundaryNorth";
+            GameObject.FindWithTag("Debug").tag = "BoundaryNorth";
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace Tests
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
-            var boundaryNorth = GameObject.FindGameObjectWithTag("BoundaryNorth");
+            var boundaryNorth = GameObject.FindWithTag("BoundaryNorth");
             var result = sut.BoundaryHeight;
 
             Assert.That(result, Is.EqualTo(boundaryNorth.transform.position.y));

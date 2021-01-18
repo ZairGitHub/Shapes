@@ -12,10 +12,10 @@ public class Constants : MonoBehaviour, IConstants
 
     private void Awake()
     {
-        var boundaryEast = GameObject.FindGameObjectWithTag("BoundaryEast");
+        var boundaryEast = GameObject.FindWithTag("BoundaryEast");
         BoundaryWidth = boundaryEast == null ? 0.0f : boundaryEast.transform.position.x;
 
-        var boundaryNorth = GameObject.FindGameObjectWithTag("BoundaryNorth");
+        var boundaryNorth = GameObject.FindWithTag("BoundaryNorth");
         BoundaryHeight = boundaryNorth == null ? 0.0f : boundaryNorth.transform.position.y;
 
         GameWidth = BoundaryWidth * 2;
