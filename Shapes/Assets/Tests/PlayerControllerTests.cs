@@ -5,15 +5,10 @@ namespace Tests
 {
     public class PlayerControllerTests
     {
-        private PlayerController CreateDefaultPlayerController()
-        {
-            return new GameObject().AddComponent<PlayerController>();
-        }
-
         [Test]
         public void Awake_AssignsRigidbodyComponent()
         {
-            var sut = CreateDefaultPlayerController();
+            var sut = new GameObject().AddComponent<PlayerController>();
             sut.runInEditMode = true;
 
             var result = sut.GetComponents<Rigidbody>();
