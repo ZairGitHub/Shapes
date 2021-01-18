@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        _rb = (Rigidbody)NullComponentChecker
+        _rb = (Rigidbody)NullChecker
             .TryGet<Rigidbody>(gameObject, GetComponent<Rigidbody>());
     }
 
@@ -24,11 +24,11 @@ public class PlayerController : MonoBehaviour
         _rb.freezeRotation = true;        
         _rb.useGravity = false;
 
-        _constants = (Constants)NullComponentChecker.TryGet<Constants>(
+        _constants = (Constants)NullChecker.TryGet<Constants>(
             gameObject,
                 GameObject.FindWithTag("Constants").GetComponent<Constants>());
 
-        _gameController = (GameController)NullComponentChecker.TryGet<GameController>(
+        _gameController = (GameController)NullChecker.TryGet<GameController>(
                 gameObject,
                     GameObject.FindWithTag("GameController").GetComponent<GameController>());
 

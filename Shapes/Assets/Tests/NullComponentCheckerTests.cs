@@ -8,7 +8,7 @@ namespace Tests
         [Test]
         public void TryGet_NullArguments_ReturnsNull()
         {
-            var result = NullComponentChecker.TryGet<Rigidbody>(null, null);
+            var result = NullChecker.TryGet<Rigidbody>(null, null);
 
             Assert.That(result, Is.Null);
         }
@@ -16,7 +16,7 @@ namespace Tests
         [Test]
         public void TryGet_NullGameObject_ReturnsNull()
         {
-            var result = NullComponentChecker
+            var result = NullChecker
                 .TryGet<Rigidbody>(null, new GameObject().GetComponent<Rigidbody>());
 
             Assert.That(result, Is.Null);
@@ -25,7 +25,7 @@ namespace Tests
         [Test]
         public void TryGet_NullComponent_AddsComponentTypeToGameObject()
         {
-            var result = NullComponentChecker
+            var result = NullChecker
                 .TryGet<Rigidbody>(new GameObject(), null);
 
             Assert.That(result, Is.InstanceOf<Component>().And.TypeOf<Rigidbody>());
@@ -36,7 +36,7 @@ namespace Tests
         {
             var gameObject = new GameObject();
 
-            var result = NullComponentChecker
+            var result = NullChecker
                 .TryGet<Rigidbody>(gameObject, gameObject.GetComponent<Rigidbody>());
 
             Assert.That(result, Is.InstanceOf<Component>().And.TypeOf<Rigidbody>());
