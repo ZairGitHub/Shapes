@@ -5,11 +5,11 @@ public class PlayerController : MonoBehaviour
     private float _speed;
 
     private IConstants _constants;
+    private IGameController _gameController;
 
     private Vector3 _movement;
 
     private Rigidbody _rb;
-    private GameController _gameController;
     private PlayerSpawner _playerSpawner;
 
     private void Awake()
@@ -33,7 +33,6 @@ public class PlayerController : MonoBehaviour
                     GameObject.FindWithTag("GameController").GetComponent<GameController>());
 
         _speed = _constants.BoundaryWidth;
-        Debug.Log(_speed);
 
         _playerSpawner = new PlayerSpawner(_constants);
         _playerSpawner.SetSpawnPosition(_rb);
