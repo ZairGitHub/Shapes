@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Tests
 {
-    public class NullComponentCheckerTests
+    public class NullCheckerTests
     {
         [Test]
         public void TryGet_NullArguments_ReturnsNull()
