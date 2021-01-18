@@ -19,6 +19,7 @@ TagManager:
   - ScoreController
   - TextSurvivalBonus
   - TextCollisionBonus
+  - Debug
   layers:
   - Default
   - TransparentFX
