@@ -25,10 +25,12 @@ public class PlayerController : MonoBehaviour
         _rb.useGravity = false;
 
         _constants = (Constants)NullComponentChecker.TryGet<Constants>(
-            gameObject, GameObject.FindWithTag("Constants").GetComponent<Constants>());
+            gameObject,
+                GameObject.FindWithTag("Constants").GetComponent<Constants>());
 
-        _gameController = (GameController)NullComponentChecker
-            .TryGet<GameController>(gameObject, GetComponent<GameController>());
+        _gameController = (GameController)NullComponentChecker.TryGet<GameController>(
+                gameObject,
+                    GameObject.FindWithTag("GameController").GetComponent<GameController>());
 
         _speed = _constants.BoundaryWidth;
         Debug.Log(_speed);
