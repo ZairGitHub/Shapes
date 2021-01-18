@@ -6,7 +6,7 @@ namespace Tests
     public class NullComponentCheckerTests
     {
         [Test]
-        public void GetType_NullArguments_ReturnsNull()
+        public void TryGet_NullArguments_ReturnsNull()
         {
             var result = NullComponentChecker.TryGet<Rigidbody>(null, null);
 
@@ -14,7 +14,7 @@ namespace Tests
         }
 
         [Test]
-        public void GetType_NullGameObject_ReturnsNull()
+        public void TryGet_NullGameObject_ReturnsNull()
         {
             var result = NullComponentChecker
                 .TryGet<Rigidbody>(null, new GameObject().GetComponent<Rigidbody>());
@@ -23,7 +23,7 @@ namespace Tests
         }
 
         [Test]
-        public void GetType_NullComponent_AddsComponentTypeToGameObject()
+        public void TryGet_NullComponent_AddsComponentTypeToGameObject()
         {
             var result = NullComponentChecker
                 .TryGet<Rigidbody>(new GameObject(), null);
@@ -32,7 +32,7 @@ namespace Tests
         }
 
         [Test]
-        public void GetType_Component_ReturnsComponent()
+        public void TryGet_Component_ReturnsComponent()
         {
             var gameObject = new GameObject();
 
