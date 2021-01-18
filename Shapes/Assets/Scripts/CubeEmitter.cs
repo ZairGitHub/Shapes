@@ -5,13 +5,13 @@ public class CubeEmitter : MonoBehaviour
 {
     private const float _collisionScale = 2.0f;
 
+    private readonly Color _defaultColor = Color.yellow;
+    private readonly Color _emissionColor = Color.blue;
     private readonly WaitForSeconds _emitterDelay = new WaitForSeconds(1.0f);
 
     private float _offset;
-
     private IConstants _constants;
     private IGameController _gameController;
-
     private GameObject _cube;
     private GameObject[] _cubeEmitters;
     private EmitterProperties _emitterProperties;
@@ -53,7 +53,7 @@ public class CubeEmitter : MonoBehaviour
         while (_gameController.IsRunning)
         {
             int RNG = Random.Range(0, _cubeEmitters.Length);
-            _cubeEmitters[RNG].GetComponent<Renderer>().material.color = Color.blue;
+            _cubeEmitters[RNG].GetComponent<Renderer>().material.color = _emissionColor;
 
             yield return _emitterDelay;
 
@@ -70,7 +70,7 @@ public class CubeEmitter : MonoBehaviour
                     _emitterProperties.GetDirection(position.x),
                     _emitterProperties.GetDirection(position.y));
 
-                _cubeEmitters[RNG].GetComponent<Renderer>().material.color = Color.yellow;
+                _cubeEmitters[RNG].GetComponent<Renderer>().material.color = _defaultColor;
             }
         }
     }
