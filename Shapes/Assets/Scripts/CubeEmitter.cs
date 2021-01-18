@@ -21,9 +21,14 @@ public class CubeEmitter : MonoBehaviour
         _constants = (Constants)NullChecker.TryGet<Constants>(gameObject,
             GameObject.FindWithTag("Constants").GetComponent<Constants>());
         
-        _cube = NullChecker.TryGet(GameObject.FindWithTag("Cube"));
-        _cubeEmitters = NullChecker.TryGet(GameObject.FindGameObjectsWithTag("CubeEmitter"));
+        _cube = GameObject.FindWithTag("Cube");
+        if (_cube == null)
+        {
+            _cube = new GameObject();
+            _cube.AddComponent<CubeHandler>();
+        }
 
+        _cubeEmitters = NullChecker.TryGet(GameObject.FindGameObjectsWithTag("CubeEmitter"));
         _gameController = (GameController)NullChecker.TryGet<GameController>(gameObject,
                     GameObject.FindWithTag("GameController").GetComponent<GameController>());
 
