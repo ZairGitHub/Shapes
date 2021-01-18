@@ -30,6 +30,11 @@ namespace Tests
             sut.runInEditMode = true;
             yield return null;
 
+            Assert.That(GameObject.FindWithTag("Constants"), Is.InstanceOf<GameObject>().And.Not.Null);
+            Assert.That(GameObject.Find("Constants").GetComponent<Constants>(), Is.InstanceOf<Constants>().And.Not.Null);
+            Assert.That(GameObject.FindWithTag("Constants").GetComponent<Constants>(), Is.InstanceOf<Constants>().And.Not.Null);
+            Assert.That(GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>(), Is.InstanceOf<Constants>().And.Not.Null);
+
             var result = sut.GetComponents<Constants>();
 
             Assert.That(result, Has.Exactly(1).TypeOf<Constants>());
