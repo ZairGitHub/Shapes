@@ -24,31 +24,14 @@ public class PlayerController : MonoBehaviour
         _rb.freezeRotation = true;        
         _rb.useGravity = false;
 
-        _constants = GameObject.FindGameObjectWithTag("Constants").GetComponent<Constants>();
-        if (_constants == null)
-        {
-            Debug.Log("null gcomponent");
-        }
-        else
-        {
-            _constants = gameObject.AddComponent<Constants>();
-            Debug.Log("found gcomponent");
-        }
-
-        if (_constants == null)
-        {
-            Debug.Log("add failed");
-        }
-
-        //_constants = gameObject.GetComponent<Constants>();
-        /*_constants = (Constants)NullComponentChecker
-            .TryGet<Constants>(gameObject,
-                GameObject.FindWithTag("Constants").GetComponent<Constants>());*/
+        _constants = (Constants)NullComponentChecker.TryGet<Constants>(
+            gameObject, GameObject.FindWithTag("Constants").GetComponent<Constants>());
 
         _gameController = (GameController)NullComponentChecker
             .TryGet<GameController>(gameObject, GetComponent<GameController>());
 
         _speed = _constants.BoundaryWidth;
+        Debug.Log(_speed);
 
         _playerSpawner = new PlayerSpawner(_constants);
         _playerSpawner.SetSpawnPosition(_rb);
