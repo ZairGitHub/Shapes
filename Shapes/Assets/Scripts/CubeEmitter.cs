@@ -18,13 +18,14 @@ public class CubeEmitter : MonoBehaviour
 
     private void Start()
     {
-        _constants = GameObject.FindWithTag("Constants")
-            .GetComponent<Constants>();
+        _constants = (Constants)NullChecker.TryGet<Constants>(gameObject,
+            GameObject.FindWithTag("Constants").GetComponent<Constants>());
         
-        _cube = GameObject.FindWithTag("Cube");
-        _cubeEmitters = GameObject.FindGameObjectsWithTag("CubeEmitter");
-        _gameController = GameObject.FindWithTag("GameController")
-            .GetComponent<GameController>();
+        _cube = NullChecker.TryGet(GameObject.FindWithTag("Cube"));
+        _cubeEmitters = NullChecker.TryGet(GameObject.FindGameObjectsWithTag("CubeEmitter"));
+
+        _gameController = (GameController)NullChecker.TryGet<GameController>(gameObject,
+                    GameObject.FindWithTag("GameController").GetComponent<GameController>());
 
         _offset = _cube.GetComponent<Collider>().bounds.size.x * _collisionScale;
         _emitterProperties = new EmitterProperties(_constants, _offset);
