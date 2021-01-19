@@ -4,7 +4,5 @@
 
     bool IsRunning { get; }
 
-    ScoreController ScoreController { get; }
-
     void StopRunning();
 }
