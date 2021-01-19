@@ -18,23 +18,14 @@ public class ScoreController
     {
         _gameController = gameController;
 
-        _textScore = GameObject.FindWithTag("TextScore").GetComponent<TMP_Text>();
-        if (_textScore == null)
-        {
-            _textScore = new GameObject().AddComponent<TMP_Text>();
-        }
+        _textScore = (TMP_Text)NullChecker.TryGet<TMP_Text>(
+            GameObject.FindWithTag("TextScore").GetComponent<TMP_Text>());
 
-        _textSurvivalBonus = GameObject.FindWithTag("TextSurvivalBonus").GetComponent<TMP_Text>();
-        if (_textSurvivalBonus == null)
-        {
-            _textSurvivalBonus = new GameObject().AddComponent<TMP_Text>();
-        }
-
-        _textCollisionBonus = GameObject.FindWithTag("TextCollisionBonus").GetComponent<TMP_Text>();
-        if (_textCollisionBonus == null)
-        {
-            _textCollisionBonus = new GameObject().AddComponent<TMP_Text>();
-        }
+        _textSurvivalBonus = (TMP_Text)NullChecker.TryGet<TMP_Text>(
+            GameObject.FindWithTag("TextSurvivalBonus").GetComponent<TMP_Text>());
+        
+        _textCollisionBonus = (TMP_Text)NullChecker.TryGet<TMP_Text>(
+            GameObject.FindWithTag("TextCollisionBonus").GetComponent<TMP_Text>());
 
         _textSurvivalBonus.color = Color.red;
         _textCollisionBonus.color = Color.magenta;
