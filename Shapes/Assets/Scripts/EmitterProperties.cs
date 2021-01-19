@@ -6,8 +6,7 @@ public class EmitterProperties
     private const float _positiveOne = 1.0f;
 
     private readonly float _boundaryOffset;
-
-    private readonly IConstants _constants;    
+    private readonly IConstants _constants;
 
     public EmitterProperties(IConstants constants, float boundaryOffset = 0.0f)
     {
@@ -30,10 +29,6 @@ public class EmitterProperties
         {
             x = _constants.BoundaryWidth - _boundaryOffset;
         }
-        else
-        {
-            x = 0.0f;
-        }
         return x;
     }
 
@@ -46,10 +41,6 @@ public class EmitterProperties
         else if (y > 0.0f)
         {
             y = _constants.BoundaryHeight - _boundaryOffset;
-        }
-        else
-        {
-            y = 0.0f;
         }
         return y;
     }
