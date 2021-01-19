@@ -10,9 +10,17 @@ namespace Tests
         private readonly Component _component = new GameObject().AddComponent<Rigidbody>();
 
         [Test]
-        public void TryGet_NullArgument_ReturnsComponent()
+        public void TryGet_NullComponent_ReturnsComponent()
         {
             var result = NullChecker.TryGet<Rigidbody>(null);
+
+            Assert.That(result, Is.TypeOf<Rigidbody>());
+        }
+
+        [Test]
+        public void TryGet_Component_ReturnsComponent()
+        {
+            var result = NullChecker.TryGet<Rigidbody>(_component);
 
             Assert.That(result, Is.TypeOf<Rigidbody>());
         }
@@ -26,7 +34,7 @@ namespace Tests
         }
 
         [Test]
-        public void TryGet_NullGameObject_ReturnsComponent()
+        public void TryGet_NullGameObjectAndComponent_ReturnsComponent()
         {
             var result = NullChecker.TryGet<Rigidbody>(null, _component);
 
@@ -34,7 +42,7 @@ namespace Tests
         }
 
         [Test]
-        public void TryGet_NullComponent_ReturnsComponent()
+        public void TryGet_GameObjectAndNullComponent_ReturnsComponent()
         {
             var result = NullChecker.TryGet<Rigidbody>(_gameObject, null);
 
