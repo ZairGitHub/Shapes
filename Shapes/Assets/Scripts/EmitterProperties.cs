@@ -2,9 +2,6 @@
 
 public class EmitterProperties
 {
-    private const float _negativeOne = -1.0f;
-    private const float _positiveOne = 1.0f;
-
     private readonly float _boundaryOffset;
     private readonly IConstants _constants;
 
@@ -49,15 +46,15 @@ public class EmitterProperties
     {
         if (axis < 0.0f)
         {
-            axis = _positiveOne;
+            axis = 1.0f;
         }
         else if (axis > 0.0f)
         {
-            axis = _negativeOne;
+            axis = -1.0f;
         }
         else
         {
-            axis = Random.Range(_negativeOne, _positiveOne);
+            axis = Random.Range(-1.0f, 1.0f);
         }
         return axis;
     }
