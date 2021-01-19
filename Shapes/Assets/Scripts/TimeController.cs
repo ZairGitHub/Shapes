@@ -7,11 +7,11 @@ public class TimeController
 
     private float _savedTime = _defaultTime;
 
+    public TimeController() => ResetTime();
+
     public float MinTime { get; private set; } = 0.05f;
 
     public float MaxTime { get; private set; } = 10.0f;
-
-    public TimeController() => ResetTime();
 
     public void ResetTime()
     {
