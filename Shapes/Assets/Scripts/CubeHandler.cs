@@ -26,14 +26,14 @@ public class CubeHandler : MonoBehaviour
 
         _rb = (Rigidbody)NullChecker.TryGet<Rigidbody>(
             gameObject, GetComponent<Rigidbody>());
+        
+        _rb.constraints = RigidbodyConstraints.FreezePositionZ;
+        _rb.freezeRotation = true;
+        _rb.useGravity = false;
     }
 
     private void Start()
     {
-        _rb.constraints = RigidbodyConstraints.FreezePositionZ;
-        _rb.freezeRotation = true;
-        _rb.useGravity = false;
-
         _constants = (Constants)NullChecker.TryGet<Constants>(gameObject,
                 GameObject.FindWithTag("Constants").GetComponent<Constants>());
 
