@@ -6,11 +6,11 @@ namespace Tests
     public class NullCheckerTests
     {
         [Test]
-        public void TryGet_NullArguments_ReturnsNull()
+        public void TryGet_NullArguments_ReturnsComponent()
         {
             var result = NullChecker.TryGet<Rigidbody>(null, null);
 
-            Assert.That(result, Is.Null);
+            Assert.That(result, Is.TypeOf<Rigidbody>());
         }
 
         [Test]
@@ -19,7 +19,7 @@ namespace Tests
             var result = NullChecker
                 .TryGet<Rigidbody>(null, new GameObject().GetComponent<Rigidbody>());
 
-            Assert.That(result, Is.Null);
+            Assert.That(result, Is.TypeOf<Rigidbody>());
         }
 
         [Test]
