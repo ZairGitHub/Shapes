@@ -37,39 +37,38 @@ namespace Tests
         [Test]
         public void Awake_BoundaryDoesNotExist_SetsBoundaryHeightToZero()
         {
-            GameObject.FindWithTag("Boundary").tag = "Debug";
+            RemoveBoundaryTag();
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
             var result = sut.BoundaryHeight;
 
             Assert.That(result, Is.Zero);
-
-            GameObject.FindWithTag("Debug").tag = "Boundary";
+            RestoreBoundaryTag();
         }
 
         [Test]
         public void Awake_BoundaryExists_SetsBoundaryWidthToBoundaryChild()
         {
+            var boundaryChild = GameObject.FindWithTag("Boundary").transform.GetChild(1);
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
-            var boundaryEast = GameObject.FindWithTag("Boundary").transform.GetChild(1);
             var result = sut.BoundaryWidth;
 
-            Assert.That(result, Is.EqualTo(boundaryEast.position.x));
+            Assert.That(result, Is.EqualTo(boundaryChild.position.x));
         }
 
         [Test]
         public void Awake_BoundaryExists_SetsBoundaryHeightToBoundaryChild()
         {
+            var boundaryChild = GameObject.FindWithTag("Boundary").transform.GetChild(0);
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
-            var boundaryNorth = GameObject.FindWithTag("Boundary").transform.GetChild(0);
             var result = sut.BoundaryHeight;
 
-            Assert.That(result, Is.EqualTo(boundaryNorth.position.y));
+            Assert.That(result, Is.EqualTo(boundaryChild.position.y));
         }
 
         [Test]
