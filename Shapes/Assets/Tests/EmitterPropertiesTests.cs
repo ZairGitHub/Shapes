@@ -103,7 +103,7 @@ namespace Tests
             Assert.That(result, Is.EqualTo(-1.0f));
         }
 
-        [Test]
+        [Test, Repeat(100)]
         public void GetDirection_FloatIsZero_ReturnsRandomBetweenNegativeAndPositiveOne()
         {
             var sut = CreateDefaultEmitterProperties();
