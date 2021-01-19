@@ -5,7 +5,6 @@ using UnityEngine;
 public class ScoreController
 {
     private readonly IGameController _gameController;
-
     private readonly WaitForSeconds _survivalBonusDelay = new WaitForSeconds(3.0f);
     private readonly TMP_Text _textScore;
     private readonly TMP_Text _textSurvivalBonus;
@@ -19,14 +18,23 @@ public class ScoreController
     {
         _gameController = gameController;
 
-        _textScore = GameObject.FindWithTag("TextScore")
-            .GetComponent<TMP_Text>();
+        _textScore = GameObject.FindWithTag("TextScore").GetComponent<TMP_Text>();
+        if (_textScore == null)
+        {
+            _textScore = new GameObject().AddComponent<TMP_Text>();
+        }
 
-        _textSurvivalBonus = GameObject.FindWithTag("TextSurvivalBonus")
-            .GetComponent<TMP_Text>();
+        _textSurvivalBonus = GameObject.FindWithTag("TextSurvivalBonus").GetComponent<TMP_Text>();
+        if (_textSurvivalBonus == null)
+        {
+            _textSurvivalBonus = new GameObject().AddComponent<TMP_Text>();
+        }
 
-        _textCollisionBonus = GameObject.FindWithTag("TextCollisionBonus")
-            .GetComponent<TMP_Text>();
+        _textCollisionBonus = GameObject.FindWithTag("TextCollisionBonus").GetComponent<TMP_Text>();
+        if (_textCollisionBonus == null)
+        {
+            _textCollisionBonus = new GameObject().AddComponent<TMP_Text>();
+        }
 
         _textSurvivalBonus.color = Color.red;
         _textCollisionBonus.color = Color.magenta;
