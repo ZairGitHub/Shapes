@@ -31,8 +31,8 @@ public class CubeEmitter : MonoBehaviour
             _cube.AddComponent<CubeHandler>();
         }
 
-        _cubeEmitters = NullChecker.TryGet(GameObject.FindGameObjectsWithTag("CubeEmitter"));
         _offset = _cube.GetComponent<Collider>().bounds.size.x * _collisionScale;
+        _cubeEmitters = NullChecker.TryGet(GameObject.FindGameObjectsWithTag("CubeEmitter"));
         _emitterProperties = new EmitterProperties(_constants, _offset);
 
         SetEmitterPositions();
@@ -54,7 +54,6 @@ public class CubeEmitter : MonoBehaviour
         {
             int RNG = Random.Range(0, _cubeEmitters.Length);
             _cubeEmitters[RNG].GetComponent<Renderer>().material.color = _emissionColor;
-
             yield return _emitterDelay;
 
             if (_gameController.IsRunning)
