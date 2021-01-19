@@ -40,8 +40,7 @@ public class CubeHandler : MonoBehaviour
         _gameController = (GameController)NullChecker.TryGet<GameController>(gameObject,
                 GameObject.FindWithTag("GameController").GetComponent<GameController>());
 
-        _scoreController = (ScoreController)NullChecker.TryGet<ScoreController>(gameObject,
-            GameObject.FindWithTag("ScoreController").GetComponent<ScoreController>());
+        _scoreController = _gameController.ScoreController;
     }
 
     public bool HasSpeed() => _speed > 0.0f;

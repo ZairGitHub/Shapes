@@ -3,22 +3,22 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour, IGameController
 {
-    private ScoreController _scoreController;
     private TimeController _timeController;
 
     public bool IsInDebugMode { get; private set; } = true;
 
     public bool IsRunning { get; private set; } = false;
 
+    public ScoreController ScoreController { get; private set; }
+
     private void Start()
     {
         IsRunning = true;
 
         _timeController = new TimeController();
-        _scoreController = (ScoreController)NullChecker.TryGet<ScoreController>(gameObject,
-            GameObject.FindWithTag("ScoreController").GetComponent<ScoreController>());
+        ScoreController = new ScoreController(this);
 
-        StartCoroutine(_scoreController.GiveSurvivalBonus());
+        StartCoroutine(ScoreController.GiveSurvivalBonus());
     }
 
     public void StopRunning() => IsRunning = false;

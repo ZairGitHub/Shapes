@@ -2,31 +2,31 @@
 using TMPro;
 using UnityEngine;
 
-public class ScoreController : MonoBehaviour
+public class ScoreController
 {
+    private readonly IGameController _gameController;
+
     private readonly WaitForSeconds _survivalBonusDelay = new WaitForSeconds(3.0f);
-    
+    private readonly TMP_Text _textScore;
+    private readonly TMP_Text _textSurvivalBonus;
+    private readonly TMP_Text _textCollisionBonus;
+
     private int _score;
     private int _survivalBonus;
     private int _collisionBonus;
-    private IGameController _gameController;
-    private TMP_Text _textScore;
-    private TMP_Text _textSurvivalBonus;
-    private TMP_Text _textCollisionBonus;
 
-    private void Start()
+    public ScoreController(IGameController gameController)
     {
-        _gameController = (GameController)NullChecker.TryGet<GameController>(gameObject,
-                GameObject.FindWithTag("GameController").GetComponent<GameController>());
+        _gameController = gameController;
 
-        _textScore = (TMP_Text)NullChecker.TryGet<TMP_Text>(gameObject,
-            GameObject.FindWithTag("TextScore").GetComponent<TMP_Text>());
+        _textScore = GameObject.FindWithTag("TextScore")
+            .GetComponent<TMP_Text>();
 
-        _textSurvivalBonus = (TMP_Text)NullChecker.TryGet<TMP_Text>(gameObject,
-            GameObject.FindWithTag("TextSurvivalBonus").GetComponent<TMP_Text>());
+        _textSurvivalBonus = GameObject.FindWithTag("TextSurvivalBonus")
+            .GetComponent<TMP_Text>();
 
-        _textCollisionBonus = (TMP_Text)NullChecker.TryGet<TMP_Text>(gameObject,
-            GameObject.FindWithTag("TextCollisionBonus").GetComponent<TMP_Text>());
+        _textCollisionBonus = GameObject.FindWithTag("TextCollisionBonus")
+            .GetComponent<TMP_Text>();
 
         _textSurvivalBonus.color = Color.red;
         _textCollisionBonus.color = Color.magenta;
