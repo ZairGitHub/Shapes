@@ -1,0 +1,60 @@
+﻿using NUnit.Framework;
+using UnityEngine;
+
+namespace Tests
+{
+    // Test class to be revisited
+    public class NullCheckerTests
+    {
+        private readonly GameObject _gameObject = new GameObject();
+        private readonly Component _component = new GameObject().AddComponent<Rigidbody>();
+
+        [Test]
+        public void TryGet_NullComponent_ReturnsComponent()
+        {
+            var result = NullChecker.TryGet<Rigidbody>(null);
+
+            Assert.That(result, Is.TypeOf<Rigidbody>());
+        }
+
+        [Test]
+        public void TryGet_Component_ReturnsComponent()
+        {
+            var result = NullChecker.TryGet<Rigidbody>(_component);
+
+            Assert.That(result, Is.TypeOf<Rigidbody>());
+        }
+
+        [Test]
+        public void TryGet_NullArguments_ReturnsComponent()
+        {
+            var result = NullChecker.TryGet<Rigidbody>(null, null);
+
+            Assert.That(result, Is.TypeOf<Rigidbody>());
+        }
+
+        [Test]
+        public void TryGet_NullGameObjectAndComponent_ReturnsComponent()
+        {
+            var result = NullChecker.TryGet<Rigidbody>(null, _component);
+
+            Assert.That(result, Is.TypeOf<Rigidbody>());
+        }
+
+        [Test]
+        public void TryGet_GameObjectAndNullComponent_ReturnsComponent()
+        {
+            var result = NullChecker.TryGet<Rigidbody>(_gameObject, null);
+
+            Assert.That(result, Is.TypeOf<Rigidbody>());
+        }
+
+        [Test]
+        public void TryGet_GameObjectAndComponent_ReturnsComponent()
+        {
+            var result = NullChecker.TryGet<Rigidbody>(_gameObject, _component);
+
+            Assert.That(result, Is.TypeOf<Rigidbody>());
+        }
+    }
+}

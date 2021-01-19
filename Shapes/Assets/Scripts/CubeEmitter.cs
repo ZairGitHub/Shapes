@@ -5,28 +5,34 @@ public class CubeEmitter : MonoBehaviour
 {
     private const float _collisionScale = 2.0f;
 
+    private readonly Color _defaultColor = Color.yellow;
+    private readonly Color _emissionColor = Color.blue;
     private readonly WaitForSeconds _emitterDelay = new WaitForSeconds(1.0f);
 
     private float _offset;
-
     private IConstants _constants;
-
+    private IGameController _gameController;
     private GameObject _cube;
     private GameObject[] _cubeEmitters;
-    private GameController _gameController;
     private EmitterProperties _emitterProperties;
 
     private void Start()
     {
-        _constants = GameObject.FindGameObjectWithTag("Constants")
-            .GetComponent<Constants>();
+        _constants = (Constants)NullChecker.TryGet<Constants>(gameObject,
+            GameObject.FindWithTag("Constants").GetComponent<Constants>());
         
-        _cube = GameObject.FindGameObjectWithTag("Cube");
-        _cubeEmitters = GameObject.FindGameObjectsWithTag("CubeEmitter");
-        _gameController = GameObject.FindGameObjectWithTag("GameController")
-            .GetComponent<GameController>();
+        _gameController = (GameController)NullChecker.TryGet<GameController>(gameObject,
+                    GameObject.FindWithTag("GameController").GetComponent<GameController>());
+
+        _cube = GameObject.FindWithTag("Cube");
+        if (_cube == null)
+        {
+            _cube = new GameObject();
+            _cube.AddComponent<CubeHandler>();
+        }
 
         _offset = _cube.GetComponent<Collider>().bounds.size.x * _collisionScale;
+        _cubeEmitters = NullChecker.TryGet(GameObject.FindGameObjectsWithTag("CubeEmitter"));
         _emitterProperties = new EmitterProperties(_constants, _offset);
 
         SetEmitterPositions();
@@ -47,8 +53,7 @@ public class CubeEmitter : MonoBehaviour
         while (_gameController.IsRunning)
         {
             int RNG = Random.Range(0, _cubeEmitters.Length);
-            _cubeEmitters[RNG].GetComponent<Renderer>().material.color = Color.blue;
-
+            _cubeEmitters[RNG].GetComponent<Renderer>().material.color = _emissionColor;
             yield return _emitterDelay;
 
             if (_gameController.IsRunning)
@@ -64,7 +69,7 @@ public class CubeEmitter : MonoBehaviour
                     _emitterProperties.GetDirection(position.x),
                     _emitterProperties.GetDirection(position.y));
 
-                _cubeEmitters[RNG].GetComponent<Renderer>().material.color = Color.yellow;
+                _cubeEmitters[RNG].GetComponent<Renderer>().material.color = _defaultColor;
             }
         }
     }

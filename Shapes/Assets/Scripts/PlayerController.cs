@@ -3,32 +3,29 @@
 public class PlayerController : MonoBehaviour
 {
     private float _speed;
-
     private IConstants _constants;
-
+    private IGameController _gameController;
     private Vector3 _movement;
-
     private Rigidbody _rb;
-    private GameController _gameController;
     private PlayerSpawner _playerSpawner;
 
     private void Awake()
     {
-        _rb = (Rigidbody)NullComponentChecker
+        _rb = (Rigidbody)NullChecker
             .TryGet<Rigidbody>(gameObject, GetComponent<Rigidbody>());
+
+        _rb.constraints = RigidbodyConstraints.FreezePositionZ;
+        _rb.freezeRotation = true;
+        _rb.useGravity = false;
     }
 
     private void Start()
     {
-        _rb.constraints = RigidbodyConstraints.FreezePositionZ;
-        _rb.freezeRotation = true;        
-        _rb.useGravity = false;
+        _constants = (Constants)NullChecker.TryGet<Constants>(gameObject,
+                GameObject.FindWithTag("Constants").GetComponent<Constants>());
 
-        _constants = (Constants)NullComponentChecker
-            .TryGet<Constants>(gameObject, GetComponent<Constants>());
-
-        _gameController = (GameController)NullComponentChecker
-            .TryGet<GameController>(gameObject, GetComponent<GameController>());
+        _gameController = (GameController)NullChecker.TryGet<GameController>(gameObject,
+                GameObject.FindWithTag("GameController").GetComponent<GameController>());
 
         _speed = _constants.BoundaryWidth;
 

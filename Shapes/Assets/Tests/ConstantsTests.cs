@@ -11,56 +11,64 @@ namespace Tests
             return new GameObject().AddComponent<Constants>();
         }
 
-        [Test]
-        public void Awake_BoundaryEastDoesNotExist_SetsBoundaryWidthToZero()
+        private void RemoveBoundaryTag()
         {
-            GameObject.FindGameObjectWithTag("BoundaryEast").tag = "Debug";
+            GameObject.FindWithTag("Boundary").tag = "Debug";
+        }
+
+        private void RestoreBoundaryTag()
+        {
+            GameObject.FindWithTag("Debug").tag = "Boundary";
+        }
+
+        [Test]
+        public void Awake_BoundaryDoesNotExist_SetsBoundaryWidthToZero()
+        {
+            RemoveBoundaryTag();
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
             var result = sut.BoundaryWidth;
 
             Assert.That(result, Is.Zero);
-
-            GameObject.FindGameObjectWithTag("Debug").tag = "BoundaryEast";
+            RestoreBoundaryTag();
         }
 
         [Test]
-        public void Awake_BoundaryEastExists_SetsBoundaryWidthToBoundaryEastX()
+        public void Awake_BoundaryDoesNotExist_SetsBoundaryHeightToZero()
         {
-            var sut = CreateDefaultConstants();
-            sut.runInEditMode = true;
-
-            var boundaryEast = GameObject.FindGameObjectWithTag("BoundaryEast");
-            var result = sut.BoundaryWidth;
-
-            Assert.That(result, Is.EqualTo(boundaryEast.transform.position.x));
-        }
-
-        [Test]
-        public void Awake_BoundaryNorthDoesNotExist_SetsBoundaryHeightToZero()
-        {
-            GameObject.FindGameObjectWithTag("BoundaryNorth").tag = "Debug";
+            RemoveBoundaryTag();
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
             var result = sut.BoundaryHeight;
 
             Assert.That(result, Is.Zero);
-
-            GameObject.FindGameObjectWithTag("Debug").tag = "BoundaryNorth";
+            RestoreBoundaryTag();
         }
 
         [Test]
-        public void Awake_BoundaryNorthExists_SetsBoundaryHeightToBoundaryNorthY()
+        public void Awake_BoundaryExists_SetsBoundaryWidthToBoundaryChild()
         {
+            var boundaryChild = GameObject.FindWithTag("Boundary").transform.GetChild(1);
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
-            var boundaryNorth = GameObject.FindGameObjectWithTag("BoundaryNorth");
+            var result = sut.BoundaryWidth;
+
+            Assert.That(result, Is.EqualTo(boundaryChild.position.x));
+        }
+
+        [Test]
+        public void Awake_BoundaryExists_SetsBoundaryHeightToBoundaryChild()
+        {
+            var boundaryChild = GameObject.FindWithTag("Boundary").transform.GetChild(0);
+            var sut = CreateDefaultConstants();
+            sut.runInEditMode = true;
+
             var result = sut.BoundaryHeight;
 
-            Assert.That(result, Is.EqualTo(boundaryNorth.transform.position.y));
+            Assert.That(result, Is.EqualTo(boundaryChild.position.y));
         }
 
         [Test]

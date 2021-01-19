@@ -11,33 +11,34 @@ public class CubeHandler : MonoBehaviour
     private float _speed;
     private float _horizontal;
     private float _vertical;
-
+    private IConstants _constants;
+    private IGameController _gameController;
     private Vector3 _direction;
-
     private Rigidbody _rb;
-    private Constants _constants;
-    private GameController _gameController;
     private ScoreController _scoreController;
 
     private void Awake()
     {
-        _boundaryWrapDistance =
-            GetComponent<Collider>().bounds.size.x * _collisionScale;
+        BoxCollider collider = (BoxCollider)NullChecker.TryGet<BoxCollider>(
+            gameObject, GetComponent<BoxCollider>());
 
-        _rb = GetComponent<Rigidbody>();
+        _boundaryWrapDistance = collider.bounds.size.x * _collisionScale;
+
+        _rb = (Rigidbody)NullChecker.TryGet<Rigidbody>(
+            gameObject, GetComponent<Rigidbody>());
+        
+        _rb.constraints = RigidbodyConstraints.FreezePositionZ;
+        _rb.freezeRotation = true;
+        _rb.useGravity = false;
     }
 
     private void Start()
     {
-        _rb.constraints = RigidbodyConstraints.FreezePositionZ;
-        _rb.freezeRotation = true;
-        _rb.useGravity = false;
+        _constants = (Constants)NullChecker.TryGet<Constants>(gameObject,
+                GameObject.FindWithTag("Constants").GetComponent<Constants>());
 
-        _constants = GameObject.FindGameObjectWithTag("Constants")
-            .GetComponent<Constants>();
-
-        _gameController = GameObject.FindGameObjectWithTag("GameController")
-            .GetComponent<GameController>();
+        _gameController = (GameController)NullChecker.TryGet<GameController>(gameObject,
+                GameObject.FindWithTag("GameController").GetComponent<GameController>());
 
         _scoreController = _gameController.ScoreController;
     }

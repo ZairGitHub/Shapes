@@ -5,27 +5,29 @@ public class SphereHandler : MonoBehaviour
     private float _speed;
     private float _horizontal;
     private float _vertical;
-
     private Vector3 _direction;
-
+    private IConstants _constants;
+    private IGameController _gameController;
     private Rigidbody _rb;
-    private Constants _constants;
-    private GameController _gameController;
     private ScoreController _scoreController;
 
-    private void Awake() => _rb = GetComponent<Rigidbody>();
-
-    private void Start()
+    private void Awake()
     {
+        _rb = (Rigidbody)NullChecker.TryGet<Rigidbody>(
+            gameObject, GetComponent<Rigidbody>());
+
         _rb.constraints = RigidbodyConstraints.FreezePositionZ;
         _rb.freezeRotation = true;
         _rb.useGravity = false;
+    }
 
-        _constants = GameObject.FindGameObjectWithTag("Constants")
-            .GetComponent<Constants>();
+    private void Start()
+    {
+        _constants = (Constants)NullChecker.TryGet<Constants>(gameObject,
+                GameObject.FindWithTag("Constants").GetComponent<Constants>());
 
-        _gameController = GameObject.FindGameObjectWithTag("GameController")
-            .GetComponent<GameController>();
+        _gameController = (GameController)NullChecker.TryGet<GameController>(gameObject,
+                GameObject.FindWithTag("GameController").GetComponent<GameController>());
 
         _scoreController = _gameController.ScoreController;
     }

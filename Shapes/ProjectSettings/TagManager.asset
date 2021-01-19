@@ -10,15 +10,15 @@ TagManager:
   - BoundaryEast
   - BoundaryWest
   - Sphere
-  - TimeController
   - TextController
   - TextDebugTime
   - Constants
   - CubeEmitter
   - TextScore
-  - ScoreController
   - TextSurvivalBonus
   - TextCollisionBonus
+  - Debug
+  - Boundary
   layers:
   - Default
   - TransparentFX
