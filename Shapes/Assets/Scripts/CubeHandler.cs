@@ -34,11 +34,11 @@ public class CubeHandler : MonoBehaviour
         _rb.freezeRotation = true;
         _rb.useGravity = false;
 
-        _constants = GameObject.FindWithTag("Constants")
-            .GetComponent<Constants>();
+        _constants = (Constants)NullChecker.TryGet<Constants>(gameObject,
+                GameObject.FindWithTag("Constants").GetComponent<Constants>());
 
-        _gameController = GameObject.FindWithTag("GameController")
-            .GetComponent<GameController>();
+        _gameController = (GameController)NullChecker.TryGet<GameController>(gameObject,
+                GameObject.FindWithTag("GameController").GetComponent<GameController>());
 
         _scoreController = _gameController.ScoreController;
     }

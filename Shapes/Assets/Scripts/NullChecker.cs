@@ -19,6 +19,6 @@ public static class NullChecker
 
     public static GameObject[] TryGet(GameObject[] gameObjects)
     {
-        return gameObjects ?? new GameObject[1];
+        return gameObjects ?? new GameObject[0];
     }
 }
