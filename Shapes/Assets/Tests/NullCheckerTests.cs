@@ -6,6 +6,9 @@ namespace Tests
     // Test class to be revisited
     public class NullCheckerTests
     {
+        private readonly GameObject _gameObject = new GameObject();
+        private readonly Component _component = new GameObject().AddComponent<Rigidbody>();
+
         [Test]
         public void TryGet_NullArgument_ReturnsComponent()
         {
@@ -25,8 +28,7 @@ namespace Tests
         [Test]
         public void TryGet_NullGameObject_ReturnsComponent()
         {
-            var result = NullChecker.TryGet<Rigidbody>
-                (null, new GameObject().AddComponent<Rigidbody>());
+            var result = NullChecker.TryGet<Rigidbody>(null, _component);
 
             Assert.That(result, Is.TypeOf<Rigidbody>());
         }
@@ -34,7 +36,7 @@ namespace Tests
         [Test]
         public void TryGet_NullComponent_ReturnsComponent()
         {
-            var result = NullChecker.TryGet<Rigidbody>(new GameObject(), null);
+            var result = NullChecker.TryGet<Rigidbody>(_gameObject, null);
 
             Assert.That(result, Is.TypeOf<Rigidbody>());
         }
@@ -42,8 +44,7 @@ namespace Tests
         [Test]
         public void TryGet_GameObjectAndComponent_ReturnsComponent()
         {
-            var result = NullChecker.TryGet<Rigidbody>(
-                new GameObject(), new GameObject().AddComponent<Rigidbody>());
+            var result = NullChecker.TryGet<Rigidbody>(_gameObject, _component);
 
             Assert.That(result, Is.TypeOf<Rigidbody>());
         }
