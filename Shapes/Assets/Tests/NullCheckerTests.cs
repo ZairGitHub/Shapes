@@ -3,8 +3,17 @@ using UnityEngine;
 
 namespace Tests
 {
+    // Test class to be revisited
     public class NullCheckerTests
     {
+        [Test]
+        public void TryGet_NullArgument_ReturnsComponent()
+        {
+            var result = NullChecker.TryGet<Rigidbody>(null);
+
+            Assert.That(result, Is.TypeOf<Rigidbody>());
+        }
+
         [Test]
         public void TryGet_NullArguments_ReturnsComponent()
         {
@@ -14,32 +23,29 @@ namespace Tests
         }
 
         [Test]
-        public void TryGet_NullGameObject_ReturnsNull()
+        public void TryGet_NullGameObject_ReturnsComponent()
         {
-            var result = NullChecker
-                .TryGet<Rigidbody>(null, new GameObject().GetComponent<Rigidbody>());
+            var result = NullChecker.TryGet<Rigidbody>
+                (null, new GameObject().AddComponent<Rigidbody>());
 
             Assert.That(result, Is.TypeOf<Rigidbody>());
         }
 
         [Test]
-        public void TryGet_NullComponent_AddsComponentTypeToGameObject()
+        public void TryGet_NullComponent_ReturnsComponent()
         {
-            var result = NullChecker
-                .TryGet<Rigidbody>(new GameObject(), null);
+            var result = NullChecker.TryGet<Rigidbody>(new GameObject(), null);
 
-            Assert.That(result, Is.InstanceOf<Component>().And.TypeOf<Rigidbody>());
+            Assert.That(result, Is.TypeOf<Rigidbody>());
         }
 
         [Test]
-        public void TryGet_Component_ReturnsComponent()
+        public void TryGet_GameObjectAndComponent_ReturnsComponent()
         {
-            var gameObject = new GameObject();
+            var result = NullChecker.TryGet<Rigidbody>(
+                new GameObject(), new GameObject().AddComponent<Rigidbody>());
 
-            var result = NullChecker
-                .TryGet<Rigidbody>(gameObject, gameObject.GetComponent<Rigidbody>());
-
-            Assert.That(result, Is.InstanceOf<Component>().And.TypeOf<Rigidbody>());
+            Assert.That(result, Is.TypeOf<Rigidbody>());
         }
     }
 }
