@@ -11,20 +11,21 @@ public class CubeHandler : MonoBehaviour
     private float _speed;
     private float _horizontal;
     private float _vertical;
-
+    private IConstants _constants;
+    private IGameController _gameController;
     private Vector3 _direction;
-
     private Rigidbody _rb;
-    private Constants _constants;
-    private GameController _gameController;
     private ScoreController _scoreController;
 
     private void Awake()
     {
-        _boundaryWrapDistance =
-            GetComponent<Collider>().bounds.size.x * _collisionScale;
+        BoxCollider collider = (BoxCollider)NullChecker.TryGet<BoxCollider>(
+            gameObject, GetComponent<BoxCollider>());
 
-        _rb = GetComponent<Rigidbody>();
+        _boundaryWrapDistance = collider.bounds.size.x * _collisionScale;
+
+        _rb = (Rigidbody)NullChecker.TryGet<Rigidbody>(
+            gameObject, GetComponent<Rigidbody>());
     }
 
     private void Start()
