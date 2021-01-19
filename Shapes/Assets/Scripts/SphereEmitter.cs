@@ -5,14 +5,20 @@ public class SphereEmitter : MonoBehaviour
 {
     private readonly WaitForSeconds _emitterDelay = new WaitForSeconds(3.0f);
 
+    private IGameController _gameController;
     private GameObject _sphere;
-    private GameController _gameController;
 
     private void Start()
     {
+        _gameController = (GameController)NullChecker.TryGet<GameController>(gameObject,
+                    GameObject.FindWithTag("GameController").GetComponent<GameController>());
+
         _sphere = GameObject.FindWithTag("Sphere");
-        _gameController = GameObject.FindWithTag("GameController")
-            .GetComponent<GameController>();
+        if (_sphere == null)
+        {
+            _sphere = new GameObject();
+            _sphere.AddComponent<SphereHandler>();
+        }
 
         StartCoroutine(EmitSpheres());
     }
