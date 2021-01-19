@@ -20,6 +20,7 @@ TagManager:
   - TextSurvivalBonus
   - TextCollisionBonus
   - Debug
+  - Boundary
   layers:
   - Default
   - TransparentFX
