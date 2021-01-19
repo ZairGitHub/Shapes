@@ -2,9 +2,9 @@
 
 public static class NullChecker
 {
-    public static Component TryGet<T>(T component) where T : Component
-    {
-        return component ?? new GameObject().AddComponent<T>();
+    public static Component TryGet<T>(Component component) where T : Component
+    {        
+        return component == null ? new GameObject().AddComponent<T>() : component;
     }
 
     public static Component TryGet<T>(
@@ -12,7 +12,7 @@ public static class NullChecker
     {
         if (gameObject == null)
         {
-            return TryGet(component);
+            return TryGet<T>(component);
         }
         return component == null ? gameObject.AddComponent<T>() : component;
     }
