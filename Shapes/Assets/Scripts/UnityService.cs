@@ -2,8 +2,8 @@
 
 public class UnityService : IUnityService
 {
-    public float GetAxisRaw(string axis)
+    public float GetAxis(string axis)
     {
-        return Input.GetAxisRaw(axis);
+        return Input.GetAxis(axis);
     }
 }

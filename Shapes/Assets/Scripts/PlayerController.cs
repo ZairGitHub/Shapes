@@ -7,12 +7,14 @@ public class PlayerController : MonoBehaviour
     private IConstants _constants;
     private IGameController _gameController;
     private IMovable _movement;
+    private IUnityService _unityService;
     private Rigidbody _rb;
     private PlayerSpawner _playerSpawner;
 
-    public void ContructorForTests(IMovable movement)
+    public void ContructorForTests(IMovable movement, IUnityService unityService)
     {
         _movement = movement;
+        _unityService = unityService;
     }
 
     private void Awake()
@@ -49,13 +51,14 @@ public class PlayerController : MonoBehaviour
         _movement = new Movement();
         _playerSpawner = new PlayerSpawner(_constants);
         _playerSpawner.SetSpawnPosition(_rb);
+        _unityService = new UnityService();
     }
 
     private void FixedUpdate()
     {
-        float horizontalAxis = Input.GetAxis("Horizontal");
-        float verticalAxis = Input.GetAxis("Vertical");
-        _rb.velocity = _movement.Move(horizontalAxis, verticalAxis) * _speed;
+        _rb.velocity = _movement.Move(
+            _unityService.GetAxis("Horizontal"),
+            _unityService.GetAxis("Vertical"));// * _speed;
     }
 
     private void OnCollisionEnter(Collision collision)
