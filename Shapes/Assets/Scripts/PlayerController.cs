@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IMovable
 {
     private float _speed;
     private IConstants _constants;
@@ -45,13 +45,16 @@ public class PlayerController : MonoBehaviour
         _playerSpawner.SetSpawnPosition(_rb);
     }
 
+    public Vector3 Move(float horizontal, float vertical, float z)
+    {
+        return new Vector3(horizontal, vertical, z);
+    }
+
     private void FixedUpdate()
     {
         float horizontalAxis = Input.GetAxis("Horizontal");
         float verticalAxis = Input.GetAxis("Vertical");
-
-        _movement = new Vector3(horizontalAxis, verticalAxis, 0.0f);
-        _rb.velocity = _movement * _speed;
+        _rb.velocity = Move(horizontalAxis, verticalAxis, 0.0f) * _speed;
     }
 
     private void OnCollisionEnter(Collision collision)
