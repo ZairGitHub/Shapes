@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class CubeEmitter : MonoBehaviour
@@ -18,11 +19,23 @@ public class CubeEmitter : MonoBehaviour
 
     private void Start()
     {
-        _constants = (Constants)NullChecker.TryGet<Constants>(gameObject,
-            GameObject.FindWithTag("Constants").GetComponent<Constants>());
-        
-        _gameController = (GameController)NullChecker.TryGet<GameController>(gameObject,
-                    GameObject.FindWithTag("GameController").GetComponent<GameController>());
+        try
+        {
+            _constants = GameObject.FindWithTag("Constants").GetComponent<Constants>();
+        }
+        catch (NullReferenceException)
+        {
+            _constants = gameObject.AddComponent<Constants>();
+        }
+
+        try
+        {
+            _gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        }
+        catch (NullReferenceException)
+        {
+            _gameController = gameObject.AddComponent<GameController>();
+        }
 
         _cube = GameObject.FindWithTag("Cube");
         if (_cube == null)
@@ -52,7 +65,7 @@ public class CubeEmitter : MonoBehaviour
     {
         while (_gameController.IsRunning)
         {
-            int RNG = Random.Range(0, _cubeEmitters.Length);
+            int RNG = UnityEngine.Random.Range(0, _cubeEmitters.Length);
             _cubeEmitters[RNG].GetComponent<Renderer>().material.color = _emissionColor;
             yield return _emitterDelay;
 
