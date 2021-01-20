@@ -6,8 +6,14 @@ public class PlayerController : MonoBehaviour
     private float _speed;
     private IConstants _constants;
     private IGameController _gameController;
+    private IMovable _movement;
     private Rigidbody _rb;
     private PlayerSpawner _playerSpawner;
+
+    public void ContructorForTests(IMovable movement)
+    {
+        _movement = movement;
+    }
 
     private void Awake()
     {
@@ -40,6 +46,7 @@ public class PlayerController : MonoBehaviour
         }
 
         _speed = _constants.BoundaryWidth;
+        _movement = new Movement();
         _playerSpawner = new PlayerSpawner(_constants);
         _playerSpawner.SetSpawnPosition(_rb);
     }
@@ -48,7 +55,7 @@ public class PlayerController : MonoBehaviour
     {
         float horizontalAxis = Input.GetAxis("Horizontal");
         float verticalAxis = Input.GetAxis("Vertical");
-        _rb.velocity = new Vector3(horizontalAxis, verticalAxis, 0.0f) * _speed;
+        _rb.velocity = _movement.Move(horizontalAxis, verticalAxis) * _speed;
     }
 
     private void OnCollisionEnter(Collision collision)
