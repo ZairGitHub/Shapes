@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class CubeHandler : MonoBehaviour
 {
@@ -33,11 +34,23 @@ public class CubeHandler : MonoBehaviour
 
     private void Start()
     {
-        _constants = (Constants)NullChecker.TryGet<Constants>(gameObject,
-                GameObject.FindWithTag("Constants").GetComponent<Constants>());
+        try
+        {
+            _constants = GameObject.FindWithTag("Constants").GetComponent<Constants>();
+        }
+        catch (NullReferenceException)
+        {
+            _constants = gameObject.AddComponent<Constants>();
+        }
 
-        _gameController = (GameController)NullChecker.TryGet<GameController>(gameObject,
-                GameObject.FindWithTag("GameController").GetComponent<GameController>());
+        try
+        {
+            _gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        }
+        catch (NullReferenceException)
+        {
+            _gameController = gameObject.AddComponent<GameController>();
+        }
 
         _scoreController = _gameController.ScoreController;
     }
@@ -46,16 +59,16 @@ public class CubeHandler : MonoBehaviour
 
     public void SetDirection(float x, float y)
     {
-        _horizontal = x > 0.0f ? Random.Range(0.0f, 1.0f) : Random.Range(-1.0f, 0.0f);
-        _vertical = y > 0.0f ? Random.Range(0.0f, 1.0f) : Random.Range(-1.0f, 0.0f);
+        _horizontal = x > 0.0f ? UnityEngine.Random.Range(0.0f, 1.0f) : UnityEngine.Random.Range(-1.0f, 0.0f);
+        _vertical = y > 0.0f ? UnityEngine.Random.Range(0.0f, 1.0f) : UnityEngine.Random.Range(-1.0f, 0.0f);
 
         _speed = _constants.BoundaryWidth * _minSpeed;
     }
 
     private void RecalculateDirection()
     {
-        _horizontal = Random.Range(-1.0f, 1.0f);
-        _vertical = Random.Range(-1.0f, 1.0f);
+        _horizontal = UnityEngine.Random.Range(-1.0f, 1.0f);
+        _vertical = UnityEngine.Random.Range(-1.0f, 1.0f);
     }
 
     private void FixedUpdate()
