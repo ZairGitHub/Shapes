@@ -101,7 +101,7 @@ namespace Tests
         public void SetSpawnPosition_SetsRigidbodyVelocityToVector3Zero()
         {
             var rigidbody = CreateDefaultRigidbody();
-            var sut = new PlayerSpawner(Substitute.For<IConstants>());
+            var sut = CreateDefaultPlayerSpawnerWithMock();
 
             sut.SetSpawnPosition(rigidbody);
             var result = rigidbody.velocity;
