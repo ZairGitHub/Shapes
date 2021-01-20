@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -6,9 +7,9 @@ public class ScoreController
 {
     private readonly IGameController _gameController;
     private readonly WaitForSeconds _survivalBonusDelay = new WaitForSeconds(3.0f);
-    private readonly TMP_Text _textScore;
-    private readonly TMP_Text _textSurvivalBonus;
-    private readonly TMP_Text _textCollisionBonus;
+    private readonly TextMeshPro _textScore;
+    private readonly TextMeshPro _textSurvivalBonus;
+    private readonly TextMeshPro _textCollisionBonus;
 
     private int _score;
     private int _survivalBonus;
@@ -18,14 +19,43 @@ public class ScoreController
     {
         _gameController = gameController;
 
-        _textScore = (TMP_Text)NullChecker.TryGet<TMP_Text>(
-            GameObject.FindWithTag("TextScore").GetComponent<TMP_Text>());
+        try
+        {
+            _textScore = GameObject.FindWithTag("TextScore").GetComponent<TextMeshPro>();
+        }
+        catch (NullReferenceException)
+        {
+            _textScore = new GameObject().AddComponent<TextMeshPro>();
+        }
 
-        _textSurvivalBonus = (TMP_Text)NullChecker.TryGet<TMP_Text>(
-            GameObject.FindWithTag("TextSurvivalBonus").GetComponent<TMP_Text>());
-        
-        _textCollisionBonus = (TMP_Text)NullChecker.TryGet<TMP_Text>(
-            GameObject.FindWithTag("TextCollisionBonus").GetComponent<TMP_Text>());
+        try
+        {
+            _textScore = GameObject.FindWithTag("TextScore").GetComponent<TextMeshPro>();
+        }
+        catch (NullReferenceException)
+        {
+            _textScore = new GameObject().AddComponent<TextMeshPro>();
+        }
+
+        try
+        {
+            _textSurvivalBonus =
+                GameObject.FindWithTag("TextSurvivalBonus").GetComponent<TextMeshPro>();
+        }
+        catch (NullReferenceException)
+        {
+            _textSurvivalBonus = new GameObject().AddComponent<TextMeshPro>();
+        }
+
+        try
+        {
+            _textCollisionBonus =
+                GameObject.FindWithTag("TextCollisionBonus").GetComponent<TextMeshPro>();
+        }
+        catch (NullReferenceException)
+        {
+            _textCollisionBonus = new GameObject().AddComponent<TextMeshPro>();
+        }
 
         _textSurvivalBonus.color = Color.red;
         _textCollisionBonus.color = Color.magenta;

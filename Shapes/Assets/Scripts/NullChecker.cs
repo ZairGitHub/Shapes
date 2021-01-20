@@ -3,7 +3,7 @@
 public static class NullChecker
 {
     public static Component TryGet<T>(Component component) where T : Component
-    {        
+    {
         return component == null ? new GameObject().AddComponent<T>() : component;
     }
 
