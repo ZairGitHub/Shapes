@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using NSubstitute;
+using NUnit.Framework;
 using UnityEngine;
 
 namespace Tests
@@ -10,11 +11,11 @@ namespace Tests
         public void Awake_SetsTransformPositionToCorrectVector3()
         {
             var sut = new GameObject().AddComponent<CameraController>();
-            sut.runInEditMode = true;
+            sut.RunTestingConstructor(Arg.Any<Vector3>());
 
             var result = sut.transform.position;
 
-            Assert.That(result, Is.EqualTo(new Vector3(0.0f, 0.0f, -10.0f)));
+            Assert.That(result, Is.EqualTo(Arg.Any<Vector3>()));
         }
     }
 }
