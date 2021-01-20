@@ -31,5 +31,20 @@ namespace Tests
 
             Assert.That(result, Is.EqualTo(Vector3.left));
         }
+
+        [UnityTest]
+        public IEnumerator FixedUpdate_PositiveHorizontalAxis_ReturnsRightVector3()
+        {
+            var mock = Substitute.For<IUnityService>();
+            mock.GetAxis("Horizontal").Returns(1.0f);
+            var sut = CreateDefaultPlayerController();
+            yield return null;
+            sut.RunTestingConstructor(mock, _speed);
+            yield return _fixedUpdateDelay;
+
+            var result = sut.GetComponent<Rigidbody>().velocity;
+
+            Assert.That(result, Is.EqualTo(Vector3.right));
+        }
     }
 }
