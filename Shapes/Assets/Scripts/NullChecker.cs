@@ -3,13 +3,13 @@
 public static class NullChecker
 {
     public static Component TryGet<T>(
-        GameObject gameObject, Component component) where T : Component
+        GameObject gameObject, T component) where T : Component
     {
         if (gameObject == null)
         {
             return null;
         }
-        return component == null ? gameObject.AddComponent<T>() : component;
+        return component ?? gameObject.AddComponent<T>();
     }
 
     public static GameObject TryGet(GameObject gameObject)
