@@ -41,7 +41,6 @@ public class PlayerController : MonoBehaviour
         }
 
         _speed = _constants.BoundaryWidth;
-
         _playerSpawner = new PlayerSpawner(_constants);
         _playerSpawner.SetSpawnPosition(_rb);
     }
