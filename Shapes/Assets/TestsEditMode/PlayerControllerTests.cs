@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Tests
 {
+    [TestFixture]
     public class PlayerControllerTests
     {
         [Test]

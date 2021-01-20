@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Tests
 {
+    [TestFixture]
     public class PlayerSpawnerTests
     {
         private const int _minPlayerID = 0;

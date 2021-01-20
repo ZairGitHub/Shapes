@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Tests
 {
-    // Test class to be revisited
+    [TestFixture]
     public class NullCheckerTests
     {
         private readonly GameObject _gameObject = new GameObject();
@@ -12,13 +12,13 @@ namespace Tests
         [Test]
         public void TryGet_NullGameObject_ReturnsNull()
         {
-            var result = NullChecker.TryGet<Rigidbody>(null, _component);
+            var result = NullChecker.TryGet(null, _component);
 
             Assert.That(result, Is.Null);
         }
 
         [Test]
-        public void TryGet_GameObjectAndNullComponent_ReturnsComponent()
+        public void NullComponent_ReturnsComponentOfGenericType()
         {
             var result = NullChecker.TryGet<Rigidbody>(_gameObject, null);
 
@@ -28,7 +28,7 @@ namespace Tests
         [Test]
         public void TryGet_GameObjectAndComponent_ReturnsComponent()
         {
-            var result = NullChecker.TryGet<Rigidbody>(_gameObject, _component);
+            var result = NullChecker.TryGet(_gameObject, _component);
 
             Assert.That(result, Is.TypeOf<Rigidbody>());
         }
