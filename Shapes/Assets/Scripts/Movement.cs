@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Movement : IMovable
+public class Movement// : IMovable
 {
     public Vector3 Move(float horizontal, float vertical)
     {

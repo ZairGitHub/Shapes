@@ -6,14 +6,13 @@ public class PlayerController : MonoBehaviour
     private float _speed;
     private IConstants _constants;
     private IGameController _gameController;
-    private IMovable _movement;
     private IUnityService _unityService;
+    private Movement _movement;
     private Rigidbody _rb;
     private PlayerSpawner _playerSpawner;
 
-    public void ContructorForTests(IMovable movement, IUnityService unityService)
+    public void ContructorForTests(IUnityService unityService)
     {
-        _movement = movement;
         _unityService = unityService;
     }
 
