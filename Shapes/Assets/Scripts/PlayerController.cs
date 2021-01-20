@@ -11,9 +11,10 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _rb;
     private PlayerSpawner _playerSpawner;
 
-    public void ContructorForTests(IUnityService unityService)
+    public void ContructorForTests(IUnityService unityService, float speed)
     {
         _unityService = unityService;
+        _speed = speed;
     }
 
     private void Awake()
@@ -57,7 +58,7 @@ public class PlayerController : MonoBehaviour
     {
         _rb.velocity = _movement.Move(
             _unityService.GetAxis("Horizontal"),
-            _unityService.GetAxis("Vertical"));// * _speed;
+            _unityService.GetAxis("Vertical")) * _speed;
     }
 
     private void OnCollisionEnter(Collision collision)

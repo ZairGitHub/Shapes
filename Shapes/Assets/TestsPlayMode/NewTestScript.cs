@@ -18,7 +18,7 @@ namespace Tests
 
             var sut = new GameObject().AddComponent<PlayerController>();
             yield return null;
-            sut.ContructorForTests(mock);
+            sut.ContructorForTests(mock, 1.0f);
 
             yield return new WaitForFixedUpdate();
             var result = sut.GetComponent<Rigidbody>().velocity;
