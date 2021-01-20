@@ -6,7 +6,7 @@ using UnityEngine.TestTools;
 
 namespace Tests
 {
-    public class PlayerMovementTests
+    public class PlayerControllerTests
     {
         private const float _speed = 1.0f;
 
