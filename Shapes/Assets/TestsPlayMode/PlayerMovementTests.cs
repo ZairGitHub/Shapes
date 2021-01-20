@@ -12,12 +12,17 @@ namespace Tests
 
         private readonly WaitForFixedUpdate _fixedUpdateDelay = new WaitForFixedUpdate();
 
+        private PlayerController CreateDefaultPlayerController()
+        {
+            return new GameObject().AddComponent<PlayerController>();
+        }
+
         [UnityTest]
         public IEnumerator FixedUpdate_NegativeHorizontalAxis_ReturnsLeftVector3()
         {
             var mock = Substitute.For<IUnityService>();
             mock.GetAxis("Horizontal").Returns(-1.0f);
-            var sut = new GameObject().AddComponent<PlayerController>();
+            var sut = CreateDefaultPlayerController();
             yield return null;
             sut.RunTestingConstructor(mock, _speed);
             yield return _fixedUpdateDelay;
