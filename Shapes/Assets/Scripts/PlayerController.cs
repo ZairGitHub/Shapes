@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
     private IConstants _constants;
     private IGameController _gameController;
     private IUnityService _unityService;
-    private Movement _movement;
     private Rigidbody _rb;
     private PlayerSpawner _playerSpawner;
 
@@ -48,7 +47,6 @@ public class PlayerController : MonoBehaviour
         }
 
         _speed = _constants.BoundaryWidth;
-        _movement = new Movement();
         _playerSpawner = new PlayerSpawner(_constants);
         _playerSpawner.SetSpawnPosition(_rb);
         _unityService = new UnityService();
@@ -56,9 +54,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.velocity = _movement.Move(
-            _unityService.GetAxis("Horizontal"),
-            _unityService.GetAxis("Vertical")) * _speed;
+        _rb.velocity = new Vector3(
+            _unityService.GetAxis("Horizontal"), _unityService.GetAxis("Vertical")) * _speed;
     }
 
     private void OnCollisionEnter(Collision collision)
