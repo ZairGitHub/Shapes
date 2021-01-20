@@ -83,24 +83,24 @@ namespace Tests
             Assert.That(result, Is.Zero);
         }
 
-        [Test]
-        public void GetDirection_NegativeFloat_ReturnsPositiveOne()
+        [Test, Repeat(100)]
+        public void GetDirection_NegativeFloat_ReturnsRandomBetweenZeroAndPositiveOne()
         {
             var sut = CreateDefaultEmitterProperties();
 
             var result = sut.GetDirection(-1.0f);
 
-            Assert.That(result, Is.EqualTo(1.0f));
+            Assert.That(result, Is.InRange(0.0f, 1.0f));
         }
 
-        [Test]
-        public void GetDirection_PositiveFloat_ReturnsNegativeOne()
+        [Test, Repeat(100)]
+        public void GetDirection_PositiveFloat_ReturnsRandomBetweenNegativeOneAndZero()
         {
             var sut = CreateDefaultEmitterProperties();
 
             var result = sut.GetDirection(1.0f);
 
-            Assert.That(result, Is.EqualTo(-1.0f));
+            Assert.That(result, Is.InRange(-1.0f, 0.0f));
         }
 
         [Test, Repeat(100)]
