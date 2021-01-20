@@ -20,7 +20,7 @@ namespace Tests
         [UnityTest]
         public IEnumerator FixedUpdate_NegativeHorizontalAxis_ReturnsVector3Left()
         {
-            var mock = Substitute.For<IUnityService>();
+            var mock = Substitute.For<IGetAxisService>();
             mock.GetAxis("Horizontal").Returns(-1.0f);
             var sut = CreateDefaultPlayerController();
             yield return null;
@@ -35,7 +35,7 @@ namespace Tests
         [UnityTest]
         public IEnumerator FixedUpdate_PositiveHorizontalAxis_ReturnsVector3Right()
         {
-            var mock = Substitute.For<IUnityService>();
+            var mock = Substitute.For<IGetAxisService>();
             mock.GetAxis("Horizontal").Returns(1.0f);
             var sut = CreateDefaultPlayerController();
             yield return null;
@@ -50,7 +50,7 @@ namespace Tests
         [UnityTest]
         public IEnumerator FixedUpdate_NegativeVerticalAxis_ReturnsVector3Down()
         {
-            var mock = Substitute.For<IUnityService>();
+            var mock = Substitute.For<IGetAxisService>();
             mock.GetAxis("Vertical").Returns(-1.0f);
             var sut = CreateDefaultPlayerController();
             yield return null;
@@ -65,7 +65,7 @@ namespace Tests
         [UnityTest]
         public IEnumerator FixedUpdate_NegativeVerticalAxis_ReturnsVector3Up()
         {
-            var mock = Substitute.For<IUnityService>();
+            var mock = Substitute.For<IGetAxisService>();
             mock.GetAxis("Vertical").Returns(1.0f);
             var sut = CreateDefaultPlayerController();
             yield return null;

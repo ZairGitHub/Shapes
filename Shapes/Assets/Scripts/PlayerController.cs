@@ -1,20 +1,14 @@
 ﻿using System;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IGetAxisService
 {
     private float _speed;
     private IConstants _constants;
     private IGameController _gameController;
-    private IUnityService _unityService;
+    private IGetAxisService _getAxisService;
     private Rigidbody _rb;
     private PlayerSpawner _playerSpawner;
-
-    public void RunTestingConstructor(IUnityService unityService, float speed)
-    {
-        _unityService = unityService;
-        _speed = speed;
-    }
 
     private void Awake()
     {
@@ -28,6 +22,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        _getAxisService = this;
+
         try
         {
             _constants = GameObject.FindWithTag("Constants").GetComponent<Constants>();
@@ -49,13 +45,23 @@ public class PlayerController : MonoBehaviour
         _speed = _constants.BoundaryWidth;
         _playerSpawner = new PlayerSpawner(_constants);
         _playerSpawner.SetSpawnPosition(_rb);
-        _unityService = new UnityService();
+    }
+
+    public void RunTestingConstructor(IGetAxisService getAxisService, float speed)
+    {
+        _getAxisService = getAxisService;
+        _speed = speed;
+    }
+
+    public float GetAxis(string axis)
+    {
+        return Input.GetAxis(axis);
     }
 
     private void FixedUpdate()
     {
         _rb.velocity = new Vector3(
-            _unityService.GetAxis("Horizontal"), _unityService.GetAxis("Vertical")) * _speed;
+            _getAxisService.GetAxis("Horizontal"), _getAxisService.GetAxis("Vertical")) * _speed;
     }
 
     private void OnCollisionEnter(Collision collision)

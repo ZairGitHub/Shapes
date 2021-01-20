@@ -1,4 +1,4 @@
-﻿public interface IUnityService
+﻿public interface IGetAxisService
 {
     float GetAxis(string axis);
 }
