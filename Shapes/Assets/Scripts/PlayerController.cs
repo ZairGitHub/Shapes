@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,16 +26,19 @@ public class PlayerController : MonoBehaviour
         {
             _constants = GameObject.FindWithTag("Constants").GetComponent<Constants>();
         }
-        catch
+        catch (NullReferenceException)
         {
             _constants = gameObject.AddComponent<Constants>();
         }
         
-        //_constants = (Constants)NullChecker.TryGet<Constants>(gameObject,
-          //      GameObject.FindWithTag("Constants").GetComponent<Constants>());
-
-        _gameController = (GameController)NullChecker.TryGet<GameController>(gameObject,
-                GameObject.FindWithTag("GameController").GetComponent<GameController>());
+        try
+        {
+            _gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        }
+        catch (NullReferenceException)
+        {
+            _gameController = gameObject.AddComponent<GameController>();
+        }
 
         _speed = _constants.BoundaryWidth;
 
