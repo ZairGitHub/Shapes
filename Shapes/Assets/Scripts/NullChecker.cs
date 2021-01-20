@@ -17,19 +17,6 @@ public static class NullChecker
         return component == null ? gameObject.AddComponent<T>() : component;
     }
 
-    public static Component TryGetFind<T>(string tag, GameObject gameObject) where T : Component
-    {
-        var tagObject = GameObject.FindWithTag(tag);
-        if (tagObject == null)
-        {
-            return gameObject.AddComponent<T>();
-        }
-        else
-        {
-            return tagObject.GetComponent<T>();
-        }
-    }
-
     public static GameObject TryGet(GameObject gameObject)
     {
         return gameObject == null ? new GameObject() : gameObject;
