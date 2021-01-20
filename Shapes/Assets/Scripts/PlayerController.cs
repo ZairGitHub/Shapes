@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _rb;
     private PlayerSpawner _playerSpawner;
 
-    public void ContructorForTests(IUnityService unityService, float speed)
+    public void RunTestingConstructor(IUnityService unityService, float speed)
     {
         _unityService = unityService;
         _speed = speed;
