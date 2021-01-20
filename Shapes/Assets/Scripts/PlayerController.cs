@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour, IGetAxisService
     private void Start()
     {
         _getAxisService = this;
-
         try
         {
             _constants = GameObject.FindWithTag("Constants").GetComponent<Constants>();
@@ -46,22 +45,19 @@ public class PlayerController : MonoBehaviour, IGetAxisService
         _playerSpawner = new PlayerSpawner(_constants);
         _playerSpawner.SetSpawnPosition(_rb);
     }
-
+    
     public void RunTestingConstructor(IGetAxisService getAxisService, float speed)
     {
         _getAxisService = getAxisService;
         _speed = speed;
     }
 
-    public float GetAxis(string axis)
-    {
-        return Input.GetAxis(axis);
-    }
+    public float GetAxis(string axis) => Input.GetAxis(axis);
 
     private void FixedUpdate()
     {
-        _rb.velocity = new Vector3(
-            _getAxisService.GetAxis("Horizontal"), _getAxisService.GetAxis("Vertical")) * _speed;
+        _rb.velocity = new Vector3(_getAxisService.GetAxis("Horizontal"),
+            _getAxisService.GetAxis("Vertical")) * _speed;
     }
 
     private void OnCollisionEnter(Collision collision)
