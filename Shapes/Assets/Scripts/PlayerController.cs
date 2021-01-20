@@ -21,8 +21,17 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        _constants = (Constants)NullChecker.TryGet<Constants>(gameObject,
-                GameObject.FindWithTag("Constants").GetComponent<Constants>());
+        try
+        {
+            _constants = GameObject.FindWithTag("Constants").GetComponent<Constants>();
+        }
+        catch
+        {
+            _constants = gameObject.AddComponent<Constants>();
+        }
+        
+        //_constants = (Constants)NullChecker.TryGet<Constants>(gameObject,
+          //      GameObject.FindWithTag("Constants").GetComponent<Constants>());
 
         _gameController = (GameController)NullChecker.TryGet<GameController>(gameObject,
                 GameObject.FindWithTag("GameController").GetComponent<GameController>());
