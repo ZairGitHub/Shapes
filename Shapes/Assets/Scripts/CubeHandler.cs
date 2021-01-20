@@ -59,9 +59,8 @@ public class CubeHandler : MonoBehaviour
 
     public void SetDirection(float x, float y)
     {
-        _horizontal = x > 0.0f ? UnityEngine.Random.Range(0.0f, 1.0f) : UnityEngine.Random.Range(-1.0f, 0.0f);
-        _vertical = y > 0.0f ? UnityEngine.Random.Range(0.0f, 1.0f) : UnityEngine.Random.Range(-1.0f, 0.0f);
-
+        _horizontal = x;
+        _vertical = y;
         _speed = _constants.BoundaryWidth * _minSpeed;
     }
 

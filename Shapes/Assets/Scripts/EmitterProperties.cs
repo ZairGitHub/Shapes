@@ -46,11 +46,11 @@ public class EmitterProperties
     {
         if (axis < 0.0f)
         {
-            axis = 1.0f;
+            axis = Random.Range(0.0f, 1.0f);
         }
         else if (axis > 0.0f)
         {
-            axis = -1.0f;
+            axis = Random.Range(-1.0f, 0.0f);
         }
         else
         {
