@@ -15,5 +15,12 @@ namespace Tests
 
             Assert.That(result, Has.Exactly(1).TypeOf<Rigidbody>());
         }
+
+        [Ignore("Potential test for movement")]
+        [Test]
+        public void FixedUpdate_RigidbodyVelocity()
+        {
+            Assert.Fail();
+        }
     }
 }
