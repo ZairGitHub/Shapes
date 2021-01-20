@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _rb = (Rigidbody)NullChecker.TryGet(gameObject, GetComponent<Rigidbody>());
-
         _rb.constraints = RigidbodyConstraints.FreezePositionZ;
         _rb.freezeRotation = true;
         _rb.useGravity = false;
