@@ -1,28 +1,36 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
 
 namespace Tests
 {
+    [TestFixture]
     public class SphereHandlerTests
     {
-        // A Test behaves as an ordinary method
-        [Test]
-        public void SphereHandlerTestsSimplePasses()
+        private SphereHandler CreateDefaultSphereHandler()
         {
-            // Use the Assert class to test conditions
+            return new GameObject().AddComponent<SphereHandler>();
         }
 
-        // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-        // `yield return null;` to skip a frame.
-        [UnityTest]
-        public IEnumerator SphereHandlerTestsWithEnumeratorPasses()
+        [Test]
+        public void HasSpeed_SpeedIsNotPositive_ReturnsFalse()
         {
-            // Use the Assert class to test conditions.
-            // Use yield to skip a frame.
-            yield return null;
+            var sut = CreateDefaultSphereHandler();
+            sut.RunTestingConstructor(0.0f);
+
+            var result = sut.HasSpeed();
+
+            Assert.That(result, Is.False);
+        }
+
+        [Test]
+        public void HasSpeed_SpeedIsPositive_ReturnsTrue()
+        {
+            var sut = CreateDefaultSphereHandler();
+            sut.RunTestingConstructor(float.Epsilon);
+
+            var result = sut.HasSpeed();
+
+            Assert.That(result, Is.True);
         }
     }
 }
