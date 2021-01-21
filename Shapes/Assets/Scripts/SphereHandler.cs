@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class SphereHandler : MonoBehaviour
 {
-    private float _speed;
     private float _horizontal;
     private float _vertical;
     private Vector3 _direction;
@@ -11,6 +10,8 @@ public class SphereHandler : MonoBehaviour
     private IGameController _gameController;
     private Rigidbody _rb;
     private ScoreController _scoreController;
+
+    public float Speed { get; private set; }
 
     private void Awake()
     {
@@ -45,18 +46,16 @@ public class SphereHandler : MonoBehaviour
         _scoreController = _gameController.ScoreController;
     }
 
-    public void RunTestingConstructor(float speed)
+    public void RunTestingConstructor(IConstants constants)
     {
-        _speed = speed;
+        _constants = constants;
     }
-
-    public bool HasSpeed() => _speed > 0.0f;
 
     public void SetDirection()
     {
         RecalculateDirection();
 
-        _speed = _constants.BoundaryWidth;
+        Speed = _constants.BoundaryWidth;
     }
 
     private void RecalculateDirection()
@@ -75,7 +74,7 @@ public class SphereHandler : MonoBehaviour
     private void FixedUpdate()
     {
         _rb.velocity =
-            _gameController.IsRunning ? _direction * _speed : Vector3.zero;
+            _gameController.IsRunning ? _direction * Speed : Vector3.zero;
     }
     
     private void OnCollisionEnter(Collision collision)
