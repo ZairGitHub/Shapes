@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class SphereEmitter : MonoBehaviour
@@ -10,8 +11,14 @@ public class SphereEmitter : MonoBehaviour
 
     private void Start()
     {
-        _gameController = (GameController)NullChecker.TryGet<GameController>(gameObject,
-                    GameObject.FindWithTag("GameController").GetComponent<GameController>());
+        try
+        {
+            _gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        }
+        catch (NullReferenceException)
+        {
+            _gameController = gameObject.AddComponent<GameController>();
+        }
 
         _sphere = GameObject.FindWithTag("Sphere");
         if (_sphere == null)
