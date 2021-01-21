@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class SphereHandler : MonoBehaviour
 {
@@ -23,11 +24,23 @@ public class SphereHandler : MonoBehaviour
 
     private void Start()
     {
-        _constants = (Constants)NullChecker.TryGet<Constants>(gameObject,
-                GameObject.FindWithTag("Constants").GetComponent<Constants>());
+        try
+        {
+            _constants = GameObject.FindWithTag("Constants").GetComponent<Constants>();
+        }
+        catch (NullReferenceException)
+        {
+            _constants = gameObject.AddComponent<Constants>();
+        }
 
-        _gameController = (GameController)NullChecker.TryGet<GameController>(gameObject,
-                GameObject.FindWithTag("GameController").GetComponent<GameController>());
+        try
+        {
+            _gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        }
+        catch (NullReferenceException)
+        {
+            _gameController = gameObject.AddComponent<GameController>();
+        }
 
         _scoreController = _gameController.ScoreController;
     }
@@ -43,9 +56,9 @@ public class SphereHandler : MonoBehaviour
 
     private void RecalculateDirection()
     {
-        _horizontal = Random.Range(-1.0f, 1.0f);
-        _vertical = Random.Range(-1.0f, 1.0f);
-        
+        _horizontal = UnityEngine.Random.Range(-1.0f, 1.0f);
+        _vertical = UnityEngine.Random.Range(-1.0f, 1.0f);
+
         RedirectDirectionVector();
     }
 
