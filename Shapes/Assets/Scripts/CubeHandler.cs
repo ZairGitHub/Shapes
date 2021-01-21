@@ -9,7 +9,6 @@ public class CubeHandler : MonoBehaviour
     private const float _speedMultiplier = 0.02f;
 
     private float _boundaryWrapDistance;
-    private float _speed;
     private float _horizontal;
     private float _vertical;
     private IConstants _constants;
@@ -17,6 +16,8 @@ public class CubeHandler : MonoBehaviour
     private Vector3 _direction;
     private Rigidbody _rb;
     private ScoreController _scoreController;
+
+    public float Speed { get; private set; }
 
     private void Awake()
     {
@@ -55,18 +56,11 @@ public class CubeHandler : MonoBehaviour
         _scoreController = _gameController.ScoreController;
     }
 
-    public void RunTestingConstructor(float speed)
-    {
-        _speed = speed;
-    }
-
-    public bool HasSpeed() => _speed > 0.0f;
-
     public void SetDirection(float x, float y)
     {
         _horizontal = x;
         _vertical = y;
-        _speed = _constants.BoundaryWidth * _minSpeed;
+        Speed = _constants.BoundaryWidth * _minSpeed;
     }
 
     private void RecalculateDirection()
@@ -80,7 +74,7 @@ public class CubeHandler : MonoBehaviour
         if (_gameController.IsRunning)
         {
             _direction = new Vector3(_horizontal, _vertical, 0.0f).normalized;
-            _rb.velocity = _direction * _speed;
+            _rb.velocity = _direction * Speed;
         }
         else
         {
