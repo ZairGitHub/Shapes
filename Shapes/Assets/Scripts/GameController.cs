@@ -40,7 +40,7 @@ public class GameController : MonoBehaviour, IGameController
         GameObject[] spheres = GameObject.FindGameObjectsWithTag("Sphere");
         foreach (GameObject sphere in spheres)
         {
-            if (sphere.GetComponent<SphereHandler>().HasSpeed())
+            if (sphere.GetComponent<SphereHandler>().Speed > 0)
             {
                 Destroy(sphere);
             }
