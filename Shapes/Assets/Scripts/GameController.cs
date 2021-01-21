@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour, IGameController
         GameObject[] cubes = GameObject.FindGameObjectsWithTag("Cube");
         foreach (GameObject cube in cubes)
         {
-            if (cube.GetComponent<CubeHandler>().HasSpeed())
+            if (cube.GetComponent<CubeHandler>().Speed > 0)
             {
                 Destroy(cube);
             }

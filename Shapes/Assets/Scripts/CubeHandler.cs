@@ -56,6 +56,11 @@ public class CubeHandler : MonoBehaviour
         _scoreController = _gameController.ScoreController;
     }
 
+    public void RunTestingConstructor(IConstants constants)
+    {
+        _constants = constants;
+    }
+
     public void SetDirection(float x, float y)
     {
         _horizontal = x;

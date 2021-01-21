@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using NSubstitute;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -22,30 +23,22 @@ namespace Tests
 
             var result = sut.Speed;
 
-            Assert.That(result, Is.Positive);
+            Assert.That(result, Is.Zero);
         }
-        /*
+        
         [Test]
-        public void HasSpeed_SpeedIsPositive_ReturnsTrue()
+        public void SetDirection_SetsSpeedToPositiveValue()
         {
+            var mock = Substitute.For<IConstants>();
+            mock.BoundaryWidth.Returns(1.0f);
+            mock.BoundaryHeight.Returns(1.0f);
             var sut = CreateDefaultCubeHandler();
-            sut.RunTestingConstructor(float.Epsilon);
-
-            var result = sut.HasSpeed();
-
-            Assert.That(result, Is.True);
-        }
-
-        [Test]
-        public void SetDirection_SetsSpeedToAPositiveValue()
-        {
-            var sut = CreateDefaultCubeHandler();
+            sut.RunTestingConstructor(mock);
 
             sut.SetDirection(0.0f, 0.0f);
-            var result = sut.HasSpeed();
+            var result = sut.Speed;
 
-            Assert.That(result, Is.True);
+            Assert.That(result, Is.Positive);
         }
-        */
     }
 }
