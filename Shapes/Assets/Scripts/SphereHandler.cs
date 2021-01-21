@@ -45,6 +45,11 @@ public class SphereHandler : MonoBehaviour
         _scoreController = _gameController.ScoreController;
     }
 
+    public void RunTestingConstructor(float speed)
+    {
+        _speed = speed;
+    }
+
     public bool HasSpeed() => _speed > 0.0f;
 
     public void SetDirection()
