@@ -34,7 +34,7 @@ public static class NullChecker
     {
         if (gameObject == null)
         {
-            return null;
+            return TryFind<T>(tag);
         }
 
         try
