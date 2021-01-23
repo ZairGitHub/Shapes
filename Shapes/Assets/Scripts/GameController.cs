@@ -51,7 +51,7 @@ public class GameController : MonoBehaviour, IGameController
     {
         if (IsRunning)
         {
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown(UnityInput.Jump))
             {
                 _timeController.TogglePause();
             }
@@ -104,7 +104,7 @@ public class GameController : MonoBehaviour, IGameController
         }
         else
         {
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown(UnityInput.Jump))
             {
                 RestartGame();
             }
