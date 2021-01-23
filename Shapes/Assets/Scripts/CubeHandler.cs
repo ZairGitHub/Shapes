@@ -32,10 +32,10 @@ public class CubeHandler : MonoBehaviour
     private void Start()
     {
         _constants = (IConstants)NullChecker
-            .TryFind<Constants>("Constants", gameObject);
+            .TryFind<Constants>(Tags.Constants, gameObject);
 
         _gameController = (IGameController)NullChecker
-            .TryFind<GameController>("GameController", gameObject);
+            .TryFind<GameController>(Tags.GameController, gameObject);
 
         _scoreController = _gameController.ScoreController;
     }
@@ -73,7 +73,7 @@ public class CubeHandler : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag.Contains("Boundary"))
+        if (collision.gameObject.tag.Contains(Tags.Boundary))
         {
             switch (collision.gameObject.tag)
             {
@@ -96,7 +96,7 @@ public class CubeHandler : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.CompareTag("Cube"))
+        if (collision.gameObject.CompareTag(Tags.Cube))
         {
             _horizontal = -_horizontal;
             _vertical = -_vertical;
@@ -107,7 +107,7 @@ public class CubeHandler : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Sphere"))
+        if (collision.gameObject.CompareTag(Tags.Sphere))
         {
             RecalculateDirection();
             GiveCollisionBonus(collision.gameObject);

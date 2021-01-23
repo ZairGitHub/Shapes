@@ -9,4 +9,6 @@
     public static string CubeEmitter { get; } = nameof(CubeEmitter);
 
     public static string GameController { get; } = nameof(GameController);
+
+    public static string Sphere { get; } = nameof(Sphere);
 }
