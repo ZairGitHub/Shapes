@@ -18,12 +18,14 @@ public class ScoreController
     {
         _gameController = gameController;
 
-        _textScore = (TextMeshProUGUI)NullChecker.TryFind<TextMeshProUGUI>("TextScore");
+        _textScore = (TextMeshProUGUI)NullChecker
+            .TryFind<TextMeshProUGUI>(Tags.TextScore);
+
         _textSurvivalBonus = (TextMeshProUGUI)NullChecker
-            .TryFind<TextMeshProUGUI>("TextSurvivalBonus");
+            .TryFind<TextMeshProUGUI>(Tags.TextSurvivalBonus);
 
         _textCollisionBonus = (TextMeshProUGUI)NullChecker
-            .TryFind<TextMeshProUGUI>("TextCollisionBonus");
+            .TryFind<TextMeshProUGUI>(Tags.TextCollisionBonus);
 
         _textSurvivalBonus.color = Color.red;
         _textCollisionBonus.color = Color.magenta;
@@ -35,8 +37,8 @@ public class ScoreController
         {
             yield return _survivalBonusDelay;
 
-            GiveSurvivalBonus(GameObject.FindGameObjectsWithTag("Cube").Length
-                + GameObject.FindGameObjectsWithTag("Sphere").Length);
+            GiveSurvivalBonus(GameObject.FindGameObjectsWithTag(Tags.Cube).Length
+                + GameObject.FindGameObjectsWithTag(Tags.Sphere).Length);
         }
     }
 

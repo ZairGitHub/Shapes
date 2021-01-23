@@ -19,4 +19,10 @@
     public static string GameController { get; } = nameof(GameController);
 
     public static string Sphere { get; } = nameof(Sphere);
+
+    public static string TextCollisionBonus { get; } = nameof(TextCollisionBonus);
+    
+    public static string TextScore { get; } = nameof(TextScore);
+
+    public static string TextSurvivalBonus { get; } = nameof(TextSurvivalBonus);
 }
