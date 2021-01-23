@@ -11,9 +11,9 @@ public class SphereEmitter : MonoBehaviour
     private void Start()
     {
         _gameController = (IGameController)NullChecker
-            .TryFind<GameController>("GameController", gameObject);
+            .TryFind<GameController>(Tags.GameController, gameObject);
 
-        _sphere = GameObject.FindWithTag("Sphere");
+        _sphere = GameObject.FindWithTag(Tags.Sphere);
         if (_sphere == null)
         {
             _sphere = new GameObject();
