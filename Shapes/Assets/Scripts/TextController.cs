@@ -1,5 +1,4 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 public class TextController : MonoBehaviour
@@ -8,14 +7,7 @@ public class TextController : MonoBehaviour
 
     private void Start()
     {
-        try
-        {
-            _textDebugTime = GameObject.FindWithTag("TextDebugTime").GetComponent<TextMeshProUGUI>();
-        }
-        catch (NullReferenceException)
-        {
-            _textDebugTime = new GameObject().AddComponent<TextMeshProUGUI>();
-        }
+        _textDebugTime = (TMP_Text)NullChecker.TryFind<TextMeshProUGUI>("TextDebugTime");
     }
 
     private void Update()

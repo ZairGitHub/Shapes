@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CubeHandler : MonoBehaviour
 {
@@ -21,13 +20,10 @@ public class CubeHandler : MonoBehaviour
 
     private void Awake()
     {
-        Collider collider = (BoxCollider)NullChecker
-            .TryGet<BoxCollider>(gameObject, GetComponent<BoxCollider>());
-
+        Collider collider = (BoxCollider)NullChecker.TryGet<BoxCollider>(gameObject);
         _boundaryWrapDistance = collider.bounds.size.x * _collisionScale;
-        _rb = (Rigidbody)NullChecker
-            .TryGet<Rigidbody>(gameObject, GetComponent<Rigidbody>());
 
+        _rb = (Rigidbody)NullChecker.TryGet<Rigidbody>(gameObject);
         _rb.constraints = RigidbodyConstraints.FreezePositionZ;
         _rb.freezeRotation = true;
         _rb.useGravity = false;
@@ -35,23 +31,11 @@ public class CubeHandler : MonoBehaviour
 
     private void Start()
     {
-        try
-        {
-            _constants = GameObject.FindWithTag("Constants").GetComponent<Constants>();
-        }
-        catch (NullReferenceException)
-        {
-            _constants = gameObject.AddComponent<Constants>();
-        }
+        _constants = (IConstants)NullChecker
+            .TryFind<Constants>("Constants", gameObject);
 
-        try
-        {
-            _gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
-        }
-        catch (NullReferenceException)
-        {
-            _gameController = gameObject.AddComponent<GameController>();
-        }
+        _gameController = (IGameController)NullChecker
+            .TryFind<GameController>("GameController", gameObject);
 
         _scoreController = _gameController.ScoreController;
     }
@@ -70,8 +54,8 @@ public class CubeHandler : MonoBehaviour
 
     private void RecalculateDirection()
     {
-        _horizontal = UnityEngine.Random.Range(-1.0f, 1.0f);
-        _vertical = UnityEngine.Random.Range(-1.0f, 1.0f);
+        _horizontal = Random.Range(-1.0f, 1.0f);
+        _vertical = Random.Range(-1.0f, 1.0f);
     }
 
     private void FixedUpdate()

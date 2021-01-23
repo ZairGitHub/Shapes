@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IGetAxisService
 {
@@ -12,9 +11,7 @@ public class PlayerController : MonoBehaviour, IGetAxisService
 
     private void Awake()
     {
-        _rb = (Rigidbody)NullChecker
-            .TryGet<Rigidbody>(gameObject, GetComponent<Rigidbody>());
-
+        _rb = (Rigidbody)NullChecker.TryGet<Rigidbody>(gameObject);
         _rb.constraints = RigidbodyConstraints.FreezePositionZ;
         _rb.freezeRotation = true;
         _rb.useGravity = false;
@@ -23,23 +20,11 @@ public class PlayerController : MonoBehaviour, IGetAxisService
     private void Start()
     {
         _getAxisService = this;
-        try
-        {
-            _constants = GameObject.FindWithTag("Constants").GetComponent<Constants>();
-        }
-        catch (NullReferenceException)
-        {
-            _constants = gameObject.AddComponent<Constants>();
-        }
-        
-        try
-        {
-            _gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
-        }
-        catch (NullReferenceException)
-        {
-            _gameController = gameObject.AddComponent<GameController>();
-        }
+        _constants = (IConstants)NullChecker
+            .TryFind<Constants>("Constants", gameObject);
+
+        _gameController = (IGameController)NullChecker
+            .TryFind<GameController>("GameController", gameObject);
 
         _speed = _constants.BoundaryWidth;
         _playerSpawner = new PlayerSpawner(_constants);
