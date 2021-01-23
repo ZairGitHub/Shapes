@@ -27,22 +27,13 @@ namespace Tests
         }
 
         [Test]
-        public void TryFind_NullTag_ReturnsComponent()
+        public void TryFind_NullOrEmptyTag_ReturnsComponentWithArgumentException()
         {
             var result = (IGameController)NullChecker
                 .TryFind<GameController>(null, _gameObject);
 
-            Assert.That(result, Is.TypeOf<GameController>());
-        }
-
-        [Test]
-        public void TryFind_NullOrEmptyTag_ReturnsComponent()
-        {
-            var result = (IGameController)NullChecker
-                .TryFind<GameController>(string.Empty, _gameObject);
-
             LogAssert.Expect(LogType.Exception,
-                "ArgumentException: Tag: tag name is null or empty.");
+                nameof(ArgumentException) + ": Tag: tag name is null or empty.");
 
             Assert.That(result, Is.TypeOf<GameController>());
         }
