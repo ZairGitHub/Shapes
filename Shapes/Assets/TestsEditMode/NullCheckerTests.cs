@@ -27,6 +27,15 @@ namespace Tests
         }
 
         [Test]
+        public void TryFind_NullGameObject_ReturnsNull()
+        {
+            var result = (IGameController)NullChecker
+                .TryFind<GameController>(null, null);
+
+            Assert.That(result, Is.Null);
+        }
+
+        [Test]
         public void TryFind_GameObject_AlwaysReturnsComponent()
         {
             var result = (IGameController)NullChecker

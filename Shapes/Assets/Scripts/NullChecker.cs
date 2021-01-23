@@ -20,11 +20,16 @@ public static class NullChecker
 
     public static Component TryFind<T>(string tag, GameObject gameObject) where T : Component
     {
+        if (gameObject == null)
+        {
+            return null;
+        }
+
         try
         {
             return GameObject.FindWithTag(tag).GetComponent<T>();
         }
-        catch (Exception) // Argument, NullReference
+        catch (Exception)
         {
             return gameObject.AddComponent<T>();
         }
