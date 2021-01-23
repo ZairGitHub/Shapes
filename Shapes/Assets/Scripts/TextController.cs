@@ -13,6 +13,6 @@ public class TextController : MonoBehaviour
 
     private void Update()
     {
-        _textDebugTime.text = "Time: " + Time.timeScale.ToString("0.00");
+        _textDebugTime.text = $"FPS: {(int)(1.0f / Time.unscaledDeltaTime):000}, Speed: x{Time.timeScale:0.00}";
     }
 }
