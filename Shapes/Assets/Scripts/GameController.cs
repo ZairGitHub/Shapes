@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour, IGameController
 
     private void DestroyCubes()
     {
-        GameObject[] cubes = GameObject.FindGameObjectsWithTag("Cube");
+        GameObject[] cubes = GameObject.FindGameObjectsWithTag(Tags.Cube);
         foreach (GameObject cube in cubes)
         {
             if (cube.GetComponent<CubeHandler>().Speed > 0)
@@ -37,7 +37,7 @@ public class GameController : MonoBehaviour, IGameController
 
     private void DestroySpheres()
     {
-        GameObject[] spheres = GameObject.FindGameObjectsWithTag("Sphere");
+        GameObject[] spheres = GameObject.FindGameObjectsWithTag(Tags.Sphere);
         foreach (GameObject sphere in spheres)
         {
             if (sphere.GetComponent<SphereHandler>().Speed > 0)
