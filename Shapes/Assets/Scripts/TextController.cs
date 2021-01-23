@@ -7,7 +7,8 @@ public class TextController : MonoBehaviour
 
     private void Start()
     {
-        _textDebugTime = (TMP_Text)NullChecker.TryFind<TextMeshProUGUI>("TextDebugTime");
+        _textDebugTime = (TMP_Text)NullChecker
+            .TryFind<TextMeshProUGUI>(Tags.TextDebugTime);
     }
 
     private void Update()

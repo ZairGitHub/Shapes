@@ -21,6 +21,8 @@
     public static string Sphere { get; } = nameof(Sphere);
 
     public static string TextCollisionBonus { get; } = nameof(TextCollisionBonus);
+
+    public static string TextDebugTime { get; } = nameof(TextDebugTime);
     
     public static string TextScore { get; } = nameof(TextScore);
 
