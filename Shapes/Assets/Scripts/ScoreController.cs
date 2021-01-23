@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -19,43 +18,12 @@ public class ScoreController
     {
         _gameController = gameController;
 
-        try
-        {
-            _textScore = GameObject.FindWithTag("TextScore").GetComponent<TextMeshProUGUI>();
-        }
-        catch (NullReferenceException)
-        {
-            _textScore = new GameObject().AddComponent<TextMeshProUGUI>();
-        }
+        _textScore = (TextMeshProUGUI)NullChecker.TryFind<TextMeshProUGUI>("TextScore");
+        _textSurvivalBonus = (TextMeshProUGUI)NullChecker
+            .TryFind<TextMeshProUGUI>("TextSurvivalBonus");
 
-        try
-        {
-            _textScore = GameObject.FindWithTag("TextScore").GetComponent<TextMeshProUGUI>();
-        }
-        catch (NullReferenceException)
-        {
-            _textScore = new GameObject().AddComponent<TextMeshProUGUI>();
-        }
-
-        try
-        {
-            _textSurvivalBonus =
-                GameObject.FindWithTag("TextSurvivalBonus").GetComponent<TextMeshProUGUI>();
-        }
-        catch (NullReferenceException)
-        {
-            _textSurvivalBonus = new GameObject().AddComponent<TextMeshProUGUI>();
-        }
-
-        try
-        {
-            _textCollisionBonus =
-                GameObject.FindWithTag("TextCollisionBonus").GetComponent<TextMeshProUGUI>();
-        }
-        catch (NullReferenceException)
-        {
-            _textCollisionBonus = new GameObject().AddComponent<TextMeshProUGUI>();
-        }
+        _textCollisionBonus = (TextMeshProUGUI)NullChecker
+            .TryFind<TextMeshProUGUI>("TextCollisionBonus");
 
         _textSurvivalBonus.color = Color.red;
         _textCollisionBonus.color = Color.magenta;
