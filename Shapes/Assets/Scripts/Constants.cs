@@ -3,6 +3,10 @@
 public class Constants : MonoBehaviour, IConstants
 {
     private GameObject _boundary;
+    private GameObject _boundaryNorth;
+    private GameObject _boundaryEast;
+    private GameObject _boundarySouth;
+    private GameObject _boundaryWest;
 
     public float BoundaryWidth { get; private set; }
 
@@ -17,8 +21,13 @@ public class Constants : MonoBehaviour, IConstants
         _boundary = GameObject.FindWithTag(Tags.Boundary);
         if (_boundary != null)
         {
-            BoundaryWidth = _boundary.transform.GetChild(1).gameObject.transform.position.x;
-            BoundaryHeight = _boundary.transform.GetChild(0).gameObject.transform.position.y;
+            _boundaryNorth = _boundary.transform.GetChild(0).gameObject;
+            _boundaryEast = _boundary.transform.GetChild(1).gameObject;
+            _boundarySouth = _boundary.transform.GetChild(2).gameObject;
+            _boundaryWest = _boundary.transform.GetChild(3).gameObject;
+
+            BoundaryWidth = _boundaryEast.transform.position.x;
+            BoundaryHeight = _boundaryNorth.transform.position.y;
         }
 
         GameWidth = BoundaryWidth * 2;
