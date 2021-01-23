@@ -13,7 +13,7 @@ public static class NullChecker
         return component == null ? gameObject.AddComponent<T>() : component;
     }
 
-    public static Component TryFind<T>(string tag, GameObject gameObject) where T : MonoBehaviour
+    public static Component TryFind<T>(string tag, GameObject gameObject) where T : Component
     {
         try
         {
