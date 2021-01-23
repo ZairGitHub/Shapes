@@ -2,11 +2,11 @@
 
 public class Constants : MonoBehaviour, IConstants
 {
+    private Vector3 _boundaryNorth;
+    private Vector3 _boundaryEast;
+    private Vector3 _boundarySouth;
+    private Vector3 _boundaryWest;
     private GameObject _boundary;
-    private Transform _boundaryNorth;
-    private Transform _boundaryEast;
-    private Transform _boundarySouth;
-    private Transform _boundaryWest;
 
     public float HalfBoundaryWidth { get; private set; }
 
@@ -25,18 +25,18 @@ public class Constants : MonoBehaviour, IConstants
         _boundary = GameObject.FindWithTag(Tags.Boundary);
         if (_boundary != null)
         {
-            _boundaryNorth = _boundary.transform.GetChild(0);
-            _boundaryEast = _boundary.transform.GetChild(1);
-            _boundarySouth = _boundary.transform.GetChild(2);
-            _boundaryWest = _boundary.transform.GetChild(3);
+            _boundaryNorth = _boundary.transform.GetChild(0).position;
+            _boundaryEast = _boundary.transform.GetChild(1).position;
+            _boundarySouth = _boundary.transform.GetChild(2).position;
+            _boundaryWest = _boundary.transform.GetChild(3).position;
 
-            FullBoundaryWidth = _boundaryEast.position.x - _boundaryWest.position.x;
-            FullBoundaryHeight = _boundaryNorth.position.y - _boundarySouth.position.y;
+            FullBoundaryWidth = _boundaryEast.x - _boundaryWest.x;
+            FullBoundaryHeight = _boundaryNorth.y - _boundarySouth.y;
 
-            HalfBoundaryWidth = _boundaryEast.transform.position.x;
-            HalfBoundaryHeight = _boundaryNorth.transform.position.y;
+            HalfBoundaryWidth = _boundaryEast.x;
+            HalfBoundaryHeight = _boundaryNorth.y;
 
-            Debug.Log($"FullWidth: {FullBoundaryWidth}, FullHeight: {FullBoundaryHeight}, " +
+            Debug.Log($"FullWidth: {FullBoundaryWidth}, FullHeight: {FullBoundaryHeight} | " +
                 $"BoundaryWidth {HalfBoundaryWidth}, BoundaryHeight {HalfBoundaryHeight}");
         }
 
