@@ -33,13 +33,14 @@ public class Constants : MonoBehaviour, IConstants
             FullBoundaryWidth = _boundaryEast.x - _boundaryWest.x;
             FullBoundaryHeight = _boundaryNorth.y - _boundarySouth.y;
 
-            HalfBoundaryWidth = _boundaryEast.x;
-            HalfBoundaryHeight = _boundaryNorth.y;
+            HalfBoundaryWidth = FullBoundaryWidth / 2.0f;
+            HalfBoundaryHeight = FullBoundaryHeight / 2.0f;
 
             Debug.Log($"FullWidth: {FullBoundaryWidth}, FullHeight: {FullBoundaryHeight} | " +
                 $"BoundaryWidth {HalfBoundaryWidth}, BoundaryHeight {HalfBoundaryHeight}");
         }
 
+        // 16:9
         GameWidth = HalfBoundaryWidth * 2;
         GameHeight = HalfBoundaryHeight * 2;
     }
