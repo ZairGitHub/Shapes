@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public static class NullChecker
 {
@@ -10,6 +11,18 @@ public static class NullChecker
             return null;
         }
         return component == null ? gameObject.AddComponent<T>() : component;
+    }
+
+    public static Component TryFind<T>(string tag, GameObject gameObject) where T : MonoBehaviour
+    {
+        try
+        {
+            return GameObject.FindWithTag(tag).GetComponent<T>();
+        }
+        catch (NullReferenceException)
+        {
+            return gameObject.AddComponent<T>();
+        }
     }
 
     public static GameObject TryGet(GameObject gameObject)
