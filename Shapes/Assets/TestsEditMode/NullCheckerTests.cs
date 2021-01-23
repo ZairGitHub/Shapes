@@ -25,6 +25,15 @@ namespace Tests
         }
 
         [Test]
+        public void TryFind_SingleArgument_AlwaysReturnsComponent()
+        {
+            var result = (IGameController)NullChecker
+                .TryFind<GameController>(null);
+
+            Assert.That(result, Is.TypeOf<GameController>());
+        }
+
+        [Test]
         public void TryFind_NullGameObject_ReturnsNull()
         {
             var result = (IGameController)NullChecker
