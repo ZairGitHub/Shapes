@@ -54,8 +54,8 @@ public class CubeHandler : MonoBehaviour
 
     private void RecalculateDirection()
     {
-        _horizontal = UnityEngine.Random.Range(-1.0f, 1.0f);
-        _vertical = UnityEngine.Random.Range(-1.0f, 1.0f);
+        _horizontal = Random.Range(-1.0f, 1.0f);
+        _vertical = Random.Range(-1.0f, 1.0f);
     }
 
     private void FixedUpdate()
