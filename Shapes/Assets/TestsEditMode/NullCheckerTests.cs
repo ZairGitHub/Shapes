@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using UnityEngine;
 
 namespace Tests
@@ -17,11 +18,20 @@ namespace Tests
         }
 
         [Test]
-        public void NullComponent_GameObject_ReturnsComponent()
+        public void TryGet_GameObject_ReturnsComponent()
         {
             var result = NullChecker.TryGet<Rigidbody>(_gameObject);
 
             Assert.That(result, Is.TypeOf<Rigidbody>());
+        }
+
+        [Test]
+        public void TryFind_NullTag_ReturnsComponent()
+        {
+            var result = (IGameController)NullChecker
+                .TryFind<GameController>(null, _gameObject);
+
+            Assert.That(result, Is.TypeOf<GameController>());
         }
     }
 }

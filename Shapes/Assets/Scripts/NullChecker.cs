@@ -24,7 +24,7 @@ public static class NullChecker
         {
             return GameObject.FindWithTag(tag).GetComponent<T>();
         }
-        catch (NullReferenceException)
+        catch (Exception) // Argument, NullReference
         {
             return gameObject.AddComponent<T>();
         }
