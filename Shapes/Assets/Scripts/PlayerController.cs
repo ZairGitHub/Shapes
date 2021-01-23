@@ -47,8 +47,8 @@ public class PlayerController : MonoBehaviour, IGetAxisService
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Cube")
-            || collision.gameObject.CompareTag("Sphere"))
+        if (collision.gameObject.CompareTag(Tags.Cube)
+            || collision.gameObject.CompareTag(Tags.Sphere))
         {
             if (_gameController.IsInDebugMode)
             {
