@@ -30,8 +30,8 @@ namespace Tests
         public void SetDirection_SetsSpeedToPositiveValue()
         {
             var mock = Substitute.For<IConstants>();
-            mock.BoundaryWidth.Returns(1.0f);
-            mock.BoundaryHeight.Returns(1.0f);
+            mock.HalfBoundaryWidth.Returns(1.0f);
+            mock.HalfBoundaryHeight.Returns(1.0f);
             var sut = CreateDefaultSphereHandler();
             sut.RunTestingConstructor(mock);
 

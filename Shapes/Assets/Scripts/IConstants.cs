@@ -1,10 +1,6 @@
 ﻿public interface IConstants
 {
-    float BoundaryWidth { get; }
+    float HalfBoundaryWidth { get; }
 
-    float BoundaryHeight { get; }
-
-    float GameWidth { get; }
-
-    float GameHeight { get; }
+    float HalfBoundaryHeight { get; }
 }

@@ -48,29 +48,53 @@ namespace Tests
         }
 
         [Test]
-        public void Awake_BoundaryExists_SetsBoundaryWidthToBoundaryChild()
+        public void Awake_BoundaryExists_SetsBoundaryWidthToBoundaryChildren()
         {
-            var boundaryChild = GameObject.FindWithTag(Tags.Boundary)
-                .transform.GetChild(1);
+            var boundary = GameObject.FindWithTag(Tags.Boundary);
+            var boundaryChild1 = boundary.transform.GetChild(1).position.x;
+            var boundaryChild2 = boundary.transform.GetChild(3).position.x;
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
             var result = sut.BoundaryWidth;
 
-            Assert.That(result, Is.EqualTo(boundaryChild.position.x));
+            Assert.That(result, Is.EqualTo(boundaryChild1 - boundaryChild2));
         }
 
         [Test]
-        public void Awake_BoundaryExists_SetsBoundaryHeightToBoundaryChild()
+        public void Awake_BoundaryExists_SetsBoundaryHeightToBoundaryChildren()
         {
-            var boundaryChild = GameObject.FindWithTag(Tags.Boundary)
-                .transform.GetChild(0);
+            var boundary = GameObject.FindWithTag(Tags.Boundary);
+            var boundaryChild1 = boundary.transform.GetChild(0).position.y;
+            var boundaryChild2 = boundary.transform.GetChild(2).position.y;
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
             var result = sut.BoundaryHeight;
 
-            Assert.That(result, Is.EqualTo(boundaryChild.position.y));
+            Assert.That(result, Is.EqualTo(boundaryChild1 - boundaryChild2));
+        }
+
+        [Test]
+        public void Awake_SetsHalfBoundaryWidthToBoundaryWidthDividedByTwo()
+        {
+            var sut = CreateDefaultConstants();
+            sut.runInEditMode = true;
+
+            var result = sut.HalfBoundaryWidth;
+
+            Assert.That(result, Is.EqualTo(sut.BoundaryWidth / 2.0f));
+        }
+
+        [Test]
+        public void Awake_SetsHalfBoundaryHeightToBoundaryHeightDividedByTwo()
+        {
+            var sut = CreateDefaultConstants();
+            sut.runInEditMode = true;
+
+            var result = sut.HalfBoundaryHeight;
+
+            Assert.That(result, Is.EqualTo(sut.BoundaryHeight / 2.0f));
         }
 
         [Test]

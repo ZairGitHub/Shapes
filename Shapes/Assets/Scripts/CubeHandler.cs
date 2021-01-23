@@ -49,7 +49,7 @@ public class CubeHandler : MonoBehaviour
     {
         _horizontal = x;
         _vertical = y;
-        Speed = _constants.BoundaryWidth * _minSpeed;
+        Speed = _constants.HalfBoundaryWidth * _minSpeed;
     }
 
     private void RecalculateDirection()
@@ -78,20 +78,24 @@ public class CubeHandler : MonoBehaviour
             switch (collision.gameObject.tag)
             {
                 case nameof(Tags.BoundaryNorth):
-                    _rb.MovePosition(new Vector3(_rb.position.x,
-                    -_constants.BoundaryHeight + _boundaryWrapDistance, _rb.position.z));
+                    _rb.MovePosition(new Vector3(
+                        _rb.position.x, -_constants.HalfBoundaryHeight +
+                        _boundaryWrapDistance, _rb.position.z));
                     break;
                 case nameof(Tags.BoundaryEast):
-                    _rb.MovePosition(new Vector3(-_constants.BoundaryWidth + _boundaryWrapDistance,
+                    _rb.MovePosition(new Vector3
+                        (-_constants.HalfBoundaryWidth + _boundaryWrapDistance,
                     _rb.position.y, _rb.position.z));
                     break;
                 case nameof(Tags.BoundarySouth):
-                    _rb.MovePosition(new Vector3(_rb.position.x,
-                    _constants.BoundaryHeight - _boundaryWrapDistance, _rb.position.z));
+                    _rb.MovePosition(new Vector3(
+                        _rb.position.x, _constants.HalfBoundaryHeight -
+                        _boundaryWrapDistance, _rb.position.z));
                     break;
                 case nameof(Tags.BoundaryWest):
-                    _rb.MovePosition(new Vector3(_constants.BoundaryWidth - _boundaryWrapDistance,
-                    _rb.position.y, _rb.position.z));
+                    _rb.MovePosition(new Vector3(
+                        _constants.HalfBoundaryWidth - _boundaryWrapDistance,
+                        _rb.position.y, _rb.position.z));
                     break;
             }
         }
