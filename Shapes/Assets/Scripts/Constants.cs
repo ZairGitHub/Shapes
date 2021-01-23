@@ -14,7 +14,7 @@ public class Constants : MonoBehaviour, IConstants
 
     private void Awake()
     {
-        _boundary = GameObject.FindWithTag("Boundary");
+        _boundary = GameObject.FindWithTag(Tags.Boundary);
         if (_boundary != null)
         {
             BoundaryWidth = _boundary.transform.GetChild(1).gameObject.transform.position.x;
