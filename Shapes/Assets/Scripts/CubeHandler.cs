@@ -77,19 +77,19 @@ public class CubeHandler : MonoBehaviour
         {
             switch (collision.gameObject.tag)
             {
-                case "BoundaryNorth":
+                case nameof(Tags.BoundaryNorth):
                     _rb.MovePosition(new Vector3(_rb.position.x,
                     -_constants.BoundaryHeight + _boundaryWrapDistance, _rb.position.z));
                     break;
-                case "BoundaryEast":
+                case nameof(Tags.BoundaryEast):
                     _rb.MovePosition(new Vector3(-_constants.BoundaryWidth + _boundaryWrapDistance,
                     _rb.position.y, _rb.position.z));
                     break;
-                case "BoundarySouth":
+                case nameof(Tags.BoundarySouth):
                     _rb.MovePosition(new Vector3(_rb.position.x,
                     _constants.BoundaryHeight - _boundaryWrapDistance, _rb.position.z));
                     break;
-                case "BoundaryWest":
+                case nameof(Tags.BoundaryWest):
                     _rb.MovePosition(new Vector3(_constants.BoundaryWidth - _boundaryWrapDistance,
                     _rb.position.y, _rb.position.z));
                     break;

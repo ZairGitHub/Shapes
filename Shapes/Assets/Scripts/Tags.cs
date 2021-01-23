@@ -2,6 +2,14 @@
 {
     public static string Boundary { get; } = nameof(Boundary);
 
+    public static string BoundaryNorth { get; } = nameof(BoundaryNorth);
+
+    public static string BoundaryEast { get; } = nameof(BoundaryEast);
+
+    public static string BoundarySouth { get; } = nameof(BoundarySouth);
+
+    public static string BoundaryWest { get; } = nameof(BoundaryWest);
+
     public static string Constants { get; } = nameof(Constants);
 
     public static string Cube { get; } = nameof(Cube);
