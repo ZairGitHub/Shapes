@@ -19,23 +19,11 @@ public class CubeEmitter : MonoBehaviour
 
     private void Start()
     {
-        try
-        {
-            _constants = GameObject.FindWithTag("Constants").GetComponent<Constants>();
-        }
-        catch (NullReferenceException)
-        {
-            _constants = gameObject.AddComponent<Constants>();
-        }
+        _constants = (IConstants)NullChecker
+            .TryFind<Constants>("Constants", gameObject);
 
-        try
-        {
-            _gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
-        }
-        catch (NullReferenceException)
-        {
-            _gameController = gameObject.AddComponent<GameController>();
-        }
+        _gameController = (IGameController)NullChecker
+            .TryFind<GameController>("GameController", gameObject);
 
         _cube = GameObject.FindWithTag("Cube");
         if (_cube == null)
