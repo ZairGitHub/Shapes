@@ -8,13 +8,13 @@ public class Constants : MonoBehaviour, IConstants
     private Vector3 _boundaryWest;
     private GameObject _boundary;
 
+    public float BoundaryWidth { get; private set; }
+
+    public float BoundaryHeight { get; private set; }
+
     public float HalfBoundaryWidth { get; private set; }
 
     public float HalfBoundaryHeight { get; private set; }
-
-    public float FullBoundaryWidth { get; private set; }
-
-    public float FullBoundaryHeight { get; private set; }
 
     public float GameWidth { get; private set; }
 
@@ -30,15 +30,13 @@ public class Constants : MonoBehaviour, IConstants
             _boundarySouth = _boundary.transform.GetChild(2).position;
             _boundaryWest = _boundary.transform.GetChild(3).position;
 
-            FullBoundaryWidth = _boundaryEast.x - _boundaryWest.x;
-            FullBoundaryHeight = _boundaryNorth.y - _boundarySouth.y;
-
-            HalfBoundaryWidth = FullBoundaryWidth / 2.0f;
-            HalfBoundaryHeight = FullBoundaryHeight / 2.0f;
-
-            Debug.Log($"FullWidth: {FullBoundaryWidth}, FullHeight: {FullBoundaryHeight} | " +
-                $"BoundaryWidth {HalfBoundaryWidth}, BoundaryHeight {HalfBoundaryHeight}");
+            BoundaryWidth = _boundaryEast.x - _boundaryWest.x;
+            BoundaryHeight = _boundaryNorth.y - _boundarySouth.y;
         }
+
+        // 4.3
+        HalfBoundaryWidth = BoundaryWidth / 2.0f;
+        HalfBoundaryHeight = BoundaryHeight / 2.0f;
 
         // 16:9
         GameWidth = HalfBoundaryWidth * 2;
