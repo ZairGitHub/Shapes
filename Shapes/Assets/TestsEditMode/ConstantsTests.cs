@@ -28,7 +28,7 @@ namespace Tests
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
-            var result = sut.BoundaryWidth;
+            var result = sut.HalfBoundaryWidth;
 
             Assert.That(result, Is.Zero);
             RestoreBoundaryTag();
@@ -41,7 +41,7 @@ namespace Tests
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
-            var result = sut.BoundaryHeight;
+            var result = sut.HalfBoundaryHeight;
 
             Assert.That(result, Is.Zero);
             RestoreBoundaryTag();
@@ -55,7 +55,7 @@ namespace Tests
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
-            var result = sut.BoundaryWidth;
+            var result = sut.HalfBoundaryWidth;
 
             Assert.That(result, Is.EqualTo(boundaryChild.position.x));
         }
@@ -68,7 +68,7 @@ namespace Tests
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
-            var result = sut.BoundaryHeight;
+            var result = sut.HalfBoundaryHeight;
 
             Assert.That(result, Is.EqualTo(boundaryChild.position.y));
         }
@@ -81,7 +81,7 @@ namespace Tests
 
             var result = sut.GameWidth;
 
-            Assert.That(result, Is.EqualTo(sut.BoundaryWidth * 2.0f));
+            Assert.That(result, Is.EqualTo(sut.HalfBoundaryWidth * 2.0f));
         }
 
         [Test]
@@ -92,7 +92,7 @@ namespace Tests
 
             var result = sut.GameHeight;
 
-            Assert.That(result, Is.EqualTo(sut.BoundaryHeight * 2.0f));
+            Assert.That(result, Is.EqualTo(sut.HalfBoundaryHeight * 2.0f));
         }
     }
 }

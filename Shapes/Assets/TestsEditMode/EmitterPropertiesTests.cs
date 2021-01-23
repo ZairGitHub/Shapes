@@ -18,8 +18,8 @@ namespace Tests
         private EmitterProperties CreateDefaultEmitterPropertiesWithMock()
         {
             var mock = Substitute.For<IConstants>();
-            mock.BoundaryHeight.Returns(_mockValue);
-            mock.BoundaryWidth.Returns(_mockValue);
+            mock.HalfBoundaryHeight.Returns(_mockValue);
+            mock.HalfBoundaryWidth.Returns(_mockValue);
             return new EmitterProperties(mock, _boundaryOffSet);
         }
 

@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour, IGetAxisService
         _gameController = (IGameController)NullChecker
             .TryFind<GameController>(Tags.GameController, gameObject);
 
-        _speed = _constants.BoundaryWidth;
+        _speed = _constants.HalfBoundaryWidth;
         _playerSpawner = new PlayerSpawner(_constants);
         _playerSpawner.SetSpawnPosition(_rb);
     }

@@ -40,7 +40,7 @@ public class SphereHandler : MonoBehaviour
     {
         RecalculateDirection();
 
-        Speed = _constants.BoundaryWidth;
+        Speed = _constants.HalfBoundaryWidth;
     }
 
     private void RecalculateDirection()
