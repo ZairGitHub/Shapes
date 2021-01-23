@@ -21,10 +21,10 @@ public class PlayerController : MonoBehaviour, IGetAxisService
     {
         _getAxisService = this;
         _constants = (IConstants)NullChecker
-            .TryFind<Constants>("Constants", gameObject);
+            .TryFind<Constants>(Tags.Constants, gameObject);
 
         _gameController = (IGameController)NullChecker
-            .TryFind<GameController>("GameController", gameObject);
+            .TryFind<GameController>(Tags.GameController, gameObject);
 
         _speed = _constants.BoundaryWidth;
         _playerSpawner = new PlayerSpawner(_constants);
