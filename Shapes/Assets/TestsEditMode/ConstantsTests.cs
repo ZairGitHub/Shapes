@@ -13,12 +13,12 @@ namespace Tests
 
         private void RemoveBoundaryTag()
         {
-            GameObject.FindWithTag("Boundary").tag = "Debug";
+            GameObject.FindWithTag(Tags.Boundary).tag = Tags.Debug;
         }
 
         private void RestoreBoundaryTag()
         {
-            GameObject.FindWithTag("Debug").tag = "Boundary";
+            GameObject.FindWithTag(Tags.Debug).tag = Tags.Boundary;
         }
 
         [Test]
@@ -50,7 +50,8 @@ namespace Tests
         [Test]
         public void Awake_BoundaryExists_SetsBoundaryWidthToBoundaryChild()
         {
-            var boundaryChild = GameObject.FindWithTag("Boundary").transform.GetChild(1);
+            var boundaryChild = GameObject.FindWithTag(Tags.Boundary)
+                .transform.GetChild(1);
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
@@ -62,7 +63,8 @@ namespace Tests
         [Test]
         public void Awake_BoundaryExists_SetsBoundaryHeightToBoundaryChild()
         {
-            var boundaryChild = GameObject.FindWithTag("Boundary").transform.GetChild(0);
+            var boundaryChild = GameObject.FindWithTag(Tags.Boundary)
+                .transform.GetChild(0);
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
