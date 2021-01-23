@@ -22,7 +22,7 @@ namespace Tests
         public IEnumerator FixedUpdate_NegativeHorizontalAxis_SetsRigidbodyVelocityToVector3Left()
         {
             var mock = Substitute.For<IGetAxisService>();
-            mock.GetAxis("Horizontal").Returns(-1.0f);
+            mock.GetAxis(UnityInput.Horizontal).Returns(-1.0f);
             var sut = CreateDefaultPlayerController();
             yield return null;
             sut.RunTestingConstructor(mock, _speed);
@@ -37,7 +37,7 @@ namespace Tests
         public IEnumerator FixedUpdate_PositiveHorizontalAxis_SetsRigidbodyVelocityToVector3Right()
         {
             var mock = Substitute.For<IGetAxisService>();
-            mock.GetAxis("Horizontal").Returns(1.0f);
+            mock.GetAxis(UnityInput.Horizontal).Returns(1.0f);
             var sut = CreateDefaultPlayerController();
             yield return null;
             sut.RunTestingConstructor(mock, _speed);
@@ -52,7 +52,7 @@ namespace Tests
         public IEnumerator FixedUpdate_NegativeVerticalAxis_SetsRigidbodyVelocityToVector3Down()
         {
             var mock = Substitute.For<IGetAxisService>();
-            mock.GetAxis("Vertical").Returns(-1.0f);
+            mock.GetAxis(UnityInput.Vertical).Returns(-1.0f);
             var sut = CreateDefaultPlayerController();
             yield return null;
             sut.RunTestingConstructor(mock, _speed);
@@ -67,7 +67,7 @@ namespace Tests
         public IEnumerator FixedUpdate_NegativeVerticalAxis_SetsRigidbodyVelocityToVector3Up()
         {
             var mock = Substitute.For<IGetAxisService>();
-            mock.GetAxis("Vertical").Returns(1.0f);
+            mock.GetAxis(UnityInput.Vertical).Returns(1.0f);
             var sut = CreateDefaultPlayerController();
             yield return null;
             sut.RunTestingConstructor(mock, _speed);

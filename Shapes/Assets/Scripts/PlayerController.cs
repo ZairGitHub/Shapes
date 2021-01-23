@@ -41,8 +41,8 @@ public class PlayerController : MonoBehaviour, IGetAxisService
 
     private void FixedUpdate()
     {
-        _rb.velocity = new Vector3(_getAxisService.GetAxis("Horizontal"),
-            _getAxisService.GetAxis("Vertical")) * _speed;
+        _rb.velocity = new Vector3(_getAxisService.GetAxis(UnityInput.Horizontal),
+            _getAxisService.GetAxis(UnityInput.Vertical)) * _speed;
     }
 
     private void OnCollisionEnter(Collision collision)
