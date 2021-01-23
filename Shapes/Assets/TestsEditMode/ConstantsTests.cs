@@ -76,6 +76,28 @@ namespace Tests
         }
 
         [Test]
+        public void Awake_SetsHalfBoundaryWidthToBoundaryWidthDividedByTwo()
+        {
+            var sut = CreateDefaultConstants();
+            sut.runInEditMode = true;
+
+            var result = sut.HalfBoundaryWidth;
+
+            Assert.That(result, Is.EqualTo(sut.BoundaryWidth / 2.0f));
+        }
+
+        [Test]
+        public void Awake_SetsHalfBoundaryHeightToBoundaryHeightDividedByTwo()
+        {
+            var sut = CreateDefaultConstants();
+            sut.runInEditMode = true;
+
+            var result = sut.HalfBoundaryHeight;
+
+            Assert.That(result, Is.EqualTo(sut.BoundaryHeight / 2.0f));
+        }
+
+        [Test]
         public void Awake_SetsGameWidthToBoundaryWidthMultipliedByTwo()
         {
             var sut = CreateDefaultConstants();
