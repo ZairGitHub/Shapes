@@ -52,7 +52,7 @@ public class CubeEmitter : MonoBehaviour
     {
         while (_gameController.IsRunning)
         {
-            int RNG = UnityEngine.Random.Range(0, _cubeEmitters.Length);
+            int RNG = Random.Range(0, _cubeEmitters.Length);
             _cubeEmitters[RNG].GetComponent<Renderer>().material.color = _emissionColor;
             yield return _emitterDelay;
 

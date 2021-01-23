@@ -6,8 +6,6 @@ namespace Tests
     [TestFixture]
     public class NullCheckerTests
     {
-        private readonly GameObject _gameObject = new GameObject();
-
         [Test]
         public void TryGet_NullGameObject_ReturnsNull()
         {
@@ -19,7 +17,7 @@ namespace Tests
         [Test]
         public void TryGet_GameObject_ReturnsComponent()
         {
-            var result = NullChecker.TryGet<Rigidbody>(_gameObject);
+            var result = NullChecker.TryGet<Rigidbody>(new GameObject());
 
             Assert.That(result, Is.TypeOf<Rigidbody>());
         }
