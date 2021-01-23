@@ -1,8 +1,8 @@
-﻿public class UnityInput
+﻿public static class UnityInput
 {
-    public string Horizontal { get; } = nameof(Horizontal);
+    public static string Horizontal { get; } = nameof(Horizontal);
 
-    public string Vertical { get; } = nameof(Vertical);
+    public static string Vertical { get; } = nameof(Vertical);
 
-    public string Jump { get; } = nameof(Jump);
+    public static string Jump { get; } = nameof(Jump);
 }
