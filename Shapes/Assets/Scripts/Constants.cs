@@ -39,7 +39,7 @@ public class Constants : MonoBehaviour, IConstants
         HalfBoundaryHeight = BoundaryHeight / 2.0f;
 
         // 16:9
-        GameWidth = HalfBoundaryWidth * 2;
-        GameHeight = HalfBoundaryHeight * 2;
+        GameWidth = BoundaryWidth * 2.0f;
+        GameHeight = BoundaryHeight * 2.0f;
     }
 }
