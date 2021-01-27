@@ -11,8 +11,13 @@ public class TextController : MonoBehaviour
             .TryFind<TextMeshProUGUI>(Tags.TextDebugTime);
     }
 
+    private int DisplayFPS() => (int)(1.0f / Time.unscaledDeltaTime);
+
+    private float DisplaySpeed() => Time.timeScale;
+
     private void Update()
     {
-        _textDebugTime.text = $"FPS: {(int)(1.0f / Time.unscaledDeltaTime):000}, Speed: x{Time.timeScale:0.00}";
+        _textDebugTime.text =
+            $"FPS: {DisplayFPS():000}, Speed: x{DisplaySpeed():0.00}";
     }
 }
