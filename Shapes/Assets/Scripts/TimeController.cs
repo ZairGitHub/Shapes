@@ -27,17 +27,12 @@ public class TimeController
     public void SlowDownTime()
     {
         Time.timeScale = ClampTime(Time.timeScale - _timeFactor);
-        /*Time.timeScale = (Time.timeScale - _timeFactor > MinTime) ?
-            Time.timeScale -= _timeFactor : MinTime;*/
-
         _savedTime = Time.timeScale;
     }
 
     public void SpeedUpTime()
     {
-        Time.timeScale = (Time.timeScale + _timeFactor < MaxTime) ?
-            Time.timeScale += _timeFactor : MaxTime;
-
+        Time.timeScale = ClampTime(Time.timeScale + _timeFactor);
         _savedTime = Time.timeScale;
     }
 
