@@ -4,9 +4,9 @@ public class SphereHandler : MonoBehaviour
 {
     private float _horizontal;
     private float _vertical;
-    private Vector3 _direction;
     private IConstants _constants;
     private IGameController _gameController;
+    private Vector3 _direction;
     private Rigidbody _rb;
     private ScoreController _scoreController;
 
