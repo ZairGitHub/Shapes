@@ -26,8 +26,9 @@ public class TimeController
     
     public void SlowDownTime()
     {
-        Time.timeScale = (Time.timeScale - _timeFactor > MinTime) ?
-            Time.timeScale -= _timeFactor : MinTime;
+        Time.timeScale = ClampTime(Time.timeScale - _timeFactor);
+        /*Time.timeScale = (Time.timeScale - _timeFactor > MinTime) ?
+            Time.timeScale -= _timeFactor : MinTime;*/
 
         _savedTime = Time.timeScale;
     }
@@ -47,5 +48,10 @@ public class TimeController
             Time.timeScale = timeScale;
             _savedTime = timeScale;
         }
+    }
+
+    private float ClampTime(float timeScale)
+    {
+        return Mathf.Clamp(timeScale, MinTime, MaxTime);
     }
 }
