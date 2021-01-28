@@ -11,40 +11,50 @@ namespace Tests
             return new GameObject().AddComponent<Constants>();
         }
 
-        private void RemoveBoundaryTag()
+        private void RemoveBoundaryGameTag()
         {
             GameObject.FindWithTag(Tags.BoundaryGame).tag = Tags.Debug;
         }
 
-        private void RestoreBoundaryTag()
+        private void RemoveBoundaryViewTag()
+        {
+            GameObject.FindWithTag(Tags.BoundaryView).tag = Tags.Debug;
+        }
+
+        private void RestoreBoundaryGameTag()
         {
             GameObject.FindWithTag(Tags.Debug).tag = Tags.BoundaryGame;
+        }
+
+        private void RestoreBoundaryViewTag()
+        {
+            GameObject.FindWithTag(Tags.Debug).tag = Tags.BoundaryView;
         }
 
         [Test]
         public void Awake_BoundaryDoesNotExist_SetsBoundaryWidthToZero()
         {
-            RemoveBoundaryTag();
+            RemoveBoundaryGameTag();
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
             var result = sut.GameWidth;
 
             Assert.That(result, Is.Zero);
-            RestoreBoundaryTag();
+            RestoreBoundaryGameTag();
         }
 
         [Test]
         public void Awake_BoundaryDoesNotExist_SetsBoundaryHeightToZero()
         {
-            RemoveBoundaryTag();
+            RemoveBoundaryGameTag();
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
             var result = sut.GameHeight;
 
             Assert.That(result, Is.Zero);
-            RestoreBoundaryTag();
+            RestoreBoundaryGameTag();
         }
 
         [Test]
