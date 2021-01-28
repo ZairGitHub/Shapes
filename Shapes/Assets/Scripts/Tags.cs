@@ -2,6 +2,8 @@
 {
     public static string BoundaryGame { get; } = nameof(BoundaryGame);
 
+    public static string BoundaryView { get; } = nameof(BoundaryView);
+
     public static string BoundaryNorth { get; } = nameof(BoundaryNorth);
 
     public static string BoundaryEast { get; } = nameof(BoundaryEast);
