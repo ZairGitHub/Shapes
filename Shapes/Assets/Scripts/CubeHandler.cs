@@ -79,22 +79,22 @@ public class CubeHandler : MonoBehaviour
             {
                 case nameof(Tags.BoundaryNorth):
                     _rb.MovePosition(new Vector3(
-                        _rb.position.x, -_constants.HalfGameHeight +
+                        _rb.position.x, -_constants.HalfViewHeight +
                         _boundaryWrapDistance, _rb.position.z));
                     break;
                 case nameof(Tags.BoundaryEast):
                     _rb.MovePosition(new Vector3
-                        (-_constants.HalfGameWidth + _boundaryWrapDistance,
+                        (-_constants.HalfViewWidth + _boundaryWrapDistance,
                     _rb.position.y, _rb.position.z));
                     break;
                 case nameof(Tags.BoundarySouth):
                     _rb.MovePosition(new Vector3(
-                        _rb.position.x, _constants.HalfGameHeight -
+                        _rb.position.x, _constants.HalfViewHeight -
                         _boundaryWrapDistance, _rb.position.z));
                     break;
                 case nameof(Tags.BoundaryWest):
                     _rb.MovePosition(new Vector3(
-                        _constants.HalfGameWidth - _boundaryWrapDistance,
+                        _constants.HalfViewWidth - _boundaryWrapDistance,
                         _rb.position.y, _rb.position.z));
                     break;
             }

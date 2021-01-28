@@ -54,7 +54,7 @@ public class Constants : MonoBehaviour, IConstants
             ViewHeight = _boundaryNorth.y - _boundarySouth.y;
         }
 
-        HalfViewHeight = ViewWidth / 2.0f;
-        HalfGameHeight = ViewWidth / 2.0f;
+        HalfViewWidth = ViewWidth / 2.0f;
+        HalfViewHeight = ViewHeight / 2.0f;
     }
 }
