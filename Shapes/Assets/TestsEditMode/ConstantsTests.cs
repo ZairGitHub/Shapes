@@ -96,27 +96,5 @@ namespace Tests
 
             Assert.That(result, Is.EqualTo(sut.GameHeight / 2.0f));
         }
-
-        [Test]
-        public void Awake_SetsGameWidthToBoundaryWidthMultipliedByTwo()
-        {
-            var sut = CreateDefaultConstants();
-            sut.runInEditMode = true;
-
-            var result = sut.ViewWidth;
-
-            Assert.That(result, Is.EqualTo(sut.GameWidth * 2.0f));
-        }
-
-        [Test]
-        public void Awake_SetsGameHeightToBoundaryHeightMultipliedByTwo()
-        {
-            var sut = CreateDefaultConstants();
-            sut.runInEditMode = true;
-
-            var result = sut.ViewHeight;
-
-            Assert.That(result, Is.EqualTo(sut.GameHeight * 2.0f));
-        }
     }
 }

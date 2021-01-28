@@ -41,10 +41,10 @@ public class Constants : MonoBehaviour, IConstants
         _boundaryView = GameObject.FindWithTag(Tags.BoundaryView);
         if (_boundaryView != null)
         {
-            _boundaryNorth = _boundaryGame.transform.GetChild(0).position;
-            _boundaryEast = _boundaryGame.transform.GetChild(1).position;
-            _boundarySouth = _boundaryGame.transform.GetChild(2).position;
-            _boundaryWest = _boundaryGame.transform.GetChild(3).position;
+            _boundaryNorth = _boundaryView.transform.GetChild(0).position;
+            _boundaryEast = _boundaryView.transform.GetChild(1).position;
+            _boundarySouth = _boundaryView.transform.GetChild(2).position;
+            _boundaryWest = _boundaryView.transform.GetChild(3).position;
 
             ViewWidth = _boundaryEast.x - _boundaryWest.x;
             ViewHeight = _boundaryNorth.y - _boundarySouth.y;
