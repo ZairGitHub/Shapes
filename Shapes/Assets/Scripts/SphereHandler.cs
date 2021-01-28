@@ -85,21 +85,26 @@ public class SphereHandler : MonoBehaviour
                     _horizontal = -_horizontal;
                     break;
             }
+            RedirectDirectionVector();            
         }
+    }
 
-        if (other.gameObject.CompareTag(Tags.Sphere))
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag(Tags.Sphere))
         {
             _horizontal = -_horizontal;
             _vertical = -_vertical;
-
-            GiveCollisionBonus(other.gameObject);
+            
+            RedirectDirectionVector();
+            GiveCollisionBonus(collision.gameObject);
         }
 
-        Vector3 direction = new Vector3(_horizontal, _vertical, 0.0f);
+        /*Vector3 direction = new Vector3(_horizontal, _vertical, 0.0f);
         if (direction != _direction)
         {
             RedirectDirectionVector();
-        }
+        }*/
     }
 
     private void OnCollisionStay(Collision collision)
