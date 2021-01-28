@@ -154,11 +154,17 @@ public class CubeHandler : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(Tags.Sphere))
         {
-            _hasSphereCollision = true;
-            GetComponent<Renderer>().material.color = Color.cyan;
+            ActivateSphereCollision();
             RecalculateDirection();
             GiveCollisionBonus(collision.gameObject);
         }
+    }
+
+    private void ActivateSphereCollision()
+    {
+        _hasSphereCollision = true;
+        GetComponent<Renderer>().material.color = Color.cyan;
+        Speed = _constants.HalfGameWidth * _maxSpeed;
     }
 
     private void GiveCollisionBonus(GameObject other)
