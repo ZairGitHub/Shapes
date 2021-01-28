@@ -7,6 +7,7 @@ public class CubeHandler : MonoBehaviour
     private const float _maxSpeed = 0.4f;
     private const float _speedMultiplier = 0.02f;
 
+    private bool _hasSphereCollision;
     private float _boundaryWrapDistance;
     private float _horizontal;
     private float _vertical;
@@ -73,7 +74,40 @@ public class CubeHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.transform.parent.CompareTag(Tags.BoundaryView))
+        if (other.gameObject.transform.parent.CompareTag(Tags.BoundaryGame))
+        {
+            if (_hasSphereCollision)
+            {
+                switch (other.gameObject.tag)
+                {
+                    case nameof(Tags.BoundaryNorth):
+                        _rb.MovePosition(new Vector3(
+                            _rb.position.x,
+                            -_constants.HalfGameHeight + _boundaryWrapDistance,
+                            _rb.position.z));
+                        break;
+                    case nameof(Tags.BoundaryEast):
+                        _rb.MovePosition(new Vector3
+                            (-_constants.HalfGameWidth + _boundaryWrapDistance,
+                            _rb.position.y,
+                            _rb.position.z));
+                        break;
+                    case nameof(Tags.BoundarySouth):
+                        _rb.MovePosition(new Vector3(
+                            _rb.position.x,
+                            _constants.HalfGameHeight - _boundaryWrapDistance,
+                            _rb.position.z));
+                        break;
+                    case nameof(Tags.BoundaryWest):
+                        _rb.MovePosition(new Vector3(
+                            _constants.HalfGameWidth - _boundaryWrapDistance,
+                            _rb.position.y,
+                            _rb.position.z));
+                        break;
+                }
+            }
+        }
+        else if (other.gameObject.transform.parent.CompareTag(Tags.BoundaryView))
         {
             switch (other.gameObject.tag)
             {
@@ -120,6 +154,8 @@ public class CubeHandler : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(Tags.Sphere))
         {
+            _hasSphereCollision = true;
+            GetComponent<Renderer>().material.color = Color.cyan;
             RecalculateDirection();
             GiveCollisionBonus(collision.gameObject);
         }
