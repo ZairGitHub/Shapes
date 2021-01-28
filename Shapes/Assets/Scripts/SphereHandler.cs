@@ -61,12 +61,12 @@ public class SphereHandler : MonoBehaviour
         _rb.velocity =
             _gameController.IsRunning ? _direction * Speed : Vector3.zero;
     }
-    
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag.Contains(Tags.Boundary))
+        if (other.gameObject.tag.Contains(Tags.Boundary))
         {
-            switch (collision.gameObject.tag)
+            switch (other.gameObject.tag)
             {
                 case nameof(Tags.BoundaryNorth):
                 case nameof(Tags.BoundarySouth):
@@ -79,12 +79,12 @@ public class SphereHandler : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.CompareTag(Tags.Sphere))
+        if (other.gameObject.CompareTag(Tags.Sphere))
         {
             _horizontal = -_horizontal;
             _vertical = -_vertical;
 
-            GiveCollisionBonus(collision.gameObject);
+            GiveCollisionBonus(other.gameObject);
         }
         
         Vector3 direction = new Vector3(_horizontal, _vertical, 0.0f);
