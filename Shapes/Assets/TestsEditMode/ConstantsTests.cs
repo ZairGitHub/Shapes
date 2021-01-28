@@ -132,5 +132,33 @@ namespace Tests
             Assert.That(result, Is.Zero);
             RestoreBoundaryViewTag();
         }
+
+        [Test]
+        public void Awake_BoundaryViewExists_SetsViewWidthToBoundaryChildren()
+        {
+            var boundary = GameObject.FindWithTag(Tags.BoundaryView);
+            var boundaryChild1 = boundary.transform.GetChild(1).position.x;
+            var boundaryChild2 = boundary.transform.GetChild(3).position.x;
+            var sut = CreateDefaultConstants();
+            sut.runInEditMode = true;
+
+            var result = sut.ViewWidth;
+
+            Assert.That(result, Is.EqualTo(boundaryChild1 - boundaryChild2));
+        }
+
+        [Test]
+        public void Awake_BoundaryViewExists_SetsViewHeightToBoundaryChildren()
+        {
+            var boundary = GameObject.FindWithTag(Tags.BoundaryView);
+            var boundaryChild1 = boundary.transform.GetChild(0).position.y;
+            var boundaryChild2 = boundary.transform.GetChild(2).position.y;
+            var sut = CreateDefaultConstants();
+            sut.runInEditMode = true;
+
+            var result = sut.ViewHeight;
+
+            Assert.That(result, Is.EqualTo(boundaryChild1 - boundaryChild2));
+        }
     }
 }
