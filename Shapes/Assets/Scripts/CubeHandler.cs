@@ -73,7 +73,7 @@ public class CubeHandler : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag.Contains(Tags.Boundary))
+        if (collision.gameObject.tag.Contains(Tags.BoundaryGame))
         {
             switch (collision.gameObject.tag)
             {

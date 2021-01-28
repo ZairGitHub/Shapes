@@ -22,7 +22,7 @@ public class Constants : MonoBehaviour, IConstants
 
     private void Awake()
     {
-        _boundary = GameObject.FindWithTag(Tags.Boundary);
+        _boundary = GameObject.FindWithTag(Tags.BoundaryGame);
         if (_boundary != null)
         {
             _boundaryNorth = _boundary.transform.GetChild(0).position;

@@ -19,6 +19,7 @@ TagManager:
   - TextCollisionBonus
   - Debug
   - Boundary
+  - BoundaryGame
   layers:
   - Default
   - TransparentFX

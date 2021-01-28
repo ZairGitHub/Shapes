@@ -1341,8 +1341,8 @@ GameObject:
   m_Component:
   - component: {fileID: 738475076}
   m_Layer: 0
-  m_Name: Boundary
-  m_TagString: Boundary
+  m_Name: BoundaryGame
+  m_TagString: BoundaryGame
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

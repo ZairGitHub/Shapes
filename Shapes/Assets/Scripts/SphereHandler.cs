@@ -64,7 +64,7 @@ public class SphereHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Contains(Tags.Boundary))
+        if (other.gameObject.transform.parent.CompareTag(Tags.BoundaryGame))
         {
             switch (other.gameObject.tag)
             {
