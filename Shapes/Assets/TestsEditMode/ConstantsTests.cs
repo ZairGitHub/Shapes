@@ -160,5 +160,27 @@ namespace Tests
 
             Assert.That(result, Is.EqualTo(boundaryChild1 - boundaryChild2));
         }
+
+        [Test]
+        public void Awake_SetsHalfViewWidthToViewWidthDividedByTwo()
+        {
+            var sut = CreateDefaultConstants();
+            sut.runInEditMode = true;
+
+            var result = sut.HalfViewWidth;
+
+            Assert.That(result, Is.EqualTo(sut.ViewWidth / 2.0f));
+        }
+
+        [Test]
+        public void Awake_SetsHalfViewHeightToViewHeightDividedByTwo()
+        {
+            var sut = CreateDefaultConstants();
+            sut.runInEditMode = true;
+
+            var result = sut.HalfViewHeight;
+
+            Assert.That(result, Is.EqualTo(sut.ViewHeight / 2.0f));
+        }
     }
 }
