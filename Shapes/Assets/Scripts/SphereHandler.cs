@@ -69,11 +69,19 @@ public class SphereHandler : MonoBehaviour
             switch (other.gameObject.tag)
             {
                 case nameof(Tags.BoundaryNorth):
+                    _rb.MovePosition(_rb.position + Vector3.down);
+                    _vertical = -_vertical;
+                    break;
                 case nameof(Tags.BoundarySouth):
+                    _rb.MovePosition(_rb.position + Vector3.up);
                     _vertical = -_vertical;
                     break;
                 case nameof(Tags.BoundaryEast):
+                    _rb.MovePosition(_rb.position + Vector3.left);
+                    _horizontal = -_horizontal;
+                    break;
                 case nameof(Tags.BoundaryWest):
+                    _rb.MovePosition(_rb.position + Vector3.right);
                     _horizontal = -_horizontal;
                     break;
             }
@@ -86,7 +94,7 @@ public class SphereHandler : MonoBehaviour
 
             GiveCollisionBonus(other.gameObject);
         }
-        
+
         Vector3 direction = new Vector3(_horizontal, _vertical, 0.0f);
         if (direction != _direction)
         {
