@@ -71,11 +71,11 @@ public class CubeHandler : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag.Contains(Tags.BoundaryGame))
+        if (other.gameObject.transform.parent.CompareTag(Tags.BoundaryView))
         {
-            switch (collision.gameObject.tag)
+            switch (other.gameObject.tag)
             {
                 case nameof(Tags.BoundaryNorth):
                     _rb.MovePosition(new Vector3(
@@ -99,7 +99,10 @@ public class CubeHandler : MonoBehaviour
                     break;
             }
         }
+    }
 
+    private void OnCollisionEnter(Collision collision)
+    {
         if (collision.gameObject.CompareTag(Tags.Cube))
         {
             _horizontal = -_horizontal;
