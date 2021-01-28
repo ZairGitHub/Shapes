@@ -28,7 +28,7 @@ namespace Tests
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
-            var result = sut.BoundaryWidth;
+            var result = sut.GameWidth;
 
             Assert.That(result, Is.Zero);
             RestoreBoundaryTag();
@@ -41,7 +41,7 @@ namespace Tests
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
-            var result = sut.BoundaryHeight;
+            var result = sut.GameHeight;
 
             Assert.That(result, Is.Zero);
             RestoreBoundaryTag();
@@ -56,7 +56,7 @@ namespace Tests
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
-            var result = sut.BoundaryWidth;
+            var result = sut.GameWidth;
 
             Assert.That(result, Is.EqualTo(boundaryChild1 - boundaryChild2));
         }
@@ -70,7 +70,7 @@ namespace Tests
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
-            var result = sut.BoundaryHeight;
+            var result = sut.GameHeight;
 
             Assert.That(result, Is.EqualTo(boundaryChild1 - boundaryChild2));
         }
@@ -81,9 +81,9 @@ namespace Tests
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
-            var result = sut.HalfBoundaryWidth;
+            var result = sut.HalfGameWidth;
 
-            Assert.That(result, Is.EqualTo(sut.BoundaryWidth / 2.0f));
+            Assert.That(result, Is.EqualTo(sut.GameWidth / 2.0f));
         }
 
         [Test]
@@ -92,9 +92,9 @@ namespace Tests
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
-            var result = sut.HalfBoundaryHeight;
+            var result = sut.HalfGameHeight;
 
-            Assert.That(result, Is.EqualTo(sut.BoundaryHeight / 2.0f));
+            Assert.That(result, Is.EqualTo(sut.GameHeight / 2.0f));
         }
 
         [Test]
@@ -103,9 +103,9 @@ namespace Tests
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
-            var result = sut.GameWidth;
+            var result = sut.ViewWidth;
 
-            Assert.That(result, Is.EqualTo(sut.BoundaryWidth * 2.0f));
+            Assert.That(result, Is.EqualTo(sut.GameWidth * 2.0f));
         }
 
         [Test]
@@ -114,9 +114,9 @@ namespace Tests
             var sut = CreateDefaultConstants();
             sut.runInEditMode = true;
 
-            var result = sut.GameHeight;
+            var result = sut.ViewHeight;
 
-            Assert.That(result, Is.EqualTo(sut.BoundaryHeight * 2.0f));
+            Assert.That(result, Is.EqualTo(sut.GameHeight * 2.0f));
         }
     }
 }

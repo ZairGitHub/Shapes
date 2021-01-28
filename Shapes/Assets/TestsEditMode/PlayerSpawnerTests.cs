@@ -13,8 +13,8 @@ namespace Tests
         private PlayerSpawner CreateDefaultPlayerSpawnerWithMock()
         {
             var mock = Substitute.For<IConstants>();
-            mock.HalfBoundaryHeight.Returns(2.0f);
-            mock.HalfBoundaryWidth.Returns(2.0f);
+            mock.HalfGameHeight.Returns(2.0f);
+            mock.HalfGameWidth.Returns(2.0f);
             return new PlayerSpawner(mock);
         }
 

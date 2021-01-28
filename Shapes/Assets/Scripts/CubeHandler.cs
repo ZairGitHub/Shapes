@@ -49,7 +49,7 @@ public class CubeHandler : MonoBehaviour
     {
         _horizontal = x;
         _vertical = y;
-        Speed = _constants.HalfBoundaryWidth * _minSpeed;
+        Speed = _constants.HalfGameWidth * _minSpeed;
     }
 
     private void RecalculateDirection()
@@ -79,22 +79,22 @@ public class CubeHandler : MonoBehaviour
             {
                 case nameof(Tags.BoundaryNorth):
                     _rb.MovePosition(new Vector3(
-                        _rb.position.x, -_constants.HalfBoundaryHeight +
+                        _rb.position.x, -_constants.HalfGameHeight +
                         _boundaryWrapDistance, _rb.position.z));
                     break;
                 case nameof(Tags.BoundaryEast):
                     _rb.MovePosition(new Vector3
-                        (-_constants.HalfBoundaryWidth + _boundaryWrapDistance,
+                        (-_constants.HalfGameWidth + _boundaryWrapDistance,
                     _rb.position.y, _rb.position.z));
                     break;
                 case nameof(Tags.BoundarySouth):
                     _rb.MovePosition(new Vector3(
-                        _rb.position.x, _constants.HalfBoundaryHeight -
+                        _rb.position.x, _constants.HalfGameHeight -
                         _boundaryWrapDistance, _rb.position.z));
                     break;
                 case nameof(Tags.BoundaryWest):
                     _rb.MovePosition(new Vector3(
-                        _constants.HalfBoundaryWidth - _boundaryWrapDistance,
+                        _constants.HalfGameWidth - _boundaryWrapDistance,
                         _rb.position.y, _rb.position.z));
                     break;
             }

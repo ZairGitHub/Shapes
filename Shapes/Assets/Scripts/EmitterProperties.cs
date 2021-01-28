@@ -20,11 +20,11 @@ public class EmitterProperties
     {
         if (x < 0.0f)
         {
-            x = -_constants.HalfBoundaryWidth + _boundaryOffset;
+            x = -_constants.HalfGameWidth + _boundaryOffset;
         }
         else if (x > 0.0f)
         {
-            x = _constants.HalfBoundaryWidth - _boundaryOffset;
+            x = _constants.HalfGameWidth - _boundaryOffset;
         }
         return x;
     }
@@ -33,11 +33,11 @@ public class EmitterProperties
     {
         if (y < 0.0f)
         {
-            y = -_constants.HalfBoundaryHeight + _boundaryOffset;
+            y = -_constants.HalfGameHeight + _boundaryOffset;
         }
         else if (y > 0.0f)
         {
-            y = _constants.HalfBoundaryHeight - _boundaryOffset;
+            y = _constants.HalfGameHeight - _boundaryOffset;
         }
         return y;
     }

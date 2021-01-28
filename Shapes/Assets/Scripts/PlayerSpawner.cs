@@ -11,8 +11,8 @@ public class PlayerSpawner
     
     public PlayerSpawner(IConstants constants)
     {
-        float spawnWidth = constants.HalfBoundaryWidth / 2.0f;
-        float spawnHeight = constants.HalfBoundaryHeight / 2.0f;
+        float spawnWidth = constants.HalfGameWidth / 2.0f;
+        float spawnHeight = constants.HalfGameHeight / 2.0f;
 
         _topLeftSpawn = new Vector3(-spawnWidth, spawnHeight, 0.0f);
         _topRightSpawn = new Vector3(spawnWidth, spawnHeight, 0.0f);
