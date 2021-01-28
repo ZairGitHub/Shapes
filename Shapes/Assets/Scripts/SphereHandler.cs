@@ -70,32 +70,35 @@ public class SphereHandler : MonoBehaviour
             {
                 case nameof(Tags.BoundaryNorth):
                     _rb.MovePosition(_rb.position + Vector3.down);
-                    _vertical = -_vertical;
+                    FlipVertical();
                     break;
                 case nameof(Tags.BoundarySouth):
                     _rb.MovePosition(_rb.position + Vector3.up);
-                    _vertical = -_vertical;
+                    FlipVertical();
                     break;
                 case nameof(Tags.BoundaryEast):
                     _rb.MovePosition(_rb.position + Vector3.left);
-                    _horizontal = -_horizontal;
+                    FlipHorizontal();
                     break;
                 case nameof(Tags.BoundaryWest):
                     _rb.MovePosition(_rb.position + Vector3.right);
-                    _horizontal = -_horizontal;
+                    FlipHorizontal();
                     break;
             }
             RedirectDirectionVector();            
         }
     }
 
+    private void FlipHorizontal() => _horizontal = -_horizontal;
+
+    private void FlipVertical() => _vertical = -_vertical;
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag(Tags.Sphere))
         {
-            _horizontal = -_horizontal;
-            _vertical = -_vertical;
-            
+            FlipHorizontal();
+            FlipVertical();
             RedirectDirectionVector();
             GiveCollisionBonus(collision.gameObject);
         }
