@@ -21,6 +21,10 @@ public class Constants : MonoBehaviour, IConstants
 
     public float ViewHeight { get; private set; }
 
+    public float HalfViewWidth { get; private set; }
+
+    public float HalfViewHeight { get; private set; }
+
     private void Awake()
     {
         _boundaryGame = GameObject.FindWithTag(Tags.BoundaryGame);
@@ -49,5 +53,8 @@ public class Constants : MonoBehaviour, IConstants
             ViewWidth = _boundaryEast.x - _boundaryWest.x;
             ViewHeight = _boundaryNorth.y - _boundarySouth.y;
         }
+
+        HalfViewHeight = ViewWidth / 2.0f;
+        HalfGameHeight = ViewWidth / 2.0f;
     }
 }
