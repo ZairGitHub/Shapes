@@ -45,6 +45,28 @@ public class PlayerController : MonoBehaviour, IGetAxisService
             _getAxisService.GetAxis(UnityInput.Vertical)) * _speed;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.transform.parent.CompareTag(Tags.BoundaryGame))
+        {
+            switch (other.gameObject.tag)
+            {
+                case nameof(Tags.BoundaryNorth):
+                    _rb.MovePosition(_rb.position + Vector3.down);
+                    break;
+                case nameof(Tags.BoundarySouth):
+                    _rb.MovePosition(_rb.position + Vector3.up);
+                    break;
+                case nameof(Tags.BoundaryEast):
+                    _rb.MovePosition(_rb.position + Vector3.left);
+                    break;
+                case nameof(Tags.BoundaryWest):
+                    _rb.MovePosition(_rb.position + Vector3.right);
+                    break;
+            }
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag(Tags.Cube)
