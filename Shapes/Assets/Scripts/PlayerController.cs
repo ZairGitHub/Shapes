@@ -2,6 +2,7 @@
 
 public class PlayerController : MonoBehaviour, IGetAxisService
 {
+    private float _boundaryWrapDistance;
     private float _speed;
     private IConstants _constants;
     private IGameController _gameController;
@@ -11,6 +12,9 @@ public class PlayerController : MonoBehaviour, IGetAxisService
 
     private void Awake()
     {
+        Collider collider = (BoxCollider)NullChecker.TryGet<BoxCollider>(gameObject);
+        _boundaryWrapDistance = collider.bounds.size.x;
+
         _rb = (Rigidbody)NullChecker.TryGet<Rigidbody>(gameObject);
         _rb.constraints = RigidbodyConstraints.FreezePositionZ;
         _rb.freezeRotation = true;
@@ -41,7 +45,8 @@ public class PlayerController : MonoBehaviour, IGetAxisService
 
     private void FixedUpdate()
     {
-        _rb.velocity = new Vector3(_getAxisService.GetAxis(UnityInput.Horizontal),
+        _rb.velocity = new Vector3(
+            _getAxisService.GetAxis(UnityInput.Horizontal),
             _getAxisService.GetAxis(UnityInput.Vertical)) * _speed;
     }
 
@@ -52,16 +57,28 @@ public class PlayerController : MonoBehaviour, IGetAxisService
             switch (other.gameObject.tag)
             {
                 case nameof(Tags.BoundaryNorth):
-                    _rb.MovePosition(_rb.position + Vector3.down);
+                    _rb.MovePosition(new Vector3(
+                        _rb.position.x,
+                        other.transform.position.y - _boundaryWrapDistance,
+                        _rb.position.z));
                     break;
                 case nameof(Tags.BoundarySouth):
-                    _rb.MovePosition(_rb.position + Vector3.up);
+                    _rb.MovePosition(new Vector3(
+                        _rb.position.x,
+                        other.transform.position.y + _boundaryWrapDistance,
+                        _rb.position.z));
                     break;
                 case nameof(Tags.BoundaryEast):
-                    _rb.MovePosition(_rb.position + Vector3.left);
+                    _rb.MovePosition(new Vector3(
+                        other.transform.position.x - _boundaryWrapDistance,
+                        _rb.position.y,
+                        _rb.position.z));
                     break;
                 case nameof(Tags.BoundaryWest):
-                    _rb.MovePosition(_rb.position + Vector3.right);
+                    _rb.MovePosition(new Vector3(
+                        other.transform.position.x + _boundaryWrapDistance,
+                        _rb.position.y,
+                        _rb.position.z));
                     break;
             }
         }
