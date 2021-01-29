@@ -50,23 +50,15 @@ public class Constants : MonoBehaviour, IConstants
 
     private float SetBoundaryWidth(GameObject gameObject)
     {
-        if (gameObject != null)
-        {
-            _boundaryEast = gameObject.transform.GetChild(1).position;
-            _boundaryWest = gameObject.transform.GetChild(3).position;
-            return _boundaryEast.x - _boundaryWest.x;
-        }
-        return 0.0f;
+        _boundaryEast = gameObject.transform.GetChild(1).position;
+        _boundaryWest = gameObject.transform.GetChild(3).position;
+        return _boundaryEast.x - _boundaryWest.x;
     }
 
     private float SetBoundaryHeight(GameObject gameObject)
     {
-        if (gameObject != null)
-        {
-            _boundaryNorth = gameObject.transform.GetChild(0).position;
-            _boundarySouth = gameObject.transform.GetChild(2).position;
-            return _boundaryNorth.y - _boundarySouth.y;
-        }
-        return 0.0f;
+        _boundaryNorth = gameObject.transform.GetChild(0).position;
+        _boundarySouth = gameObject.transform.GetChild(2).position;
+        return _boundaryNorth.y - _boundarySouth.y;
     }
 }
