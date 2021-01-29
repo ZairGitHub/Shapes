@@ -30,17 +30,12 @@ public class Constants : MonoBehaviour, IConstants
         GameWidth = SetBoundaryWidth(GameObject.FindWithTag(Tags.BoundaryGame));
         GameHeight = SetBoundaryHeight(GameObject.FindWithTag(Tags.BoundaryGame));
 
-        /*_boundaryGame = GameObject.FindWithTag(Tags.BoundaryGame);
+        _boundaryGame = GameObject.FindWithTag(Tags.BoundaryGame);
         if (_boundaryGame != null)
         {
-            _boundaryNorth = _boundaryGame.transform.GetChild(0).position;
-            _boundaryEast = _boundaryGame.transform.GetChild(1).position;
-            _boundarySouth = _boundaryGame.transform.GetChild(2).position;
-            _boundaryWest = _boundaryGame.transform.GetChild(3).position;
-
-            GameWidth = _boundaryEast.x - _boundaryWest.x;
-            GameHeight = _boundaryNorth.y - _boundarySouth.y;
-        }*/
+            GameWidth = SetBoundaryWidth(_boundaryGame);
+            GameHeight = SetBoundaryHeight(_boundaryGame);
+        }
 
         HalfGameWidth = GameWidth / 2.0f;
         HalfGameHeight = GameHeight / 2.0f;
