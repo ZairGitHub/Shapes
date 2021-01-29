@@ -2,10 +2,6 @@
 
 public class Constants : MonoBehaviour, IConstants
 {
-    private Vector3 _boundaryNorth;
-    private Vector3 _boundaryEast;
-    private Vector3 _boundarySouth;
-    private Vector3 _boundaryWest;
     private GameObject _boundaryGame;
     private GameObject _boundaryView;
 
@@ -50,15 +46,15 @@ public class Constants : MonoBehaviour, IConstants
 
     private float SetBoundaryWidth(GameObject gameObject)
     {
-        _boundaryEast = gameObject.transform.GetChild(1).position;
-        _boundaryWest = gameObject.transform.GetChild(3).position;
-        return _boundaryEast.x - _boundaryWest.x;
+        Vector3 boundaryEast = gameObject.transform.GetChild(1).position;
+        Vector3 boundaryWest = gameObject.transform.GetChild(3).position;
+        return boundaryEast.x - boundaryWest.x;
     }
 
     private float SetBoundaryHeight(GameObject gameObject)
     {
-        _boundaryNorth = gameObject.transform.GetChild(0).position;
-        _boundarySouth = gameObject.transform.GetChild(2).position;
-        return _boundaryNorth.y - _boundarySouth.y;
+        Vector3 boundaryNorth = gameObject.transform.GetChild(0).position;
+        Vector3 boundarySouth = gameObject.transform.GetChild(2).position;
+        return boundaryNorth.y - boundarySouth.y;
     }
 }
