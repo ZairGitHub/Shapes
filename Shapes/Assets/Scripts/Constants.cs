@@ -2,9 +2,6 @@
 
 public class Constants : MonoBehaviour, IConstants
 {
-    private GameObject _boundaryGame;
-    private GameObject _boundaryView;
-
     public float GameWidth { get; private set; }
 
     public float GameHeight { get; private set; }
@@ -23,21 +20,21 @@ public class Constants : MonoBehaviour, IConstants
 
     private void Awake()
     {
-        _boundaryGame = GameObject.FindWithTag(Tags.BoundaryGame);
-        if (_boundaryGame != null)
+        GameObject boundaryGame = GameObject.FindWithTag(Tags.BoundaryGame);
+        if (boundaryGame != null)
         {
-            GameWidth = SetBoundaryWidth(_boundaryGame);
-            GameHeight = SetBoundaryHeight(_boundaryGame);
+            GameWidth = SetBoundaryWidth(boundaryGame);
+            GameHeight = SetBoundaryHeight(boundaryGame);
         }
 
         HalfGameWidth = GameWidth / 2.0f;
         HalfGameHeight = GameHeight / 2.0f;
 
-        _boundaryView = GameObject.FindWithTag(Tags.BoundaryView);
-        if (_boundaryView != null)
+        GameObject boundaryView = GameObject.FindWithTag(Tags.BoundaryView);
+        if (boundaryView != null)
         {
-            ViewWidth = SetBoundaryWidth(_boundaryView);
-            ViewHeight = SetBoundaryHeight(_boundaryView);
+            ViewWidth = SetBoundaryWidth(boundaryView);
+            ViewHeight = SetBoundaryHeight(boundaryView);
         }
 
         HalfViewWidth = ViewWidth / 2.0f;
