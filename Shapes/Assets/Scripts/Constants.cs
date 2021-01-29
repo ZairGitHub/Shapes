@@ -27,9 +27,6 @@ public class Constants : MonoBehaviour, IConstants
 
     private void Awake()
     {
-        GameWidth = SetBoundaryWidth(GameObject.FindWithTag(Tags.BoundaryGame));
-        GameHeight = SetBoundaryHeight(GameObject.FindWithTag(Tags.BoundaryGame));
-
         _boundaryGame = GameObject.FindWithTag(Tags.BoundaryGame);
         if (_boundaryGame != null)
         {
@@ -43,13 +40,8 @@ public class Constants : MonoBehaviour, IConstants
         _boundaryView = GameObject.FindWithTag(Tags.BoundaryView);
         if (_boundaryView != null)
         {
-            _boundaryNorth = _boundaryView.transform.GetChild(0).position;
-            _boundaryEast = _boundaryView.transform.GetChild(1).position;
-            _boundarySouth = _boundaryView.transform.GetChild(2).position;
-            _boundaryWest = _boundaryView.transform.GetChild(3).position;
-
-            ViewWidth = _boundaryEast.x - _boundaryWest.x;
-            ViewHeight = _boundaryNorth.y - _boundarySouth.y;
+            ViewWidth = SetBoundaryWidth(_boundaryView);
+            ViewHeight = SetBoundaryHeight(_boundaryView);
         }
 
         HalfViewWidth = ViewWidth / 2.0f;
