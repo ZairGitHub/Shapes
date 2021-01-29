@@ -27,7 +27,10 @@ public class Constants : MonoBehaviour, IConstants
 
     private void Awake()
     {
-        _boundaryGame = GameObject.FindWithTag(Tags.BoundaryGame);
+        GameWidth = SetBoundaryWidth(GameObject.FindWithTag(Tags.BoundaryGame));
+        GameHeight = SetBoundaryHeight(GameObject.FindWithTag(Tags.BoundaryGame));
+
+        /*_boundaryGame = GameObject.FindWithTag(Tags.BoundaryGame);
         if (_boundaryGame != null)
         {
             _boundaryNorth = _boundaryGame.transform.GetChild(0).position;
@@ -37,7 +40,7 @@ public class Constants : MonoBehaviour, IConstants
 
             GameWidth = _boundaryEast.x - _boundaryWest.x;
             GameHeight = _boundaryNorth.y - _boundarySouth.y;
-        }
+        }*/
 
         HalfGameWidth = GameWidth / 2.0f;
         HalfGameHeight = GameHeight / 2.0f;
@@ -56,5 +59,27 @@ public class Constants : MonoBehaviour, IConstants
 
         HalfViewWidth = ViewWidth / 2.0f;
         HalfViewHeight = ViewHeight / 2.0f;
+    }
+
+    private float SetBoundaryWidth(GameObject gameObject)
+    {
+        if (gameObject != null)
+        {
+            _boundaryEast = gameObject.transform.GetChild(1).position;
+            _boundaryWest = gameObject.transform.GetChild(3).position;
+            return _boundaryEast.x - _boundaryWest.x;
+        }
+        return 0.0f;
+    }
+
+    private float SetBoundaryHeight(GameObject gameObject)
+    {
+        if (gameObject != null)
+        {
+            _boundaryNorth = gameObject.transform.GetChild(0).position;
+            _boundarySouth = gameObject.transform.GetChild(2).position;
+            return _boundaryNorth.y - _boundarySouth.y;
+        }
+        return 0.0f;
     }
 }
