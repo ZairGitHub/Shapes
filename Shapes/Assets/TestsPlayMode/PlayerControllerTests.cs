@@ -9,7 +9,9 @@ namespace Tests
     [TestFixture]
     public class PlayerControllerTests
     {
-        private const float _speed = 1.0f;
+        private const float _modifer = 10.0f;
+        // Breaks when running all at once with lower values
+        private const float _speed = 1.0f * _modifer;
 
         private readonly WaitForFixedUpdate _fixedUpdateDelay = new WaitForFixedUpdate();
 
@@ -30,7 +32,7 @@ namespace Tests
 
             var result = sut.GetComponent<Rigidbody>().velocity;
 
-            Assert.That(result, Is.EqualTo(Vector3.left));
+            Assert.That(result, Is.EqualTo(Vector3.left * _modifer));
         }
 
         [UnityTest]
@@ -45,7 +47,7 @@ namespace Tests
 
             var result = sut.GetComponent<Rigidbody>().velocity;
 
-            Assert.That(result, Is.EqualTo(Vector3.right));
+            Assert.That(result, Is.EqualTo(Vector3.right * _modifer));
         }
 
         [UnityTest]
@@ -60,7 +62,7 @@ namespace Tests
 
             var result = sut.GetComponent<Rigidbody>().velocity;
 
-            Assert.That(result, Is.EqualTo(Vector3.down));
+            Assert.That(result, Is.EqualTo(Vector3.down * _modifer));
         }
 
         [UnityTest]
@@ -75,7 +77,7 @@ namespace Tests
 
             var result = sut.GetComponent<Rigidbody>().velocity;
 
-            Assert.That(result, Is.EqualTo(Vector3.up));
+            Assert.That(result, Is.EqualTo(Vector3.up * _modifer));
         }
     }
 }
