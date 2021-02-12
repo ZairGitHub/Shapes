@@ -1,34 +1,34 @@
 ﻿public static class Tags
 {
-    public static string BoundaryGame { get; } = nameof(BoundaryGame);
+    public static string BoundaryGame => nameof(BoundaryGame);
 
-    public static string BoundaryView { get; } = nameof(BoundaryView);
+    public static string BoundaryView => nameof(BoundaryView);
 
-    public static string BoundaryNorth { get; } = nameof(BoundaryNorth);
+    public static string BoundaryNorth => nameof(BoundaryNorth);
 
-    public static string BoundaryEast { get; } = nameof(BoundaryEast);
+    public static string BoundaryEast => nameof(BoundaryEast);
 
-    public static string BoundarySouth { get; } = nameof(BoundarySouth);
+    public static string BoundarySouth => nameof(BoundarySouth);
 
-    public static string BoundaryWest { get; } = nameof(BoundaryWest);
+    public static string BoundaryWest => nameof(BoundaryWest);
 
-    public static string Constants { get; } = nameof(Constants);
+    public static string Constants => nameof(Constants);
 
-    public static string Cube { get; } = nameof(Cube);
+    public static string Cube => nameof(Cube);
 
-    public static string CubeEmitter { get; } = nameof(CubeEmitter);
+    public static string CubeEmitter => nameof(CubeEmitter);
 
-    public static string Debug { get; } = nameof(Debug);
+    public static string Debug => nameof(Debug);
 
-    public static string GameController { get; } = nameof(GameController);
+    public static string GameController => nameof(GameController);
 
-    public static string Sphere { get; } = nameof(Sphere);
+    public static string Sphere => nameof(Sphere);
 
-    public static string TextCollisionBonus { get; } = nameof(TextCollisionBonus);
+    public static string TextCollisionBonus => nameof(TextCollisionBonus);
 
-    public static string TextDebugTime { get; } = nameof(TextDebugTime);
+    public static string TextDebugTime => nameof(TextDebugTime);
     
-    public static string TextScore { get; } = nameof(TextScore);
+    public static string TextScore => nameof(TextScore);
 
-    public static string TextSurvivalBonus { get; } = nameof(TextSurvivalBonus);
+    public static string TextSurvivalBonus => nameof(TextSurvivalBonus);
 }
