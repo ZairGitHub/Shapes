@@ -66,7 +66,7 @@ namespace Tests
         }
 
         [UnityTest]
-        public IEnumerator FixedUpdate_NegativeVerticalAxis_SetsRigidbodyVelocityToVector3Up()
+        public IEnumerator FixedUpdate_PositiveVerticalAxis_SetsRigidbodyVelocityToVector3Up()
         {
             var mock = Substitute.For<IGetAxisService>();
             mock.GetAxis(UnityInput.Vertical).Returns(1.0f);
